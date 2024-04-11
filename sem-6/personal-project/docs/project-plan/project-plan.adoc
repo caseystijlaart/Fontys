@@ -1,0 +1,30 @@
+= Project Plan (Project Debriefing)
+:toc:
+:title-page:
+C. Stijlaart
+V1.1, 15-10-2023
+
+:numbered:
+:imagesdir: images
+:xrefstyle: short
+:leveloffset: +1
+
+include::document-history.adoc[]
+
+<<<
+
+include::project-assignment/project-assignment.adoc[]
+
+<<<
+
+include::approach-planning/approach-planning.adoc[]
+
+<<<
+
+include::project-organization/project-organization.adoc[]
+
+<<<
+
+include::risk-analysis/risk-analysis.adoc[]
+
+:leveloffset: -1

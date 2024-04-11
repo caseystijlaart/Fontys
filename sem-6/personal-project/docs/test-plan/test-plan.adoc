@@ -1,0 +1,25 @@
+= Test Plan : Personal Project
+:toc:
+:title-page:
+C. Stijlaart
+
+:numbered:
+:imagesdir: images
+:xrefstyle: short
+:leveloffset: +1
+
+include::introduction.adoc[]
+
+<<<
+
+include::test-items.adoc[]
+
+<<<
+
+include::test-cases.adoc[]
+
+<<<
+
+include::software-testing.adoc[]
+
+:leveloffset: -1

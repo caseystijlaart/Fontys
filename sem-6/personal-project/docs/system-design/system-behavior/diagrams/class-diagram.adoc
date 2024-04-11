@@ -1,0 +1,80 @@
+.Class Diagram
+@startuml
+interface ISensor{
++ Begin() : bool
++ MeasureData() : void
++ StartCollection(`sensor_id`) : bool
+}
+
+class ControlHandler{
++ <> ControlHandler(IDatabase* database)
++ Begin() : bool
+}
+
+ControlHandler--> IDatabase : uses
+ControlHandler --> IAlgorithm : uses
+
+interface IDatabase{
++ Begin()
++ StoreData(data : json) : bool
++ RetrieveData(date : string) : json
++ EmptyDatabase() : bool
++ GetAvailableSensors() : json
+}
+
+class Database{
++ <> Database(connection_uri : string, database_name : string)
+}
+
+Database .up.|> IDatabase
+
+interface ICommunication{
++ Init() : bool
++ Connect() : bool
++ Send(data : json) : bool
++ Receive() : json
+}
+
+class Communication{
++ <> Communication()
+}
+
+Communication .up.|> ICommunication
+
+interface IAlgorithm{
++ Init()
++ GenerateComposition(`algorithm`) : bool
+}
+
+class AlgorithmicComposition{
++ <> AlgorithmicComposition()
+}
+
+class DataDrivenSoundscapes{
++ <> DataDrivenSoundscapes()
+}
+
+
+DataDrivenSoundscapes .up.|> IAlgorithm
+AlgorithmicComposition .up.|> IAlgorithm
+
+
+class SensorHandler{
++ SensorHandler(ISensor* sensor)
++ Begin() : bool 
+}
+
+class HumiditySensor{
++ <> HumiditySensor()
+}
+
+HumiditySensor .up.|> ISensor
+
+class TemperatureSensor{
++ <> TemperatureSensor()
+}
+
+TemperatureSensor .up.|> ISensor
+
+SensorHandler --> ISensor : uses
+@enduml

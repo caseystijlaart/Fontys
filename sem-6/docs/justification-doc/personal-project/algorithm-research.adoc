@@ -1,0 +1,32 @@
+= Algorithm Research 
+
+== File(s)
+- PP-research-algorithms.pdf
+
+== Context and Problem/Opportunity
+
+The project's central focus is to utilize algorithms for creating musical output, making algorithm research a critical starting point. 
+The goal was to explore various algorithmic possibilities to identify the most suitable ones that would effectively demonstrate the project's key features.
+
+== Goal and Intended Solution
+
+My primary aim was to push the boundaries of what I know.
+As my knowledge of algorithms within embedded software is rather small, I got pushed out of my comfort zone rather quickly.
+Many options came across my path, some looking easier and some looking more complexer then the others.
+Therefor, the balance in being able to bring my project idea to life and pushing my limits, had to be found.
+Besides, I intended to select algorithms that would best highlight the differences in their functionality.
+
+== Questions to Be Answered
+To plan my path to the solution, I needed to answer questions such as: 
+- What algorithms are relevant to my project? 
+- How do these algorithms differ in functionality? 
+- Which algorithms align with my project's purpose?
+
+== Summary of Activities
+I conducted an extensive literature review and gathered information from the community on various algorithms. 
+This research resulted in the creation of a research section within the research document, the section can be found in the <<sprint-1/personal-project/research-algorithms.pdf>>.
+
+== Conclusion and Advises
+
+In conclusion, this research offers a great understanding of various algorithmic techniques for generating music based on environmental data.
+To showcase diversity in output, I concluded in combining algorithmic composition, sonification, and data-driven soundscapes in the project.

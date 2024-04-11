@@ -1,0 +1,21 @@
+= Group Project
+
+:leveloffset: +1
+
+include::database-research.adoc[]
+
+<<<
+
+include::code-examples.adoc[]
+
+<<<
+
+include::messaging-protocol.adoc[]
+
+<<<
+
+include::project-configuration.adoc[]
+
+<<<
+
+:leveloffset: -1

@@ -1,0 +1,125 @@
+
+.UC_01 Scenario 1
+@startuml
+actor User as u
+participant "Interface" as if
+participant "Control Unit" as cu
+participant "Environmental Data Unit" as edu
+participant "Database" as db
+
+activate u
+u --> if : initiate start\n collection
+activate if
+if --> cu : Start()
+activate cu
+cu --> db : GetAvailableSensors()
+activate db
+cu --> if
+db --> cu
+if --> u
+deactivate u
+deactivate if
+cu --> edu : StartCollection(`sensor_id`)
+activate edu
+edu --> cu : SendData(`sensor_id`, `12`)
+deactivate edu
+cu--> db : StoreData(`data`)
+deactivate cu
+deactivate db
+@enduml
+
+.UC_01 Scenario 2
+@startuml
+actor User as u
+participant "Interface" as if
+participant "Control Unit" as cu
+participant "Database" as db
+
+activate u
+u --> if : initiate start\n collection
+activate if
+if --> cu : Start()
+activate cu
+
+cu --> db : GetAvailableSensors()
+activate db
+db --> cu
+deactivate db
+cu --> if
+deactivate cu
+if --> u : No available\n sensors
+deactivate u
+deactivate if
+
+@enduml
+
+
+.UC02 Scenario 1
+@startuml
+actor User as u
+participant "Speakers" as sp
+participant "Interface" as if
+participant "Control Unit" as cu
+participant "Environmental Data Unit" as edu
+participant "Database" as db
+
+activate u
+u --> if : initiate start\n musical composition
+activate if
+if --> cu : StartComposition()
+activate cu
+cu --> db : RetrieveData()
+activate db
+db --> cu
+cu --> cu : GenerateComposition(`algorithm`)
+cu --> sp
+activate sp
+sp --> u
+deactivate sp
+cu --> if
+if --> u
+deactivate u
+deactivate if
+deactivate edu
+deactivate db
+@enduml
+
+.UC_02 Scenario 2
+@startuml
+actor User as u
+participant "Interface" as if
+participant "Control Unit" as cu
+participant "Database" as db
+
+activate u
+u --> if : initiate start\n musical composition
+activate if
+if --> cu : StartComposition()
+activate cu
+cu --> db : RetrieveData()
+activate db
+db --> cu
+deactivate db
+cu --> if
+deactivate cu
+if --> u : Error No \nCaptured Data
+deactivate u
+deactivate if
+deactivate db
+@enduml
+
+.UC_03 Scenario 1
+@startuml
+actor User as u
+participant "Interface" as if
+participant "Control Unit" as cu
+
+activate u
+u --> if : initiate start\n musical composition
+activate if
+if --> cu : ChangeComposition(`algorithm)
+activate cu
+deactivate cu
+deactivate u
+deactivate if
+@enduml

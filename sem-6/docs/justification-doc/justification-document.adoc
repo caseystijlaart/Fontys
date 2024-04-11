@@ -1,0 +1,30 @@
+= Justification Document : Semester 6 Advanced Technology
+:toc:
+:toclevels: 3
+:title-page:
+C. Stijlaart
+
+:numbered:
+:imagesdir: images
+:xrefstyle: short
+:leveloffset: +1
+
+include::preface.adoc[]
+
+<<<
+
+include::document-history.adoc[]
+
+<<<
+    
+include::general/general.adoc[]
+
+<<<
+    
+include::group-project/group-project.adoc[]
+
+<<<
+
+include::personal-project/personal-project.adoc[]
+
+:leveloffset: -1

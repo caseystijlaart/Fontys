@@ -1,0 +1,37 @@
+= Project Configuration 
+
+== File(s)
+
+- GP-project-configuration.pdf
+
+== Context
+
+The project involves the configuration of a group project aimed at providing a clear organization and promoting loose coupling between system components. The configuration includes an elaborate folder structure and utilizes CMake for streamlined project configuration, building, testing, and packaging.
+
+== Problem/Opportunity
+
+The need for a well-defined project configuration arises to ensure organizational clarity, minimize interdependencies, and facilitate efficient project development and maintenance.
+
+== Goal and Intended Solution
+
+The goal is to implement a project configuration that fosters loose coupling and organizational clarity. The intended solution includes an organized system folder structure and the use of CMake for project configuration, building, testing, and packaging.
+
+== Questions to Be Answered
+
+1. How does the folder structure contribute to loose coupling between system components?
+2. What role does CMake play in project configuration, building, testing, and packaging?
+3. How are build flags implemented, and how do they facilitate selective target compilation?
+
+== Summary of Activities
+
+- Define a system folder structure with "libs" and "targets" components.
+- Utilize CMake for project configuration, building, testing, and packaging.
+- Implement build flags to facilitate selective target compilation.
+
+== Validation of Solution
+
+The solution will be validated by assessing the clarity of the system folder structure, the effectiveness of CMake in project configuration, and the successful use of build flags for selective target compilation.
+
+== Conclusion and Recommendations
+
+In conclusion, the project configuration, consisting of a well-defined folder structure and the use of CMake, contributes to organizational clarity and efficient project development. The implementation of build flags further enhances configurability of the project. 

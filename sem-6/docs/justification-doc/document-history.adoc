@@ -1,0 +1,13 @@
+= Document history
+
+.Document History
+|===
+|Version    |Date       |Status |Author                                 |Description                    |Remarks
+
+|0.1        |01-10-2023     |Draft                  | Casey Stijlaart              | Added Sprint 1 professional product | -
+|0.2        |03-11-2023     |Draft                  | Casey Stijlaart              | Added Sprint 2 professional product | -
+|1.0        | 06-11-2023    | Revised First Version | Casey Stijlaart              | Revision based upon feedback C. van Tilborg | -
+|1.1        | 23-11-2023    | First Version         | Casey Stijlaart              | Added Sprint 3 professional product | -
+|2.1        | 14-12-2023    | Second Version       | Casey Stijlaart              | Added Sprint 4 professional product | Revision based upon feedback C. van Tilborg has been included in this update.
+|3.0        | 19-01-2024    | Final Version       | Casey Stijlaart              | Added Sprint 5 professional product | -
+|===

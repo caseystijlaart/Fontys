@@ -1,0 +1,129 @@
+= Database Options
+
+In our search for a database solution that aligns with our specific requirements, we have identified several document-based databases that not only meet these criteria but also offer the flexibility of hybrid and cloud-based deployments, as this could become of importance when the project grows. 
+Below, we  discuss the concluded requirements and explore the various options, considering their advantages and disadvantages in the context of our needs.
+
+== Requirements
+Based on the research that has taken place, covering various aspects of the database, a set of requirements has been set up.
+The requirements are as following :
+- A NoSql database.
+- Document-based storage.
+- Built-in security and encryption.
+- Flexibility in scheme.
+- High performance.
+- Scalability.
+- Stored on an external drive.
+- Usage of various database techniques.
+
+It is also important to keep in mind that the used database should be able to be integrated on the chosen hardware, raspberry pi 4. Therefor all the mentioned options are compatible.
+
+== Options
+
+=== MongoDB
+
+==== Advantages
+
+- **NoSQL Database:** MongoDB is a leading NoSQL database, providing flexibility in schema and document-based storage.
+- **Security and Encryption:** It offers robust security features, including authentication, role-based access control, and encryption at rest.
+- **Flexibility:** MongoDB's schema-less design allows for agile schema changes and adaptation.
+- **High Performance:** It is optimized for high-performance read and write operations.
+- **Scalability:** MongoDB can be scaled horizontally to handle larger workloads and real-time data.
+- **External Storage:** Data can be stored on an external drive, supporting your storage requirements.
+- **Hybrid and Cloud:** MongoDB Atlas, the managed cloud service, offers seamless hybrid and cloud deployments.
+- **Indexing and Views:** MongoDB supports indexing for efficient querying and flexible views using aggregation.
+- **Application Integration:** Has various drivers to allow for integration for C, C++ and python.
+- **Low complexity and easy setup:** The setup and complexity to get started is low, especially as there can be made use of a single-node deployment.
+
+==== Disadvantages
+
+- **Complex Queries:** Complex queries may require additional application-level processing.
+- **Data Consistency:** Maintaining strong data consistency may need careful handling.
+- **Operational Complexity:** Managing and configuring MongoDB can be complex in large-scale deployments.
+
+=== Couchbase
+
+==== Advantages
+
+- **NoSQL Database:** Couchbase offers a NoSQL approach with flexible JSON document storage.
+- **Security and Encryption:** It provides robust security features, including authentication and data encryption.
+- **Flexibility:** Schema flexibility allows for accommodating changing data requirements.
+- **High Performance:** Couchbase is known for its high-performance capabilities, including sub-document operations.
+- **Scalability:** It supports horizontal scaling and real-time data scenarios.
+- **External Storage:** Couchbase supports data storage on external drives.
+- **Hybrid and Cloud:** Couchbase offers hybrid and cloud deployments with Couchbase Cloud.
+- **Indexing and N1QL:** N1QL, a SQL-like query language, enables indexing and complex querying.
+- **Application Integration:** Has various drivers to allow for integration for C, C++ and python.
+
+
+==== Disadvantages
+
+- **Complex Views:** Creating and managing views may require advanced JavaScript skills.
+- **Data Distribution:** Efficient data distribution and rebalancing can be challenging.
+
+=== Amazon DynamoDB
+
+==== Advantages
+
+- **NoSQL Database:** DynamoDB is a managed NoSQL database with built-in scalability.
+- **Security and Encryption:** It offers strong security features and encryption options.
+- **Flexibility:** DynamoDB allows for flexible schemas and schema evolution.
+- **High Performance:** It is designed for high-performance and low-latency access.
+- **Scalability:** DynamoDB scales seamlessly to handle large-scale data and real-time requirements.
+- **External Storage:** While it's primarily a cloud service, it supports external storage integration.
+- **Hybrid and Cloud:** DynamoDB can be part of hybrid architectures and offers cloud-native features.
+- **Indexing:** DynamoDB provides automatic indexing for efficient querying.
+- **Application Integration:** Has various drivers to allow for integration for C, C++ and python.
+
+==== Disadvantages
+
+- **Vendor Lock-In:** It's tightly integrated with AWS, which may lead to vendor lock-in.
+- **Cost Considerations:** Costs can increase with large-scale usage and complex queries.
+
+=== CouchDB
+
+==== Advantages
+
+- **NoSQL Database:** CouchDB is a NoSQL database with document-based storage.
+- **Security and Encryption:** It offers basic security features and supports data encryption.
+- **Flexibility:** CouchDB's schema flexibility aligns with changing data structures.
+- **High Performance:** It performs well for simple queries and smaller-scale deployments.
+- **Scalability:** It can handle moderate scalability requirements.
+- **External Storage:** CouchDB can store data on external drives.
+- **Hybrid and Cloud:** CouchDB can be deployed on various platforms, including cloud services.
+- **Views:** CouchDB's views provide flexible querying capabilities.
+
+
+==== Disadvantages
+
+- **Limited Complex Queries:** Complex queries may require extensive application-level processing.
+- **Data Distribution:** Efficient data distribution and replication can be challenging.
+- **Security:** While it offers basic security, it may not be as robust as other options.
+- **Application Integration:** No specific drivers are available.
+
+
+== Comparison Table
+
+While each option has various advantages and disadvantages, it is important to look at which are important to the project.
+Therefor a comparison table is made to compare all the database options and the whether the important features are possible.
+|===
+| Criteria                    | MongoDB       | Couchbase     | Amazon DynamoDB | CouchDB       
+
+| **Security and Encryption** | +            | ++            | ++               | 0             
+| **Flexibility**              | ++            | ++            | ++               | ++            
+| **High Performance**         | ++            | ++            | ++               | +             
+| **Scalability**              | ++            | ++            | ++               | +             
+| **Hybrid and Cloud**         | ++            | ++            | ++               | ++            
+| **Indexing and Querying**    | ++            | ++            | ++               | 0    
+| **Application Integration**  | ++            | +            | +               | 0     
+| **Low complexity and easy setup **   | ++            | 0            | 0               | 0  
+|===
+
+== Recommendation
+
+After careful consideration of the various database options and their suitability for integration into a C++ application running on a Raspberry Pi 4, we recommend MongoDB as the preferred choice. 
+MongoDB aligns well with our project's requirements and offers several advantages that make it a strong candidate for our use case.
+
+While MongoDB does have some disadvantages, such as the potential complexity of managing it in large-scale deployments and the need for additional application-level processing for complex queries, these limitations can be mitigated with careful planning and tuning, especially for a Raspberry Pi 4-based application.
+
+In summary, MongoDB is a well-rounded database solution that aligns with our project's requirements, offers strong security features, and provides the necessary tools for integration into a C++ application on a Raspberry Pi 4. 
+We believe that MongoDB is the most suitable option to meet our database needs and enable the successful development of our application on this platform.

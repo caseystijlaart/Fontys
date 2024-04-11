@@ -1,0 +1,15 @@
+= Research Questions
+
+To guide the exploration and analysis for finding the most suitable database and its structure, the following research questions are established:
+
+*Main Research Question*
+
+- What is the most suitable database for our project's needs?
+
+*Sub-questions*
+
+- Should the database be local or cloud-based?
+- Which database storage format is ideal?
+- What should be the database structure?
+- What data structure techniques should be employed?
+- What type of feature(s) can lay a foundation for the security?

@@ -1,0 +1,9 @@
+= Finance and Risks
+
+:leveloffset: +1
+
+include::financial-resources.adoc[]
+
+include::risks-fallback-activities.adoc[]
+
+:leveloffset: -1

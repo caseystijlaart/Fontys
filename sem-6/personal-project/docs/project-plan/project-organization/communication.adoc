@@ -1,0 +1,5 @@
+= Communication
+
+The main communication is with the coach, Cees van Tilborg.
+Teams and email are the main way of communication.
+To ensure the coach is update with my progress and overall project status, sprint meetings are held every month.

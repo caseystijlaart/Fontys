@@ -1,0 +1,5 @@
+= Preface
+
+In this research document, there are critical aspects explored to find the most suitable database.
+This document covers important topics such as the choice between local and cloud-based databases, database structure, data structure techniques, database storage format, and various database options. 
+The research provides a detailed analysis of the advantages and disadvantages of each option and offers valuable recommendations for the project's database needs. 

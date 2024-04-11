@@ -1,0 +1,14 @@
+= Risks and Fallback Activities
+
+Every project carries risks, each with its unique implications and potential solutions. 
+To gain insight into the potential risks, their resolutions, and prevention strategies, please refer to the following details in <<Risk and Contingency Plan>>.
+
+.Risk and Fallback Activities
+|===
+| Risk | Prevention Activities in the Plan | Contingency Measures
+
+| Running Out of Time.| A well-structured plan with built-in time buffers can allow for time-related risks. Ensuring extra planned in time for each project phase allows for flexibility when unexpected issues occur.| Discuss the matter with project coach, and assess the situation to determine the way forward.
+
+| Long-term Sickness. | Clear communication with the project coach to ensure the coach is up-to-date, and has a clear idea on what is going on.| Discuss possible actions that could be taken and solution to be found.
+
+|===

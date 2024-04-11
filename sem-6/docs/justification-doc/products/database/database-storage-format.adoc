@@ -1,0 +1,78 @@
+= Database Storage Format
+
+When it comes to database storage, there are two primary approaches to consider: Document-Based Storage Format and Traditional Database Storage (NoSQL). 
+These distinct methods offer their own set of advantages and disadvantages, and the choice between them is pivotal in shaping how data is managed and accessed in your application. 
+To find the most suitable option, the two storage formats are laid out, compared and matched with the requirements.
+Based on the requirements and the gained knowledge, a recommendation is made.
+
+== Document-Based Storage Format
+
+Document-based storage is a database storage approach that emphasizes flexibility and adaptability in data storage.
+In this model, data is stored in document format, typically using formats such as JSON or XML.
+This approach offers several advantages and disadvantages that need to be carefully considered.
+
+=== Advantages
+
+- **Flexibility:** 
+Document-based storage formats are inherently flexible, making them ideal for handling semi-structured or unstructured data.
+This flexibility enables the addition or modification of fields without requiring extensive schema changes.
+
+- **Schema Evolution:** 
+The document-based approach allows for schema evolution, accommodating changing data requirements as the application evolves over time.
+
+- **Rapid Development:** 
+Document-based databases are often favored during the initial development stages, enabling rapid prototyping and iterations without rigid schema constraints.
+
+- **Hierarchical Data:** 
+It's well-suited for hierarchical or nested data structures, which are common in certain applications.
+
+=== Disadvantages
+
+- **Limited Query Capabilities:** 
+Document-based databases may offer less powerful query capabilities compared to traditional databases.
+Complex queries and aggregations may require additional application-level processing.
+
+- **Data Consistency:** 
+Maintaining data consistency can be challenging in a schema-less environment, requiring careful application-level handling.
+
+- **Performance:** 
+Document-based databases may not be as optimized for complex querying and reporting tasks compared to traditional databases.
+
+== Traditional Database Storage
+
+Traditional database storage, often categorized as NoSQL, encompasses a variety of database management systems designed to handle structured and semi-structured data.
+This approach provides a structured schema and offers several advantages and disadvantages.
+
+=== Advantages
+
+- **Structured Data:** 
+Traditional databases enforce a structured schema, ensuring data consistency and integrity.
+
+- **Complex Queries:** 
+They excel at handling complex queries, reporting, and analytics, often supporting SQL for querying.
+
+- **ACID Transactions:** 
+Traditional databases are ACID-compliant, guaranteeing data consistency and reliability even in the face of failures.
+
+- **Security and Compliance:** 
+They offer robust security features, including access control and audit trails, which are crucial for sensitive data and compliance requirements.
+
+=== Disadvantages
+
+- **Schema Rigidity:** 
+The structured schema can be less flexible and may require schema changes when data structures evolve.
+
+- **Development Overhead:** 
+Schema changes can lead to development overhead and potentially slow down the development process.
+
+- **Scalability Challenges:** 
+Some traditional databases may face challenges when it comes to horizontal scalability, especially in distributed environments.
+
+== Recommendation
+
+The choice between document-based storage format and traditional database storage (NoSQL) hinges on the specific requirements of your application.
+In our case, where we prioritize flexibility, schema evolution, and real-time data processing, a document-based storage format is a strong candidate.
+However, the final decision should consider other factors such as performance, scalability, and the complexity of queries and reporting.
+
+Therefore, based on our defined requirements and after a comprehensive evaluation of both storage options, we recommend adopting a document-based storage format for our database.
+This choice aligns with our need for flexibility, adaptability, and the capability to handle real-time data effectively.

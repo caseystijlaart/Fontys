@@ -1,0 +1,56 @@
+= Project Report : IoT Measurement Setup
+:toc:
+:title-page:
+C. Stijlaart
+
+:numbered:
+:xrefstyle: short
+:leveloffset: +1
+
+= Introduction
+
+== Background
+
+The Fontys Robotlab, situated in the Netherlands, is a dedicated space for advancing robotics research and development. It serves as a hub for innovation, fostering collaboration among students, researchers, and professionals. The lab's focus spans hardware, software, and the integration of robotics, along with educational initiatives and industry partnerships.
+
+The current project addresses the need for a more flexible and compact prototype of a chemistry robot within the Fontys Robotlab. Existing setups are limited in flexibility, hindering the modification of workflows. The objective is to create a versatile system that allows for easy workflow adjustments and data collection, catering to various user groups within the lab.
+
+== Objectives
+
+The primary objective is to develop a prototype chemistry robot capable of performing chemical tests and collecting data. The absence of a system inspecting chemical tests for data creates a gap that this project seeks to fill. Through multiple iterations and refinements, the goal is to achieve a working prototype that safely produces accurate data from chemical processes. The ultimate aim is to make this data accessible to authorized users within the Fontys Robotlab.
+
+== Scope
+
+The project's scope includes the creation of a prototype chemistry robot with one or multiple cameras. These cameras will monitor crucial aspects of the test setup, such as liquid presence, color identification, and pipette insertion. Data generated will be stored in a secure database with controlled access only available to authorized groups. The initial phase focuses on precise data collection from a single vial, with the potential for future expansion in collaboration with stakeholders.
+
+= Findings
+
+Throughout the implementation of the project, several key findings have surfaced, offering valuable insights for future improvements.
+
+== Performance Evaluation
+
+The most significant discovery centers around the limitations of the current computer system, primarily the Raspberry Pi. While the Raspberry Pi serves as a foundational platform, it presents challenges when tasked with concurrent operations such as video streaming, storage, and dashboard functionalities. This limitation becomes particularly pronounced in scenarios requiring image processing, where the Raspberry Pi's functional capabilities degrade at lower frame rates and image quality, falling short of the optimal standards for the final project.
+
+Moreover, attempts to run the database directly on the Raspberry Pi revealed unforeseen complications and a lack of support for this platform. This poses a critical constraint, hindering the successful implementation of the intended database functionality.
+
+== System Limitations
+
+The limitations observed underscore the need for a more robust hardware solution. The Raspberry Pi's constraints in handling computational strain during concurrent operations and image processing raise concerns about its suitability for the project's ultimate objectives.
+
+= Conclusion and Recommendations
+
+The findings point towards crucial considerations for the successful implementation and future development of the embedded system. While these limitations may not significantly impact the immediate goals of the current project, they lay the groundwork for essential improvements in subsequent iterations.
+
+== Transition to Robust Hardware
+
+A pivotal recommendation emerges from the identified limitations—transitioning from the Raspberry Pi to a more capable alternative, such as an Intel NUC or a similar high-performance system. This shift is imperative to overcome the current computational challenges and enhance the system's overall capabilities.
+
+== Justification for Transition
+
+The recommendation to switch to a more robust hardware alternative is rooted in the necessity to address the identified limitations effectively. While this transition may entail associated costs, the long-term benefits in terms of improved functionality and reliability justify this strategic move. The increased computational capacity of alternatives like the Intel NUC ensures seamless handling of concurrent operations and image processing, aligning with the project's performance requirements.
+
+== Future Considerations
+
+Looking ahead, the implementation of these recommendations will not only resolve the current constraints but also lay the foundation for more successful iterations of similar projects in the future. Embracing technological advancements and selecting hardware that aligns precisely with the project's evolving requirements will contribute to the development of a more robust and effective embedded system.
+
+In conclusion, the project's success hinges on addressing these identified limitations, with the transition to advanced hardware serving as a key catalyst for improved system performance and reliability. This strategic move positions the project for continued innovation and success in the dynamic field of embedded systems.

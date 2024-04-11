@@ -1,0 +1,39 @@
+= Requirements
+
+A system has various requirements, each one covering an important aspect of how the system must work or behavior.
+These requirements are divided into the user-, functional- and non-functional requirements.
+
+== User Requirements
+
+[.table]
+.User Requirements
+|===
+| ID | Requirement | Use Case(s)
+| UR01 | The system should be able to start collecting environmental data at startup. | UC01
+| UR02 | Users should be able to adjust the musical composition output settings through the interface. | UC02/UC03
+| UR03 | The system should provide a musical compositions, which triggers emotions, based on the collected environmental data. | UC02
+|===
+
+== Functional Requirements
+
+[.table]
+.Functional Requirements
+|===
+| ID | Requirement | Use Case(s)
+| FR01 | The EDU must be able to collect data. | UC01
+| FR02 | The CU must be able to request measured environmental data from the EDU and DB to process it using algorithms. | UC01/UC02
+| FR03 | The CU must be able to interfaces with the DB for storing and retrieving environmental data. | UC01
+| FR04 | The IF and CU must be able to adjust the current used musical output settings. | UC02/UC03
+| FR05 | The IF must be able to showcase the current system status | UC03
+|===
+
+== Non-Functional Requirements
+
+[.table]
+.Non-Functional Requirements
+|===
+| ID | Requirement 
+| NFR01 | The system should be able to handle environmental data from multiple sensors simultaneously.
+| NFR02 | The musical compositions should be designed to evoke specific human emotions effectively.
+| NFR03 | The system should be scalable to accommodate future upgrades or additions to environmental sensors.
+|===

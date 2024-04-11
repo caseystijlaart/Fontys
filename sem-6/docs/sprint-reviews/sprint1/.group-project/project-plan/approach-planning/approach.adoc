@@ -1,0 +1,16 @@
+= Approach
+
+Throughout the project, the scrum methodology is used. 
+Meaning that there are made use of sprints to keep track of the process and the next steps. Each sprint lasts 3 weeks, with exceptions due to holidays. 
+Within a sprint multiple meeting types are used to ensure for good communication and flow.
+The first meeting starts at the the first day of the sprint.
+During this meeting there is looked back out the previous sprint, the review and retrospective, and the planning for the new sprint is made.
+At the end of a sprint, a sprint demo takes place.
+Meaning that there is showcased what has been done and achieved.
+Lastly, on a daily basis short stand ups take place.
+These stand ups are used to ensure that everyone is on tracking with what they are doing and if any help is necessary.
+
+== Test Approach
+In order to allow for a flawless software implementation, testing is used.
+Testing is done in different manners with each manner testing a different aspect.
+The main forms of testing that will be used during this project is any form of unit tests and integration tests.

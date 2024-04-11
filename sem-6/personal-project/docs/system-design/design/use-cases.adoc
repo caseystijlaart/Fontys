@@ -1,0 +1,38 @@
+== Use Cases
+
+In this section use cases and corresponding requirements are described.
+
+[.figure]
+.Use Case Diagram
+image::use-cases-diagram.png[]
+
+<<Use Case Diagram>> depicts some of the use cases of {project-name}.
+It shows system boundary and specifies how actors interact with the system.
+Each use case will be described in the following table.
+
+[.table]
+.Use Case 01
+|===
+| ID: UC01 | Use Case Name: Collect Environmental Data
+
+| Description | When the system is running, environmental data is collected and stored.
+| Actor(s) | Environmental Data Unit (EDU), Database (DB)
+|===
+
+[.table]
+.Use Case 02
+|===
+| ID: UC02 | Use Case Name: Generate musical composition
+
+| Description | When the user request for a musical composition to be generated, the controller unit uses the environmental data to generate the musical composition.
+| Actor(s) | Control Unit (CU), Interface (IF), Database(DB)
+|===
+
+[.table]
+.Use Case 03
+|===
+| ID: UC03 | Use Case Name: Change musical composition
+
+| Description | When the user changes the used algorithm trough the interface, the musical composition output changes.
+| Actor(s) | Interface (IF)
+|===

@@ -1,0 +1,25 @@
+= General
+
+:leveloffset: +1
+
+include::project-management.adoc[]
+
+<<<
+
+include::project-plan.adoc[]
+
+<<<
+
+include::test-app.adoc[]
+
+<<<
+
+include::system-design-document.adoc[]
+
+<<< 
+    
+include::project-report.adoc[]
+
+<<<
+
+:leveloffset: -1

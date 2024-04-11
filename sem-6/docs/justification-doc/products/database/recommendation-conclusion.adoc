@@ -1,0 +1,15 @@
+= Recommendations and Conclusion
+
+In conclusion, the research has provided valuable insights into the selection of the most suitable database for the project. 
+All of the set research questions were answered after the thorough research.
+
+When reviewing the research questions and what their conclusion/answer is, the following can be concluded.
+
+- For database location, a local database is recommended due to its data control and ease of setup.
+- The database storage format is document-based due to its flexibility, schema evolution support, and suitability for real-time data.
+- For the database structure, employing a non-relational database like MongoDB is recommended for its flexibility, scalability, and real-time data processing capabilities.
+- The data structure should incorporate a key-value store with tables to enable flexible data retrieval based on flags.
+- The foundational features for security in the prototype include robust access control, authentication, and encryption at rest, with the potential for enhancing security through the later integration of TLS/SSL encryption and an audit system.
+
+After evaluating various database options, MongoDB is the preferred choice, offering alignment with our project's requirements, strong security features, high performance, scalability, and integration capabilities with the Raspberry Pi 4.
+

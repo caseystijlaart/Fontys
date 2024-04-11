@@ -1,0 +1,60 @@
+= Code Examples 
+
+== File(s)
+- GP-Code-Examples.pdf
+
+== Rationale
+
+The "Code Examples" presents a comprehensive Docker container and database implementation for an IoT measurement setup designed to observe lab setups. 
+The rationale behind this professional product is to provide a standardized and easily deployable solution for managing databases, complete with essential scripts and classes for effective data handling.
+
+The Docker container encapsulates the project environment, ensuring reproducibility and ease of deployment. 
+It incorporates versioning (V1.5) and includes MongoDB drivers, a running MongoDB server, Google tests, code coverage through lcov/gcov, and more. 
+This version serves as a solid foundation for future enhancements and additions.
+
+The database implementation is structured around three distinct classes - "Database," "DatabaseDataFormatter," and "DatabaseManager.".
+This design choice adheres to SOLID principles, particularly focusing on loose coupling and single responsibility. 
+The database classes facilitate various operations, from interacting with the database server to formatting data and managing the overall application-to-database interaction.
+
+== Questions Addressed
+
+The project addresses several key questions in its design and implementation:
+
+- How is the Docker container structured?
+
+The Docker container consists of a Dockerfile and two scripts, "install.sh" and "start-script.sh." The former handles package installation and updates, while the latter serves as the entrypoint script, setting up MongoDB with appropriate users and security.
+
+- What are the key components of the database implementation?
+
+The database is comprised of three classes: "Database," "DatabaseDataFormatter," and "DatabaseManager." Each class has a specific role, promoting separation of concerns and maintaining a modular and extensible codebase.
+
+- How is testing integrated into the project?
+
+The document includes a demonstration of unit testing with the DatabaseManager as an example. Testing ensures the reliability and correctness of the implemented functionality, with a focus on dependency injection to mock the database for effective unit testing.
+
+== Practical Implementation
+
+**Docker Container**
+
+The Docker container simplifies the deployment and management of the project environment. 
+Users can easily set up the required packages and drivers using the provided "install.sh" script. 
+The "start-script.sh" script initializes the MongoDB server with necessary configurations, making the container ready for use.
+
+**Database Classes**
+
+The three database classes (Database, DatabaseDataFormatter, DatabaseManager) are implemented following best practices such as Dependency Injection and the Strategy pattern. 
+This allows for flexibility in handling various commands, maintaining loose coupling, and ensuring the separation of concerns.
+
+**Testing**
+
+Unit testing is an integral part of the project, as demonstrated by the DatabaseManagerTest. 
+The test cases showcase the robustness of the DatabaseManager's functionality, and the use of mock databases ensures thorough testing without affecting the actual database.
+
+== Validation and Future Considerations
+
+The project has undergone validation through unit testing, ensuring that key components such as the Docker container and database classes function as intended. 
+Future considerations for the project involve continuous improvement, including updates to the Docker image as additional packages are required. 
+The modular structure of the database implementation also allows for easy extension and modification to accommodate new features or changes in requirements.
+
+In conclusion, the "Code Examples: Groups Project" by Casey Stijlaart stands as a well-structured and thoughtfully designed professional product. 
+Its Docker container and database implementation provide a solid foundation for managing IoT measurement setups, emphasizing modularity, reliability, and ease of deployment.

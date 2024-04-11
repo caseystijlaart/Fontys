@@ -1,0 +1,17 @@
+[plantuml, Hardware Diagram]
+----
+@startuml
+[Raspberry Pi 4] as RP
+[Arduino Nano 33 IoT] as NANO
+[Environmental Sensors 1] as ES1
+[Environmental Sensors 2] as ES2
+[Environmental Sensors 3] as ES2
+[Speakers] as SS
+
+RP -- SS
+RP -- NANO : wireless connection
+NANO -- ES1
+NANO -- ES2
+NANO -- ES3
+@enduml
+----

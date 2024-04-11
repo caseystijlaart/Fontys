@@ -1,0 +1,46 @@
+= Project Report : Personal Project
+:toc:
+:title-page:
+C. Stijlaart
+
+:numbered:
+:xrefstyle: short
+:leveloffset: +1
+
+= Introduction
+
+The project centers around the development of an embedded system that leverages environmental data to create musical compositions through the use of algorithms and IoT technology. This initiative stems from a keen interest in delving into algorithmic processes and exploring the realm of IoT connectivity, marking a shift towards a more research-oriented and self-directed learning experience.
+
+== Objectives
+
+The primary objective is to design and implement an embedded system capable of processing environmental data, including temperature and sound levels, to generate musical compositions. The focus is on expanding skills and knowledge in algorithmic music generation and IoT integration while adopting a research-based approach.
+
+== Scope
+
+The project scope encompasses the creation of an embedded system that transforms environmental data into musical compositions using algorithms and IoT connectivity. The system aims to address the challenge of understanding text-based environmental data, providing a more intuitive and non-text-based representation of the environmental conditions.
+
+= Findings
+
+Creating musical compositions based on various approaches, such as Data Driven Soundscapes, Sonification, and Algorithmic Composition, can be achieved through a relatively simple approach. However, for those seeking more intricate musical pieces, a more complex coding structure and overall setup are necessary.
+
+= Future Enhancements
+
+To further enhance the capabilities of the embedded system and elevate the musical compositions it produces, several future enhancements can be considered. These enhancements aim to address current limitations and explore additional avenues for innovation within the project:
+
+== Advanced Algorithmic Techniques
+
+The project has laid a foundation for algorithmic music generation, but there is room for incorporating more advanced techniques. Exploring machine learning algorithms and neural networks could introduce a dynamic element to the compositions, allowing the system to adapt and evolve its musical output based on the continuous analysis of environmental data.
+
+== Multi-Sensor Integration
+
+Expanding the range of sensors used in the embedded system can provide a richer dataset for composition generation. Integrating sensors that capture humidity, light intensity, or air quality can introduce new dimensions to the musical compositions. This multi-sensor approach would enable a more comprehensive representation of the environment and contribute to the creation of immersive and context-aware musical experiences.
+
+== User Interface Enhancement
+
+Improving the user interface of the system can enhance the overall user experience and make the project more accessible to a wider audience. Implementing a user-friendly dashboard that provides real-time visualizations of the environmental data, algorithmic processes, and musical output can make the system more intuitive and engaging for users with varying levels of technical expertise.
+
+= Conclusion and Recommendations
+
+While the system generally performs as intended, there is room for improvement to enhance its capabilities. Recommendations include advancing the complexity of the musical composition generation process for more elaborate outputs. Currently, the system employs less complex approaches for live composition generation, and upgrading to more intricate methods is advised.
+
+Additionally, the Raspberry Pi utilized in the project, specifically the Raspberry Pi 4 with 4GB RAM, has proven effective for simpler tasks. However, for resource-intensive processes like complex musical composition generation, upgrading to a more robust version, such as the Raspberry Pi 4 with higher RAM capacity, is recommended. This upgrade would facilitate faster task execution and reduce strain on the device, enabling the implementation of more sophisticated approaches in musical composition generation.

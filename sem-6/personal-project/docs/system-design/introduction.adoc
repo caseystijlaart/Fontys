@@ -1,0 +1,4 @@
+= Introduction
+
+This document serves as a comprehensive guide detailing the design and architecture of the embedded system that transforms environmental data into musical compositions. 
+It contains a detailed system description with multiple diagrams defining all of the hardware components and the behavior of the system.

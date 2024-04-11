@@ -1,0 +1,10 @@
+= Configuration Management
+
+To ensure proper version control, GitLab is used for this project.
+All project files are stored on GitLab, with a specific GitLab environment, InnovationLab, provided by Fontys.
+Within Git, I utilize "issues" to manage my tasks.
+Each issue corresponds to a small task within the project.
+I can easily divide and keep track of my tasks using these issues.
+To ensure the safety and integrity of my code, I create a branch for each issue and work on this branch exclusively for the duration of the task.
+
+Once I've completed an issue, I can merge the branch to the main branch.

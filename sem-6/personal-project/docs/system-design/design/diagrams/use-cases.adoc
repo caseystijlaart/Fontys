@@ -1,0 +1,20 @@
+[plantuml, Use Cases]
+----
+@startuml
+left to right direction
+actor "Sensors" as EDU
+actor Interface as IF
+
+package "System" {
+    usecase "Collect Environmental Data" as UC01
+    usecase "Generate musical composition" as UC02
+    usecase "Change musical composition" as UC03
+}
+
+EDU --> UC01
+
+IF --> UC02
+
+IF --> UC03
+@enduml
+----

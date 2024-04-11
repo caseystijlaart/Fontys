@@ -1,0 +1,55 @@
+= Project Management - Git 
+
+== File(s)
+- PP+GP-project-management-git.pdf 
+- PP+GP-git-pipeline.pdf
+
+== Context and Problem/Opportunity
+
+During the first sprint of our group project, our team faced challenges related to communication and leadership.
+There was a lack of clarity responsibilities and overall project direction. 
+Therefore it became evident to me, that action was needed to address the issues.
+
+== Goal and Intended Solution
+
+Recognizing the need for clear project management, I took the initiative to step and help the team guide in the initial start up phase. 
+My goal was to establish a structured manner of work, that would guide the team and provide a clear project direction.
+
+In parallel, understanding the importance of robust testing, documentation, and code quality in our project, I integrated a GitLab CI/CD pipeline.
+
+== Questions to Be Answered
+
+To plan this solution, I needed answers to questions such as: 
+
+- How can better overview be given to the group, regarding to tasks? 
+- How can we ensure version control and traceability?
+- How can we enhance code quality, testing, and documentation in our software development process?
+
+== Summary of Activities
+
+With the help of the questions, a discussion was held to inform the group on the approach.
+The approach meant to make use of issues with labels, such as "next sprint backlog", "sprint backlog", "in progress", and "in review". 
+Another approach was to make use of milestones, is it can give a clear insight on how far we are we certain aspects of out project.
+Version control was another urgent aspect.
+Together with M. Rats, I set up the branching and templates for issues and merge requests, and merge request rules.
+Second last, to help kick it off, I had taken it upon myself to create the issues we should be working on for the next sprint and helped with dividing them, ensuring the given issues corresponded with the research they had done for the project.
+Lastly, the CI/CD pipeline was integrated, to enhance our software developemnt process by providing a systematic and automated approach to testing, documentation, and code quality.
+
+== Validation of Solution
+
+Utilizing the mentioned labels provided a better insight into our current goals and what's next.
+It ensured that when tasks were completed, there was always a clear path forward.
+Regarding version control, rules were implemented to protect the main branch, 'Development'.
+These rules were added to the git project configuration to ensure compliance.
+An example of how issues, labels, and milestones have been used can be found in the following document: <<GP+PP-project-management.pdf>>.
+
+Simultaneously, the GitLab CI/CD pipeline ensured comprehensive testing, documentation generation, and code style checks. 
+The modular structure allows for flexibility and easy maintenance, and the pipeline is configured to meet the specific needs of our project. 
+An example of how the GitLab CI/CD pipeline has been used can be found in the following documents: <<GP+PP-project-management.pdf>> and <<GP+PP-git-pipeline.pdf>>.
+
+== Conclusion and Recommendations
+
+The workflow significantly improved due to the changes implemented.
+Everyone had better guidance and a more structured way of working, which ultimately enhanced the team's effectiveness.
+The integration of the GitLab CI/CD pipeline ensures continuous improvement in code quality and development efficiency. 
+Regularly reviewing and updating both the project management processes and the CI/CD pipeline is recommended to adapt to evolving project requirements and industry best practices.

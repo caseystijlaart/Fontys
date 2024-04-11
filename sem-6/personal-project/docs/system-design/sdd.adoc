@@ -1,0 +1,36 @@
+= System Design Document : Personal Project
+:toc:
+:title-page:
+C. Stijlaart
+
+:numbered:
+:imagesdir: images
+:xrefstyle: short
+:leveloffset: +1
+
+include::document-history.adoc[]
+
+<<<
+
+include::introduction.adoc[]
+
+<<<
+
+include::system-description.adoc[]
+
+<<<
+
+include::design/design.adoc[]
+
+<<<
+    
+include::system-behavior/system-behavior.adoc[]
+
+<<<
+    
+include::hardware-diagram.adoc[]
+
+// include::recommendations_conclusion.adoc[]
+
+
+:leveloffset: -1

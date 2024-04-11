@@ -1,0 +1,28 @@
+= Breakdown of the Project
+
+The project is divided into 4 different phases, each phase serves its purpose. 
+The phases are created to serve as a clear guidance throughout the project. 
+Next to this, it also ensures the project stays on track and clear overview of what is going on.
+
+**Analysis and problem definition**
+
+The first phase is the most important as it serves to create a solid foundation for the project.
+During this phase the focus lies on defining the problem, finding solutions and creating a concrete plan.
+The plan is used during the entirety of the project to ensure the final project aligns with the client's wishes.
+
+**Design**
+
+During the second phase, the focus is shifted to creating the design of the system.
+This means that the overall architecture of the system is shaped with the help of different diagrams, such as flow charts and state diagrams.
+
+**Realization**
+
+During second last phase, the implementation of the plan and design is made into reality. 
+All the gained knowledge is challenged and put into practice.
+In a continuous cycle the software is implemented and tested.
+Once the planned result is reached, the next phase starts.
+
+**Evaluation**
+
+The last phase is focused on showcasing all that is learned and created during the previous phases.
+Meaning that a demonstration of the final product is given, and evaluated. 

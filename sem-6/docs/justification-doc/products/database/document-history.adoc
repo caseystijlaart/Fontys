@@ -1,0 +1,10 @@
+= Document history
+
+.Document History
+|===
+|Version    |Date       |Status |Author                                 |Description                    |Remarks
+
+|0.1        |01-10-2023 |Draft  | Casey Stijlaart               | Added Sprint 1 research (database structure, database format and data structure) | The research had previously already been done, but not yet put into one document.
+|0.2        |03-11-2023 |Draft  | Casey Stijlaart               | Added Sprint 2 research (database options) | The research had previously already been done, but not yet put into one document.
+|0.3        |23-11-2023 |Draft  | Casey Stijlaart               | Added Sprint 3 research (database security) | The research had previously already been done, but not yet put into one document.
+|===

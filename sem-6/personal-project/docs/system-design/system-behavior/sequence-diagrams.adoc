@@ -1,0 +1,51 @@
+= Sequence diagrams
+
+In this section different scenarios are considered per use case and the corresponding interactions are described by sequence diagrams.
+The modules from the previous section are used as objects in these diagrams.
+In some sequence diagrams the actors from the use cases appear to be an object in a diagram, since they Interact with the system by sending or receiving messages.
+
+== UC_01 : Collect Environmental Data
+
+=== Scenario 1
+
+When the user initiates the start of collecting, the sensor data is captured and stored in the database.
+
+[.figure]
+.UC_01 Scenario 1
+image::UC01-S1.png[]
+
+=== Scenario 2
+
+When the user tries to initiate the start of collecting data while no sensors are connected, an error message occurs.
+
+[.figure]
+.UC_01 Scenario 2
+image::UC01-S2.png[]
+
+== UC_02 : Generate musical composition
+
+=== Scenario 1
+
+When the user initiates the start of starting the musical composition, the musical composition is genereted and outputted.
+
+[.figure]
+.UC_02 Scenario 1
+image::UC02-S1.png[]
+
+=== Scenario 2
+
+When the user initiates the start of outputting musical compoition while no data has/is been captured, an error message occurs.
+
+[.figure]
+.UC_02 Scenario 2
+image::UC02-S2.png[]
+
+== UC_03 : Change musical composition
+
+=== Scenario 1
+
+When the user initiates change in algoritm for the musical composition, the control unit switches the algoritm and generates the new musical composition.
+
+[.figure]
+.UC_03 Scenario 1
+image::UC03-S1.png[]

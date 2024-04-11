@@ -1,0 +1,17 @@
+= Context
+
+The project's revolves around the creation of an embedded system that processes environmental data and transforms it into musical compositions using algorithms and IoT technology. 
+This interests originates from the desire to gain a deeper understanding of algorithms and explore IoT connectivity further. 
+It represents a shift towards a more research-oriented and self-directed learning experience, in contrast to previous projects with predefined constraints.
+
+== Problem analysis
+
+A common challenge that many individuals encounter is the understanding of text-based data. 
+Text-based data tends to be flat and lacking the necessary context for a good understanding. 
+Consequently, people often struggle to assess the quality of their environment, be it in terms of temperature, sound levels, or other factors.
+
+== Problem definition
+
+The problem to be addressed here is the difficulty people face when attempting to understand environmental conditions represented in text-based data. 
+Such data is often insufficient in providing the context needed for an accurate assessment of the environment's quality. 
+The result is that individuals may lack a clear understanding of whether their climate conditions are optimal or suboptimal, making it challenging to respond to potential issues or improvements effectively.

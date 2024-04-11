@@ -1,0 +1,84 @@
+= Data Structure
+
+There are many types of data structures that can be used for a database.
+Each type is used for a different purpose.
+Examples of such are tables, indexes, trees and heaps.
+When picking a data structure it is of great importance to keep in mind in what type of database it is stored.
+
+As mentioned in <<Recommendations Database Structure>>, the recommendation is to make use of an local relational database. 
+This local database will be stored on a drive. 
+Based upon this, it is a given that there is made use of tables.
+While tables seem rather straight forward, different techniques can be used.
+
+Techniques of such are normalization and indexes.
+These two techniques can enhance performance and overall clarity of the database.
+
+== Data Structure Techniques
+
+=== Tables
+
+In a relational database, a table is a structured data storage unit. 
+It is a two-dimensional structure consisting of rows and columns. 
+Each row represents a single record or data entity, and each column represents an attribute or field of that entity.
+
+
+**Purpose**
+
+Tables are used to organize and store data in a structured manner. 
+They provide a way to represent different types of data entities and their attributes. 
+
+
+=== Normalization
+
+Normalization is a database design technique used to minimize data redundancy and improve data integrity. 
+It involves breaking down large tables into smaller, related tables and establishing relationships between them.
+
+**Purpose**
+
+Using this technique reduces data anomalies such as insertion, update, and deletion anomalies. 
+It also ensures that data is organized in such a way that it minimizes redundancy, making it easier to maintain and update the database.
+
+**Levels of Normalization**
+
+There are several normal forms (e.g., First Normal Form, Second Normal Form, Third Normal Form, Boyce-Codd Normal Form) that define progressively stricter rules for organizing data. 
+Each level addresses specific types of data redundancy and relationships between tables.
+
+
+**Examples**
+
+|===
+| SensorId | Value           | Type | Flag       
+
+| 1      | 0.11 | float      | chemist 
+| 2      | 2 | int       | business 
+|===
+
+|===
+| SensorId | Sensor Device Id | Sensor Type
+
+| 1 | 189302847 | Temperature
+| 2 | 73820173 | Color
+|===
+
+
+=== Indexes
+
+An index in a relational database is a data structure that improves the speed of data retrieval operations on a table.
+It's like an additional table containing a subset of the data in the main table, organized for quick lookup based on one or more columns.
+
+**Purpose**
+
+Indexes are used to speed up the retrieval of rows from a table. 
+Without an index, the database would need to perform a full table scan to find specific rows, which can be slow for large datasets. 
+Indexes allow the database engine to locate the desired rows more efficiently.
+
+**Types of Indexes**
+There are various types of indexes, including B-tree indexes (commonly used for most data types), hash indexes (for exact matches), and bitmap indexes (useful for columns with a limited set of possible values).
+
+
+== Recommendation
+
+For the prototype, the recommendation is to make use of a  tables with the normalization technique.
+As a lot of different data comes in, each corresponding to a different view point, it can enhance the clarity of the data to be structured in such a manner.
+If feasible, indexes is a great technique to implement for better performance.
+Using indexes allow for data to be processed faster, meaning data can be received and retrieved in a continuos stream.

@@ -1,0 +1,37 @@
+= Algorithm's
+
+When looking into the different approaches on how music can be created based upon environmental data and algorithms, multiple approach arise to the surface.
+Each approach resulting in a different output, as each algorithm focusses on a different aspect regarding to the input, output and how the data is processed.
+To determine the most suitable algorithms for the given project context, it is essential to delve into these approaches and evaluate their applicability. 
+In this research, the different approaches are investigated and illustrated how their interpretation of environmental data for musical composition is used.
+
+== Algorithmic Composition
+
+Algorithmic composition is a foundational approach in computer-generated music.
+It relies on math, computations, or instructions to compose music either independently or collaboratively.
+Algorithmic composition can potentially convert environmental data into melodies, rhythms, and harmonies that mirror the changing facets of the natural world.
+
+== Sonification
+
+Sonification, distinct from algorithmic composition, focuses on translating data into sound without adhering to traditional musical rules.
+With this approach, the gathered environmental data correspond to different sound features such as pitch, volume, or timbre.
+This creates an auditory representation, enabling listeners to identify patterns, trends, and anomalies through sound.
+
+== Data-driven Soundscapes
+
+Data-driven soundscapes provide a holistic approach to interpreting environmental data.
+Instead of generating individual musical elements, this method constructs immersive auditory environments that mirror the complexity of the data.
+By blending ambient sounds, field recordings, and musical motifs, data-driven soundscapes offer a sensory-rich experience, offering a nuanced portrayal of environmental data.
+
+== Machine Learning/AI-based
+
+Machine learning and artificial intelligence (AI) bring advanced computational techniques into music creation from environmental data.
+These algorithms can learn intricate relationships between data and music elements, resulting in compositions that adapt, evolve, and respond to environmental changes.
+Machine learning models like neural networks, genetic algorithms, and reinforcement learning are increasingly employed to generate music that transcends traditional rule-based approaches.
+
+== Conclusion
+
+In this research,  several algorithmic techniques for generating music from environmental data have been researched. 
+Each of these techniques offers a distinct perspective on the relationship between data and music. 
+As there is wished to showcase how the different algorithms result in different output, there are three algorithms used that show a diverse range. 
+Therefore, by combining algorithmic composition, sonification, and data-driven soundscapes, there is aimed to showcase a diverse range of musical interpretations of environmental data. 

@@ -1,0 +1,29 @@
+= Research Questions
+
+In order to reach the deliverable, a comprehensive exploration of various facets must be explored. 
+These diverse facets each play an important role in determining the functioning of the system. 
+To delve into these crucial aspects, research questions are created.
+Each research question covering their own set of facets.
+
+**Main question:**
+
+How can environmental data be harnessed to produce meaningful musical output?
+
+**Sub-questions:**
+
+. Which environmental sensor are suitable candidates?
+
+
+. What type of data structure should be used?
+
+. How can the retrieved data be effectively processed and utilized?
+
+. Which database type offers the most efficient data management?
+
+. What type of IoT communication protocol will be used?
+
+. How can musical output be generated from the collected data?
+
+. What methods can be used to develop a custom algorithm?
+
+. How can the musical output be designed to trigger specific human emotions?

@@ -1,0 +1,39 @@
+= Project Plan 
+
+== File(s)
+- PP-project-plan.pdf 
+- GP-project-plan.pdf
+
+== Context and Problem/Opportunity
+
+A well-structured project plan is essential to provide a clear indication on the project and serves as guidance. 
+
+== Goal and Intended Solution
+
+The primary goal of this project plan is to create a roadmap for the personal project. 
+By providing a structured approach, it intends to guide the project's phases, set clear objectives. 
+The intended solution is to develop a comprehensive project plan that discusses all aspects of the project, from problem analysis to risk management.
+
+== Questions to Be Answered
+
+To formulate this project plan, several questions needed to be addressed:
+
+- How can a project plan effectively address the needs of a personal project, considering its characteristics and goals?
+- What strategies and methodologies are best suited to guide the project from initiation to completion?
+- What measures should be in place to identify and manage potential risks during the project's execution?
+
+== Summary of Activities
+
+The creation of the project plan involves various activities, including the analysis of the project's context, the establishment of a structured approach, and the formulation of a timeline and team organization. 
+It also required the identification and assessment of risks and the fallback measures.
+
+== Validation of Solution
+
+Validation of this solution was achieved through practical application. 
+The project plan was created, serving as the guiding document for the personal project. 
+The complete documents <<PP-project-plan.pdf>> and <<GP-project-plan.pdf>> can be referred to for detailed insights and guidance.
+
+== Conclusion and Advises
+
+In conclusion, this project plan serves as a critical tool for personal project management, bridging the gap between project concept and completion.
+It provides a structured approach, ensuring that the project's goals are met.

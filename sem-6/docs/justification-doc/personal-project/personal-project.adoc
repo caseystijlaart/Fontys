@@ -1,0 +1,17 @@
+= Personal Project
+
+:leveloffset: +1
+
+include::algorithm-research.adoc[]
+
+<<<
+
+include::test-plan.adoc[]
+
+<<<
+
+include::generation-musical-output.adoc[]
+
+<<<
+
+:leveloffset: -1

@@ -1,0 +1,46 @@
+= Research Document : Database
+Casey Stijlaart <c.stijlaart@student.fontys.nl>
+:toc:
+:title-page:
+
+:numbered:
+:imagesdir: images
+:xrefstyle: short
+:leveloffset: +1
+
+include::preface.adoc[]
+
+<<<
+    
+include::document-history.adoc[]
+
+<<<
+
+include::research-questions.adoc[]
+
+<<<
+
+include::database-structure.adoc[]
+
+<<<
+
+include::data-structure.adoc[]
+
+<<<
+
+include::database-storage-format.adoc[]
+
+<<<
+
+include::database-options.adoc[]
+
+<<<
+
+include::database-security.adoc[]
+
+<<<
+
+include::recommendation-conclusion.adoc[]
+
+
+:leveloffset: -1

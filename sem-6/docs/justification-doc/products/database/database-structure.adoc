@@ -1,0 +1,143 @@
+= Database Location
+
+A database can be stored in multiple manners. 
+Each manner having their own advantages and disadvantages.
+
+== Local- or Cloud-based Database
+A database can be stored in two manners, locally or in the cloud.
+Both of these options having their own advantages and disadvangtes, making an option more suitable for one purpose than another.
+
+=== Local Database
+
+Local databases refer to databases that are hosted and managed on-premises, typically within an organization's physical infrastructure. They are stored and maintained locally on the organization's servers or dedicated hardware.
+
+==== Advantages
+
+. **Data Control: **
+The organization has full control over their data. Custom security measures and access controls can be set to their specific needs.
+
+. **Performance:**
+As the data is stored locally, the data can be accessed faster with a lower latency.
+
+. **Compliance:**
+Since data is stored locally, the data is secured by the better compliance options as the data does not leave the premises of the organization.
+
+
+==== Disadvantages
+
+. **Cost:** 
+As everything is locally, there is a dependency on hardware and staff for management.
+This can be costly for smaller projects.
+
+. **Scalability:** 
+When large sizes of data is stored, the storage will run low and therefor must me expanded upon.
+This requires a significant investment and updates in software to manage the drives.
+
+. **Security:** 
+While local databases offer control, they also demand more responsibility for security. 
+There must be invested in a robust security to protect against physical and cyber threats.
+
+
+=== Cloud-based Database
+
+Cloud-based databases are hosted and managed by third-party cloud service providers, such as Amazon Web Services (AWS), Microsoft Azure, or Google Cloud Platform. Data is stored and processed on remote servers maintained by these providers.
+
+==== Advantages
+
+. **Scalability:** 
+Cloud databases allow for easier scalability. 
+The amount of storage and computing can be changed on-demand, ensuring their will always be enough storage.
+
+. **Accessibility:** 
+As they are stored in the cloud, data can be accessed from anywhere with the help of an internet connection.
+This allows for more flexibility and possible remote work and global collaborations.
+
+. **Automatic Updates:** 
+Cloud providers handle updates, patches, and maintenance, reducing the burden on in-house IT teams. 
+This ensures databases are running with the latest security features.
+
+
+==== Disadvantages
+
+. **Data Security:** 
+While cloud providers ensures the good security, a third party is involved.
+Meaning that the data is entrusted to the third party.
+Therefore, it's crucial to carefully manage access control, encryption, and compliance to mitigate potential risks.
+
+. **Data Transfer Costs:** 
+Transmitting large volumes of data to and from the cloud can incur additional costs, especially if the organization has limited bandwidth or significant data transfer needs.
+
+. **Vendor Lock-In:** 
+Moving away from a cloud provider can be complex and costly, creating a form of vendor lock-in. 
+It's essential to plan for data portability and exit strategies.
+
+
+=== Recommendation Database Storage
+
+As the goal of the project is to create a prototype, there are certain aspects that are not yet relevant regarding to the database.
+A good example of such an aspect is the security and scalability.
+For a prototype a local database is a solid start.
+It allows for full control of the data, no internet dependency and is easier to setup.
+
+== Database Structure
+
+As for the database itself, it has one main requirement, flags.
+Data must be retrievable based upon, so called, flags.
+These flags allow for data sets to be accessible for only the groups that have access to given flag.
+Another important aspect to be taken into account is the uncertainty of what data fields will be stored within
+When it comes to the type of data structure, there are two options, relational and non-relational.
+
+=== Relational Databases (RDBMS)
+A relational database is structured, meaning the data is organized in tables. Many times, the data within these tables have relationships with one another or dependencies.
+
+==== Advantages
+
+. **Structured Data: **
+RDBMS excels in handling structured data with well-defined schemas.
+
+. **Data Integrity:** 
+ACID properties ensure strong data integrity and consistency, making RDBMS suitable for applications where data accuracy is critical.
+
+. **Historical Data:** 
+RDBMS systems are well-suited for creating a historical record of changes of changes made to data over time.
+
+
+==== Disadvantages
+
+. **Rigid Schema:** 
+The fixed schema of RDBMS can be limiting if your data sets evolve over time or if you need to store unstructured or semi-structured data.
+
+. **Scalability:** 
+Scaling RDBMS systems can be challenging, especially for high-velocity data streams, which may be a limitation for real-time data collection.
+
+
+=== Non-Relational Databases (NoSQL)
+A non-relational database is document-oriented, meaning all information gets stored in more of a laundry list order.
+You will have all of your data listed within a single construct or document.
+
+==== Advantages
+
+. **Flexible Schema:** 
+NoSQL databases allow for a dynamic or flexible schema, making them suitable for storing data sets with varying or evolving data fields.
+
+. **Scalability: **
+NoSQL databases are designed for horizontal scalability, making them well-suited for real-time applications with rapidly changing data.
+
+. **High Throughput:** 
+NoSQL databases can handle high volumes of data and can be optimized for high throughput, crucial for real-time data capture.
+
+==== Disadvantages 
+
+. **Eventual Consistency:** 
+The BASE model, followed by NoSQL databases, may provide eventual consistency, which may not be suitable if strong data consistency is essential.
+
+. **Learning Curve:** 
+Depending on the chosen NoSQL database type (e.g., document-oriented, key-value, graph), there may be a learning curve for adapting to the specific data model.
+
+
+=== Recommendations and Conclusion Database Structure
+
+Keeping further development for the database and data structure in mind,the recommendation is to make use of a non-relational as this allows for more flexibility.
+To clarify this, as the data sets may have fields added or removed dynamically, and considering the need for flexibility, scalability, a NoSQL database is more usable. 
+An example of such is MongoDB, as its easy to adapt changes in data structure, capture real-time data, and scale your database as needed. 
+MongoDB is a good recommendation for a NoSQL database that allows for encrypted data on the network and on disk
