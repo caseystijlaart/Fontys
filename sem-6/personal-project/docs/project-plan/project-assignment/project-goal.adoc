@@ -1,5 +1,0 @@
-= Project Goal
-
-The goal is to successfully design and implement an embedded system that effectively utilizes environmental data to create musical compositions via algorithmic processes. 
-The musical composition should give a clear indication to the human on the environmental status.
-Allowing for data to be informative in a non-text-based manner,

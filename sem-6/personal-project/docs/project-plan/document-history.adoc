@@ -1,8 +1,0 @@
-= Document history
-
-.Document History
-|===
-|Version    |Date       |Status |Author                                 |Description                    |Remarks
-
-|1.1        |15-10-2023 |First Version  | Casey Stijlaart              | Complete first version | -
-|===

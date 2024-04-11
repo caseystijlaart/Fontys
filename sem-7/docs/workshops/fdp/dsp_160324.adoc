@@ -1,8 +1,0 @@
-= FDP : 16032024
-
-== LTI (Linear Time Invariant)
-
-== Impulse Response
-
-When it comes to having an input consisting out of multiple impulses, the input is decomposed. 
-And the SUM is taken of that.
