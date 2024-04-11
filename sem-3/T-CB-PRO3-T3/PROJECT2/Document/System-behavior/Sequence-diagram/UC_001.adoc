@@ -1,0 +1,34 @@
+= UC_001 : Move in straight line
+
+
+Scenario 1::
+The robot has two initialized wheels and requests a general function, which individually calls each wheel to rotate on the given speed.
+The sequence diagram of this scenario is given in <<seq-uc_001-scenario-1>>.
+
+
+[[seq-uc_001-scenario-1]]
+.the robot moves in a straight line
+[plantuml,format=svg]
+----
+@startuml
+
+actor "Robot" as robot
+participant "Wheels" as wheels
+participant "Wheel 1" as wheel1
+participant "Wheel 2" as wheel2
+
+activate robot
+robot  -> wheels	: drive(wheel_Info wheel, wheel_Info wheel2, float speed)
+activate wheels
+deactivate wheels
+
+robot -> wheel1     : rotate(wheel1, float Speed)
+activate wheel1
+deactivate wheel1
+robot  -> wheel2	: rotate(wheel2, float Speed)
+activate wheel2
+deactivate wheel2
+deactivate robot
+
+@enduml
+----

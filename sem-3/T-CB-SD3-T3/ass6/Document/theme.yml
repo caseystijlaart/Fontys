@@ -1,0 +1,30 @@
+extends: default
+
+base:
+  font-family: Times-Roman
+  
+footer:
+  height: 1.5cm
+  vertical-align: top
+  verso:
+    left: &footer-content-left
+      content: 'SD assignment 6'
+  recto:
+    left: *footer-content-left
+
+header:
+  height: 1.5cm
+  border-color: $footer-border-color
+  vertical-align: bottom
+  verso: &header-content
+    left:
+      content: 'Fontys'
+  recto: *header-content
+
+title-page:
+  align: center
+  authors: "Casey Stijlaart"
+
+page:
+  size: A4
+  margin: [1in, 1in, 1in, 1in]

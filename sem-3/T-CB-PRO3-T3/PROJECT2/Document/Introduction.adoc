@@ -1,0 +1,6 @@
+= Introduction
+Project 2 consists out making the FHICT bot move around without bumping into any obstacles.
+This will be done with the help of the attached sensors and a feedback control system.
+To be more specific, the Robot will be moving into a straight line until a object gets too close.
+When this occurs, the robot will making a random turn between -90 degrees and 90 degrees.
+The approach for getting towards the end result is described throughout this document.

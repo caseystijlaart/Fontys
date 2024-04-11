@@ -1,0 +1,21 @@
+= State machine
+
+The robot has twee possible states, idle and turn in a random direction. 
+The transition between these states are based on specific events which are triggered by for example the Ultrasonic sensor.
+
+[plantuml,format=svg]
+----
+@startuml
+
+state "Change direction" as turn
+state "Idle" as idle
+
+idle : entry/ drive(wheel_Info wheel, wheel_Info wheel2, float speed)
+turn : entry/ turnRandom(Wheel_Info wheel1, Wheel_Info wheel2, float speed)
+
+[*] -down-> idle : wheel_Init(wheel_Info wheel)
+idle -down-> turn : HCSR04_Read() [Distance <= 10]
+turn -up-> idle
+
+@enduml
+----

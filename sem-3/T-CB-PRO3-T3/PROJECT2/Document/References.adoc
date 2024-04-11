@@ -1,0 +1,13 @@
+= References
+
+. Frenken-Liskova, R. (2021). Robot Swarm Project. From Git: https://git.fhict.nl/technology/t-sem3-cb/-/blob/master/project/2_robot_swarm/Robot%20Swarm%20Project.docx
+
+. Parallax. (2017). 360 HS Servo. From Git: https://git.fhict.nl/technology/t-sem3-cb/-/blob/master/project/2_robot_swarm/Toolbox/900-00360-Feedback-360-HS-Servo-v1.1.pdf
+
+. Cytron Technologies (2013). HC-SR04 User Manual. From Git: https://git.fhict.nl/technology/t-sem3-cb/-/blob/master/project/2_robot_swarm/Toolbox/HCSR04_user_manual_1.pdf
+
+. HC-SR04 User Guide. From Git: https://git.fhict.nl/technology/t-sem3-cb/-/blob/master/project/2_robot_swarm/Toolbox/hc-sr04_ultrasonic_module_user_guidejohn.pdf
+
+. PWM INPUT in STM32. From Controllers Tech: https://controllerstech.com/pwm-input-in-stm32/
+
+. Feedback 360° High Speed Servo Propeller C Example Code. From Parallax : https://www1.parallax.com/downloads/feedback-360°-high-speed-servo-propeller-c-example-code

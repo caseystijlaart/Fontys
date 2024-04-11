@@ -1,0 +1,12 @@
+in1_1
+minimum number of K occurences is 1
+in1_2
+minimum number of K occurences is 3
+in1_3
+minimum number of K occurences is 1
+in1_4
+minimum number of K occurences is 1
+in1_5
+minimum number of K occurences is 98297
+in1_6
+minimum number of K occurences is 3

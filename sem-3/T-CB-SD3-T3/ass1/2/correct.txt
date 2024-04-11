@@ -1,0 +1,8 @@
+in2_1
+difference between minimum and maximum sum of K elements is 17627
+in2_2
+difference between minimum and maximum sum of K elements is 7770
+in2_3
+difference between minimum and maximum sum of K elements is 19210
+in2_4
+difference between minimum and maximum sum of K elements is 999

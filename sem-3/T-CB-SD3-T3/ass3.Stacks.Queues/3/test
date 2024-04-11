@@ -1,0 +1,15 @@
+rm -f out.txt
+FILES="in1 in2 in3 in4 in5"
+for f in $FILES
+	do
+		echo $f
+		echo $f >> out.txt
+		./ass3 < $f
+		./ass3 < $f >> out.txt
+	done
+if cmp out.txt correct.txt
+then
+	echo "Tests successful"
+else
+	echo "Tests failed"
+fi

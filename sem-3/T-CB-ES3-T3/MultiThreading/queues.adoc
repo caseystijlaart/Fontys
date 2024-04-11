@@ -1,0 +1,14 @@
+= Queues
+
+== Applying queue
+
+To apply a queue to the existing threads, a queue is created when called for and deleted when the queue is empty.
+When instructions are given to perform a specific scene, the scene enters the queue by looping through the string array of the scene instructions.
+The same steps apply to getting the messages from the queue.
+This happens after the executeScene function is called due to messages being put onto the queue.
+This function is added to keep a clear oversight on what functions are used for the previous parts of the assignment and what is ftom the queues part of the assignment.
+
+== Thread-safe?
+The program is not completely thread-safe.
+The stack has a maximum size and 'shuts down' the program when it's limit is reached. 
+Since a new thread is created everytime a instruction for a scene to be executed, at some point their will be asked too much from the stack.

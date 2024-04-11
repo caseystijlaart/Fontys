@@ -1,0 +1,17 @@
+= Multithreading
+:toc:
+:title-page:
+:xrefstyle: short
+:imagesdir: images
+Casey Stijlaart, 466488
+Fontys University of Applied Science
+
+:leveloffset: +1
+
+include::threads.adoc[]
+
+include::mutex.adoc[]
+
+include::queues.adoc[]
+
+:leveloffset: -1

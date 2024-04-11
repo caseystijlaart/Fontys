@@ -1,0 +1,11 @@
+= Feedback Control
+
+The feedback control is used to control the rotation of the servo's based reading the current input PWM signal of one of the servo's.
+To go into more detail, each servo has an PWM input signal. 
+This signal is used to read the current position of the servo.
+To read this signal, the signal is measured and converted into a readable duty cycle period.
+With the help of converting it to an duty cycle period, the PWM output signal from each servo is compared and based on this action will be taken.
+The action that will be taken, is to adjust the PWM output of one servo based on the PWM input signal from both servo's.
+For example, wheel 1 has a duty cycle period from 0.074 and wheel 2 from 0.070.
+Therefor a newly calculated CCR value, for wheel 2, is calculated based on the goal duty cycle, which is the same as wheel 1.
+This value will be set as the new CCR value for the second wheel instance.

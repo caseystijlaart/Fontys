@@ -1,0 +1,12 @@
+in6_1
+depth is 4
+in6_2
+depth is 5
+in6_3
+depth is 6
+in6_4
+depth is 9
+in6_5
+ERROR to many nodes
+in6_6
+depth is 14

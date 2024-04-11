@@ -1,0 +1,37 @@
+in6_1
+2
+2
+in6_2
+3
+2
+2
+1
+2
+2
+3
+2
+2
+3
+in6_3
+3
+4
+3
+4
+3
+3
+4
+4
+3
+3
+in6_4
+ERROR n (0) value out of range
+in6_5
+ERROR too many test cases
+in6_6
+4
+in6_7
+9
+in6_8
+ERROR m (100001) value out of range
+in6_9
+ERROR node (11) value out of range

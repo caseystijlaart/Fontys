@@ -1,0 +1,12 @@
+rm -f out*
+FILES="out_alg1 out_alg2 out_alg3"
+./ass3 < in3
+for f in $FILES
+	do
+		if cmp correct.txt $f
+		then
+			echo "Test for $f successful"
+		else
+			echo "Test for $f failed"
+		fi
+	done

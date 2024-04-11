@@ -1,0 +1,37 @@
+= Threads
+
+
+== Function(s) for LED control
+
+To control the LEDS there is one general function called sprinklers(int sprinklerNr, bool state).
+This function is controlled by the sprinkler number and the state (on or off).
+Besides that, there is a function to configure the LEDS.
+
+
+== Storing scenes
+
+Each scene is stored within an array of strings. 
+These array's are as following;
+
+char scene1[maxStrings][maxStringSize] = { "1on", "wait5", "2on", "1off", "wait5", "2off", "wait5" };
+
+char scene2[maxStrings][maxStringSize] = { "3on", "wait5", "3off", "wait3" };
+
+char scene3[maxStrings][maxStringSize] = { "4on", "5on", "wait5", "4off", "wait5", "5off", "wait5" };
+
+
+== Function(s) to perform scenes
+
+Each scene has its own function in which the described scene is performed.
+These functions are excecuteScene1(), excecuteScene2() and excecuteScene3(). 
+These functions are called when a new thread got created. 
+
+
+== Testing
+
+The program has first been tested based on component testing.
+Meaning, that first each LED and its connected function got tested.
+After that, the program got tested as a whole.
+This is done by using PuTTY and activating multiple threads at the same time.
+Each thread has its duration and differs from each others.
+This results in threads starting and finishing at different moments in time.

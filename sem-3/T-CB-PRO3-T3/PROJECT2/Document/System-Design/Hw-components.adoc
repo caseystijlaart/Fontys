@@ -1,0 +1,16 @@
+= Hardware
+
+== Nucleo F303RE
+The chosen microcontroller has the possibilities to configures timers for the PWM signals.
+	
+== Parallax Feedback 360° High-Speed Servo 
+The servo has the capability to rotate a full 360 degrees with the help of PWM signals. 
+Based on the PWM signal, it can rotates clockwise and counter clockwise. 
+Besides that, the servo has the ability to retrieve a feedback signal.
+This feedback signal can be used to control two servo's in the same manner.
+Regarding to this project, this function can be used to make the robot move in a straight line.
+
+== Ultrasonic sensor : HC-SR04
+The ultrasonic sensor that measures distance by emitting a 8 bursts of 40kHz ultrasonic wave.
+When it encounters an object, the ultrasonic will reflect and return to the ultrasonic sensor.
+Based on how long the echo pin (the receiver) stays high, the distance is calculated.

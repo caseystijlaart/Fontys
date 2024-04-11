@@ -1,0 +1,32 @@
+= Project 2 Robot
+:toc:
+:title-page:
+:stem:
+:xrefstyle: short
+:imagesdir: images
+Casey Stijlaart, 466488
+Fontys University of Applied Science
+
+:leveloffset: +1
+
+include::Introduction.adoc[]
+
+<<<
+
+include::System-design/System-design.adoc[]
+
+<<<
+
+include::System-behavior/System-behavior.adoc[]
+
+<<<
+
+include::Research/Research.adoc[]
+
+<<<
+
+include::Reflection/Reflection.adoc[]
+
+include::References.adoc[]
+
+:leveloffset: -1

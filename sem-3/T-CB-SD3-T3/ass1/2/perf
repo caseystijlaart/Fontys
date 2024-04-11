@@ -1,0 +1,7 @@
+FILES="in2_1 in2_2 in2_3 in2_4"
+for f in $FILES
+	do
+		echo "$f"
+		./ass2 < $f 
+	done
+exit 0

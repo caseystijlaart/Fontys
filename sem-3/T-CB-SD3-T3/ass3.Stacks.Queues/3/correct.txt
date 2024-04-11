@@ -1,0 +1,10 @@
+in1
+Maximum sum is 40
+in2
+Maximum sum is 12595
+in3
+Maximum sum is 7510
+in4
+Maximum sum is 2942
+in5
+Maximum sum is 1455267608604

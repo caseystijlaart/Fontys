@@ -1,0 +1,7 @@
+= Complete System
+The complete system of the robot exists out of multiple components, each with their own purpose.
+See <<#img-CS>> for the activity diagram.
+
+[#img-CS] 
+.Complete System Activity Diagram
+image::Complete-System.png[]

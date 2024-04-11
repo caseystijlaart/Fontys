@@ -1,0 +1,13 @@
+= System behavior
+
+:leveloffset: +1
+
+include::Sequence-diagram/Sequence-diagram.adoc[]
+
+include::State-machine.adoc[]
+
+<<<
+    
+include::Activity-diagram/Activity-diagram.adoc[]
+
+:leveloffset: -1
