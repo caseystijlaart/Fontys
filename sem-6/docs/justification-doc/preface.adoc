@@ -1,4 +1,0 @@
-= Preface
-
-In this justification document, I will provide a detailed explanation for each of my professional products developed during the group project and personal project of Semester 6 Advanced Technology. 
-The document will showcase the systematic approach I took to address problems and opportunities, outline my goals and solutions, detail the questions I needed to answer, summarize my activities, describe how I validated my solutions, and conclude whether I successfully solved the problem.
