@@ -1,9 +1,0 @@
-= Research
-
-:leveloffset: +1
-
-include::Feedback-Control.adoc[]
-
-include::Algorithm.adoc[]
-
-:leveloffset: -1
