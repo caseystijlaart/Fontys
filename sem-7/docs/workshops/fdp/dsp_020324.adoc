@@ -1,0 +1,5 @@
+= Digital Signal Processing : Introduction (0202204)
+
+Processing signals on for example one and two dimensional signals.
+
+For processing of signals, the analog signal should be converted to a digital value. 
