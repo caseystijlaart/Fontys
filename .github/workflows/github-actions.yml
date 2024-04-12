@@ -1,0 +1,21 @@
+
+name: Github Actions
+on:
+  push:
+  workflow_dispatch: # This allows manual triggering of the workflow
+jobs:
+  generate_project_plan:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y asciidoctor graphviz
+
+    - name: Generate PDF
+      run: |
+        asciidoctor-pdf sem-7/project-plan/project-plan.adoc -o sem-7/project-plan/project-plan.pdf
