@@ -1,4 +1,0 @@
-= Equalizer
-
-- Generate an equalizer, which takes input, such as an song, and alter e.g. the pitch based upon the signal.
-- Use sine generator stuff.

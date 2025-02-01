@@ -1,4 +1,0 @@
-= Assignment
-
-In this personal project, the assignment is to design and implement an embedded system that utilizes environmental data, such as temperature and sound levels, to generate musical output through the use of algorithms and IoT connectivity. 
-The primary objective is to expand skills and knowledge in algorithmic music generation and IoT integration, while embracing a more research-based approach.
