@@ -1,7 +1,0 @@
-= Risk Analysis
-
-:leveloffset: +1
-
-include::risks-fallback-activities.adoc[]
-
-:leveloffset: -1
