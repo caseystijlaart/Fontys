@@ -1,0 +1,2208 @@
+name,sex,age,pclass,embarked,country,ticketno,fare,sibsp,parch,survived
+"Abbing, Mr. Anthony",male,42,3rd,S,United States,5547,7.11,0,0,0
+"Abbott, Mr. Eugene Joseph",male,13,3rd,S,United States,2673,20.05,0,2,0
+"Abbott, Mr. Rossmore Edward",male,16,3rd,S,United States,2673,20.05,1,1,0
+"Abbott, Mrs. Rhoda Mary 'Rosa'",female,39,3rd,S,England,2673,20.05,1,1,1
+"Abelseth, Miss. Karen Marie",female,16,3rd,S,Norway,348125,7.13,0,0,1
+"Abelseth, Mr. Olaus Jørgensen",male,25,3rd,S,United States,348122,7.13,0,0,1
+"Abelson, Mr. Samuel",male,30,2nd,C,France,3381,24,1,0,0
+"Abelson, Mrs. Hannah",female,28,2nd,C,France,3381,24,1,0,1
+"Abī-Al-Munà, Mr. Nāsīf Qāsim",male,27,3rd,C,Lebanon,2699,18.1509,0,0,1
+"Abrahamsson, Mr. Abraham August Johannes",male,20,3rd,S,Finland,3101284,7.1806,0,0,1
+"Ådahl, Mr. Mauritz",male,30,3rd,S,Sweden,7076,7.05,0,0,0
+"Adams, Mr. John",male,27,3rd,S,England,341826,8.01,0,0,0
+"Ahlin, Mrs. Johanna Persdotter",female,40,3rd,S,Sweden,7546,9.0906,1,0,0
+"Aks, Master. Frank Philip",male,0.8333333333,3rd,S,England,392091,9.07,0,1,1
+"Aks, Mrs. Leah",female,18,3rd,S,England,392091,9.07,0,1,1
+"Aldworth, Mr. Augustus Henry",male,35,2nd,S,England,248744,13,0,0,0
+"Alexander, Mr. William Albert",male,25,3rd,S,England,3474,7.1709,0,0,0
+"Alhomäki, Mr. Ilmari Rudolf",male,19,3rd,S,Finland,3101287,7.1806,0,0,0
+"Ali, Mr. Ahmed",male,24,3rd,S,Argentina,3101311,7.01,0,0,0
+"Ali, Mr. William",male,25,3rd,S,Argentina,3101312,7.01,0,0,0
+"Allen, Miss. Elisabeth Walton",female,29,1st,S,United States,24160,211.6009,0,0,1
+"Allen, Mr. William Henry",male,39,3rd,S,England,373450,8.01,0,0,0
+"Allison, Master. Hudson Trevor",male,0.9166666667,1st,S,Canada,113781,151.16,1,2,1
+"Allison, Miss. Helen Loraine",female,2,1st,S,Canada,113781,151.16,1,2,0
+"Allison, Mr. Hudson Joshua Creighton",male,30,1st,S,Canada,113781,151.16,1,2,0
+"Allison, Mrs. Bessie Waldo",female,25,1st,S,United States,113781,151.16,1,2,0
+"Allum, Mr. Owen George",male,18,3rd,S,England,2223,8.06,0,0,0
+"Al-Munà, Mr. Farīd Husayn Qāsim",male,19,3rd,C,Lebanon,2700,7.0407,0,0,0
+"Andersen-Jensen, Miss. Carla Christine Nielsine",female,19,3rd,S,Denmark,350046,7.1701,1,0,1
+"Andersen, Mr. Albert Karvin",male,33,3rd,S,Norway,4001,22.1006,0,0,0
+"Anderson, Mr. Harry",male,47,1st,S,United States,19952,26.11,0,0,1
+"Andersson, Master. Sigvard Harald Elias",male,4,3rd,S,Sweden,347082,31.0506,4,2,0
+"Andersson, Miss. Ebba Iris Alfrida",female,6,3rd,S,Sweden,347082,31.0506,4,2,0
+"Andersson, Miss. Ellis Anna Maria",female,2,3rd,S,Sweden,347082,31.0506,4,2,0
+"Andersson, Miss. Erna Alexandra",female,16,3rd,S,Finland,3101281,7.1806,4,2,1
+"Andersson, Miss. Ida Augusta Margareta",female,38,3rd,S,Sweden,347091,7.1506,4,2,0
+"Andersson, Miss. Ingeborg Constanzia",female,9,3rd,S,Sweden,347082,31.0506,4,2,0
+"Andersson, Miss. Sigrid Elisabeth",female,11,3rd,S,Sweden,347082,31.0506,4,2,0
+"Andersson, Mr. Anders Johan",male,39,3rd,S,Sweden,347082,31.0506,1,5,0
+"Andersson, Mr. Johan Samuel",male,26,3rd,S,Sweden,347075,7.1506,0,0,0
+"Andersson, Mrs. Alfrida Konstantia Brogren",female,39,3rd,S,Sweden,347082,31.0506,1,5,0
+"Andreasson, Mr. Pål Edvin",male,20,3rd,S,Sweden,347466,7.1701,0,0,0
+"Andrew, Mr. Edgar Samuel",male,17,2nd,S,Argentina,231945,11.1,0,0,0
+"Andrew, Mr. Frank Thomas",male,27,2nd,S,England,34050,10.1,0,0,0
+"Andrews, Miss. Kornelia Theodosia",female,62,1st,C,United States,13502,77.1902,1,0,1
+"Andrews, Mr. Thomas",male,39,1st,B,Northern Ireland,112050,NA,0,0,0
+"Angheloff, Mr. Minko",male,26,3rd,S,Bulgaria,349202,7.1711,0,0,0
+"Angle, Mrs. Florence Agnes",female,36,2nd,S,England,226875,26,1,0,1
+"Angle, Mr. William",male,31,2nd,S,England,226875,26,1,0,0
+"Appleton, Mrs. Charlotte",female,53,1st,S,United States,11769,51.0907,2,0,1
+"Arnold-Franchi, Mr. Josef",male,25,3rd,S,Switzerland,349237,17.16,1,0,0
+"Arnold-Franchi, Mrs. Josefine",female,18,3rd,S,Switzerland,349237,17.16,1,0,0
+"Aronsson, Mr. Ernst Axel Algot",male,25,3rd,S,Sweden,349911,7.1506,0,0,0
+"Artagaveytia, Mr. Ramon",male,71,1st,C,Argentina,17609,49.1001,0,0,0
+"Ashby, Mr. John",male,57,2nd,S,England,244346,13,0,0,0
+"Asim, Mr. Adola",male,35,3rd,S,Argentina,3101310,7.01,0,0,0
+"Asplund, Master. Carl Edgar",male,5,3rd,S,Sweden,347077,31.0709,4,2,0
+"Asplund, Master. Clarence Gustaf Hugo",male,9,3rd,S,Sweden,347077,31.0709,4,2,0
+"Asplund, Master. Edvin Rojj Felix",male,3,3rd,S,Sweden,347077,31.0709,4,2,1
+"Asplund, Master. Filip Oscar",male,13,3rd,S,Sweden,347077,31.0709,4,2,0
+"Asplund, Miss. Lillian Gertrud",female,5,3rd,S,Sweden,347077,31.0709,4,2,1
+"Asplund, Mr. Carl Oscar Vilhelm Gustafsson",male,40,3rd,S,Sweden,347077,31.0709,1,5,0
+"Asplund, Mr. Johan Charles",male,23,3rd,S,Sweden,350054,7.1511,0,0,1
+"Asplund, Mrs. Selma Augusta Emilia",female,38,3rd,S,Sweden,347077,31.0709,1,5,1
+"Assaf, Mrs. Mariana",female,45,3rd,C,Lebanon,2696,7.0406,0,0,1
+"Assam, Mr. Ali",male,23,3rd,S,Argentina,3101309,7.01,0,0,0
+"Astor, Colonel. John Jacob",male,47,1st,C,United States,17757,247.1006,1,0,0
+"Astor, Mrs. Madeleine Talmage",female,18,1st,C,United States,17757,247.1006,1,0,1
+"Attalah, Miss. Malake",female,17,3rd,C,Lebanon,2627,14.0902,0,0,0
+"Attala, Mr. Sleiman",male,27,3rd,C,Canada,2694,7.0406,0,0,0
+"Aubart, Mme. Léontine Pauline",female,24,1st,C,France,17477,69.06,0,0,1
+"Augustsson, Mr. Albert",male,23,3rd,S,Sweden,347468,7.1701,0,0,0
+"Ayoub Daher, Miss. Banoura",female,15,3rd,C,Lebanon,2687,7.0407,0,0,1
+"Backström, Mr. Karl Alfred",male,32,3rd,S,Finland,3101278,15.17,1,0,0
+"Backström, Mrs. Maria Mathilda",female,33,3rd,S,Finland,3101278,15.17,3,0,1
+"Baclini, Miss. Eugenie",female,3,3rd,C,Lebanon,2666,19.0502,2,1,1
+"Baclini, Miss. Helene Barbara",female,0.75,3rd,C,Lebanon,2666,19.0502,2,1,1
+"Baclini, Miss. Marie Catherine",female,5,3rd,C,Lebanon,2666,19.0502,2,1,1
+"Baclini, Mrs. Latifa",female,23,3rd,C,Lebanon,2666,19.0502,0,3,1
+"Badman, Miss. Emily Louisa",female,18,3rd,S,England,31416,8.01,0,0,1
+"Badt, Mr. Mohamed",male,40,3rd,C,Lebanon,2623,7.0406,0,0,0
+"Bailey, Mr. Percy",male,18,2nd,S,England,29108,11.1,0,0,0
+"Bainbrigge, Mr. Charles Robert",male,22,2nd,S,Channel Islands,31030,10.1,0,0,0
+"Balkic, Mr. Cerin",male,26,3rd,S,Bosnia,349248,7.1711,0,0,0
+"Balls, Mrs. Ada E.",female,36,2nd,S,England,28551,13,0,0,1
+"Banfield, Mr. Frederick James",male,28,2nd,S,England,34068,10.1,0,0,0
+"Banski, Mrs. Mara",female,31,3rd,S,Hungary,349244,8.1308,0,0,1
+"Barbara, Miss. Saiide",female,18,3rd,C,Lebanon,2691,14.0901,0,1,0
+"Barbara, Mrs. Catherine David",female,45,3rd,C,Lebanon,2691,14.0901,0,1,0
+"Barber, Miss. Ellen Mary",female,27,1st,S,NA,19877,78.17,0,0,1
+"Barkworth, Mr. Algernon Henry",male,47,1st,S,England,27042,30,0,0,1
+"Barry, Miss. Julia",female,30,3rd,Q,Ireland,330844,7.1707,0,0,0
+"Barton, Mr. David John",male,22,3rd,S,England,324669,8.01,0,0,0
+"Bassani, Mrs. Albina",female,32,1st,C,Italy,11813,76.051,0,0,1
+"Bateman, Revd. Robert James",male,52,2nd,S,England,1166,12.1006,0,0,0
+"Batoshev, Mr. Hristo Lalev",male,23,3rd,S,Bulgaria,349217,7.1711,0,0,0
+"Baumann, Mr. John D.",male,60,1st,C,United States,17318,25.1806,0,0,0
+"Baxter, Mr. Quigg Edmond",male,24,1st,C,Canada,17558,247.1005,0,1,0
+"Baxter, Mrs. Hélène",female,50,1st,C,Canada,17558,247.1005,0,1,1
+"Beane, Mr. Edward",male,32,2nd,S,England,2908,26,1,0,1
+"Beane, Mrs. Ethel",female,22,2nd,S,England,2908,26,1,0,1
+"Beattie, Mr. Thomson",male,36,1st,S,Canada,13050,75.041,0,0,0
+"Beauchamp, Mr. Henry James",male,44,2nd,S,England,244358,26,0,0,0
+"Beavan, Mr. William Thomas",male,20,3rd,S,England,323951,8.01,0,0,0
+"Becker, Master. Richard F.",male,1,2nd,S,India,230136,39,2,1,1
+"Becker, Miss. Marion Louise",female,4,2nd,S,India,230136,39,2,1,1
+"Becker, Miss. Ruth Elizabeth",female,12,2nd,S,India,230136,39,2,1,1
+"Becker, Mrs. Nellie E.",female,35,2nd,S,United States,230136,39,0,3,1
+"Beckwith, Mr. Richard Leonard",male,37,1st,S,United States,11751,52.1101,1,1,1
+"Beckwith, Mrs. Sallie",female,46,1st,S,United States,11751,52.1101,1,1,1
+"Beesley, Mr. Lawrence",male,34,2nd,S,England,248698,13,0,0,1
+"Behr, Mr. Karl Howell",male,26,1st,C,United States,111369,30,0,0,1
+"Bengtsson, Mr. Johan Viktor",male,26,3rd,S,Sweden,347068,7.1506,0,0,0
+"Bentham, Miss. Lillian W.",female,19,2nd,S,United States,28404,13,0,0,1
+"Berglund, Mr. Karl Ivar Sven",male,22,3rd,S,Finland,4348,9.07,0,0,0
+"Berriman, Mr. William John",male,23,2nd,S,England,28425,13,0,0,0
+"Bessette, Miss. Nellie Mayo",female,39,1st,C,United States,17760,63.0702,0,0,1
+"Bidois, Miss. Rosalie",female,46,1st,C,NA,17757,247.1006,0,0,1
+"Bing, Mr. Lee",male,32,3rd,S,NA,1601,56.0911,0,0,1
+"Bird, Miss. Ellen",female,31,1st,S,England,17483,221.1507,0,0,1
+"Birkeland, Mr. Hans Martin Monsen",male,21,3rd,S,Norway,312992,7.1506,0,0,0
+"Birnbaum, Mr. Jakob",male,24,1st,C,NA,13905,26,0,0,0
+"Bishop, Mr. Dickinson H.",male,25,1st,C,United States,11967,91.0107,1,0,1
+"Bishop, Mrs. Helen",female,19,1st,C,United States,11967,91.0107,1,0,1
+"Björklund, Mr. Ernst Herbert",male,18,3rd,S,Sweden,347090,7.15,0,0,0
+"Björnström-Steffansson, Mr. Mauritz Hokan",male,28,1st,S,Sweden,110564,26.11,0,0,1
+"Blackwell, Mr. Stephen Weart",male,45,1st,S,United States,113784,35.1,0,0,0
+"Blank, Mr. Henry",male,39,1st,C,United States,112277,31,0,0,1
+"Bonnell, Miss. Caroline",female,30,1st,S,United States,36928,164.1704,0,0,1
+"Bonnell, Miss. Elizabeth",female,61,1st,S,England,113783,26.11,0,0,1
+"Borebank, Mr. John James",male,41,1st,S,England,110489,26.11,0,0,0
+"Bostandyeff, Mr. Guentcho",male,26,3rd,S,NA,349224,7.1711,0,0,0
+"Botsford, Mr. William Hull",male,25,2nd,S,United States,237670,13,0,0,0
+"Bourke, Miss. Mary",female,40,3rd,Q,Ireland,364848,7.15,0,2,0
+"Bourke, Mr. John",male,42,3rd,Q,Ireland,364849,15.1,1,1,0
+"Bourke, Mrs. Catherine",female,32,3rd,Q,Ireland,364849,15.1,1,1,0
+"Bowen, Miss. Grace Scott",female,45,1st,C,United States,17608,262.0706,0,0,1
+"Bowen, Mr. David John 'Dai'",male,26,3rd,S,Wales,54636,16.02,0,0,0
+"Bowenur, Mr. Solomon",male,42,2nd,S,NA,211535,13,0,0,0
+"Bowerman, Miss. Elsie Edith",female,22,1st,S,England,113505,55,0,1,1
+"Bracken, Mr. James Hollen",male,30,2nd,S,United States,220367,13,0,0,0
+"Bradley, Miss. Bridget Delia",female,22,3rd,Q,Ireland,334914,7.1406,0,0,1
+"Brady, Mr. John Bertram",male,41,1st,S,United States,113054,30.1,0,0,0
+"Braf, Miss. Elin Ester Maria",female,20,3rd,S,Sweden,347471,7.1701,0,0,0
+"Brailey, Mr. William Theodore Ronald",male,24,2nd,S,England,250654,NA,NA,NA,0
+"Brandeis, Mr. Emil Franklin",male,48,1st,C,United States,17591,50.0911,0,0,0
+"Braund, Mr. Lewis Richard",male,29,3rd,S,England,3460,7,1,0,0
+"Braund, Mr. Owen Harris",male,23,3rd,S,England,21171,7.05,1,0,0
+"Brereton, Mr. George Andrew",male,37,1st,S,United States,111427,26.11,0,0,1
+"Brewe, Dr. Arthur Jackson",male,46,1st,C,United States,112379,39.12,0,0,0
+"Bricoux, Mr. Roger Marie",male,20,2nd,S,France,250654,NA,NA,NA,0
+"Brito, Mr. José Joaquim de",male,32,2nd,S,NA,244360,13,0,0,0
+"Brobäck, Mr. Karl Rudolf",male,22,3rd,S,Sweden,350045,7.1511,0,0,0
+"Brocklebank, Mr. William Alfred",male,40,3rd,S,England,364512,8.01,0,0,0
+"Brown, Miss. Amelia Mary",female,18,2nd,S,England,248733,13,0,0,1
+"Brown, Miss. Edith Eileen",female,15,2nd,S,South Africa,29750,39,0,2,1
+"Brown, Mrs. Caroline Lane",female,59,1st,S,United States,11769,51.0907,2,0,1
+"Brown, Mrs. Elizabeth Catherine",female,40,2nd,S,South Africa,29750,39,1,1,1
+"Brown, Mrs. Margaret",female,44,1st,C,United States,17610,27.1405,0,0,1
+"Brown, Mr. Thomas William Solomon",male,60,2nd,S,South Africa,29750,39,1,1,0
+"Bryhl, Miss. Dagmar Jenny Ingeborg",female,20,2nd,S,Sweden,236853,26,1,0,1
+"Bryhl, Mr. Kurt Arnold Gottfrid",male,25,2nd,S,Sweden,236853,26,1,0,0
+"Buckley, Miss. Katherine",female,22,3rd,Q,Ireland,329944,7.0508,0,0,0
+"Buckley, Mr. Daniel",male,21,3rd,Q,Ireland,330920,7.1517,0,0,1
+"Bucknell, Mrs. Emma Eliza",female,58,1st,C,India,11813,76.051,0,0,1
+"Būlus, Master. Akar",male,7,3rd,C,Lebanon,2678,15.0411,1,1,0
+"Būlus, Miss. Nūr al-'ayn",female,10,3rd,C,Lebanon,2678,15.0411,1,1,0
+"Būlus, Mrs. Sultānah",female,40,3rd,C,Lebanon,2678,15.0411,0,2,0
+"Burke, Mr. Jeremiah",male,19,3rd,Q,Ireland,365222,6.15,0,0,0
+"Burns, Miss. Elizabeth Margaret",female,41,1st,C,NA,16966,134.1,0,0,1
+"Burns, Miss. Mary Delia",female,17,3rd,Q,Ireland,330963,7.1707,0,0,0
+"Buss, Miss. Kate",female,36,2nd,S,England,27849,13,0,0,1
+"Butler, Mr. Reginald Fenton",male,26,2nd,S,England,234686,13,0,0,0
+"Butrus-Ka'wī, Mr. Tannūs",male,21,3rd,C,Lebanon,2648,7.0407,0,0,0
+"Butt, Major. Archibald Willingham",male,46,1st,S,United States,113050,26.11,0,0,0
+"Byles, Fr. Thomas Roussel Davids",male,42,2nd,S,England,244310,13,0,0,0
+"Byström, Mrs. Karolina",female,40,2nd,S,United States,236852,13,0,0,1
+"Cacic, Miss. Manda",female,21,3rd,S,Croatia (Modern),315087,8.1303,0,0,0
+"Cacic, Miss. Marija",female,30,3rd,S,Croatia (Modern),315084,8.1303,0,0,0
+"Cacic, Mr. Jego Grga",male,18,3rd,S,Croatia (Modern),315091,8.1303,0,0,0
+"Cacic, Mr. Luka",male,38,3rd,S,Croatia (Modern),315089,8.1303,0,0,0
+"Cairns, Mr. Alexander Milne",male,28,1st,S,Scotland,113798,31,0,0,0
+"Calderhead, Mr. Edward Pennington",male,42,1st,S,United States,17476,26.0509,0,0,1
+"Caldwell, Master. Alden Gates",male,0.8333333333,2nd,S,Siam,248738,29,0,2,1
+"Caldwell, Mr. Albert Francis",male,26,2nd,S,Siam,248738,29,1,1,1
+"Caldwell, Mrs. Sylvia Mae",female,28,2nd,S,United States,248738,29,1,1,1
+"Calic, Mr. Jovo",male,17,3rd,S,Croatia (Modern),315093,8.1303,0,0,0
+"Calic, Mr. Petar",male,17,3rd,S,Croatia (Modern),315086,8.1303,0,0,0
+"Cameron, Miss. Clear Annie",female,35,2nd,S,England,13528,21,0,0,1
+"Campbell, Mr. William Henry",male,21,2nd,B,Northern Ireland,239853,NA,0,0,0
+"Canavan, Miss. Mary",female,22,3rd,Q,Ireland,364846,7.15,0,0,0
+"Canavan, Mr. Patrick",male,21,3rd,Q,Ireland,364858,7.15,0,0,0
+"Candee, Mrs. Helen Churchill",female,52,1st,C,United States,17606,27.0811,0,0,1
+"Cann, Mr. Ernest",male,29,3rd,S,England,2152,8.01,0,0,0
+"Caram, Mr. Joseph",male,28,3rd,C,Canada,2689,14.0902,1,0,0
+"Caram, Mrs. Maria Elias",female,18,3rd,C,Lebanon,2689,14.0902,1,0,0
+"Carbines, Mr. William",male,19,2nd,S,England,28424,13,0,0,0
+"Cardeza, Mrs. Charlotte Wardle",female,58,1st,C,United States,17755,512.0607,0,1,1
+"Cardeza, Mr. Thomas Drake Martinez",male,36,1st,C,United States,17755,512.0607,0,1,1
+"Carlsson, Mr. August Sigfrid",male,28,3rd,S,Sweden,350042,7.1511,0,0,0
+"Carlsson, Mr. Carl Robert",male,24,3rd,S,Sweden,350409,7.1701,0,0,0
+"Carlsson, Mr. Frans Olof",male,33,1st,S,United States,695,5,0,0,0
+"Carraú-Esteves, Mr. José Pedro",male,17,1st,S,Uruguay,113059,47.02,0,0,0
+"Carrau, Mr. Francisco Mauro Severiano",male,27,1st,S,Uruguay,113059,47.02,0,0,0
+"Carr, Miss. Jane",female,45,3rd,Q,Ireland,368364,7.15,0,0,0
+"Carter, Fr. Ernest Courtenay",male,54,2nd,S,England,244252,26,1,0,0
+"Carter, Master. William Thornton II",male,11,1st,S,United States,113760,120,1,2,1
+"Carter, Miss. Lucile Polk",female,13,1st,S,United States,113760,120,1,2,1
+"Carter, Mrs. Lilian",female,45,2nd,S,England,244252,26,1,0,0
+"Carter, Mrs. Lucile",female,36,1st,S,United States,113760,120,1,2,1
+"Carter, Mr. William Ernest",male,36,1st,S,United States,113760,120,1,2,1
+"Carver, Mr. Alfred John",male,28,3rd,S,England,370160,7.05,0,0,0
+"Case, Mr. Howard Brown",male,49,1st,S,United States,19924,26,0,0,0
+"Cassebeer, Mrs. Eleanor Genevieve",female,36,1st,C,United States,17770,27.1405,0,0,1
+"Cavendish, Mrs. Julia Florence",female,25,1st,S,United States,19877,78.17,1,0,1
+"Cavendish, Mr. Tyrell William",male,36,1st,S,England,19877,78.17,1,0,0
+"Celotti, Mr. Francesco",male,24,3rd,S,NA,343275,8.01,0,0,0
+"Chaffee, Mr. Herbert Fuller",male,46,1st,S,United States,5734,61.0306,1,0,0
+"Chaffee, Mrs. Carrie Constance",female,47,1st,S,United States,5734,61.0306,1,0,1
+"Chambers, Mr. Norman Campbell",male,27,1st,S,United States,113806,53.02,1,0,1
+"Chambers, Mrs. Bertha",female,32,1st,S,United States,113806,53.02,1,0,1
+"Chapman, Mr. Charles Henry",male,52,2nd,S,United States,248731,13.1,0,0,0
+"Chapman, Mr. John Henry",male,37,2nd,S,England,29037,26,1,0,0
+"Chapman, Mrs. Sara Elizabeth",female,29,2nd,S,England,29037,26,1,0,0
+"Charters, Mr. David",male,20,3rd,Q,Ireland,13032,7.1408,0,0,0
+"Chaudanson, Miss. Victorine",female,36,1st,C,NA,17608,262.0706,0,0,1
+"Cherry, Miss. Gladys",female,30,1st,S,England,110152,86.1,0,0,1
+"Chevré, Mr. Paul Romaine Marie Léonce",male,45,1st,C,Belgium,17594,29.14,0,0,1
+"Chibnall, Mrs. Edith Martha Bowerman",female,48,1st,S,England,113505,55,0,1,1
+"Chip, Mr. Chang",male,32,3rd,S,NA,1601,56.0911,0,0,1
+"Chisholm, Mr. Roderick Robert Crispin",male,43,1st,B,Scotland,112051,NA,0,0,0
+"Christmann, Mr. Emil",male,29,3rd,S,England,343276,8.01,0,0,0
+"Christy, Miss. Rachel Juli Cohen",female,25,2nd,S,England,237789,30,1,1,1
+"Christy, Mrs. Alice Frances",female,52,2nd,S,England,237789,30,0,2,1
+"Chronopoulos, Mr. Apostolos M.",male,26,3rd,C,NA,2680,14.0901,1,0,0
+"Chronopoulos, Mr. Dimitrios M.",male,21,3rd,C,NA,2680,14.0901,1,0,0
+"Clarke, Mr. Charles Valentine",male,29,2nd,S,England,2003,26,1,0,0
+"Clarke, Mr. John Frederick Preston",male,28,2nd,S,England,250654,NA,NA,NA,0
+"Clarke, Mrs. Ada Maria",female,28,2nd,S,England,2003,27,1,0,1
+"Clark, Mrs. Virginia Estelle",female,26,1st,C,United States,13508,136.1507,1,0,1
+"Clark, Mr. Walter Miller",male,27,1st,C,United States,13508,136.1507,1,0,0
+"Cleaver, Miss. Alice Catherine",female,22,1st,S,England,113781,151.16,0,0,1
+"Clifford, Mr. George Quincy",male,40,1st,S,United States,110465,52,0,0,0
+"Coelho, Mr. Domingos Fernandeo",male,20,3rd,S,NA,3101307,7.01,0,0,0
+"Cohen, Mr. Gurshon",male,18,3rd,S,England,3540,8.01,0,0,1
+"Colbert, Mr. Patrick",male,24,3rd,Q,Ireland,371109,7.05,0,0,0
+"Coleff, Mr. Satio",male,24,3rd,S,Bulgaria,349209,7.1711,0,0,0
+"Coleridge, Mr. Reginald Charles",male,29,2nd,S,England,14263,10.1,0,0,0
+"Collander, Mr. Erik Gustaf",male,27,2nd,S,Finland,248740,13,0,0,0
+"Collett, Mr. Sidney Clarence Stuart",male,25,2nd,S,England,28034,10.1,0,0,1
+"Colley, Mr. Edward Pomeroy",male,37,1st,S,Ireland,5727,25.1109,0,0,0
+"Collyer, Miss. Marjorie Lottie",female,8,2nd,S,England,31921,26.05,0,2,1
+"Collyer, Mr. Harvey",male,31,2nd,S,England,31921,26.05,1,1,0
+"Collyer, Mrs. Charlotte Caroline",female,30,2nd,S,England,31921,26.05,1,1,1
+"Coltcheff, Mr. Peju",male,36,3rd,S,Bulgaria,349210,7.1711,0,0,0
+"Compton, Miss. Sara Rebecca",female,39,1st,C,United States,17756,83.0302,1,1,1
+"Compton, Mr. Alexander Taylor jr",male,37,1st,C,United States,17756,83.0302,1,1,0
+"Compton, Mrs. Mary Eliza",female,64,1st,C,United States,17756,83.0302,0,2,1
+"Conlin, Mr. Thomas Henry",male,31,3rd,Q,United States,21332,7.1408,0,0,0
+"Connaughton, Mr. Michael",male,40,3rd,Q,Ireland,335097,7.15,0,0,0
+"Connolly, Miss. Catherine",female,23,3rd,Q,Ireland,370373,7.15,0,0,1
+"Connolly, Miss. Kate",female,41,3rd,Q,Ireland,330972,7.1207,0,0,0
+"Connors, Mr. Patrick",male,66,3rd,Q,Ireland,370369,7.15,0,0,0
+"Cook, Mr. Jacob",male,43,3rd,S,NA,3536,8.01,0,0,0
+"Cook, Mrs. Selena",female,22,2nd,S,England,14266,10.1,0,0,1
+"Corbett, Mrs. Irene",female,30,2nd,S,United States,237249,13,0,0,0
+"Corey, Mrs. Mary Emma",female,32,2nd,S,NA,13534,21,0,0,0
+"Cor, Mr. Bartol",male,35,3rd,S,Croatia (Modern),349230,7.1711,0,0,0
+"Cor, Mr. Ivan",male,27,3rd,S,Hungary,349229,7.1711,0,0,0
+"Cor, Mr. Liudevit",male,19,3rd,S,Hungary,349231,7.1711,0,0,0
+"Cornblatt, Mr. Harris",male,30,3rd,S,Poland,392090,8.01,0,0,0
+"Cornell, Mrs. Malvina Helen",female,55,1st,S,United States,11770,25.141,2,0,1
+"Corr, Miss. Ellen",female,16,3rd,Q,Ireland,367231,7.15,0,0,1
+"Cotterill, Mr. Henry",male,21,2nd,S,England,29107,11.1,0,0,0
+"Coutts, Master. Neville Leslie",male,3,3rd,S,England,37671,15.18,1,1,1
+"Coutts, Master. William Loch",male,9,3rd,S,England,37671,15.18,1,1,1
+"Coutts, Mrs. Winnie",female,36,3rd,S,England,37671,15.18,0,2,1
+"Coxon, Mr. Daniel",male,58,3rd,S,England,364500,7.05,0,0,0
+"Crafton, Mr. John Bertram",male,59,1st,S,United States,113791,26.11,0,0,0
+"Crease, Mr. Ernest James",male,20,3rd,S,United States,3464,8.0302,0,0,0
+"Cribb, Miss. Laura Mae",female,16,3rd,S,United States,371362,16.02,0,1,1
+"Cribb, Mr. John Hatfield",male,43,3rd,S,Australia,371362,16.02,0,1,0
+"Crosby, Captain. Edward Gifford",male,70,1st,S,United States,5735,71,1,1,0
+"Crosby, Miss. Harriette Rebecca",female,39,1st,S,United States,112901,26.11,0,2,1
+"Crosby, Mrs. Catherine Elizabeth",female,64,1st,S,United States,5735,71,1,1,1
+"Culumovic, Mr. Jeso",male,17,3rd,S,Croatia (Modern),315090,8.1303,0,0,0
+"Cumings, Mr. John Bradley",male,39,1st,C,United States,17599,71.0508,1,0,0
+"Cumings, Mrs. Florence Briggs",female,35,1st,C,Peru,17599,71.0508,1,0,1
+"Cunningham, Mr. Alfred Fleming",male,22,2nd,B,Northern Ireland,239853,NA,0,0,0
+"Daher, Mr. Tannous",male,28,3rd,C,NA,2686,7.0407,0,0,0
+"Dahlberg, Miss. Gerda Ulrika",female,22,3rd,S,Sweden,7552,10.1004,0,0,0
+"Dahl, Mr. Charles Edward",male,45,3rd,S,NA,7598,8.01,0,0,1
+"Dakic, Mr. Branko",male,19,3rd,S,NA,349228,10.0305,0,0,0
+"Daly, Miss. Margaret Marcella",female,33,3rd,Q,Ireland,382650,6.19,0,0,1
+"Daly, Mr. Eugene Patrick",male,29,3rd,Q,Ireland,382651,7.15,0,0,1
+"Daly, Mr. Peter Dennis",male,51,1st,S,England,113055,26.11,0,0,1
+"Danbom, Master. Gilbert Sigvard Emanuel",male,0.3333333333,3rd,S,Sweden,347080,14.08,0,2,0
+"Danbom, Mr. Ernst Gilbert",male,34,3rd,S,Sweden,347080,14.08,1,1,0
+"Danbom, Mrs. Anna Sigrid Maria",female,28,3rd,S,Sweden,347080,14.08,1,1,0
+"Daniel, Mr. Robert Williams",male,27,1st,S,United States,113804,30.1,0,0,1
+"Daniels, Miss. Sarah Rebecca",female,36,1st,S,England,113781,151.16,0,0,1
+"Danoff, Mr. Yoto",male,27,3rd,S,NA,349219,7.1711,0,0,0
+"Davidson, Mrs. Orian",female,27,1st,C,Canada,12750,52,1,2,1
+"Davidson, Mr. Thornton",male,31,1st,C,Canada,12750,52,1,0,0
+"Davies, Master. John Morgan jr",male,8,2nd,S,England,33112,36.15,1,1,1
+"Davies, Mr. Alfred James",male,24,3rd,S,England,48871,24.03,2,0,0
+"Davies, Mr. Charles Henry",male,19,2nd,S,England,14879,73.1,0,0,0
+"Davies, Mr. Evan Lewis",male,22,3rd,S,Wales,23568,8.01,0,0,0
+"Davies, Mr. John",male,22,3rd,S,England,48871,24.03,2,0,0
+"Davies, Mr. Joseph",male,17,3rd,S,England,48873,8.01,2,0,0
+"Davies, Mrs. Agnes",female,48,2nd,S,England,33112,36.15,0,2,1
+"Davis, Miss. Mary Ann Charlotte",female,28,2nd,S,England,237668,13,0,0,1
+"Davison, Mrs. Mary Elizabeth",female,34,3rd,S,England,386525,16.02,1,0,1
+"Davison, Mr. Thomas Henry",male,32,3rd,S,England,386525,16.02,1,0,0
+"Deacon, Mr. Percy William",male,18,2nd,S,England,14879,73.1,0,0,0
+"Dean, Master. Bertram Vere",male,1,3rd,S,England,2315,20.1106,1,2,1
+"Dean, Miss. Elizabeth Gladys 'Millvina'",female,0.1666666667,3rd,S,England,2315,20.1106,1,2,1
+"Dean, Mr. Bertram Frank",male,25,3rd,S,England,2315,20.1106,1,2,0
+"Dean, Mrs. Eva Georgetta",female,32,3rd,S,England,2315,20.1106,1,2,1
+"Delalic, Mr. Redjo",male,25,3rd,S,Bosnia,349250,7.1711,0,0,0
+"Del Carlo, Mrs. Argene",female,24,2nd,C,Italy,2167,27.1405,1,0,1
+"Del Carlo, Mr. Sebastiano",male,29,2nd,C,Italy,2167,27.1405,1,0,0
+"De Messemaeker, Mr. Guillaume Joseph",male,36,3rd,S,United States,345572,17.08,1,0,1
+"De Messemaeker, Mrs. Anna",female,36,3rd,S,United States,345572,17.08,1,0,1
+"De Mulder, Mr. Theodoor",male,30,3rd,S,Belgium,345774,9.1,0,0,1
+"Denbuoy, Mr. Albert Joseph",male,25,2nd,S,Channel Islands,31029,31.1,0,0,0
+"Denkoff, Mr. Mitto",male,30,3rd,S,NA,349225,7.1711,0,0,0
+"Dennis, Mr. Samuel",male,22,3rd,S,England,21172,7.05,0,0,0
+"Dennis, Mr. William",male,26,3rd,S,England,21175,7.05,0,0,0
+"De Pelsmaeker, Mr. Alfons",male,16,3rd,S,Belgium,345778,9.1,0,0,0
+"Devaney, Miss. Margaret Delia",female,19,3rd,Q,Ireland,330958,7.1707,0,0,1
+"Dibden, Mr. William",male,18,2nd,S,England,14879,73.1,0,0,0
+"Dick, Mr. Albert Adrian",male,31,1st,S,Canada,17474,57,1,0,1
+"Dick, Mrs. Vera",female,17,1st,S,United States,17474,57,1,0,1
+"Dika, Mr. Mirko",male,17,3rd,S,Croatia (Modern),349232,7.1711,0,0,0
+"Dimic, Mr. Jovan",male,42,3rd,S,Hungary,315088,8.1303,0,0,0
+"Dintcheff, Mr. Valtcho",male,43,3rd,S,NA,349226,7.1711,0,0,0
+"Dodge, Dr. Washington",male,52,1st,S,United States,33638,81.1702,1,1,1
+"Dodge, Master. Washington",male,4,1st,S,United States,33638,81.1702,0,2,1
+"Dodge, Mrs. Ruth",female,34,1st,S,United States,33638,81.1702,1,1,1
+"Doling, Miss. Elsie",female,18,2nd,S,England,231919,23,0,1,1
+"Doling, Mrs. Ada Julia Elizabeth",female,34,2nd,S,England,231919,23,0,1,1
+"Donohoe, Miss. Bridget",female,21,3rd,Q,Ireland,364856,7.15,0,0,0
+"Dooly, Mr. Patrick",male,37,3rd,Q,Ireland,370376,7.15,0,0,0
+"Dorking, Mr. Edward Arthur",male,18,3rd,S,England,10482,8.01,0,0,1
+"Dougherty, Mr. William John",male,22,3rd,Q,Ireland,330877,8.0902,0,0,0
+"Douglas, Mrs. Mahala",female,48,1st,C,United States,17761,106.0806,1,0,1
+"Douglas, Mrs. Mary Hélène",female,27,1st,C,Canada,17558,247.1005,1,1,1
+"Douglas, Mr. Walter Donald",male,50,1st,C,United States,17761,106.0806,1,0,0
+"Douton, Mr. William Joseph",male,55,2nd,S,England,28403,26,0,0,0
+"Dowdell, Miss. Elizabeth",female,31,3rd,S,United States,364516,12.0906,0,0,1
+"Doyle, Miss. Elizabeth",female,28,3rd,Q,Ireland,368702,7.15,0,0,0
+"Drazenovic, Mr. Jozef",male,33,3rd,C,Croatia (Modern),349241,7.1711,0,0,0
+"Drew, Master. Marshall Brines",male,8,2nd,S,United States,28220,32.1,0,2,1
+"Drew, Mr. James Vivian",male,42,2nd,S,England,28220,32.1,1,1,0
+"Drew, Mrs. Maria Louisa Thorne",female,34,2nd,S,United States,28220,32.1,1,1,1
+"Driscoll, Miss. Bridget",female,27,3rd,Q,Ireland,14311,7.15,0,0,1
+"Dropkin, Miss. Jennie",female,24,3rd,S,England,392083,8.01,0,0,1
+"Duff Gordon, Lucy Christiana, Lady",female,48,1st,C,England,17485,56.1807,1,0,1
+"Duff Gordon, Sir. Cosmo Edmund",male,49,1st,C,England,11755,39.12,1,0,1
+"Dulles, Mr. William Crothers",male,39,1st,C,United States,17580,29.14,0,0,0
+"Duquemin, Mr. Joseph Pierre",male,24,3rd,S,Channel Islands,752,7.11,0,0,1
+"Durán i Moné, Sra. Asuncion",female,27,2nd,C,Spain,2149,13.1702,1,0,1
+"Durán i Moné, Sra. Florentina",female,30,2nd,C,Spain,2148,13.1702,1,0,1
+"Dwan, Mr. Frank",male,65,3rd,Q,Ireland,336439,7.15,0,0,0
+"Dyker, Mr. Adolf Fredrik",male,23,3rd,S,United States,347072,13.18,1,0,0
+"Dyker, Mrs. Anna Elisabeth Judith",female,22,3rd,S,United States,347072,13.18,1,0,1
+"Earnshaw, Mrs. Olive",female,23,1st,C,United States,11767,83.0302,0,1,1
+"Edvardsson, Mr. Gustaf Hjalmar",male,18,3rd,S,Sweden,349912,7.1506,0,0,0
+"Eitemiller, Mr. George Floyd",male,25,2nd,S,United States,29751,13,0,0,0
+"Eklund, Mr. Hans Linus",male,16,3rd,S,Sweden,347074,7.1506,0,0,0
+"Ekström, Mr. Amandus",male,45,3rd,S,Sweden,347061,6.1906,0,0,0
+"Elias, Mr. Dibo",male,29,3rd,C,NA,2674,7.0406,0,0,0
+"Elias, Mr. Joseph jr.",male,15,3rd,C,Lebanon,2690,7.0407,1,1,0
+"Elias Nasrallah, Mr. Tannous",male,22,3rd,C,Lebanon,2695,7.0407,1,1,0
+"Elsbury, Mr. William James",male,48,3rd,S,England,3902,7.05,0,0,0
+"Emanuel, Miss. Virginia Ethel",female,5,3rd,S,United States,364516,12.0906,0,0,1
+"Enander, Mr. Ingvar",male,21,2nd,S,Sweden,236854,13,0,0,0
+"Endres, Miss. Caroline Louise",female,39,1st,C,United States,17757,247.1006,0,0,1
+"Estanislau, Mr. Manuel Gonçalves",male,37,3rd,S,NA,3101306,7.01,0,0,0
+"Eustis, Miss. Elizabeth Mussey",female,54,1st,C,United States,36947,78.0504,1,0,1
+"Evans, Miss. Edith Corse",female,36,1st,C,United States,17531,31.1307,0,0,0
+"Everett, Mr. Thomas James",male,38,3rd,S,England,6212,15.02,0,0,0
+"Fahlstrøm, Mr. Arne Joma",male,18,2nd,S,Norway,236171,13,0,0,0
+"Fardon, Mr. Charles Richard",male,46,3rd,S,England,3101314,7.05,0,0,0
+"Farrell, Mr. James",male,26,3rd,Q,Ireland,367232,7.15,0,0,0
+"Farthing, Mr. John",male,49,1st,S,England,17483,221.1507,0,0,0
+"Faunthorpe, Mr. Harry Bartram",male,32,2nd,S,England,2926,26,1,0,0
+"Fillbrook, Mr. Joseph Charles",male,18,2nd,S,England,15185,10.1,0,0,0
+"Finoli, Mr. Luigi",male,34,3rd,S,NA,3101308,7.01,0,0,1
+"Fischer, Mr. Eberhard Thelander",male,18,3rd,S,Sweden,350036,7.1511,0,0,0
+"Flegenheim, Mrs. Antoinette",female,48,1st,C,United States,17598,31.1308,0,0,1
+"Fleming, Miss. Honor",female,22,3rd,Q,Ireland,364859,7.15,0,0,0
+"Fleming, Miss. Margaret",female,42,1st,C,United States,17421,110.1708,0,0,1
+"Flynn, Mr. James",male,28,3rd,Q,Ireland,364851,7.15,0,0,0
+"Flynn, Mr. John",male,48,3rd,Q,Ireland,368323,6.19,0,0,0
+"Flynn, Mr. John Irwin",male,36,1st,S,Canada,14474,26.0509,0,0,1
+"Foley, Mr. Joseph",male,19,3rd,Q,Ireland,330910,7.1707,0,0,0
+"Foley, Mr. William",male,20,3rd,Q,Ireland,365235,7.15,0,0,0
+"Foo, Mr. Choong",male,32,3rd,S,NA,1601,56.0911,0,0,1
+"Ford, Miss. Dollina Margaret",female,20,3rd,S,England,6608,34.0706,2,2,0
+"Ford, Miss. Robina Maggie",female,7,3rd,S,England,6608,34.0706,2,2,0
+"Ford, Mr. Arthur",male,23,3rd,S,England,1478,8.01,0,0,0
+"Ford, Mr. Edward Watson",male,18,3rd,S,England,6608,34.0706,2,2,0
+"Ford, Mrs. Margaret Ann Watson",female,54,3rd,S,Scotland,6608,34.0706,1,3,0
+"Ford, Mr. William Neal Thomas",male,14,3rd,S,England,6608,34.0706,1,3,0
+"Foreman, Mr. Benjamin Laventall",male,30,1st,S,United States,113051,27.15,0,0,0
+"Fortune, Miss. Alice Elizabeth",female,24,1st,S,Canada,19950,263,3,2,1
+"Fortune, Miss. Ethel Flora",female,28,1st,S,Canada,19950,263,3,2,1
+"Fortune, Miss. Mabel Helen",female,23,1st,S,Canada,19950,263,3,2,1
+"Fortune, Mr. Charles Alexander",male,19,1st,S,Canada,19950,263,3,2,0
+"Fortune, Mr. Mark",male,64,1st,S,Canada,19950,263,1,4,0
+"Fortune, Mrs. Mary",female,60,1st,S,Canada,19950,263,1,4,1
+"Fox, Mr. Patrick",male,28,3rd,Q,Ireland,368573,7.15,0,0,0
+"Fox, Mr. Stanley Harrington",male,38,2nd,S,United States,229236,13,0,0,0
+"Francatelli, Miss. Laura Mabel",female,32,1st,C,England,17485,56.1807,0,0,1
+"Franklin, Mr. Thomas Parnham",male,37,1st,S,England,113778,26.11,0,0,0
+"Frauenthal, Dr. Henry William",male,49,1st,S,United States,17611,133.13,2,0,1
+"Frauenthal, Mr. Isaac Gerald",male,43,1st,C,United States,17765,27.1405,1,0,1
+"Frauenthal, Mrs. Clara",female,42,1st,S,United States,17611,133.13,1,0,1
+"Frölicher, Miss. Hedwig Margaritha",female,22,1st,C,Switzerland,13568,49.1,0,2,1
+"Frölicher-Stehli, Mr. Maximilian Josef",male,60,1st,C,Switzerland,13567,79.04,1,1,1
+"Frölicher-Stehli, Mrs. Margaretha Emerentia",female,48,1st,C,Switzerland,13567,79.04,1,1,1
+"Frost, Mr. Anthony Wood",male,39,2nd,B,England,239854,NA,0,0,0
+"Fry, Mr. Richard",male,39,1st,S,England,112058,NA,0,0,0
+"Funk, Miss. Annie Clemmer",female,38,2nd,S,India,237671,13,0,0,0
+"Futrelle, Mr. Jacques Heath",male,37,1st,S,England,113803,53.02,1,0,0
+"Futrelle, Mrs. Lily May",female,35,1st,S,England,113803,53.02,1,0,1
+"Fynney, Mr. Joseph J.",male,36,2nd,S,England,239865,26,0,0,0
+"Gale, Mr. Harry",male,38,2nd,S,England,28664,21,1,0,0
+"Gale, Mr. Shadrach",male,33,2nd,S,England,28664,21,1,0,0
+"Gallagher, Mr. Martin",male,29,3rd,Q,Ireland,36864,7.141,0,0,0
+"Garfirth, Mr. John",male,23,3rd,S,England,358585,14.1,0,0,0
+"Garside, Miss. Ethel",female,39,2nd,S,England,243880,13,0,0,1
+"Gaskell, Mr. William Alfred",male,19,2nd,S,England,239865,26,0,0,0
+"Gavey, Mr. Laurence",male,26,2nd,S,Channel Islands,31028,10.1,0,0,0
+"Gee, Mr. Arthur H.",male,47,1st,S,England,111320,38.1,0,0,0
+"George/Joseph, Mrs. Shawneene",female,38,3rd,C,United States,2688,7.0407,0,0,1
+"Gerios Thamah, Mr. Assaf",male,21,3rd,C,Lebanon,2692,7.0406,0,0,0
+"Gheorgheff, Mr. Stanio",male,NA,3rd,C,Bulgaria,349254,7.1711,0,0,0
+"Gibson, Miss. Dorothy Winifred",female,22,1st,C,United States,112378,59.08,0,1,1
+"Gibson, Mrs. Pauline Caroline",female,44,1st,C,United States,112378,59.08,0,1,1
+"Gieger, Miss. Amalie",female,35,1st,S,NA,113503,211.1,0,0,1
+"Giglio, Mr. Victor Gaitan Andrea",male,23,1st,C,NA,17593,79.04,0,0,0
+"Gilbert, Mr. William",male,47,2nd,S,England,30769,10.1,0,0,0
+"Giles, Mr. Edgar",male,19,2nd,S,England,28133,11.1,1,0,0
+"Giles, Mr. Frederick Edward",male,21,2nd,S,England,28134,11.1,1,0,0
+"Giles, Mr. Ralph",male,24,2nd,S,England,248726,13.1,0,0,0
+"Gilinski, Mr. Eliezer",male,23,3rd,S,Wales,14973,8.01,0,0,0
+"Gillespie, Mr. William Henry",male,31,2nd,S,Ireland,12233,13,0,0,0
+"Gill, Mr. John",male,24,2nd,S,England,233866,13,0,0,0
+"Gilnagh, Miss. Katherine",female,17,3rd,Q,Ireland,35851,7.1408,0,0,1
+"Givard, Mr. Hans Kristensen",male,30,2nd,S,Argentina,250646,13,0,0,0
+"Glynn, Miss. Mary Agatha",female,18,3rd,Q,Ireland,335677,7.15,0,0,1
+"Goldenberg, Mr. Samuel L.",male,47,1st,C,United States,17453,89.0201,1,0,1
+"Goldenberg, Mrs. Nella",female,40,1st,C,United States,17453,89.0201,1,0,1
+"Goldschmidt, Mr. George B.",male,71,1st,C,United States,17754,34.1301,0,0,0
+"Goldsmith, Master. Frank John William",male,9,3rd,S,England,363291,20.1006,0,2,1
+"Goldsmith, Mr. Frank John",male,33,3rd,S,England,363291,20.1006,1,1,0
+"Goldsmith, Mr. Nathan",male,41,3rd,S,NA,3101263,7.17,0,0,0
+"Goldsmith, Mrs. Emily Alice",female,31,3rd,S,England,363291,20.1006,1,1,1
+"Goodwin, Master. Harold Victor",male,9,3rd,S,England,2144,46.18,5,2,0
+"Goodwin, Master. Sidney Leslie",male,1,3rd,S,England,2144,46.18,5,2,0
+"Goodwin, Master. William Frederick",male,11,3rd,S,England,2144,46.18,5,2,0
+"Goodwin, Miss. Jessie Allis",female,10,3rd,S,England,2144,46.18,5,2,0
+"Goodwin, Miss. Lillian Amy",female,16,3rd,S,England,2144,46.18,5,2,0
+"Goodwin, Mr. Charles Edward",male,14,3rd,S,England,2144,46.18,5,2,0
+"Goodwin, Mr. Frederick Joseph",male,42,3rd,S,England,2144,46.18,1,6,0
+"Goodwin, Mrs. Augusta",female,43,3rd,S,England,2144,46.18,1,6,0
+"Gracie, Colonel. Archibald",male,53,1st,S,United States,113780,28.1,0,0,1
+"Graham, Miss. Margaret Edith",female,19,1st,S,England,17582,153.0903,0,0,1
+"Graham, Mr. George Edward",male,38,1st,S,Canada,112053,30,0,1,0
+"Graham, Mrs. Edith",female,59,1st,S,England,17582,153.0903,0,1,1
+"Greenberg, Mr. Samuel",male,52,2nd,S,South Africa,250647,13,0,0,0
+"Greenfield, Mrs. Blanche",female,45,1st,C,United States,17759,63.0702,0,1,1
+"Greenfield, Mr. William Bertram",male,23,1st,C,United States,17759,63.0702,0,1,1
+"Green, Mr. George",male,20,engineering crew,S,England,NA,NA,NA,NA,0
+"Green, Mr. George",male,41,3rd,S,England,21440,8.01,0,0,0
+"Grønnestad, Mr. Daniel Danielsen",male,32,3rd,S,Norway,8471,8.0615,0,0,0
+"Guest, Mr. Charles Robert",male,25,3rd,S,England,376563,8.01,0,0,0
+"Guggenheim, Mr. Benjamin",male,46,1st,C,France,17593,79.04,0,0,0
+"Gustafsson, Mr. Alfred Ossian",male,19,3rd,S,Finland,7534,9.1611,0,0,0
+"Gustafsson, Mr. Anders Vilhelm",male,37,3rd,S,Finland,3101276,7.1806,2,0,0
+"Gustafsson, Mr. Johan Birger",male,28,3rd,S,Finland,3101277,7.1806,2,0,0
+"Gustafsson, Mr. Karl Gideon",male,19,3rd,S,Sweden,347069,7.1506,0,0,0
+"Haas, Miss. Aloisia",female,24,3rd,S,Switzerland,349236,8.17,0,0,0
+"Hagland, Mr. Ingvald Olai Olsen",male,28,3rd,S,Norway,65303,6.1904,1,0,0
+"Hagland, Mr. Konrad Mathias Reiersen",male,19,3rd,S,Norway,65304,6.1904,1,0,0
+"Hakkarainen, Mr. Pekka Pietari",male,28,3rd,S,Finland,3101279,15.17,1,0,0
+"Hakkarainen, Mrs. Elin Matilda",female,24,3rd,S,Finland,3101279,15.17,1,0,1
+"Hale, Mr. Reginald",male,30,2nd,S,England,250653,13,0,0,0
+"Hämäläinen, Master. Viljo Unto Johannes",male,0.5833333333,2nd,S,United States,250649,14.1,1,1,1
+"Hämäläinen, Mrs. Anna",female,23,2nd,S,United States,250649,14.1,0,2,1
+"Hampe, Mr. Léon Jérome",male,19,3rd,S,Belgium,345769,9.1,0,0,0
+"Hannah, Mr. Borak",male,27,3rd,C,Lebanon,2663,7.0407,0,0,1
+"Hanna, Mr. Boulos",male,18,3rd,C,Lebanon,2664,7.0406,0,0,0
+"Hanna, Mr. Mansour",male,35,3rd,C,Lebanon,2693,7.0407,0,0,0
+"Hansen, Mr. Claus Peter",male,41,3rd,S,United States,350026,14.0202,2,0,0
+"Hansen, Mr. Henrik Juul",male,26,3rd,S,Denmark,350025,7.1701,1,0,0
+"Hansen, Mr. Henry Damsgaard",male,21,3rd,S,Denmark,350029,7.1701,0,0,0
+"Hansen, Mrs. Jennie Louise",female,45,3rd,S,United States,350026,14.0202,1,0,1
+"Harbeck, Mr. William H.",male,45,2nd,S,United States,248746,13,0,0,0
+"Harder, Mr. George Achilles",male,25,1st,C,United States,11765,55.081,1,0,1
+"Harder, Mrs. Dorothy",female,21,1st,C,United States,11765,55.081,1,0,1
+"Hargadon, Miss. Catherine",female,17,3rd,Q,Ireland,30631,7.1408,0,0,0
+"Harknett, Miss. Alice Phoebe",female,21,3rd,S,England,6609,7.11,0,0,0
+"Harper, Miss. Annie Jessie",female,6,2nd,S,Scotland,248727,33,0,1,1
+"Harper, Mr. Henry Sleeper",male,48,1st,C,United States,17572,76.1407,1,0,1
+"Harper, Mrs. Myra Raymond",female,49,1st,C,United States,17572,76.1407,1,0,1
+"Harper, Rev. John",male,39,2nd,S,Scotland,248727,33,0,1,0
+"Harrington, Mr. Charles Henry",male,37,1st,S,England,113796,42.08,0,0,0
+"Harris, Mr. George",male,62,2nd,S,England,752,10.1,0,0,1
+"Harris, Mr. Henry Birkhardt",male,45,1st,S,United States,36973,83.0906,1,0,0
+"Harris, Mrs. Irene",female,35,1st,S,United States,36973,83.0906,1,0,1
+"Harris, Mr. Walter",male,45,2nd,S,England,14208,10.1,0,0,0
+"Harrison, Mr. William Henry",male,46,1st,S,England,112059,NA,0,0,0
+"Hartley, Mr. Wallace Henry",male,33,2nd,S,England,250654,NA,NA,NA,0
+"Hart, Miss. Eva Miriam",female,7,2nd,S,England,13529,26.05,0,2,1
+"Hart, Mr. Benjamin",male,47,2nd,S,England,13529,26.05,1,1,0
+"Hart, Mr. Henry",male,29,3rd,Q,Ireland,394140,6.1702,0,0,0
+"Hart, Mrs. Esther Ada",female,48,2nd,S,England,13529,26.05,1,1,1
+"Hassab, Mr. Hammad",male,27,1st,C,Egypt,17572,76.1407,0,0,1
+"Hawksford, Mr. Walter James",male,45,1st,S,England,16988,30,0,0,1
+"Hays, Miss. Margaret Bechstein",female,24,1st,C,United States,11767,83.0302,0,0,1
+"Hays, Mr. Charles Melville",male,55,1st,S,Canada,12749,93.1,1,1,0
+"Hays, Mrs. Clara Jennings",female,52,1st,S,Canada,12749,93.1,1,1,1
+"Head, Mr. Christopher",male,42,1st,S,England,113038,42.1,0,0,0
+"Healy, Miss. Honor",female,33,3rd,Q,Ireland,370375,7.15,0,0,1
+"Hedman, Mr. Oskar Arvid",male,27,3rd,S,Sweden,347089,6.1906,0,0,1
+"Hee, Mr. Ling",male,24,3rd,S,NA,1601,56.0911,0,0,1
+"Hegarty, Miss. Hanora",female,20,3rd,Q,Ireland,365226,6.15,0,0,0
+"Heikkinen, Miss. Laina",female,16,3rd,S,Finland,3101282,7.1806,0,0,1
+"Heininen, Miss. Wendla Maria",female,23,3rd,S,Finland,3101290,7.1806,0,0,0
+"Hellström, Miss. Hilda Maria",female,22,3rd,S,Sweden,7548,8.1903,0,0,1
+"Hendekovic, Mr. Ignjac",male,30,3rd,S,Hungary,349243,7.1711,0,0,0
+"Henriksson, Miss. Jenny Lovisa",female,28,3rd,S,Sweden,347086,7.1506,0,0,0
+"Henry, Miss. Bridget Delia",female,21,3rd,Q,Ireland,382649,7.15,0,0,0
+"Herman, Miss. Alice",female,24,2nd,S,England,220845,65,1,2,1
+"Herman, Miss. Kate",female,24,2nd,S,England,220845,65,1,2,1
+"Herman, Mr. Samuel",male,50,2nd,S,England,220845,65,1,2,0
+"Herman, Mrs. Jane",female,50,2nd,S,India,220845,65,1,2,1
+"Hewlett, Mrs. Mary Dunbar",female,56,2nd,S,India,248706,16,0,0,1
+"Hickman, Mr. Leonard Mark",male,24,2nd,S,England,14879,73.1,2,0,0
+"Hickman, Mr. Lewis",male,30,2nd,S,England,14879,73.1,2,0,0
+"Hickman, Mr. Stanley George",male,21,2nd,S,England,14879,73.1,2,0,0
+"Hilliard, Mr. Herbert Henry",male,44,1st,S,England,17463,51.1703,0,0,0
+"Hiltunen, Miss. Marta",female,18,2nd,S,Finland,250650,13,1,1,0
+"Hipkins, Mr. William Edward",male,55,1st,S,England,680,50,0,0,0
+"Hippach, Miss. Jean Gertrude",female,17,1st,C,United States,111361,57.1907,0,1,1
+"Hippach, Mrs. Ida Sophia",female,44,1st,C,United States,111361,57.1907,0,1,1
+"Hirvonen, Miss. Hildur Elisabeth",female,2,3rd,S,Finland,3101298,12.0509,0,1,1
+"Hirvonen, Mrs. Helga Elisabeth Lindqvist",female,22,3rd,S,Finland,3101298,12.0509,1,1,1
+"Hocking, Miss. Ellen",female,20,2nd,S,England,29105,23,2,1,1
+"Hocking, Mr. Richard George",male,24,2nd,S,England,29104,11.1,2,1,0
+"Hocking, Mr. Samuel James Metcalfe",male,36,2nd,S,England,242963,13,0,0,0
+"Hocking, Mrs. Eliza",female,54,2nd,S,England,29105,23,1,3,1
+"Hodges, Mr. Henry Price",male,50,2nd,S,England,250643,13,0,0,0
+"Hogeboom, Mrs. Anna Louisa",female,51,1st,C,United States,13502,77.1902,1,0,1
+"Hold, Mrs. Annie Margaret",female,29,2nd,S,England,26707,26,1,0,1
+"Hold, Mr. Stephen",male,44,2nd,S,England,26707,26,1,0,0
+"Holm, Mr. John Fredrik Alexander",male,43,3rd,S,Sweden,7075,6.09,0,0,0
+"Holthen, Mr. Johan Martin",male,18,3rd,S,Norway,4001,22.1006,0,0,0
+"Holverson, Mr. Alexander Oskar",male,42,1st,S,United States,113789,52,1,0,0
+"Holverson, Mrs. Mary Aline",female,35,1st,S,United States,113789,52,1,0,1
+"Homer, Mr. Harry",male,40,1st,S,United States,111426,26.11,0,0,1
+"Honkanen, Miss. Eliina",female,27,3rd,S,Finland,3101283,7.1806,0,0,1
+"Hood, Mr. Ambrose Jr",male,21,2nd,S,England,14879,73.1,0,0,0
+"Horgan, Mr. John",male,22,3rd,Q,NA,370377,7.15,0,0,0
+"Hosono, Mr. Masabumi",male,41,2nd,S,Japan,237798,13,0,0,1
+"Howard, Miss. May Elizabeth",female,26,3rd,S,England,39186,8.01,0,0,1
+"Howard, Mr. Benjamin",male,63,2nd,S,England,24065,26,1,0,0
+"Howard, Mrs. Ellen Truelove",female,61,2nd,S,England,24065,26,1,0,0
+"Hoyt, Mr. Frederick Maxfield",male,38,1st,S,United States,19943,100,1,0,1
+"Hoyt, Mrs. Jane Anne",female,31,1st,S,United States,19943,100,1,0,1
+"Hoyt, Mr. William Fisher",male,43,1st,C,United States,17600,30.1311,0,0,0
+"Humblen, Mr. Adolf Mathias Nicolai Olsen",male,42,3rd,S,Norway,348121,7.13,0,0,0
+"Hume, Mr. John Law",male,21,2nd,S,NA,250654,NA,NA,NA,0
+"Hunt, Mr. George Henry",male,34,2nd,S,England,1585,12.0506,0,0,0
+"Hyman, Mr. Abraham Joseph",male,34,3rd,S,England,3470,7.1709,0,0,1
+"Ibrāhīm, Mr. Husayn Mahmūd Husayn",male,11,3rd,C,NA,2699,18.1509,0,0,0
+"Ibrāhīm, Mrs. Sāfiyah",female,18,3rd,C,Syria,2657,7.0407,0,0,1
+"Ibrahim Shawah, Mr. Yousseff",male,33,3rd,C,Lebanon,2627,14.0902,0,0,0
+"Icard, Miss. Rose Amélie",female,39,1st,S,NA,113572,80,0,0,1
+"Ilett, Miss. Bertha",female,17,2nd,S,Channel Islands,14885,10.1,0,0,1
+"Ilieff, Mr. Ylio",male,32,3rd,S,NA,349220,7.1711,0,0,0
+"Ilmakangas, Miss. Ida Livija",female,17,3rd,S,United States,3101270,7.1806,1,0,0
+"Ilmakangas, Miss. Pieta Sofia",female,25,3rd,S,Finland,3101271,7.1806,1,0,0
+"Isham, Miss. Ann Elizabeth",female,50,1st,C,United States,17595,28.1403,0,0,0
+"Ismay, Mr. Joseph Bruce",male,49,1st,S,England,112058,NA,0,0,1
+"Ivanoff, Mr. Kanio",male,20,3rd,S,Bulgaria,349201,7.1711,0,0,0
+"Jabbur (Zabour), Miss. Hileni",female,16,3rd,C,NA,2665,14.0901,1,0,0
+"Jabbur (Zabour), Miss. Thamine",female,19,3rd,C,NA,2665,14.0901,1,0,0
+"Jacobsohn, Mrs. Amy Frances Christy",female,24,2nd,S,England,243847,27,2,1,1
+"Jacobsohn, Mr. Sidney Samuel",male,42,2nd,S,South Africa,243847,27,1,0,0
+"Jalševac, Mr. Ivan",male,30,3rd,C,Croatia (Modern),349240,7.1711,0,0,1
+"Jansson, Mr. Carl Olof",male,21,3rd,S,Sweden,350034,7.1511,0,0,1
+"Jardim, Mr. José Neto",male,21,3rd,S,NA,3101305,7.01,0,0,0
+"Jarvis, Mr. Denzil John",male,46,2nd,S,Wales,237565,15,0,0,0
+"Jefferys, Mr. Clifford Thomas",male,24,2nd,S,England,31029,31.1,2,0,0
+"Jefferys, Mr. Ernest Wilfred",male,21,2nd,S,England,31029,31.1,2,0,0
+"Jenkin, Mr. Stephen Curnow",male,32,2nd,S,England,33111,10.1,0,0,0
+"Jensen, Mr. Hans Peder",male,20,3rd,S,Denmark,350050,7.1701,0,0,0
+"Jensen, Mr. Niels Rasmus",male,48,3rd,S,Denmark,350048,7.0101,0,0,0
+"Jensen, Mr. Svend Lauritz",male,17,3rd,S,Denmark,350047,7.1701,1,0,0
+"Jermyn, Miss. Annie Jane",female,26,3rd,Q,Ireland,14313,7.15,0,0,1
+"Jerwan, Mrs. Marie Marthe",female,23,2nd,C,United States,541,13.151,0,0,1
+"Johannesen, Mr. Bernt Johannes",male,29,3rd,S,Norway,65306,8.0203,0,0,1
+"Johanson, Mr. Jakob Alfred",male,34,3rd,S,Finland,3101264,6.0911,0,0,0
+"Johansson, Mr. Erik",male,22,3rd,S,Sweden,350052,7.1511,0,0,0
+"Johansson, Mr. Gustaf Joel",male,33,3rd,S,Sweden,7540,8.1301,0,0,0
+"Johansson, Mr. Karl Johan",male,31,3rd,S,United States,347063,7.1506,0,0,0
+"Johansson, Mr. Nils",male,29,3rd,S,United States,347467,7.1701,0,0,0
+"Johansson Palmquist, Mr. Oskar Leander",male,26,3rd,S,Sweden,347070,7.1506,0,0,1
+"Johnson, Master. Harold Theodor",male,4,3rd,S,NA,347742,11.0208,1,1,1
+"Johnson, Miss. Eleanor Ileen",female,1,3rd,S,NA,347742,11.0208,1,1,1
+"Johnson, Mr. August",male,49,3rd,S,United States,370160,NA,NA,NA,0
+"Johnson, Mr. Malkolm Joackim",male,33,3rd,S,United States,347062,7.1506,0,0,0
+"Johnson, Mrs. Elisabeth Vilhelmina",female,26,3rd,S,NA,347742,11.0208,0,2,1
+"Johnson, Mr. William Cahoone Jr.",male,19,3rd,S,United States,370160,NA,0,0,0
+"Johnston, Master. William Andrew",male,8,3rd,S,England,6607,23.09,1,2,0
+"Johnston, Miss. Catherine Nellie",female,7,3rd,S,England,6607,23.09,1,2,0
+"Johnston, Mr. Andrew Emslie",male,35,3rd,S,Scotland,6607,23.09,1,2,0
+"Johnston, Mrs. Eliza",female,36,3rd,S,Scotland,6607,23.09,1,2,0
+"Jones, Mr. Charles Cresson",male,46,1st,S,United States,694,26,0,0,0
+"Jonkoff, Mr. Lalio",male,23,3rd,S,Bulgaria,349204,7.1711,0,0,0
+"Jonsson, Mr. Carl",male,25,3rd,S,Sweden,350417,7.1701,0,0,1
+"Jönsson, Mr. Nils Hilding",male,27,3rd,S,Sweden,350408,7.1701,0,0,0
+"Joseph (Shahin), Mr. Elias",male,39,3rd,C,Lebanon,2675,7.0407,0,2,0
+"Julian, Mr. Henry Forbes",male,50,1st,S,England,113044,26,0,0,0
+"Jussila, Miss. Katriina",female,20,3rd,S,Finland,4136,9.161,1,0,0
+"Jussila, Miss. Mari Aina",female,21,3rd,S,Finland,4137,9.161,1,0,0
+"Jussila, Mr. Eiriik",male,32,3rd,S,Finland,3101286,7.1806,0,0,1
+"Kallio, Mr. Nikolai Erland",male,17,3rd,S,Finland,3101274,7.0206,0,0,0
+"Kalvik, Mr. Johannes Halvorsen",male,21,3rd,S,Norway,8475,8.0808,0,0,0
+"Kantor, Mr. Sinai",male,34,2nd,S,Russia,244367,26,1,0,0
+"Kantor, Mrs. Miriam",female,24,2nd,S,Russia,244367,26,1,0,1
+"Karajic, Mr. Milan",male,30,3rd,S,Hungary,349246,7.1711,0,0,0
+"Karlsson, Mr. Einar Gervasius",male,21,3rd,S,Sweden,350053,7.1511,0,0,1
+"Karlsson, Mr. Julius Konrad Eugen",male,33,3rd,S,Sweden,347465,7.1701,0,0,0
+"Karlsson, Mr. Nils August",male,22,3rd,S,Sweden,350060,7.1005,0,0,0
+"Karnes, Mrs. Claire",female,22,2nd,S,United States,13534,21,0,0,0
+"Karun, Miss. Manca",female,5,3rd,C,Slovenia,349256,13.0804,0,1,1
+"Karun, Mr. Franz",male,39,3rd,C,United States,349256,13.0804,0,1,1
+"Katavelos, Mr. Vasilios G.",male,19,3rd,C,Greece,2682,7.0407,0,0,0
+"Keane, Miss. Nora Agnes",female,46,2nd,Q,Ireland,226593,12.07,0,0,1
+"Keane, Mr. Andrew",male,23,3rd,Q,Ireland,12460,7.15,0,0,0
+"Keane, Mr. Daniel",male,35,2nd,Q,Ireland,233734,12.07,0,0,0
+"Keefe, Mr. Arthur",male,39,3rd,S,United States,323592,7.05,0,0,0
+"Keeping, Mr. Edwin Herbert",male,33,1st,S,England,113503,211.1,0,0,0
+"Kelly, Miss. Anna Katherine",female,20,3rd,Q,Ireland,9234,7.15,0,0,1
+"Kelly, Miss. Mary",female,22,3rd,Q,Ireland,14312,7.15,0,0,1
+"Kelly, Mr. James",male,19,3rd,S,Scotland,363592,8.01,0,0,0
+"Kelly, Mr. James",male,44,3rd,Q,Ireland,330911,7.1607,0,0,0
+"Kelly, Mr. James",male,44,engineering crew,S,England,NA,NA,NA,NA,0
+"Kelly, Mrs. Fanny Maria",female,49,2nd,S,England,223596,13.1,0,0,1
+"Kennedy, Mr. John",male,24,3rd,Q,Ireland,368783,7.15,0,0,1
+"Kent, Mr. Edward Austin",male,58,1st,C,United States,11771,29.14,0,0,0
+"Kenyon, Mr. Frederick Roland",male,41,1st,S,United States,17464,51.1703,1,0,0
+"Kenyon, Mrs. Marion Estelle",female,40,1st,S,United States,17464,51.1703,1,0,1
+"Khalil, Mr. Betros",male,25,3rd,C,Lebanon,2660,14.0901,1,0,0
+"Khalil, Mrs. Zahie",female,20,3rd,C,Lebanon,2660,14.0901,1,0,0
+"Kiernan, Mr. John Joseph",male,25,3rd,Q,Ireland,367227,7.15,1,0,0
+"Kiernan, Mr. Philip",male,22,3rd,Q,Ireland,367229,7.15,1,0,0
+"Kilgannon, Mr. Thomas",male,22,3rd,Q,Ireland,36865,7.1409,0,0,0
+"Kimball, Mr. Edwin Nelson Jr.",male,42,1st,S,United States,11753,52.1101,1,0,1
+"Kimball, Mrs. Susan Gertrude",female,45,1st,S,United States,11753,52.1101,1,0,1
+"Kink-Heilmann, Miss. Luise Gretchen",female,4,3rd,S,Switzerland,315153,22,0,2,1
+"Kink-Heilmann, Mrs. Luise",female,26,3rd,S,Switzerland,315153,22,1,1,1
+"Kink, Miss. Maria",female,23,3rd,S,Switzerland,315152,8.1303,2,0,0
+"Kink, Mr. Anton",male,29,3rd,S,Switzerland,315153,22,3,1,1
+"Kink, Mr. Vincenz",male,26,3rd,S,Switzerland,315151,8.1303,2,0,0
+"Kirkland, Fr. Charles Leonard",male,52,2nd,Q,United States,219533,12.07,0,0,0
+"Klaber, Mr. Herman",male,41,1st,S,United States,113028,26.11,0,0,0
+"Klasén, Miss. Gertrud Emilia",female,1,3rd,S,Sweden,350405,12.0308,1,1,0
+"Klasén, Mr. Klas Albin",male,18,3rd,S,Sweden,350404,7.1701,1,1,0
+"Klasén, Mrs. Hulda Kristina Eugenia",female,36,3rd,S,Sweden,350405,12.0308,0,2,0
+"Knight, Mr. Robert",male,41,2nd,B,Northern Ireland,239855,NA,0,0,0
+"Kraeff, Mr. Theodor",male,NA,3rd,C,Bulgaria,349253,7.1711,0,0,0
+"Krekorian, Mr. Neshan",male,25,3rd,C,Turkey,2654,7.0407,0,0,1
+"Kreuchen, Miss. Emilie",female,29,1st,S,NA,24160,211.0609,0,0,1
+"Krins, Mr. Georges Alexandre",male,23,2nd,S,England,250654,NA,NA,NA,0
+"Kutscher (Lithman), Mr. Simon",male,26,3rd,S,Scotland,251,7.11,0,0,0
+"Kvillner, Mr. Johan Henrik Johannesson",male,31,2nd,S,Sweden,18723,10.1,0,0,0
+"Lahhūd Ishaq Mu'awwad, Mr. Sarkīs",male,35,3rd,C,Lebanon,2624,7.0406,0,0,0
+"Lahtinen, Fr. William",male,35,2nd,S,United States,250651,26,1,1,0
+"Lahtinen, Mrs. Anna Amelia",female,34,2nd,S,United States,250651,26,1,1,0
+"Laitinen, Miss. Kristina Sofia",female,37,3rd,S,Finland,4135,9.1109,0,0,0
+"Lamb, Mr. John J.",male,31,2nd,Q,Ireland,240261,10.1402,0,0,0
+"Lam, Mr. Ali",male,38,3rd,S,China/Hong Kong,1601,56.0911,0,0,1
+"Lam, Mr. Len",male,23,3rd,S,NA,1601,56.0911,0,0,0
+"Landergren, Miss. Aurora Adelia",female,22,3rd,S,Sweden,7077,7.05,0,0,1
+"Lane, Mr. Patrick",male,17,3rd,Q,Ireland,7935,7.15,0,0,0
+"Lang, Mr. Fang",male,32,3rd,S,NA,1601,56.0911,0,0,1
+"Laroche, Miss. Louise",female,1,2nd,C,France,2123,41.1107,1,2,1
+"Laroche, Miss. Simonne Marie Anne Andrée",female,3,2nd,C,France,2123,41.1107,1,2,1
+"Laroche, Mr. Joseph Philippe Lemercier",male,25,2nd,C,France,2123,41.1107,1,2,0
+"Laroche, Mrs. Juliette Marie Louise",female,22,2nd,C,France,2123,41.1107,1,2,1
+"Larsson, Mr. August Viktor",male,29,3rd,S,United States,7545,9.0908,0,0,0
+"Larsson, Mr. Bengt Edvin",male,29,3rd,S,Sweden,347067,7.1506,0,0,0
+"Larsson, Mr. Edvard",male,22,3rd,S,Sweden,347065,7.1506,0,0,0
+"Leader, Dr. Alice May",female,49,1st,S,United States,17465,25.1807,0,0,1
+"Lefebvre, Master. Henry",male,5,3rd,S,NA,4133,25.0904,3,1,0
+"Lefebvre, Miss. Ida",female,3,3rd,S,NA,4133,25.0904,3,1,0
+"Lefebvre, Miss. Jeannie",female,8,3rd,S,NA,4133,25.0904,3,1,0
+"Lefebvre, Miss. Mathilde",female,12,3rd,S,NA,4133,25.0904,3,1,0
+"Lefebvre, Mrs. Frances Marie",female,40,3rd,S,NA,4133,25.0904,0,4,0
+"Lehmann, Miss. Bertha",female,17,2nd,C,Switzerland,1748,12,0,0,1
+"Leinonen, Mr. Antti Gustaf",male,32,3rd,S,Finland,3101292,7.1806,0,0,0
+"Leitch, Miss. Jessie Wills",female,31,2nd,S,Scotland,248727,33,0,0,1
+"Lemore, Mrs. Amelia",female,39,2nd,S,England,34260,10.1,0,0,1
+"Lennon, Miss. Mary",female,18,3rd,Q,Ireland,370371,15.1,1,0,0
+"Lennon, Mr. Denis",male,20,3rd,Q,Ireland,370371,15.1,1,0,0
+"Leroy, Miss. Berthe",female,27,1st,C,France,17761,106.0806,0,0,1
+"Lester, Mr. James",male,41,3rd,S,England,48871,24.03,0,0,0
+"Lesueur, Mr. Gustave J.",male,35,1st,C,NA,17755,512.0607,0,0,1
+"Lévy, Mr. René Jacques",male,37,2nd,S,Canada,2163,12.1706,0,0,0
+"Lewy, Mr. Ervin G.",male,30,1st,C,United States,17612,27.1405,0,0,0
+"Leyson, Mr. Robert William Norman",male,25,2nd,S,England,29566,10.1,0,0,0
+"Lievens, Mr. René Aimé",male,24,3rd,S,Belgium,345781,9.1,0,0,0
+"Lindahl, Miss. Agda Thorilda Viktoria",female,25,3rd,S,Sweden,347071,7.1506,0,0,0
+"Lindblom, Miss. Augusta Charlotta",female,45,3rd,S,England,347073,7.15,0,0,0
+"Lindeberg-Lind, Mr. Erik Gustaf",male,42,1st,S,Sweden,17475,26.11,0,0,0
+"Lindell, Mr. Edvard Bengtsson",male,36,3rd,S,Sweden,349910,15.11,1,0,0
+"Lindell, Mrs. Elin Gerda",female,30,3rd,S,Sweden,349910,15.11,1,0,0
+"Lindqvist, Mr. Eino William",male,20,3rd,S,Finland,3101285,7.1806,1,0,1
+"Lindström, Mrs. Sigrid",female,55,1st,C,Sweden,112377,27.1405,0,0,1
+"Linehan, Mr. Michael",male,21,3rd,Q,Ireland,330971,7.1707,0,0,0
+"Lines, Miss. Mary Conover",female,16,1st,C,France,17592,39.08,0,1,1
+"Lines, Mrs. Elizabeth Lindsey",female,50,1st,C,United States,17592,39.08,0,1,1
+"Lingane, Mr. John",male,61,2nd,Q,Ireland,235509,12.07,0,0,0
+"Ling, Mr. Lee",male,28,3rd,S,NA,1601,56.0911,0,0,0
+"Linhart, Mr. Wenzel",male,27,3rd,S,Austria,345775,9.1,0,0,0
+"Livshin, Mr. David",male,25,3rd,S,Latvia,374887,7.05,0,0,0
+"Lobb, Mrs. Cordelia",female,34,3rd,S,England,3336,16.02,1,0,0
+"Lobb, Mr. William Arthur",male,31,3rd,S,England,3336,16.02,1,0,0
+"Lockyer, Mr. Edward Thomas",male,19,3rd,S,England,1222,7.1707,0,0,0
+"Longley, Miss. Gretchen Fiske",female,21,1st,C,United States,13502,77.1902,0,0,1
+"Long, Mr. Milton Clyde",male,29,1st,S,United States,113501,30,0,0,0
+"Loring, Mr. Joseph Holland",male,30,1st,S,United States,113801,45.1,0,0,0
+"Louch, Mr. Charles",male,50,2nd,S,England,3085,26,1,0,0
+"Louch, Mrs. Alice Adelaide",female,43,2nd,S,England,3085,26,1,0,1
+"Lovell, Mr. John Hall",male,20,3rd,S,England,21173,7.05,0,0,0
+"Lulic, Mr. Nikola",male,29,3rd,S,Croatia (Modern),315098,8.1303,0,0,1
+"Lundahl, Mr. Johan Svensson",male,50,3rd,S,Sweden,347743,7.0101,0,0,0
+"Lundin, Miss. Olga Elida",female,23,3rd,S,United States,347469,7.1701,0,0,1
+"Lundström, Mr. Thure Edvin",male,32,3rd,S,Sweden,350403,7.1107,0,0,1
+"Lurette, Miss. Eugénie Elise",female,59,1st,C,France,17569,146.1005,0,0,1
+"Lymperopoulus, Mr. Panagiotis K.",male,30,3rd,C,Greece,2683,6.0809,0,0,0
+"Lyntakoff, Mr. Stanko",male,44,3rd,S,NA,349235,7.1711,0,0,0
+"MacKay, Mr. George William",male,20,3rd,S,Scotland,42795,7.11,0,0,0
+"Mack, Mrs. Mary",female,57,2nd,S,England,3,10.1,0,0,0
+"Madigan, Miss. Margaret",female,21,3rd,Q,Ireland,370370,7.15,0,0,1
+"Madill, Miss. Georgette Alexandra",female,16,1st,S,United States,24160,211.0609,0,1,1
+"Madsen, Mr. Fridtjof Arne",male,24,3rd,S,Norway,17369,7.021,0,0,1
+"Mäenpää, Mr. Matti Alexanteri",male,22,3rd,S,Finland,3101275,7.0206,0,0,0
+"Maguire, Mr. John Edward",male,30,1st,S,United States,110469,26,0,0,0
+"Mahon, Miss. Bridget Delia",female,20,3rd,Q,Ireland,330924,7.1707,0,0,0
+"Maioni, Miss. Roberta Elizabeth Mary",female,20,1st,S,England,110152,86.1,0,0,1
+"Maisner, Mr. Simon",male,34,3rd,S,England,2816,8.01,0,0,0
+"Mäkinen, Mr. Kalle Edvard",male,29,3rd,S,Finland,3101268,7.1806,0,0,0
+"Malachard, Mr. Jean-Noël",male,25,2nd,C,France,237735,15,0,0,0
+"Mallet, Master. André Clement",male,1,2nd,C,France,2079,37,0,2,1
+"Mallet, Mr. Albert Denis Pierre",male,45,2nd,C,France,2079,37,1,1,0
+"Mallet, Mrs. Antonine Marie",female,24,2nd,C,France,2079,37,1,1,1
+"Māmā, Mr. Hannā Mikā'īl",male,18,3rd,C,Lebanon,2677,7.0407,0,0,1
+"Mangan, Miss. Mary",female,32,3rd,Q,Ireland,364850,7.15,0,0,0
+"Mangiavacchi, Mr. Serafino Emilio",male,30,2nd,C,United States,32861,15.1107,0,0,0
+"Mannion, Miss. Margaret",female,28,3rd,Q,Ireland,36866,7.1409,0,0,1
+"Mardirosian, Mr. Sarkis",male,25,3rd,C,Turkey,2655,7.0407,0,0,0
+"Maréchal, Mr. Pierre",male,29,1st,C,France,11774,29.14,0,0,1
+"Marinko, Mr. Dmitri",male,23,3rd,S,Yugoslavia,349238,7.1711,0,0,0
+"Markoff, Mr. Marin",male,35,3rd,S,Bulgaria,349213,7.1711,0,0,0
+"Markun, Mr. Johann",male,33,3rd,C,Slovenia,349257,7.1711,0,0,0
+"Marvin, Mr. Daniel Warner",male,18,1st,S,United States,113773,53.02,1,0,0
+"Marvin, Mrs. Mary Graham Carmichael",female,18,1st,S,Scotland,113773,53.02,1,0,1
+"Matinoff, Mr. Nicola",male,30,3rd,C,Bulgaria,349255,7.1711,0,0,0
+"Matthews, Mr. William John",male,23,2nd,S,England,28228,13,0,0,0
+"Maybery, Mr. Frank Hubert",male,36,2nd,S,England,239059,16,0,0,0
+"Mayné, Mlle. Berthe Antonine",female,24,1st,C,Belgium,17482,49.1001,0,0,1
+"McCaffry, Mr. Thomas Francis",male,46,1st,S,Canada,13050,75.041,0,0,0
+"McCarthy, Miss. Catherine",female,25,3rd,Q,Ireland,383123,7.15,0,0,1
+"McCarthy, Mr. Timothy J.",male,55,1st,S,United States,17463,51.1703,0,0,0
+"McCormack, Mr. Thomas Joseph",male,19,3rd,Q,United States,367228,7.15,0,0,1
+"McCoy, Miss. Agnes",female,29,3rd,Q,Ireland,367226,23.05,2,0,1
+"McCoy, Miss. Alice",female,26,3rd,Q,Ireland,367226,23.05,2,0,1
+"McCoy, Mr. Bernard",male,24,3rd,Q,Ireland,367226,23.05,2,0,1
+"McCrae, Mr. Arthur Gordon",male,32,2nd,S,Australia,237216,13.1,0,0,0
+"McCrie, Mr. James Matthew",male,32,2nd,S,Canada,233478,13,0,0,0
+"McDermott, Miss. Bridget Delia",female,31,3rd,Q,Ireland,330932,7.1508,0,0,1
+"McEvoy, Mr. Michael",male,20,3rd,Q,Ireland,36568,15.1,0,0,0
+"McGough, Mr. James Robert",male,35,1st,S,Ireland,17473,26.0509,0,0,1
+"McGovern, Ms. Mary",female,22,3rd,Q,Ireland,330931,7.1707,0,0,1
+"McGowan, Miss. Anna Louise",female,17,3rd,Q,United States,330923,8,0,0,1
+"McGowan, Miss. Catherine",female,42,3rd,Q,Ireland,9232,7.15,0,0,0
+"McKane, Mr. Peter Daniel",male,46,2nd,S,Channel Islands,28403,26,0,0,0
+"McMahon, Mr. Martin",male,19,3rd,Q,Ireland,370372,7.15,0,0,0
+"McNamee, Mr. Neal",male,27,3rd,S,England,376566,16.02,1,0,0
+"McNamee, Mrs. Eileen",female,19,3rd,S,England,376566,16.02,1,0,0
+"McNeill, Miss. Bridget",female,32,3rd,Q,Ireland,370368,7.15,0,0,0
+"Meanwell, Mrs. Marian",female,62,3rd,S,England,392087,8.01,0,0,0
+"Meehan, Mr. John",male,22,3rd,Q,Ireland,3130,7.15,0,0,0
+"Meek, Mrs. Annie Louisa",female,32,3rd,S,England,343095,8.01,0,0,0
+"Mellinger, Miss. Violet Madeline",female,13,2nd,S,England,250644,19.1,0,1,1
+"Mellinger, Mrs. Elizabeth Anne",female,42,2nd,S,England,250644,19.1,0,1,1
+"Mellors, Mr. William John",male,19,2nd,S,England,751,10.1,0,0,1
+"Meo (Martino), Mr. Alfonzo",male,48,3rd,S,Italy,11206,8.01,0,0,0
+"Mernagh, Mr. Robert",male,28,3rd,Q,Ireland,368703,7.15,0,0,0
+"Meyer, Mr. August",male,31,2nd,S,England,248723,13,0,0,0
+"Meyer, Mr. Edgar Joseph",male,28,1st,C,United States,17604,82.0305,1,0,0
+"Meyer, Mrs. Leila",female,25,1st,C,United States,17604,82.0305,1,0,1
+"Midtsjø, Mr. Karl Albert",male,21,3rd,S,Norway,345501,7.1506,0,0,1
+"Mihoff, Mr. Stoytcho",male,28,3rd,S,Bulgaria,349207,7.1711,0,0,0
+"Miles, Mr. Frank",male,23,3rd,S,England,359306,8.01,0,0,0
+"Millet, Mr. Francis Davis",male,65,1st,C,United States,13509,26.11,0,0,0
+"Milling, Mr. Jacob Christian",male,48,2nd,S,Denmark,234360,13,0,0,0
+"Minahan, Dr. William Edward",male,44,1st,Q,United States,19928,90,2,0,0
+"Minahan, Miss. Daisy E.",female,33,1st,Q,United States,19928,90,1,0,1
+"Minahan, Mrs. Lillian E.",female,37,1st,Q,United States,19928,90,1,0,1
+"Mineff, Mr. Ivan",male,24,3rd,S,NA,349233,7.1711,0,0,0
+"Minkoff, Mr. Lazar",male,21,3rd,S,Bulgaria,349211,7.1711,0,0,0
+"Mitchell, Mr. Henry Michael",male,72,2nd,S,England,24580,10.1,0,0,0
+"Mitkoff, Mr. Mito",male,23,3rd,S,NA,349221,7.1711,0,0,0
+"Mockler, Miss. Ellen Mary",female,23,3rd,Q,Ireland,330980,7.1707,0,0,1
+"Mock, Mr. Philipp Edmund",male,30,1st,C,United States,13236,57.15,1,0,1
+"Moen, Mr. Sigurd Hansen",male,27,3rd,S,Norway,348123,7.13,0,0,0
+"Molson, Mr. Harry Markland",male,55,1st,S,Canada,113787,30.1,0,0,0
+"Montvila, Fr. Juozas",male,27,2nd,S,England,211536,13,0,0,0
+"Moore, Mr. Clarence Bloomfield",male,47,1st,S,United States,113796,42.08,0,0,0
+"Moore, Mr. Leonard Charles",male,19,3rd,S,England,54510,8.01,0,0,0
+"Moor, Master. Meier",male,7,3rd,S,NA,392096,12.0906,0,1,1
+"Moor, Mrs. Beila",female,29,3rd,S,NA,392096,12.0906,0,1,1
+"Moran, Miss. Bridget",female,28,3rd,Q,Ireland,371110,24.03,1,0,1
+"Moran, Mr. Daniel J.",male,28,3rd,Q,Ireland,371110,24.03,1,0,0
+"Moraweck, Dr. Ernest",male,54,2nd,S,United States,29011,14,0,0,0
+"Morley, Mr. Henry Samuel",male,38,2nd,S,England,250655,26,0,0,0
+"Morley, Mr. William",male,34,3rd,S,England,364506,8.01,0,0,0
+"Morrow, Mr. Thomas Rowan",male,30,3rd,Q,Ireland,372622,7.15,0,0,0
+"Moss, Mr. Albert Johan",male,29,3rd,S,Norway,312991,7.1506,0,0,1
+"Moussa, Mrs. Mantoura Boulos",female,35,3rd,C,Lebanon,2626,7.0407,0,0,1
+"Moutal, Mr. Rahamin Haim",male,28,3rd,S,England,374746,8.01,0,0,0
+"Mubārik, Master. Halīm",male,4,3rd,C,Lebanon,2661,15.0411,1,1,1
+"Mubārik, Master. Jirjis",male,7,3rd,C,Lebanon,2661,15.0411,1,1,1
+"Mubārik, Mrs. Amīnah",female,25,3rd,C,Lebanon,2661,15.0411,0,2,1
+"Mudd, Mr. Thomas Cupper",male,17,2nd,S,England,3,10.1,0,0,0
+"Mullin, Miss. Catherine",female,21,3rd,Q,Ireland,35852,7.1408,0,0,1
+"Mulvihill, Miss. Bridget Elizabeth",female,25,3rd,Q,Ireland,382653,7.15,0,0,1
+"Murdlin, Mr. Joseph",male,22,3rd,S,England,3235,8.01,0,0,0
+"Murphy, Miss. Catherine",female,18,3rd,Q,Ireland,367230,15.1,1,0,1
+"Murphy, Miss. Margaret Jane",female,25,3rd,Q,Ireland,367230,15.1,1,0,1
+"Murphy, Miss. Nora",female,31,3rd,Q,Ireland,36568,15.1,0,0,1
+"Muslamānī, Mrs. Fatīmah Muhammad",female,22,3rd,C,Lebanon,2649,7.0406,0,0,1
+"Myhrman, Mr. Pehr Fabian Oliver Malkolm",male,18,3rd,S,Sweden,347078,7.15,0,0,0
+"Myles, Mr. Thomas Francis",male,63,2nd,Q,Ireland,240276,9.1309,0,0,0
+"Naidenoff, Mr. Penko",male,22,3rd,S,Bulgaria,349206,7.1711,0,0,0
+"Najib Kiamie, Miss. Adele",female,15,3rd,C,Lebanon,2667,7.0406,0,0,1
+"Nakhli, Mr. Toufik",male,17,3rd,C,Lebanon,2641,7.0407,0,0,0
+"Nakid, Miss. Maria",female,1,3rd,C,Lebanon,2653,15.141,0,2,1
+"Nakid, Mr. Sahid",male,21,3rd,C,Lebanon,2653,15.141,1,1,1
+"Nakid, Mrs. Waika",female,19,3rd,C,Lebanon,2653,15.141,1,1,1
+"Nancarrow, Mr. William Henry",male,36,3rd,S,England,3338,8.01,0,0,0
+"Nankoff, Mr. Minko",male,32,3rd,S,NA,349218,7.1711,0,0,0
+"Nasr 'Almā, Mr. Mustafà",male,20,3rd,C,Lebanon,2652,7.0407,0,0,0
+"Nasser, Mr. Nicholas",male,28,2nd,C,United States,237736,30.0105,1,0,0
+"Nasser, Mrs. Adele",female,14,2nd,C,Lebanon,237736,30.0105,1,0,1
+"Nassr Rizq, Mr. Saade",male,20,3rd,C,Lebanon,2676,7.0406,0,0,0
+"Natsch, Mr. Charles",male,36,1st,C,United States,17596,29.14,0,1,0
+"Naughton, Miss. Hannah",female,21,3rd,Q,Ireland,365237,7.15,0,0,0
+"Navratil, Master. Edmond Roger",male,2,2nd,S,France,230080,26,1,1,1
+"Navratil, Master. Michel Marcel",male,3,2nd,S,France,230080,26,1,1,1
+"Navratil, Mr. Michel",male,32,2nd,S,Slovakia (Modern day),230080,26,0,2,0
+"Nenkov, Mr. Hristo",male,22,3rd,S,NA,349234,7.1711,0,0,0
+"Nesson, Mr. Israel",male,26,2nd,S,England,244368,13,0,0,0
+"Newell, Miss. Madeleine",female,31,1st,C,United States,35273,113.0506,1,0,1
+"Newell, Miss. Marjorie Anne",female,23,1st,C,United States,35273,113.0506,1,0,1
+"Newell, Mr. Arthur Webster",male,58,1st,C,United States,35273,113.0506,0,2,0
+"Newsom, Miss. Helen Monypeny",female,19,1st,S,United States,11752,26.0508,0,2,1
+"Nicholls, Mr. Joseph Charles",male,19,2nd,S,England,33112,36.15,1,1,0
+"Nicholson, Mr. Arthur Ernest",male,60,1st,S,England,693,26,0,0,0
+"Nieminen, Miss. Manta Josefina",female,29,3rd,S,Finland,3101297,7.1806,0,0,0
+"Niklasson, Mr. Samuel",male,28,3rd,S,Sweden,363611,8.01,0,0,0
+"Nilsson, Miss. Berta Olivia",female,18,3rd,S,Sweden,347066,7.1506,0,0,1
+"Nilsson, Miss. Helmina Josefina",female,26,3rd,S,Sweden,347470,7.1701,0,0,1
+"Nilsson, Mr. August Ferdinand",male,21,3rd,S,Sweden,350410,7.1701,0,0,0
+"Nīqūla Yārid, Master. Ilyās",male,11,3rd,C,Lebanon,2651,11.041,1,0,1
+"Nīqūla Yārid, Miss. Jamilah",female,14,3rd,C,Lebanon,2651,11.041,1,0,1
+"Nirva, Mr. Iisakki Antino Äijö",male,41,3rd,S,Finland,3101272,7.0206,0,0,0
+"Niskänen, Mr. Juha",male,39,3rd,S,United States,3101289,7.1806,0,0,1
+"Nofal, Mr. Mansouer",male,20,3rd,C,Lebanon,2697,7.0407,0,0,0
+"Norman, Mr. Robert Douglas",male,27,2nd,S,Scotland,218629,13.1,0,0,0
+"Nosworthy, Mr. Richard Cater",male,21,3rd,S,England,39886,7.16,0,0,0
+"Nourney, Mr. Alfred",male,20,1st,C,Germany,2166,13.1703,0,0,1
+"Nye, Mrs. Elizabeth",female,29,2nd,S,United States,29395,10.1,0,0,1
+"Nysten, Miss. Anna Sofia",female,22,3rd,S,Sweden,347081,7.15,0,0,1
+"Nysveen, Mr. Johan Hansen",male,60,3rd,S,Norway,345364,6.0409,0,0,0
+"O'Brien, Mr. Denis",male,21,3rd,Q,Ireland,330979,7.1607,0,0,0
+"O'Brien, Mrs. Johanna",female,26,3rd,Q,Ireland,370365,15.1,1,0,1
+"O'Brien, Mr. Thomas",male,27,3rd,Q,Ireland,370365,15.1,1,0,0
+"O'Connell, Mr. Patrick Denis",male,18,3rd,Q,Ireland,334912,7.1408,0,0,0
+"O'Connor, Mr. Maurice",male,17,3rd,Q,Ireland,371060,7.15,0,0,0
+"O'Connor, Mr. Patrick",male,23,3rd,Q,Ireland,366713,7.15,0,0,0
+"Ödahl, Mr. Nils Martin",male,23,3rd,S,Sweden,7267,9.0406,0,0,0
+"O'Dwyer, Miss. Ellen",female,24,3rd,Q,Ireland,330959,7.1707,0,0,1
+"Öhman, Miss. Velin",female,22,3rd,S,Sweden,347085,7.1506,0,0,1
+"O'Keefe, Mr. Patrick",male,21,3rd,Q,Ireland,368402,7.15,0,0,1
+"O'Leary, Miss. Hanora",female,16,3rd,Q,Ireland,330919,7.1607,0,0,1
+"Oliva y Ocana, Doña. Fermina",female,39,1st,C,Spain,17758,108.18,0,0,1
+"Olsen, Master. Artur Karl",male,9,3rd,S,Norway,17368,3.0305,0,1,1
+"Olsen, Mr. Henry Margido",male,28,3rd,S,Norway,4001,22.1006,0,0,0
+"Olsen, Mr. Karl Siegwart Andreas",male,42,3rd,S,United States,4579,8.0801,0,1,0
+"Olsen, Mr. Ole Martin",male,27,3rd,S,Norway,265302,7.0603,0,0,0
+"Olsson, Miss. Elina",female,31,3rd,S,Sweden,350407,7.1701,0,0,0
+"Olsson, Mr. Nils Johan Göransson",male,28,3rd,S,Sweden,347464,7.1701,0,0,0
+"Olsson, Mr. Oscar Wilhelm",male,32,3rd,S,Sweden,347079,7.1506,0,0,1
+"Olsvigen, Mr. Thor Anderson",male,20,3rd,S,Norway,6563,9.0406,0,0,0
+"Omont, Mr. Alfred Fernand",male,29,1st,C,France,12998,25.141,0,0,1
+"Oreskovic, Miss. Jelka",female,23,3rd,S,Croatia,315085,8.1303,0,0,0
+"Oreskovic, Miss. Marija",female,20,3rd,S,Croatia,315096,8.1303,0,0,0
+"Oreskovic, Mr. Luka",male,20,3rd,S,Croatia,315094,8.1303,0,0,0
+"Osén, Mr. Olaf Elon",male,16,3rd,S,Sweden,7534,9.0404,0,0,0
+"Østby, Miss. Helen Ragnhild",female,22,1st,S,United States,113509,61.1907,0,1,1
+"Ostby, Mr. Engelhart Cornelius",male,64,1st,S,United States,113509,61.1907,0,1,0
+"O'Sullivan, Miss. Bridget Mary",female,21,3rd,Q,Ireland,330909,7.1207,0,0,0
+"Otter, Mr. Richard",male,38,2nd,S,United States,28213,13,0,0,0
+"Oviés y Rodríguez, Mr. Servando José Florentino",male,36,1st,C,Cuba,17562,27.1405,0,0,0
+"Oxenham, Mr. Percy Thomas",male,22,2nd,S,England,14260,10.1,0,0,1
+"Padron Manent, Mr. Julian",male,27,2nd,C,Spain,2146,13.1703,0,0,1
+"Pain, Dr. Alfred",male,23,2nd,S,Canada,244278,10.1,0,0,0
+"Pallàs i Castelló, Sr. Emili",male,29,2nd,C,Spain,2147,13.1702,0,0,1
+"Pålsson, Master. Gösta Leonard",male,2,3rd,S,Sweden,349909,21.0106,3,1,0
+"Pålsson, Master. Paul Folke",male,6,3rd,S,Sweden,349909,21.0106,3,1,0
+"Pålsson, Miss. Stina Viola",female,3,3rd,S,Sweden,349909,21.0106,3,1,0
+"Pålsson, Miss. Torborg Danira",female,8,3rd,S,Sweden,349909,21.0106,3,1,0
+"Pålsson, Mrs. Alma Cornelia",female,29,3rd,S,Sweden,349909,21.0106,0,4,0
+"Panula, Master. Eino Viljam",male,1,3rd,S,Finland,3101295,39.1309,4,1,0
+"Panula, Master. Jaako Arnold",male,15,3rd,S,United States,3101295,39.1309,4,1,0
+"Panula, Master. Juha Niilo",male,7,3rd,S,Finland,3101295,39.1309,4,1,0
+"Panula, Master. Urho Abraham",male,2,3rd,S,Finland,3101295,39.1309,4,1,0
+"Panula, Mr. Ernesti Arvid",male,16,3rd,S,Finland,3101295,39.1309,4,1,0
+"Panula, Mrs. Maija Emelia Abrahamintytar",female,41,3rd,S,Finland,3101295,39.1309,0,5,0
+"Parker, Mr. Clifford Richard",male,17,2nd,S,Channel Islands,14888,10.1,0,0,0
+"Parkes, Mr. Francis",male,21,2nd,B,Northern Ireland,239853,NA,0,0,0
+"Parrish, Mrs. Lutie Davis",female,59,2nd,S,United States,230433,26,0,1,1
+"Parr, Mr. William Henry Marsh",male,30,1st,B,England,112052,NA,0,0,0
+"Partner, Mr. Austin",male,40,1st,S,England,113043,28.1,0,0,0
+"Pasic, Mr. Jakob",male,21,3rd,S,Slovenia,315097,8.1303,0,0,0
+"Patchett, Mr. George",male,20,3rd,S,England,358585,14.1,0,0,0
+"Pavlovic, Mr. Stefo",male,32,3rd,S,Croatia,349242,7.1711,0,0,0
+"Payne, Mr. Vivian Ponsonby",male,23,1st,S,Canada,12749,93.1,0,0,0
+"Peacock, Master. Albert Edward",male,0.5833333333,3rd,S,England,3101315,13.1506,1,1,0
+"Peacock, Miss. Treasteall",female,4,3rd,S,England,3101315,13.1506,1,1,0
+"Peacock, Mrs. Edith",female,26,3rd,S,England,3101315,13.1506,0,2,0
+"Pearce, Mr. Ernest",male,32,3rd,S,England,343271,7,0,0,0
+"Pears, Mrs. Edith",female,22,1st,S,England,113776,66.12,1,0,1
+"Pears, Mr. Thomas Clinton",male,29,1st,S,England,113776,66.12,1,0,0
+"Pedersen, Mr. Olaf",male,28,3rd,S,Norway,345498,7.1506,0,0,0
+"Peduzzi, Mr. Giuseppe",male,24,3rd,S,England,2817,8.01,0,0,0
+"Pekoniemi, Mr. Edvard",male,21,3rd,S,Finland,3101294,7.1806,0,0,0
+"Peltomäki, Mr. Nikolai Johannes",male,25,3rd,S,Finland,3101291,7.1806,0,0,0
+"Peñasco y Castellana, Mrs. Maria Josefa Perezde Soto y Vallejo",female,22,1st,C,Spain,17758,108.18,1,0,1
+"Peñasco y Castellana, Mr. Victor",male,24,1st,C,Spain,17758,108.18,1,0,0
+"Pengelly, Mr. Frederick William",male,19,2nd,S,England,28665,10.1,0,0,0
+"Perkin, Mr. John Henry",male,24,3rd,S,England,21174,7.05,0,0,0
+"Pernot, Mr. René",male,39,2nd,C,France,2131,15.01,0,0,0
+"Perreault, Miss. Mary Anne",female,33,1st,S,Canada,12749,93.1,0,0,1
+"Persson, Mr. Ernst Ulrik",male,25,3rd,S,Sweden,347083,7.1506,1,0,1
+"Peruschitz, Fr. Josef",male,41,2nd,S,Germany,237393,13,0,0,0
+"Peteranec, Miss. Mathilda",female,28,3rd,S,Croatia,349245,7.1711,0,0,0
+"Peter / Joseph, Master. Michael J.",male,4,3rd,C,Lebanon,2668,22.0702,1,1,1
+"Peter / Joseph, Miss. Anna",female,2,3rd,C,Lebanon,2668,22.0702,1,1,1
+"Petersen, Mr. Marius",male,24,3rd,S,England,342441,8.01,0,0,0
+"Peters, Miss. Catherine",female,28,3rd,Q,Ireland,330935,8.0209,0,0,0
+"Petroff, Mr. Nedialco",male,19,3rd,S,Bulgaria,349212,7.1711,0,0,0
+"Petroff, Mr. Pastcho",male,29,3rd,S,Bulgaria,349215,7.1711,0,0,0
+"Pettersson, Miss. Elin Natalia",female,18,3rd,S,Sweden,347087,7.1506,0,0,0
+"Pettersson, Mr. Johan Emil",male,25,3rd,S,Sweden,347076,7.1506,1,0,0
+"Peuchen, Major. Arthur Godfrey",male,52,1st,S,Canada,113786,30.1,0,0,1
+"Phillips, Miss. Alice Frances Louisa",female,21,2nd,S,England,2,21,0,1,1
+"Phillips, Miss. Kate Florence",female,19,2nd,S,England,250655,26,0,0,1
+"Phillips, Mr. Escott Robert",male,43,2nd,S,England,2,21,0,1,0
+"Picard, Mr. Benoît",male,33,3rd,S,Poland,392078,8.01,0,0,1
+"Pinsky, Mrs. Rosa",female,32,2nd,S,Poland,234604,13,0,0,1
+"Plotcharsky, Mr. Vasil",male,27,3rd,S,NA,349227,7.1711,0,0,0
+"Pokrnic, Mr. Mate",male,17,3rd,S,Croatia,315095,8.1303,0,0,0
+"Pokrnic, Mr. Tome",male,24,3rd,S,Croatia,315092,8.1303,0,0,0
+"Ponesell, Mr. Martin",male,24,2nd,S,England,250647,13,0,0,0
+"Portaluppi, Mr. Emilio Ilario Giuseppe",male,30,2nd,C,United States,34644,12.1409,0,0,1
+"Porter, Mr. Walter Chamberlain",male,46,1st,S,United States,110465,52,0,0,0
+"Potter, Mrs. Lily Alexenia",female,56,1st,C,United States,11767,83.0302,0,1,1
+"Pulbaum, Mr. Franz",male,27,2nd,C,United States,2168,15,0,0,0
+"Pulner, Mr. Uscher",male,16,3rd,C,NA,3411,8.1403,0,0,0
+"Quick, Miss. Phyllis May",female,2,2nd,S,NA,26360,26,1,1,1
+"Quick, Miss. Winifred Vera",female,8,2nd,S,NA,26360,26,1,1,1
+"Quick, Mrs. Jane",female,33,2nd,S,NA,26360,26,0,2,1
+"Radeff, Mr. Alexander",male,27,3rd,S,NA,349223,7.1711,0,0,0
+"Rafūl-Būlus, Mr. Bākhūs",male,21,3rd,C,Lebanon,2679,7.0406,0,0,0
+"Rasmussen, Mrs. Lena Jakobsen",female,63,3rd,S,Norway,65305,8.0203,0,0,0
+"Razi, Mr. Raihed",male,30,3rd,C,Lebanon,2629,7.0407,0,0,0
+"Reed, Mr. James George",male,18,3rd,S,Wales,362316,7.05,0,0,0
+"Reeves, Mr. David",male,36,2nd,S,England,17248,10.1,0,0,0
+"Rekic, Mr. Tido",male,38,3rd,S,Bosnia,349249,7.1711,0,0,0
+"Renouf, Mr. Peter Henry",male,33,2nd,S,Channel Islands,31027,21,1,0,0
+"Renouf, Mrs. Lillian",female,30,2nd,S,Channel Islands,31027,21,3,0,1
+"Reuchlin, Mr. Jonkheer Johan George",male,37,1st,C,Netherlands,19972,NA,0,0,0
+"Reynalds, Sra. Encarnación",female,29,2nd,S,Spain,230434,13,0,0,1
+"Reynolds, Mr. Harold",male,21,3rd,S,England,342684,8.01,0,0,0
+"Rheims, Mr. George Alexander Lucien",male,33,1st,C,United States,17607,39.12,0,0,1
+"Rice, Master. Albert",male,10,3rd,Q,Ireland,382652,29.0206,4,1,0
+"Rice, Master. Arthur",male,4,3rd,Q,Ireland,382652,29.0206,4,1,0
+"Rice, Master. Eric",male,7,3rd,Q,Ireland,382652,29.0206,4,1,0
+"Rice, Master. Eugene Francis",male,2,3rd,Q,Ireland,382652,29.0206,4,1,0
+"Rice, Master. George Hugh",male,8,3rd,Q,Ireland,382652,29.0206,4,1,0
+"Rice, Mrs. Margaret",female,39,3rd,Q,Ireland,382652,29.0206,0,5,0
+"Richard, Mr. Emile Phillippe",male,23,2nd,C,NA,2133,15,0,0,0
+"Richards, Master. Sibley George",male,0.75,2nd,S,England,29106,18.15,1,1,1
+"Richards, Master. William Rowe",male,3,2nd,S,England,29106,18.15,1,1,1
+"Richards, Mrs. Emily",female,24,2nd,S,England,29106,18.15,2,3,1
+"Ridsdale, Miss. Lucy",female,58,2nd,S,England,14258,10.1,0,0,1
+"Righini, Mr. Sante",male,22,1st,C,NA,17760,135.1208,0,0,0
+"Riihivuori, Miss. Susanna Juhantytär",female,22,3rd,S,Finland,3101295,39.1309,0,0,0
+"Rintamäki, Mr. Matti",male,35,3rd,S,Finland,3101273,7.0206,0,0,0
+"Riordan, Miss. Hannah",female,22,3rd,Q,Ireland,334915,7.1405,0,0,1
+"Risien, Mr. Samuel Beard",male,69,3rd,S,England,364498,14.1,0,0,0
+"Risien, Mrs. Emma Jane",female,64,3rd,S,England,364498,14.1,0,0,0
+"Robert, Mrs. Elisabeth Walton",female,43,1st,S,United States,24160,211.0609,0,1,1
+"Robins, Mr. Alexander A.",male,50,3rd,S,England,3337,14.1,1,0,0
+"Robins, Mrs. Charity",female,48,3rd,S,England,3337,14.1,1,0,0
+"Robins, Mr. Victor",male,45,1st,C,England,17757,247.1006,0,0,0
+"Roebling, Mr. Washington Augustus II",male,31,1st,S,United States,17590,50.0911,0,0,0
+"Rogers, Mr. Reginald Harry",male,18,2nd,S,England,28004,10.1,0,0,0
+"Rogers, Mr. William John",male,30,3rd,S,Wales,23567,8.01,0,0,0
+"Romaine, Mr. Charles Hallace",male,45,1st,S,United States,111428,26.11,0,0,1
+"Rommetvedt, Mr. Knud Paust",male,49,3rd,S,Norway,312993,7.1506,0,0,0
+"Rood, Mr. Hugh Roscoe",male,39,1st,S,United States,113767,50,0,0,0
+"Rosblom, Miss. Salli Helena",female,2,3rd,S,Finland,370129,20.0403,1,1,0
+"Rosblom, Mrs. Helena Wilhelmina",female,41,3rd,S,Finland,370129,20.0403,0,2,0
+"Rosblom, Mr. Viktor Richard",male,18,3rd,S,Finland,370129,20.0403,1,1,0
+"Rosenbaum, Miss. Edith Louise",female,33,1st,C,France,17613,27.1405,0,0,1
+"Rosenshine, Mr. George",male,46,1st,C,United States,17585,79,0,0,0
+"Ross, Mr. John Hugo",male,36,1st,S,Canada,13049,40.0206,0,0,0
+"Rothes, Lucy Noël Martha, Countess of",female,33,1st,S,England,110152,86.1,0,0,1
+"Roth, Miss. Sarah",female,26,3rd,S,Austria,342712,8.01,0,0,1
+"Rothschild, Mr. Martin",male,46,1st,C,United States,17603,59.08,1,0,0
+"Rothschild, Mrs. Elizabeth Jane Anne",female,54,1st,C,United States,17603,59.08,1,0,1
+"Rouse, Mr. Richard Henry",male,55,3rd,S,England,3594,8.01,0,0,0
+"Rowe, Mr. Alfred G.",male,59,1st,S,Peru,113790,26.11,0,0,0
+"Rugg, Miss. Emily",female,22,2nd,S,Channel Islands,31026,10.1,0,0,1
+"Rush, Mr. Alfred George John",male,17,3rd,S,England,20589,8.01,0,0,0
+"Ryan, Mr. Edward",male,24,3rd,Q,Ireland,383162,7.15,0,0,1
+"Ryan, Mr. Patrick",male,30,3rd,Q,Ireland,371110,24.03,0,0,0
+"Ryerson, Master. John Borie",male,13,1st,C,United States,17608,262.0706,2,2,1
+"Ryerson, Miss. Emily Borie",female,18,1st,C,United States,17608,262.0706,2,2,1
+"Ryerson, Miss. Susan Parker Suzette",female,21,1st,C,United States,17608,262.0706,2,2,1
+"Ryerson, Mr. Arthur Larned",male,61,1st,C,United States,17608,262.0706,1,3,0
+"Ryerson, Mrs. Emily Maria",female,48,1st,C,United States,17608,262.0706,1,3,1
+"Saad, Mr. Amin",male,30,3rd,C,Lebanon,2671,7.0407,0,0,0
+"Saad, Mr. Khalil",male,27,3rd,C,Lebanon,2672,7.0406,0,0,0
+"Saalfeld, Mr. Adolphe",male,47,1st,S,England,19988,30.1,0,0,1
+"Sadlier, Mr. Matthew",male,19,3rd,Q,Ireland,367655,7.1407,0,0,0
+"Sadowitz, Mr. Henry",male,17,3rd,S,England,1855,7.111,0,0,0
+"Sæther, Mr. Simon Sivertsen",male,43,3rd,S,Norway,3101262,7.05,0,0,0
+"Sage, Master. Anthony William",male,13,3rd,S,England,2343,69.11,8,2,0
+"Sage, Master. Thomas Henry",male,5,3rd,S,England,2343,69.11,8,2,0
+"Sage, Miss. Constance Gladys",female,8,3rd,S,England,2343,69.11,8,2,0
+"Sage, Miss. Dorothy",female,14,3rd,S,England,2343,69.11,8,2,0
+"Sage, Miss. Elizabeth Ada",female,10,3rd,S,England,2343,69.11,8,2,0
+"Sage, Miss. Stella Anne",female,21,3rd,S,England,2343,69.11,8,2,0
+"Sage, Mr. Douglas Bullen",male,18,3rd,S,England,2343,69.11,8,2,0
+"Sage, Mr. Frederick",male,17,3rd,S,England,2343,69.11,8,2,0
+"Sage, Mr. George John",male,20,3rd,S,England,2343,69.11,8,2,0
+"Sage, Mr. John George",male,45,3rd,S,England,2343,69.11,1,9,0
+"Sage, Mrs. Annie Elizabeth",female,45,3rd,S,England,2343,69.11,1,9,0
+"Sägesser, Mlle. Emma",female,24,1st,C,NA,17477,69.06,0,0,1
+"Salander, Mr. Karl Johan",male,24,3rd,S,Sweden,7266,9.0606,0,0,0
+"Salkjelsvik, Miss. Anna Kristine",female,21,3rd,S,Norway,343120,7.13,0,0,1
+"Salomon, Mr. Abraham Lincoln",male,43,1st,S,United States,111163,26,0,0,1
+"Salonen, Mr. Johan Werner",male,29,3rd,S,United States,3101296,7.1806,0,0,0
+"Samaan, Mr. Elias",male,17,3rd,C,Lebanon,2662,21.1307,2,0,0
+"Samaan, Mr. Hanna Elias",male,40,3rd,C,Lebanon,2662,21.1307,2,0,0
+"Samaan, Mr. Youssef",male,16,3rd,C,Lebanon,2662,21.1307,2,0,0
+"Sandström, Miss. Beatrice Irene",female,1,3rd,S,Sweden,9549,16.14,1,1,1
+"Sandström, Miss. Marguerite Rut",female,4,3rd,S,Sweden,9549,16.14,1,1,1
+"Sandström, Mrs. Agnes Charlotta",female,24,3rd,S,Sweden,9549,16.14,0,2,1
+"Sap, Mr. Julius",male,21,3rd,S,Belgium,345768,9.1,0,0,1
+"Saundercock, Mr. William Henry",male,19,3rd,S,England,2151,8.01,0,0,0
+"Sawyer, Mr. Frederick Charles",male,24,3rd,S,England,342826,8.01,0,0,0
+"Scanlan, Mr. James",male,22,3rd,Q,Ireland,36209,7.1406,0,0,0
+"Schabert, Mrs. Emma",female,35,1st,C,Germany,13236,57.15,1,0,1
+"Scheerlinck, Mr. Jean",male,29,3rd,S,Belgium,345779,9.1,0,0,1
+"Schmidt, Mr. Augustus",male,22,2nd,S,England,248659,13,0,0,0
+"Sdycoff, Mr. Todor",male,42,3rd,S,NA,349222,7.1711,0,0,0
+"Sedgwick, Mr. Charles Frederick Waddington",male,28,2nd,S,England,244361,13,0,0,0
+"Seman, Master. Betros",male,10,3rd,C,Lebanon,2622,4,0,0,0
+"Serreplan, Miss. Auguste",female,30,1st,S,NA,113798,31,0,0,1
+"Seward, Mr. Frederic Kimber",male,34,1st,S,United States,113794,26.11,0,0,1
+"Shannon, Mr. Andrew John",male,35,3rd,S,Ireland,370160,NA,NA,NA,0
+"Sharp, Mr. Percival",male,29,2nd,S,England,244358,26,0,0,0
+"Shaughnessy, Mr. Patrick",male,27,3rd,Q,Ireland,370374,7.15,0,0,0
+"Shedid, Mr. Daher",male,19,3rd,C,NA,2698,7.0406,0,0,0
+"Shellard, Mr. Frederick William Blainey",male,55,3rd,S,England,6212,15.02,0,0,0
+"Shelley, Mrs. Imanita Parrish",female,25,2nd,S,United States,230433,26,0,1,1
+"Shihāb, Mr. Al-Amīr Fāris",male,26,3rd,C,Lebanon,2631,7.0406,0,0,0
+"Shine, Miss. Ellen",female,20,3rd,Q,Ireland,330968,7.1607,0,0,1
+"Shorney, Mr. Charles Joseph",male,22,3rd,S,England,374910,8.01,0,0,0
+"Shutes, Miss. Elizabeth Weed",female,40,1st,S,United States,17582,153.0903,0,0,1
+"Silvén, Miss. Lyyli Karoliina",female,17,2nd,S,Finland,250652,13,0,2,1
+"Silverthorne, Mr. Spencer Victor",male,35,1st,S,United States,17475,26.0509,0,0,1
+"Silvey, Mrs. Alice Gray",female,39,1st,C,United States,13507,55.18,1,0,1
+"Silvey, Mr. William Baird",male,51,1st,C,United States,13507,55.18,1,0,0
+"Simmons, Mr. John",male,40,3rd,S,England,392082,8.01,0,0,0
+"Simonius-Blumer, Mr. Colonel (Oberst) Alfons",male,56,1st,S,Switzerland,13213,35.1,0,0,1
+"Sincock, Miss. Maude",female,20,2nd,S,England,33112,36.15,0,0,1
+"Sinkkonen, Miss. Anna",female,30,2nd,S,Finland,250648,13,0,0,1
+"Sirayanian, Mr. Orsen",male,22,3rd,C,Turkey,2669,7.0407,0,0,0
+"Sirota, Mr. Morris",male,20,3rd,S,England,392092,8.01,0,0,0
+"Sivic, Mr. Husein",male,40,3rd,S,Bosnia,349251,7.1711,0,0,0
+"Sivola, Mr. Antti Wilhelm",male,21,3rd,S,United States,3101280,7.1806,0,0,0
+"Sjöblom, Miss. Anna Sofia",female,18,3rd,S,Finland,3101265,6.0911,0,0,1
+"Sjöstedt, Mr. Ernst Adolf",male,59,2nd,S,Sweden,237442,13.1,0,0,0
+"Skoog, Master. Harald",male,5,3rd,S,United States,347088,27.18,3,2,0
+"Skoog, Master. Karl Thorsten",male,11,3rd,S,United States,347088,27.18,3,2,0
+"Skoog, Miss. Mabel",female,9,3rd,S,United States,347088,27.18,3,2,0
+"Skoog, Miss. Margit Elizabeth",female,2,3rd,S,United States,347088,27.18,3,2,0
+"Skoog, Mrs. Anna Bernhardina",female,43,3rd,S,Sweden,347088,27.18,1,4,0
+"Skoog, Mr. Wilhelm Johansson",male,40,3rd,S,Sweden,347088,27.18,1,4,0
+"Slabenoff, Mr. Petco",male,42,3rd,S,NA,349214,7.1711,0,0,0
+"Slayter, Miss. Hilda Mary",female,30,2nd,Q,Canada,234818,12.07,0,0,1
+"Slemen, Mr. Richard James",male,35,2nd,S,England,28206,10.1,0,0,0
+"Slocovski, Mr. Selman Francis",male,20,3rd,S,England,392086,8.01,0,0,0
+"Sloper, Mr. William Thompson",male,28,1st,S,United States,113788,35.1,0,0,1
+"Smart, Mr. John Montgomery",male,56,1st,S,England,113792,26.11,0,0,0
+"Smiljanic, Mr. Mile",male,37,3rd,S,Croatia,315037,8.1303,0,0,0
+"Smith, Miss. Marion Elsie",female,49,2nd,S,England,31418,13,0,0,1
+"Smith, Mr. James Clinch",male,56,1st,C,France,17764,30.1311,0,0,0
+"Smith, Mr. Lucian Philip",male,24,1st,C,United States,13695,60,1,0,0
+"Smith, Mr. Richard William",male,57,1st,S,England,113056,26,0,0,0
+"Smith, Mrs. Mary Eloise",female,18,1st,C,United States,13695,60,1,0,1
+"Smyth, Miss. Julia",female,18,3rd,Q,Ireland,335432,7.1408,0,0,1
+"Smyth, Mr. Thomas",male,27,3rd,Q,Ireland,384461,7.15,0,0,0
+"Snyder, Mr. John Pillsbury",male,24,1st,S,United States,21228,82.0504,1,0,1
+"Snyder, Mrs. Nelle",female,23,1st,S,United States,21228,82.0504,1,0,1
+"Sobey, Mr. Samuel James Hayden",male,25,2nd,S,England,29178,13,0,0,0
+"Søholt, Mr. Peter Andreas Lauritz Andersen",male,19,3rd,S,Norway,348124,7.13,0,0,0
+"Somerton, Mr. Francis William",male,31,3rd,S,England,18509,8.01,0,0,0
+"Spector, Mr. Woolf",male,23,3rd,S,England,3236,8.01,0,0,0
+"Spedden, Master. Robert Douglas",male,6,1st,C,United States,16966,134.1,0,2,1
+"Spedden, Mr. Frederic Oakley",male,45,1st,C,United States,16966,134.1,1,1,1
+"Spedden, Mrs. Margaretta Corning",female,39,1st,C,United States,16966,134.1,1,1,1
+"Spencer, Mrs. Marie Eugenie",female,48,1st,C,United States,17569,146.1005,1,0,1
+"Spencer, Mr. William Augustus",male,57,1st,C,United States,17569,146.1005,1,0,0
+"Spinner, Mr. Henry John",male,31,3rd,S,England,369943,8.01,0,0,0
+"Stähelin-Maeglin, Dr. Max",male,32,1st,S,Switzerland,13214,30.1,0,0,1
+"Staneff, Mr. Ivan",male,23,3rd,S,Bulgaria,349208,7.1711,0,0,0
+"Stankovic, Mr. Ivan",male,33,3rd,C,Croatia,349239,8.1309,0,0,0
+"Stanley, Miss. Amy Zillah Elsie",female,24,3rd,S,England,2314,7.11,0,0,1
+"Stanley, Mr. Rowland Edwin",male,22,3rd,S,England,45380,8.01,0,0,0
+"Stanton, Mr. Samuel Ward",male,42,2nd,C,United States,237734,15,0,0,0
+"Stead, Mr. William Thomas",male,62,1st,S,England,113514,26.11,0,0,0
+"Stengel, Mr. Charles Emil Henry",male,54,1st,C,United States,11778,55.081,1,0,1
+"Stengel, Mrs. Annie May",female,43,1st,C,Ireland,11778,55.081,1,0,1
+"Stephenson, Mrs. Martha",female,52,1st,C,United States,36947,78.0504,1,0,1
+"Stewart, Mr. Albert Ankeny",male,64,1st,C,United States,17605,27.1405,0,0,0
+"Stokes, Mr. Philip Joseph",male,24,2nd,S,England,13540,10.1,0,0,0
+"Stone, Mrs. Martha Evelyn",female,61,1st,S,United States,113572,80,0,0,1
+"Storey, Mr. Thomas",male,59,3rd,S,England,370160,NA,0,0,0
+"Stoytcheff, Mr. Ilia",male,19,3rd,S,Bulgaria,349205,7.1711,0,0,0
+"Strandberg, Miss. Ida Sofia",female,22,3rd,S,Finland,7553,9.1609,0,0,0
+"Strandén, Mr. Juho Niilosson",male,30,3rd,S,Finland,3101288,7.1806,0,0,1
+"Straus, Mr. Isidor",male,67,1st,S,United States,17483,221.1507,1,0,0
+"Straus, Mrs. Rosalie Ida",female,63,1st,S,Germany,17483,221.1507,1,0,0
+"Strilic, Mr. Ivan",male,27,3rd,S,Croatia,315083,8.1303,0,0,0
+"Ström, Miss. Telma Matilda",female,2,3rd,S,United States,347054,10.0903,0,1,0
+"Ström, Mrs. Elna Matilda",female,29,3rd,S,Sweden,347054,10.0903,1,1,0
+"Sunderland, Mr. Victor Francis",male,20,3rd,S,England,392089,8.01,0,0,1
+"Sundman, Mr. Johan Julian",male,44,3rd,S,Finland,3101269,7.1806,0,0,1
+"Sutehall, Mr. Henry Jr",male,25,3rd,S,England,392076,7.01,0,0,0
+"Sutton, Mr. Frederick",male,61,1st,S,England,36963,32.0605,0,0,0
+"Svensson, Mr. Johan",male,74,3rd,S,Sweden,347060,7.1506,0,0,0
+"Svensson, Mr. Johan Cervin",male,14,3rd,S,Sweden,7538,9.0406,0,0,1
+"Svensson, Mr. Olof",male,24,3rd,S,Sweden,350035,7.1511,0,0,0
+"Swane, Mr. George",male,19,2nd,S,England,248734,13,0,0,0
+"Sweet, Mr. George Frederick",male,14,2nd,S,England,220845,65,0,0,0
+"Swift, Mrs. Margaret Welles",female,46,1st,S,United States,17466,25.1807,0,0,1
+"Tannūs, Master. As'ad",male,0.4166666667,3rd,C,Lebanon,2625,8.1004,0,1,1
+"Tannūs, Mr. Bashīr",male,30,3rd,C,Lebanon,2621,6.0809,1,0,0
+"Tannūs, Mrs. Thamīn",female,16,3rd,C,Lebanon,2625,8.1004,1,1,1
+"Taussig, Miss. Ruth",female,18,1st,S,United States,110413,79.13,0,2,1
+"Taussig, Mr. Emil",male,52,1st,S,United States,110413,79.13,1,1,0
+"Taussig, Mrs. Tillie",female,39,1st,S,United States,110413,79.13,1,1,1
+"Taylor, Mr. Elmer Zebley",male,48,1st,S,United States,19996,52,1,0,1
+"Taylor, Mr. Percy Cornelius",male,40,2nd,S,England,250654,NA,NA,NA,0
+"Taylor, Mrs. Juliet Cummins",female,49,1st,S,United States,19996,52,1,0,1
+"Tenglin, Mr. Gunnar Isidor",male,25,3rd,S,Sweden,350033,7.1511,0,0,1
+"Thayer, Mr. John Borland",male,49,1st,C,United States,17421,110.1708,1,1,0
+"Thayer, Mr. John Borland jr",male,17,1st,C,United States,17421,110.1708,0,2,1
+"Thayer, Mrs. Marian Longstreth",female,39,1st,C,United States,17421,110.1708,1,1,1
+"Theobald, Mr. Thomas Leonard",male,34,3rd,S,England,363294,8.01,0,0,0
+"Thomas/Tannous, Mr. John",male,34,3rd,C,NA,2681,6.0809,0,0,0
+"Thomas/Tannous, Mr. Tannous",male,16,3rd,C,NA,2684,7.0406,0,0,0
+"Thompson, Mr. Alexander Mellis",male,37,3rd,S,Scotland,32302,8.01,0,0,0
+"Thorne, Miss. Gertrude Maybelle",female,38,1st,C,United States,17585,80,0,0,1
+"Thorneycroft, Mr. Percival",male,37,3rd,S,England,376564,16.02,1,0,0
+"Thorneycroft, Mrs. Florence Kate",female,33,3rd,S,England,376564,16.02,1,0,1
+"Tikkanen, Mr. Juho",male,32,3rd,S,Finland,3101293,7.1806,0,0,0
+"Tobin, Mr. Roger",male,20,3rd,Q,Ireland,383121,7.15,0,0,0
+"Todoroff, Mr. Lalio",male,23,3rd,S,Bulgaria,349216,7.1711,0,0,0
+"Tomlin, Mr. Ernest Portage",male,22,3rd,S,England,364499,8.01,0,0,0
+"Toomey, Miss. Ellen Mary",female,48,2nd,S,Ireland,13531,10.1,0,0,1
+"Törber, Mr. Ernst Wilhelm",male,41,3rd,S,England,364511,8.01,0,0,0
+"Torfa, Mr. Assad",male,20,3rd,C,Lebanon,2673,7.0407,0,0,0
+"Törnquist, Mr. William Henry",male,26,3rd,S,Sweden,NA,NA,0,0,1
+"Totevski, Mr. Hristo Danchev",male,25,3rd,S,Bulgaria,349203,7.1711,0,0,0
+"Troupiansky, Mr. Moses Aaron",male,23,2nd,S,England,233639,13,0,0,0
+"Trout, Mrs. Jessie Laird",female,27,2nd,S,Scotland,240929,12.13,0,0,1
+"Troutt, Miss. Edwina Celia",female,27,2nd,S,England,34218,10.1,0,0,1
+"Tucker, Mr. Gilbert Milligan jr",male,31,1st,C,United States,2543,28.1009,0,0,1
+"Tu'mah, Master. Jirjis Yūsuf",male,8,3rd,C,Lebanon,2650,15.0411,1,1,1
+"Tu'mah, Miss. Mariyam",female,9,3rd,C,Lebanon,2650,15.0411,1,1,1
+"Tu'mah, Mrs. Hinnah",female,27,3rd,C,Lebanon,2650,15.0411,0,2,1
+"Turcin, Mr. Stjepan",male,36,3rd,S,Croatia,349247,7.1711,0,0,0
+"Turja, Miss. Anna Sofia",female,18,3rd,S,Finland,4138,9.161,0,0,1
+"Turkula, Mrs. Hedwig",female,63,3rd,S,Finland,4134,9.1109,0,0,1
+"Turpin, Mrs. Dorothy Ann",female,26,2nd,S,England,11668,21,1,0,0
+"Turpin, Mr. William John",male,29,2nd,S,England,11668,21,1,0,0
+"Uruchurtu, Don. Manuel Ramirez",male,39,1st,C,Mexico,17601,27.1405,0,0,0
+"van Billiard, Master. James William",male,10,3rd,S,England,851,14.1,1,1,0
+"van Billiard, Master. Walter John",male,9,3rd,S,England,851,14.1,1,1,0
+"van Billiard, Mr. Austin Blyler",male,35,3rd,S,England,851,14.1,0,2,0
+"Van den Steen, Mr. Leo Peter",male,28,3rd,S,Belgium,345783,9.1,0,0,0
+"Vandercruyssen, Mr. Victor",male,46,3rd,S,Belgium,345765,9,0,0,0
+"Van der hoef, Mr. Wyckoff",male,61,1st,S,United States,111240,33.1,0,0,0
+"Vanderplancke, Miss. Augusta Maria",female,18,3rd,S,Belgium,345764,18,2,0,0
+"Vanderplancke, Mr. Julius",male,31,3rd,S,Belgium,345763,18,3,0,0
+"Vanderplancke, Mr. Leo Edmondus",male,15,3rd,S,Belgium,345763,18,2,0,0
+"Vanderplancke, Mrs. Emelie Maria",female,31,3rd,S,Belgium,345763,18,1,0,0
+"Van de Velde, Mr. Johannes Josef",male,35,3rd,S,Belgium,345780,9.1,0,0,0
+"Vandewalle, Mr. Nestor Cyriel",male,28,3rd,S,Belgium,345770,9.1,0,0,0
+"Van Impe, Miss. Catharina",female,10,3rd,S,Belgium,345773,24.03,0,2,0
+"Van Impe, Mr. Jean Baptiste",male,36,3rd,S,Belgium,345773,24.03,1,1,0
+"Van Impe, Mrs. Rosalie Paula",female,30,3rd,S,Belgium,345773,24.03,1,1,0
+"van Melckebeke, Mr. Philemon",male,23,3rd,S,Belgium,345777,9.1,0,0,0
+"Vartanian, Mr. David",male,22,3rd,C,Turkey,2658,7.0406,0,0,1
+"Veal, Mr. James",male,40,2nd,S,United States,28221,13,0,0,0
+"Vendel, Mr. Olof Edvin",male,20,3rd,S,Sweden,350416,7.1701,0,0,0
+"Veström, Miss. Hulda Amanda Adolfina",female,14,3rd,S,Sweden,350406,7.1701,0,0,0
+"Vovk, Mr. Janko",male,21,3rd,S,Slovenia,349252,7.1711,0,0,0
+"Waelens, Mr. Achille",male,22,3rd,S,Belgium,345767,9,0,0,0
+"Walker, Mr. William Anderson",male,48,1st,S,United States,36967,34,0,0,0
+"Wallcroft, Miss. Ellen 'Nellie'",female,36,2nd,S,England,13528,21,0,0,1
+"Ward, Miss. Annie Moore",female,37,1st,C,NA,17755,512.0607,0,0,1
+"Ware, Mr. Frederick",male,35,3rd,S,England,359309,8.01,0,0,0
+"Ware, Mr. John James",male,47,2nd,S,England,31352,21,1,0,0
+"Ware, Mrs. Florence Louise",female,32,2nd,S,England,31352,21,0,0,1
+"Ware, Mr. William Jeffery",male,23,2nd,S,England,28666,10.1,1,0,0
+"Warren, Mr. Charles William",male,31,3rd,S,England,49867,7.11,0,0,0
+"Warren, Mr. Frank Manley",male,63,1st,C,United States,110813,75.05,1,0,0
+"Warren, Mrs. Anna Sophia",female,60,1st,C,England,110813,75.05,1,0,1
+"Watson, Mr. Ennis Hastings",male,19,2nd,B,Northern Ireland,239856,NA,0,0,0
+"Watt, Miss. Robertha Josephine",female,12,2nd,S,Scotland,33595,15.15,0,0,1
+"Watt, Mrs. Elizabeth",female,40,2nd,S,Scotland,33595,15.15,0,0,1
+"Wazli, Mr. Yousif Ahmed",male,23,3rd,C,Lebanon,2647,7.0406,0,0,0
+"Webber, Miss. Susan",female,37,2nd,S,England,27267,13,0,0,1
+"Webber, Mr. James",male,66,3rd,S,England,3101316,8.01,0,0,0
+"Weir, Colonel. John",male,59,1st,S,United States,113800,26.11,0,0,0
+"Weisz, Mr. Léopold",male,37,2nd,S,Hungary,228414,26,1,0,0
+"Weisz, Mrs. Mathilde Françoise",female,37,2nd,S,England,228414,26,1,0,1
+"Wells, Master. Ralph Lester",male,2,2nd,S,England,29103,23,1,1,1
+"Wells, Miss. Joan",female,4,2nd,S,England,29103,23,1,1,1
+"Wells, Mrs. Addie Dart",female,29,2nd,S,England,29103,23,0,2,1
+"Wennerström, Mr. August",male,27,3rd,S,Sweden,350043,7.1511,0,0,1
+"West, Miss. Barbara Joyce",female,0.8333333333,2nd,S,England,34651,27.15,1,2,1
+"West, Miss. Constance Mirium",female,4,2nd,S,England,34651,27.15,1,2,1
+"West, Mr. Edwy Arthur",male,36,2nd,S,England,34651,27.15,1,2,0
+"West, Mrs. Ada Mary",female,33,2nd,S,England,34651,27.15,1,2,1
+"Wheadon, Mr. Edward Henry",male,65,2nd,S,England,24579,10.1,0,0,0
+"Wheeler, Mr. Edwin Charles",male,26,2nd,S,England,2159,12.1706,0,0,0
+"Whilems, Mr. Charles",male,31,2nd,S,England,244270,13,0,0,1
+"White, Mr. Percival Wayland",male,54,1st,S,United States,35281,77.0509,0,1,0
+"White, Mr. Richard Frasar",male,21,1st,S,United States,35281,77.0509,0,1,0
+"White, Mrs. Ella",female,55,1st,C,NA,17760,135.1208,0,0,1
+"Wick, Col. George Dennick",male,57,1st,S,United States,36928,164.1704,1,1,0
+"Wick, Miss. Mary Natalie",female,31,1st,S,United States,36928,164.1704,0,2,1
+"Wick, Mrs. Mary Peebles",female,45,1st,S,United States,36928,164.1704,1,1,1
+"Widegren, Mr. Carl Peter",male,51,3rd,S,Sweden,347064,7.15,0,0,0
+"Widener, Mr. George Dunton",male,50,1st,S,United States,113503,211.1,1,1,0
+"Widener, Mr. Harry Elkins",male,27,1st,S,United States,113503,211.1,0,2,0
+"Widener, Mrs. Eleanor",female,50,1st,S,United States,113503,211.1,1,1,1
+"Wiklund, Mr. Jakob Alfred",male,18,3rd,S,Finland,3101267,6.0911,1,0,0
+"Wiklund, Mr. Karl Johan",male,21,3rd,S,Finland,3101266,6.0911,1,0,0
+"Wilkes, Mrs. Ellen",female,47,3rd,S,England,363272,7,1,0,1
+"Wilkinson, Mrs. Elizabeth Anne",female,30,2nd,S,England,2926,26,1,0,1
+"Willard, Miss. Constance",female,21,1st,S,United States,113795,26.11,0,0,1
+"Willer, Mr. Aaron",male,37,3rd,C,NA,3410,8.1403,0,0,0
+"Willey, Mr. Edward John",male,21,3rd,S,Wales,751,7.11,0,0,0
+"Williams, Mr. Charles Duane",male,51,1st,C,Switzerland,17597,61.0707,0,1,0
+"Williams, Mr. Charles Eugene",male,23,2nd,S,England,244373,13,0,0,1
+"Williams, Mr. Fletcher Fellowes Lambert",male,43,1st,S,United States,113510,35,0,0,0
+"Williams, Mr. Howard Hugh",male,28,3rd,S,England,2466,8.01,0,0,0
+"Williams, Mr. Leslie",male,28,3rd,S,Wales,54636,16.02,0,0,0
+"Williams, Mr. Richard Norris II",male,21,1st,C,Switzerland,17597,61.0707,0,1,1
+"Wilson, Miss. Helen Alice",female,31,1st,C,NA,16966,134.1,0,0,1
+"Windeløv, Mr. Einar",male,21,3rd,S,South Africa,3101317,7.05,0,0,0
+"Wirz, Mr. Albert",male,27,3rd,S,Switzerland,315154,8.1303,0,0,0
+"Wiseman, Mr. Philippe",male,54,3rd,S,England,34244,7.05,0,0,0
+"Wittevrongel, Mr. Camilius Aloysius",male,36,3rd,S,Belgium,345771,9.1,0,0,0
+"Woodward, Mr. John Wesley",male,32,2nd,S,England,250654,NA,NA,NA,0
+"Woolner, Mr. Hugh",male,46,1st,S,England,19947,35.1,0,0,1
+"Wright, Miss. Marion",female,26,2nd,S,England,220844,13.1,0,0,1
+"Wright, Mr. George",male,62,1st,S,Canada,113807,26.11,0,0,0
+"Yasbeck, Mr. Antoni",male,27,3rd,C,Lebanon,2659,14.0901,1,0,0
+"Yazbeck, Mrs. Selini",female,15,3rd,C,Lebanon,2659,14.0901,1,0,1
+"Young, Miss. Marie Grice",female,36,1st,C,United States,17760,135.1208,0,0,1
+"Yousseff (Abi Saab), Mr. Gerios",male,26,3rd,C,Lebanon,2685,7.0406,0,0,0
+"Youssiff (Sam'aan), Mr. Gerios",male,45,3rd,C,Lebanon,2628,7.0407,0,0,0
+"Yūsuf, Mrs. Kātrīn",female,23,3rd,C,Lebanon,2668,22.0702,0,2,1
+"Yvois, Miss. Henriette",female,24,2nd,S,France,248747,13,0,0,0
+"Zakarian, Mr. Mapriededer",male,22,3rd,C,Turkey,2656,7.0406,0,0,0
+"Zakarian, Mr. Ortin",male,27,3rd,C,Turkey,2670,7.0406,0,0,0
+"Zenni, Mr. Philip",male,25,3rd,C,Lebanon,2620,7.0406,0,0,1
+"Zimmermann, Mr. Leo",male,29,3rd,S,Germany,315082,7.1706,0,0,0
+"Abbott, Mr. Ernest Owen",male,21,victualling crew,S,England,NA,NA,NA,NA,0
+"Abrams, Mr. William Thomas",male,34,engineering crew,S,England,NA,NA,NA,NA,0
+"Adams, Mr. Robert John",male,26,engineering crew,S,England,NA,NA,NA,NA,0
+"Ahier, Mr. Percy Snowden",male,20,victualling crew,S,Channel Islands,NA,NA,NA,NA,0
+"Akerman, Mr. Albert Edward",male,31,victualling crew,S,England,NA,NA,NA,NA,0
+"Akerman, Mr. Joseph Francis",male,37,victualling crew,S,England,NA,NA,NA,NA,0
+"Allaria, Sig. Battista Antonio",male,22,restaurant staff,S,England,NA,NA,NA,NA,0
+"Allen, Mr. Ernest Frederick",male,24,engineering crew,S,England,NA,NA,NA,NA,1
+"Allen, Mr. Frederick",male,17,victualling crew,S,England,NA,NA,NA,NA,0
+"Allen, Mr. George",male,26,victualling crew,S,England,NA,NA,NA,NA,0
+"Allen, Mr. Henry",male,30,engineering crew,S,England,NA,NA,NA,NA,0
+"Allen, Mr. Robert Spencer",male,36,victualling crew,S,England,NA,NA,NA,NA,0
+"Allsop, Mr. Alfred Samuel",male,36,engineering crew,B,England,NA,NA,NA,NA,0
+"Allsop, Mr. Frank Richard",male,41,victualling crew,B,England,NA,NA,NA,NA,0
+"Anderson, Mr. James",male,40,deck crew,S,England,NA,NA,NA,NA,1
+"Anderson, Mr. Walter Yuill",male,48,victualling crew,S,England,NA,NA,NA,NA,0
+"Andrews, Mr. Charles Edward",male,19,victualling crew,S,England,NA,NA,NA,NA,1
+"Archer, Mr. Ernest Edward",male,35,deck crew,S,England,NA,NA,NA,NA,1
+"Ashcroft, Mr. Austin Aloysius",male,26,victualling crew,S,England,NA,NA,NA,NA,0
+"Ashe, Mr. Henry Wellesley",male,41,victualling crew,S,Ireland,NA,NA,NA,NA,0
+"Aspeslagh, Mr. Georges",male,26,restaurant staff,S,England,NA,NA,NA,NA,0
+"Avery, Mr. James Albert",male,21,engineering crew,S,England,NA,NA,NA,NA,1
+"Ayling, Mr. Edwin George",male,23,victualling crew,S,England,NA,NA,NA,NA,0
+"Back, Mr. Charles Frederick",male,37,victualling crew,B,England,NA,NA,NA,NA,0
+"Baggott, Mr. Allen Marden",male,28,victualling crew,S,England,NA,NA,NA,NA,1
+"Bagley, Mr. Edward Henry",male,33,victualling crew,S,England,NA,NA,NA,NA,0
+"Bailey, Mr. George Francis",male,36,victualling crew,B,England,NA,NA,NA,NA,0
+"Bailey, Mr. George Frank",male,46,engineering crew,S,Wales,NA,NA,NA,NA,0
+"Bailey, Mr. Henry Joseph",male,46,deck crew,S,England,NA,NA,NA,NA,1
+"Baines, Mr. Richard",male,24,engineering crew,S,England,NA,NA,NA,NA,0
+"Ball, Mr. Percy",male,19,victualling crew,S,England,NA,NA,NA,NA,1
+"Banfi, Sig. Ugo",male,24,restaurant staff,S,England,NA,NA,NA,NA,0
+"Bannon, Mr. John Joseph",male,34,engineering crew,S,England,NA,NA,NA,NA,0
+"Barker, Mr. Albert Vale",male,19,victualling crew,S,England,NA,NA,NA,NA,0
+"Barker, Mr. Ernest Thomas",male,41,victualling crew,S,England,NA,NA,NA,NA,0
+"Barker, Mr. Reginald Lomond",male,42,victualling crew,B,England,NA,NA,NA,NA,0
+"Barlow, Mr. Charles",male,30,engineering crew,S,England,NA,NA,NA,NA,0
+"Barlow, Mr. George",male,36,victualling crew,S,England,NA,NA,NA,NA,0
+"Barnes, Mr. Charles",male,29,engineering crew,S,England,NA,NA,NA,NA,0
+"Barnes, Mr. Frederick Charles",male,40,victualling crew,S,England,NA,NA,NA,NA,0
+"Barnes, Mr. John",male,40,engineering crew,S,England,NA,NA,NA,NA,0
+"Barratt, Mr. Arthur",male,16,victualling crew,S,England,NA,NA,NA,NA,0
+"Barrett, Mr. Frederick",male,28,engineering crew,S,England,NA,NA,NA,NA,1
+"Barrett, Mr. Frederick William",male,33,engineering crew,S,England,NA,NA,NA,NA,0
+"Barringer, Mr. Arthur William",male,34,victualling crew,B,England,NA,NA,NA,NA,0
+"Barrow, Mr. Charles Henry John Barrow",male,36,victualling crew,S,England,NA,NA,NA,NA,0
+"Barrows, Mr. William",male,32,victualling crew,S,England,NA,NA,NA,NA,0
+"Barton, Mr. Sidney John",male,26,victualling crew,S,England,NA,NA,NA,NA,0
+"Basilico, Sig. Giovanni",male,27,restaurant staff,S,England,NA,NA,NA,NA,0
+"Baxter, Mr. Harry Ross",male,53,victualling crew,S,England,NA,NA,NA,NA,0
+"Baxter, Mr. Thomas Ferguson",male,55,victualling crew,S,Scotland,NA,NA,NA,NA,0
+"Bazzi, Sig. Narciso",male,33,restaurant staff,S,England,NA,NA,NA,NA,0
+"Beattie, Mr. Joseph",male,35,engineering crew,B,Northern Ireland,NA,NA,NA,NA,0
+"Beauchamp, Mr. George William",male,24,engineering crew,S,England,NA,NA,NA,NA,1
+"Bedford, Mr. William Barnett",male,31,victualling crew,S,England,NA,NA,NA,NA,0
+"Beedem, Mr. George Arthur",male,35,victualling crew,S,England,NA,NA,NA,NA,0
+"Beere, Mr. William",male,19,victualling crew,S,England,NA,NA,NA,NA,0
+"Bell, Mr. Joseph",male,51,engineering crew,B,England,NA,NA,NA,NA,0
+"Bendell, Mr. Frank",male,24,engineering crew,S,England,NA,NA,NA,NA,0
+"Benham, Mr. Fred John",male,30,victualling crew,S,England,NA,NA,NA,NA,0
+"Bennett, Mr. George Alfred",male,30,engineering crew,S,England,NA,NA,NA,NA,0
+"Bennett, Mrs. Mabel",female,33,victualling crew,S,England,NA,NA,NA,NA,1
+"Benville, Mr. Edward",male,47,engineering crew,S,England,NA,NA,NA,NA,0
+"Bernardi, Sig. Battista",male,22,restaurant staff,S,England,NA,NA,NA,NA,0
+"Bessant, Mr. Edward",male,31,victualling crew,S,England,NA,NA,NA,NA,0
+"Bessant, Mr. William Edward Lowe",male,39,engineering crew,S,England,NA,NA,NA,NA,0
+"Best, Mr. Edwin Alfred",male,40,victualling crew,B,England,NA,NA,NA,NA,0
+"Beux, Mr. David",male,26,restaurant staff,S,England,NA,NA,NA,NA,0
+"Bevis, Mr. Joseph Henry",male,22,engineering crew,S,England,NA,NA,NA,NA,0
+"Biddlecombe, Mr. Reginald Charles",male,31,engineering crew,S,England,NA,NA,NA,NA,0
+"Bietrix, Mr. George Baptiste",male,28,restaurant staff,S,England,NA,NA,NA,NA,0
+"Biggs, Mr. Edward Charles",male,20,engineering crew,S,England,NA,NA,NA,NA,0
+"Billows, Mr. James",male,20,engineering crew,S,England,NA,NA,NA,NA,0
+"Binstead, Mr. Walter William",male,20,engineering crew,S,England,NA,NA,NA,NA,1
+"Bishop, Mr. Walter Alexander",male,34,victualling crew,B,England,NA,NA,NA,NA,0
+"Blackman, Mr. Albert Edward",male,23,engineering crew,S,England,NA,NA,NA,NA,0
+"Black, Mr. Alexander",male,28,engineering crew,S,England,NA,NA,NA,NA,0
+"Black, Mr. D.",male,41,engineering crew,S,England,NA,NA,NA,NA,0
+"Blake, Mr. Percival Albert",male,23,engineering crew,S,England,NA,NA,NA,NA,1
+"Blake, Mr. Seaton",male,26,engineering crew,B,England,NA,NA,NA,NA,0
+"Blake, Mr. Thomas Henry",male,37,engineering crew,S,England,NA,NA,NA,NA,0
+"Blaney, Mr. James",male,32,engineering crew,S,Northern Ireland,NA,NA,NA,NA,0
+"Blann, Mr. Eustace Horatius",male,22,engineering crew,S,England,NA,NA,NA,NA,0
+"Bliss, Mrs. Emma",female,45,victualling crew,S,Switzerland,NA,NA,NA,NA,1
+"Blumet, Mr. Jean Baptiste",male,26,restaurant staff,S,England,NA,NA,NA,NA,0
+"Bochatay, Mr. Alexis Joseph",male,30,victualling crew,S,England,NA,NA,NA,NA,0
+"Bochet, Mr. Pierre Giuseppe",male,43,restaurant staff,S,England,NA,NA,NA,NA,0
+"Bogie, Mr. Norman Leslie",male,59,victualling crew,S,Scotland,NA,NA,NA,NA,0
+"Bolhuis, Mr. Hendrik",male,27,restaurant staff,S,England,NA,NA,NA,NA,0
+"Bond, Mr. William John",male,40,victualling crew,B,England,NA,NA,NA,NA,0
+"Boothby, Mr. Walter Thomas",male,38,victualling crew,S,England,NA,NA,NA,NA,0
+"Boston, Mr. William John",male,33,victualling crew,B,England,NA,NA,NA,NA,0
+"Bott, Mr. William Thomas",male,46,engineering crew,S,England,NA,NA,NA,NA,0
+"Boughton, Mr. Bernard John",male,24,victualling crew,S,England,NA,NA,NA,NA,0
+"Bowker, Miss. Ruth Harwood",female,31,restaurant staff,S,England,NA,NA,NA,NA,1
+"Boxhall, Mr. Joseph Groves",male,28,deck crew,B,England,NA,NA,NA,NA,1
+"Boyd, Mr. John",male,37,victualling crew,S,England,NA,NA,NA,NA,0
+"Boyes, Mr. John Henry",male,36,victualling crew,B,England,NA,NA,NA,NA,0
+"Bradley, Mr. Patrick Joseph",male,39,engineering crew,S,England,NA,NA,NA,NA,0
+"Bradley, Mr. T.",male,29,deck crew,S,England,NA,NA,NA,NA,0
+"Bradshaw, Mr. John Albert Perkin",male,43,victualling crew,S,England,NA,NA,NA,NA,0
+"Brewer, Mr. Harry",male,30,engineering crew,S,England,NA,NA,NA,NA,0
+"Brewster, Mr. George Henry",male,52,victualling crew,B,England,NA,NA,NA,NA,0
+"Briant, Mr. Albert",male,34,engineering crew,S,England,NA,NA,NA,NA,0
+"Brice, Mr. Walter Thomas",male,43,deck crew,S,England,NA,NA,NA,NA,1
+"Bride, Mr. Harold Sydney",male,22,victualling crew,B,England,NA,NA,NA,NA,1
+"Bright, Mr. Arthur John",male,42,deck crew,B,England,NA,NA,NA,NA,1
+"Bristow, Mr. Harry",male,38,victualling crew,S,NA,NA,NA,NA,NA,0
+"Bristow, Mr. Robert Charles",male,31,victualling crew,S,England,NA,NA,NA,NA,0
+"Brookman, Mr. John Cress",male,28,victualling crew,S,England,NA,NA,NA,NA,0
+"Brooks, Mr. J.",male,25,engineering crew,S,England,NA,NA,NA,NA,0
+"Broome, Mr. Athol Frederick",male,31,victualling crew,S,England,NA,NA,NA,NA,0
+"Broom, Mr. Herbert George",male,33,victualling crew,B,England,NA,NA,NA,NA,0
+"Brown, Mr. Edward",male,34,victualling crew,B,Wales,NA,NA,NA,NA,1
+"Brown, Mr. John",male,28,engineering crew,S,Wales,NA,NA,NA,NA,0
+"Brown, Mr. Joseph James",male,25,engineering crew,S,England,NA,NA,NA,NA,0
+"Brown, Mr. Walter James",male,41,victualling crew,B,England,NA,NA,NA,NA,0
+"Buckley, Mr. H. E.",male,34,victualling crew,S,England,NA,NA,NA,NA,0
+"Buley, Mr. Edward John",male,26,deck crew,S,England,NA,NA,NA,NA,1
+"Bulley, Mr. Henry Ashburnham",male,22,victualling crew,S,England,NA,NA,NA,NA,0
+"Bull, Mr. Walter Edward",male,37,victualling crew,S,England,NA,NA,NA,NA,0
+"Bunnell, Mr. Wilfred James",male,21,victualling crew,B,England,NA,NA,NA,NA,0
+"Burgess, Mr. Charles",male,18,victualling crew,S,England,NA,NA,NA,NA,1
+"Burke, Mr. Richard Edward",male,30,victualling crew,B,England,NA,NA,NA,NA,0
+"Burke, Mr. William",male,31,victualling crew,B,Ireland,NA,NA,NA,NA,1
+"Burrage, Mr. Arthur Victor Edwards",male,20,victualling crew,S,England,NA,NA,NA,NA,1
+"Burr, Mr. Ewart Sydenham",male,29,victualling crew,S,England,NA,NA,NA,NA,0
+"Burroughs, Mr. Arthur Peckham",male,35,engineering crew,S,England,NA,NA,NA,NA,0
+"Burton, Mr. Edward John",male,35,engineering crew,S,England,NA,NA,NA,NA,0
+"Butterworth, Mr. John",male,23,victualling crew,S,England,NA,NA,NA,NA,0
+"Butt, Mr. Robert Henry",male,22,victualling crew,S,England,NA,NA,NA,NA,0
+"Butt, Mr. William John",male,31,engineering crew,S,England,NA,NA,NA,NA,0
+"Byrne, Mr. James Edward",male,45,victualling crew,S,England,NA,NA,NA,NA,0
+"Calderwood, Mr. Hugh",male,30,engineering crew,B,Northern Ireland,NA,NA,NA,NA,0
+"Campbell, Mr. Donald S.",male,25,victualling crew,S,Australia,NA,NA,NA,NA,0
+"Canner, Mr. John",male,40,engineering crew,S,England,NA,NA,NA,NA,0
+"Carney, Mr. William",male,31,victualling crew,S,England,NA,NA,NA,NA,0
+"Carr, Mr. Richard Stephen",male,27,engineering crew,S,England,NA,NA,NA,NA,0
+"Carter (Ball), Mr. James (W.)",male,46,engineering crew,S,England,NA,NA,NA,NA,0
+"Cartwright, Mr. James Edward",male,33,victualling crew,B,England,NA,NA,NA,NA,0
+"Casali, Sig. Giulio",male,32,restaurant staff,S,Italy,NA,NA,NA,NA,0
+"Casey, Mr. Thomas",male,44,engineering crew,S,England,NA,NA,NA,NA,0
+"Casswill, Mr. Charles",male,34,victualling crew,S,England,NA,NA,NA,NA,0
+"Castleman, Mr. Edward",male,37,engineering crew,S,England,NA,NA,NA,NA,0
+"Caton, Miss. Annie",female,33,victualling crew,S,England,NA,NA,NA,NA,1
+"Caunt, Mr. William Ewart",male,28,victualling crew,S,England,NA,NA,NA,NA,0
+"Cavell, Mr. George Henry",male,22,engineering crew,S,England,NA,NA,NA,NA,1
+"Cave, Mr. Herbert",male,39,victualling crew,B,England,NA,NA,NA,NA,0
+"Cecil, Mr. Charles Thomas",male,21,victualling crew,S,England,NA,NA,NA,NA,0
+"Chaboisson, Mr. Adrien Finnin",male,25,restaurant staff,S,England,NA,NA,NA,NA,0
+"Chapman, Mr. Joseph Charles",male,32,victualling crew,S,England,NA,NA,NA,NA,1
+"Charman, Mr. John James",male,25,victualling crew,S,England,NA,NA,NA,NA,0
+"Cherrett, Mr. William Victor",male,25,engineering crew,S,England,NA,NA,NA,NA,0
+"Cheverton, Mr. William Frederick",male,28,victualling crew,B,England,NA,NA,NA,NA,0
+"Chisnall, Mr. George Alexander",male,37,engineering crew,B,England,NA,NA,NA,NA,0
+"Chitty, Mr. Archibald George",male,29,victualling crew,S,England,NA,NA,NA,NA,0
+"Chitty, Mr. George Henry",male,50,victualling crew,S,England,NA,NA,NA,NA,0
+"Chorley, Mr. John Henry",male,25,engineering crew,S,England,NA,NA,NA,NA,0
+"Christmas, Mr. Herbert Harry",male,34,victualling crew,S,England,NA,NA,NA,NA,0
+"Clark, Mr. William",male,40,engineering crew,S,Ireland,NA,NA,NA,NA,1
+"Clench, Mr. Frederick Charles",male,33,deck crew,S,England,NA,NA,NA,NA,1
+"Clench, Mr. George James",male,31,deck crew,S,England,NA,NA,NA,NA,0
+"Coe, Mr. Harry",male,22,engineering crew,S,England,NA,NA,NA,NA,0
+"Coleman, Mr. Albert Edward",male,29,victualling crew,S,England,NA,NA,NA,NA,0
+"Coleman, Mr. John",male,58,engineering crew,B,Ireland,NA,NA,NA,NA,0
+"Colgan, Mr. E. Joseph",male,33,victualling crew,S,England,NA,NA,NA,NA,1
+"Collins, Mr. John",male,17,victualling crew,S,Northern Ireland,NA,NA,NA,NA,1
+"Collins, Mr. John",male,38,engineering crew,S,England,NA,NA,NA,NA,1
+"Combes, Mr. George",male,34,engineering crew,S,England,NA,NA,NA,NA,1
+"Conway, Mr. Percy Walter",male,25,victualling crew,B,England,NA,NA,NA,NA,0
+"Cook, Mr. Gilbert William",male,32,victualling crew,S,England,NA,NA,NA,NA,0
+"Coombs, Mr. Charles Augustus",male,45,victualling crew,S,England,NA,NA,NA,NA,0
+"Cooper, Mr. Harry",male,26,engineering crew,S,England,NA,NA,NA,NA,0
+"Cooper, Mr. James Edward",male,26,engineering crew,S,England,NA,NA,NA,NA,0
+"Copperthwaite, Mr. Albert Harry",male,28,engineering crew,S,England,NA,NA,NA,NA,0
+"Corben, Mr. Ernest Theodore",male,27,victualling crew,S,England,NA,NA,NA,NA,0
+"Corcoran, Mr. Dennis",male,33,engineering crew,S,England,NA,NA,NA,NA,0
+"Cornaire, Mr. Marcel Raymond André",male,19,restaurant staff,S,England,NA,NA,NA,NA,0
+"Cotton, Mr. Alfred",male,36,engineering crew,S,England,NA,NA,NA,NA,0
+"Couch, Mr. Frank",male,28,deck crew,S,England,NA,NA,NA,NA,0
+"Couch, Mr. Joseph Henry",male,49,engineering crew,S,England,NA,NA,NA,NA,0
+"Couper, Mr. Robert Frederick William",male,30,engineering crew,S,England,NA,NA,NA,NA,1
+"Coutin, Mr. Auguste Louis",male,28,restaurant staff,S,France,NA,NA,NA,NA,0
+"Cox, Mr. William Denton",male,30,victualling crew,S,England,NA,NA,NA,NA,0
+"Coy, Mr. Francis Ernest George",male,27,engineering crew,B,England,NA,NA,NA,NA,0
+"Crabb, Mr. Henry James",male,23,engineering crew,S,England,NA,NA,NA,NA,0
+"Crafter, Mr. Frederick Horace",male,20,victualling crew,S,England,NA,NA,NA,NA,1
+"Crawford, Mr. Alfred George",male,43,victualling crew,B,England,NA,NA,NA,NA,1
+"Creese, Mr. Henry Philip",male,45,engineering crew,B,England,NA,NA,NA,NA,0
+"Crimmins, Mr. James",male,21,engineering crew,S,England,NA,NA,NA,NA,1
+"Crispin, Mr. William",male,33,victualling crew,S,England,NA,NA,NA,NA,0
+"Crisp, Mr. Albert Hector",male,39,victualling crew,B,England,NA,NA,NA,NA,0
+"Crosbie, Mr. John Borthwick",male,45,victualling crew,S,England,NA,NA,NA,NA,0
+"Cross, Mr. William Alfred",male,44,engineering crew,S,England,NA,NA,NA,NA,0
+"Crovella, Sig. Luigi",male,17,restaurant staff,S,England,NA,NA,NA,NA,0
+"Crowe, Mr. George Frederick",male,30,victualling crew,S,England,NA,NA,NA,NA,1
+"Crumplin, Mr. Charles George Chandler",male,35,victualling crew,B,England,NA,NA,NA,NA,0
+"Cullen, Mr. Charles James",male,49,victualling crew,B,England,NA,NA,NA,NA,1
+"Cunningham, Mr. Andrew Orr",male,38,victualling crew,B,Scotland,NA,NA,NA,NA,1
+"Cunningham, Mr. Bernard",male,35,engineering crew,S,England,NA,NA,NA,NA,0
+"Curtis, Mr. Arthur",male,26,engineering crew,S,England,NA,NA,NA,NA,0
+"Daniels, Mr. Sidney Edward",male,18,victualling crew,S,England,NA,NA,NA,NA,1
+"Dashwood, Mr. William George",male,18,victualling crew,S,England,NA,NA,NA,NA,0
+"Davies, Mr. Gordon Raleigh",male,32,victualling crew,B,England,NA,NA,NA,NA,0
+"Davies, Mr. Robert J.",male,26,victualling crew,B,Wales,NA,NA,NA,NA,0
+"Davies, Mr. Thomas",male,33,engineering crew,S,England,NA,NA,NA,NA,0
+"Davis, Mr. John",male,29,victualling crew,B,England,NA,NA,NA,NA,0
+"Davis, Mr. Stephen James",male,39,deck crew,S,England,NA,NA,NA,NA,0
+"Dawson, Mr. Joseph",male,23,engineering crew,S,England,NA,NA,NA,NA,0
+"Dean, Mr. George H.",male,19,victualling crew,S,England,NA,NA,NA,NA,0
+"Debreucq, Mr. Maurice Emile Victor",male,18,restaurant staff,S,England,NA,NA,NA,NA,0
+"Deeble, Mr. Alfred Arnold",male,35,victualling crew,B,England,NA,NA,NA,NA,0
+"De Marsico, Sig. Govanni",male,20,restaurant staff,S,England,NA,NA,NA,NA,0
+"Derrett, Mr. Arthur Henry",male,29,victualling crew,B,England,NA,NA,NA,NA,0
+"Deslandes, Mr. Percival Stainer",male,38,victualling crew,S,England,NA,NA,NA,NA,0
+"Desvernine, Mr. Louis Gabriel",male,20,restaurant staff,S,England,NA,NA,NA,NA,0
+"Diaper, Mr. John Joseph",male,27,engineering crew,S,England,NA,NA,NA,NA,1
+"Dickson, Mr. William",male,37,engineering crew,S,England,NA,NA,NA,NA,0
+"Dilley, Mr. John",male,30,engineering crew,S,England,NA,NA,NA,NA,1
+"Dillon, Mr. Thomas Patrick",male,34,engineering crew,S,England,NA,NA,NA,NA,1
+"Dinenage, Mr. James Richard",male,49,victualling crew,S,England,NA,NA,NA,NA,0
+"Dodd, Mr. Edward Charles",male,39,engineering crew,B,England,NA,NA,NA,NA,0
+"Dodd, Mr. George Charles",male,44,victualling crew,B,England,NA,NA,NA,NA,0
+"Dodds, Mr. Henry Watson",male,27,engineering crew,S,Guyana,NA,NA,NA,NA,0
+"Doel, Mr. Frederick",male,22,engineering crew,S,England,NA,NA,NA,NA,1
+"Dolby, Mr. Joseph",male,39,victualling crew,B,England,NA,NA,NA,NA,0
+"Donati, Sig. Italo Francesco",male,17,restaurant staff,S,Italy,NA,NA,NA,NA,0
+"Donoghue, Mr. Frank (?Thomas)",male,35,victualling crew,B,England,NA,NA,NA,NA,0
+"Dore, Mr. Albert James",male,23,engineering crew,S,England,NA,NA,NA,NA,1
+"Dornier, Mr. Louis Auguste",male,20,restaurant staff,S,England,NA,NA,NA,NA,0
+"Doughty, Mr. Walter Thomas",male,22,victualling crew,S,England,NA,NA,NA,NA,0
+"Doyle, Mr. Laurence",male,27,engineering crew,S,England,NA,NA,NA,NA,0
+"Duffy, Mr. William Luke",male,36,engineering crew,B,Ireland,NA,NA,NA,NA,0
+"Dunford, Mr. William",male,48,victualling crew,S,England,NA,NA,NA,NA,0
+"Durnil, Mr. James",male,38,engineering crew,S,England,NA,NA,NA,NA,0
+"Dyer, Mr. Henry Ryland",male,24,engineering crew,B,India,NA,NA,NA,NA,0
+"Dyer, Mr. William Henry",male,33,victualling crew,S,England,NA,NA,NA,NA,0
+"Dymond, Mr. Frank",male,41,engineering crew,S,England,NA,NA,NA,NA,1
+"Eagle, Mr. Alfred James",male,22,engineering crew,S,England,NA,NA,NA,NA,0
+"Eastman, Mr. Charles",male,44,engineering crew,S,England,NA,NA,NA,NA,0
+"Edbrooke, Mr. Francis Samuel Jacob",male,23,victualling crew,S,England,NA,NA,NA,NA,0
+"Ede, Mr. George Bulkeley",male,23,victualling crew,S,England,NA,NA,NA,NA,0
+"Edge, Mr. Frederick William",male,39,victualling crew,S,England,NA,NA,NA,NA,0
+"Edwards, Mr. Charles Essex",male,39,victualling crew,S,Wales,NA,NA,NA,NA,0
+"Egg, Mr. William Henry",male,48,victualling crew,S,England,NA,NA,NA,NA,0
+"Elliott, Mr. Everett Edward",male,23,engineering crew,S,England,NA,NA,NA,NA,0
+"Ellis, Mr. John Bertie",male,29,victualling crew,S,England,NA,NA,NA,NA,1
+"Ennis, Mr. Walter",male,34,victualling crew,S,England,NA,NA,NA,NA,0
+"Ervine, Mr. Albert George",male,18,engineering crew,B,Northern Ireland,NA,NA,NA,NA,0
+"Etches, Mr. Henry Samuel",male,43,victualling crew,B,England,NA,NA,NA,NA,1
+"Evans, Mr. Alfred Frank",male,25,deck crew,S,England,NA,NA,NA,NA,1
+"Evans, Mr. Frank Oliver",male,27,deck crew,S,England,NA,NA,NA,NA,1
+"Evans, Mr. George Richard",male,27,victualling crew,B,England,NA,NA,NA,NA,0
+"Evans, Mr. William Thomas",male,33,engineering crew,S,England,NA,NA,NA,NA,0
+"Fairall, Mr. Henry Charles",male,38,victualling crew,B,England,NA,NA,NA,NA,0
+"Farenden, Mr. Ernest John",male,22,victualling crew,B,England,NA,NA,NA,NA,0
+"Farquharson, Mr. William Edward",male,39,engineering crew,B,England,NA,NA,NA,NA,0
+"Faulkner, Mr. William Stephen",male,37,victualling crew,B,England,NA,NA,NA,NA,1
+"Fay, Mr. Thomas Joseph",male,30,engineering crew,S,England,NA,NA,NA,NA,0
+"Fellowes, Mr. Alfred James",male,29,victualling crew,B,England,NA,NA,NA,NA,0
+"Feltham, Mr. George William",male,42,victualling crew,S,England,NA,NA,NA,NA,0
+"Ferrary, Mr. Antonio",male,33,engineering crew,S,England,NA,NA,NA,NA,0
+"Ferris, Mr. William",male,39,engineering crew,S,England,NA,NA,NA,NA,0
+"Fey, Sig. Carlo",male,30,restaurant staff,S,England,NA,NA,NA,NA,0
+"Finch, Mr. Henry Herman",male,19,victualling crew,S,England,NA,NA,NA,NA,0
+"Fioravante, Sig. Giuseppe Bertoldo",male,23,restaurant staff,S,England,NA,NA,NA,NA,0
+"Fitzpatrick, Mr. Cecil William",male,21,engineering crew,S,England,NA,NA,NA,NA,1
+"Fitzpatrick, Mr. Hugh Joseph",male,29,engineering crew,B,England,NA,NA,NA,NA,0
+"Flarty, Mr. Edward",male,52,engineering crew,S,England,NA,NA,NA,NA,1
+"Fleet, Mr. Frederick",male,24,deck crew,B,England,NA,NA,NA,NA,1
+"Fletcher, Mr. Percy William",male,26,victualling crew,B,England,NA,NA,NA,NA,0
+"Foley, Mr. John",male,46,deck crew,B,Ireland,NA,NA,NA,NA,1
+"Foley, Mr. Wilfred Cyril",male,22,victualling crew,S,Wales,NA,NA,NA,NA,1
+"Ford, Mr. Ernest",male,33,victualling crew,S,England,NA,NA,NA,NA,0
+"Ford, Mr. Francis",male,44,victualling crew,S,England,NA,NA,NA,NA,0
+"Ford, Mr. H.",male,22,engineering crew,S,England,NA,NA,NA,NA,0
+"Ford, Mr. Thomas",male,33,engineering crew,S,England,NA,NA,NA,NA,0
+"Forward, Mr. James",male,27,deck crew,S,England,NA,NA,NA,NA,1
+"Foster, Mr. Alfred Charles",male,37,engineering crew,B,England,NA,NA,NA,NA,0
+"Fox, Mr. William Thomas",male,27,victualling crew,S,England,NA,NA,NA,NA,0
+"Franklin, Mr. Alan Vincent",male,28,victualling crew,S,England,NA,NA,NA,NA,0
+"Fraser, Mr. J.",male,30,engineering crew,S,England,NA,NA,NA,NA,0
+"Fraser, Mr. James",male,30,engineering crew,B,Scotland,NA,NA,NA,NA,0
+"Fredericks, Mr. Walter Francis",male,21,engineering crew,S,England,NA,NA,NA,NA,1
+"Freeman, Mr. Ernest Edward Samuel",male,45,victualling crew,B,England,NA,NA,NA,NA,0
+"Fryer, Mr. Albert Ernest",male,29,engineering crew,S,England,NA,NA,NA,NA,1
+"Gatti, Sig. Gaspare Antonio Pietro",male,37,restaurant staff,S,England,NA,NA,NA,NA,0
+"Geddes, Mr. Richard Charles",male,32,victualling crew,S,England,NA,NA,NA,NA,0
+"Geer, Mr. Alfred Emest",male,26,engineering crew,S,England,NA,NA,NA,NA,0
+"Gibbons, Mr. Jacob William",male,36,victualling crew,S,England,NA,NA,NA,NA,1
+"Gilardino, Sig. Vincenzo Pio",male,31,restaurant staff,S,England,NA,NA,NA,NA,0
+"Giles, Mr. John Robert",male,32,victualling crew,S,England,NA,NA,NA,NA,0
+"Gill, Mr. Joseph Stanley",male,38,victualling crew,B,England,NA,NA,NA,NA,0
+"Gill, Mr. Patrick",male,38,victualling crew,S,England,NA,NA,NA,NA,0
+"Godley, Mr. George Auguste",male,61,engineering crew,S,England,NA,NA,NA,NA,1
+"Godwin, Mr. Frederick Charles",male,36,engineering crew,S,England,NA,NA,NA,NA,0
+"Golder, Mr. M. W.",male,32,engineering crew,S,England,NA,NA,NA,NA,0
+"Gold, Mrs. Jane Kate Coulson",female,45,victualling crew,S,England,NA,NA,NA,NA,1
+"Gollop, Mr. F.",male,28,victualling crew,S,England,NA,NA,NA,NA,0
+"Gordon, Mr. J.",male,29,engineering crew,S,England,NA,NA,NA,NA,0
+"Goree, Mr. Frank",male,41,engineering crew,S,England,NA,NA,NA,NA,0
+"Goshawk, Mr. Alfred James",male,40,victualling crew,B,England,NA,NA,NA,NA,0
+"Gosling, Mr. Bertram James",male,22,engineering crew,S,England,NA,NA,NA,NA,0
+"Gosling, Mr. S.",male,26,engineering crew,S,England,NA,NA,NA,NA,0
+"Gradidge, Mr. Ernest Edward",male,22,engineering crew,S,England,NA,NA,NA,NA,0
+"Graham, Mr. Thomas Gibson",male,28,engineering crew,B,Northern Ireland,NA,NA,NA,NA,1
+"Gregory, Mr. David",male,43,engineering crew,S,England,NA,NA,NA,NA,0
+"Gregson, Miss. Mary",female,45,victualling crew,S,England,NA,NA,NA,NA,1
+"Grosclaude, Mr. Gérald",male,24,restaurant staff,S,England,NA,NA,NA,NA,0
+"Gumery, Mr. George",male,24,engineering crew,S,England,NA,NA,NA,NA,0
+"Gunn, Mr. Joseph Alfred",male,30,victualling crew,S,England,NA,NA,NA,NA,0
+"Guy, Mr. Elgar John",male,29,victualling crew,S,England,NA,NA,NA,NA,1
+"Gwinn, Mr. William Logan",male,37,victualling crew,S,United States,NA,NA,NA,NA,0
+"Haggan, Mr. John",male,35,engineering crew,B,Northern Ireland,NA,NA,NA,NA,1
+"Haines, Mr. Albert",male,31,deck crew,B,England,NA,NA,NA,NA,1
+"Halford, Mr. Walter Stamford",male,22,victualling crew,S,England,NA,NA,NA,NA,1
+"Hallett, Mr. George Alexander",male,23,engineering crew,S,England,NA,NA,NA,NA,0
+"Hall, Mr. Frank Alfred James",male,41,victualling crew,S,England,NA,NA,NA,NA,0
+"Hall, Mr. J.",male,32,engineering crew,S,England,NA,NA,NA,NA,0
+"Hamblyn, Mr. Ernest William",male,47,victualling crew,S,England,NA,NA,NA,NA,0
+"Hamilton, Mr. Ernest",male,25,victualling crew,B,England,NA,NA,NA,NA,0
+"Hands, Mr. Bernard",male,54,engineering crew,S,Ireland,NA,NA,NA,NA,0
+"Hannam, Mr. George",male,30,engineering crew,S,England,NA,NA,NA,NA,0
+"Harder, Mr. William",male,39,deck crew,S,England,NA,NA,NA,NA,1
+"Harding, Mr. Alfred John",male,21,victualling crew,S,England,NA,NA,NA,NA,0
+"Hardwick, Mr. Reginald",male,21,victualling crew,S,England,NA,NA,NA,NA,1
+"Hardy, Mr. John",male,40,victualling crew,B,England,NA,NA,NA,NA,1
+"Harris, Mr. Amos",male,24,engineering crew,S,England,NA,NA,NA,NA,0
+"Harris, Mr. Charles William",male,19,victualling crew,S,England,NA,NA,NA,NA,0
+"Harris, Mr. Clifford Henry",male,17,victualling crew,S,England,NA,NA,NA,NA,0
+"Harris, Mr. Edward John",male,29,engineering crew,S,England,NA,NA,NA,NA,0
+"Harris, Mr. Edward Matthew",male,17,victualling crew,S,England,NA,NA,NA,NA,0
+"Harris, Mr. Frederick",male,39,engineering crew,S,England,NA,NA,NA,NA,1
+"Harrison, Mr. Aragõa Drummond",male,40,victualling crew,S,England,NA,NA,NA,NA,1
+"Harrison, Mr. Norman E.",male,38,engineering crew,B,England,NA,NA,NA,NA,0
+"Hart, Mr. James",male,54,engineering crew,S,England,NA,NA,NA,NA,0
+"Hart, Mr. John Edward",male,32,victualling crew,S,England,NA,NA,NA,NA,1
+"Hartnell, Mr. Fred",male,21,victualling crew,S,England,NA,NA,NA,NA,1
+"Harvey, Mr. Herbert Gifford",male,34,engineering crew,B,Northern Ireland,NA,NA,NA,NA,0
+"Hatch, Mr. Hugh",male,23,victualling crew,S,England,NA,NA,NA,NA,0
+"Hawkesworth, Mr. James",male,52,victualling crew,S,England,NA,NA,NA,NA,0
+"Hawkesworth, Mr. William Walter",male,43,victualling crew,S,England,NA,NA,NA,NA,0
+"Hayter, Mr. Arthur",male,45,victualling crew,B,England,NA,NA,NA,NA,0
+"Head, Mr. Alfred",male,24,engineering crew,S,England,NA,NA,NA,NA,0
+"Hebb, Mr. William Albert",male,22,engineering crew,S,England,NA,NA,NA,NA,1
+"Heinen, Mr. Joseph Dominichus",male,30,victualling crew,S,England,NA,NA,NA,NA,0
+"Hemming, Mr. Samuel Ernest",male,43,deck crew,B,England,NA,NA,NA,NA,1
+"Hendrickson, Mr. Charles Osker",male,28,engineering crew,S,England,NA,NA,NA,NA,1
+"Hendy, Mr. Edward Martin",male,40,victualling crew,B,England,NA,NA,NA,NA,0
+"Hensford, Mr. Herbert George Ernest",male,26,victualling crew,S,England,NA,NA,NA,NA,0
+"Hesketh, Mr. John Henry",male,33,engineering crew,B,England,NA,NA,NA,NA,0
+"Heslin, Mr. James",male,45,engineering crew,S,England,NA,NA,NA,NA,0
+"Hewitt, Mr. Thomas",male,37,victualling crew,B,England,NA,NA,NA,NA,0
+"Hichens, Mr. Robert",male,29,deck crew,S,England,NA,NA,NA,NA,1
+"Hill, Mr. H. P.",male,36,victualling crew,S,England,NA,NA,NA,NA,0
+"Hill, Mr. James",male,25,engineering crew,S,England,NA,NA,NA,NA,0
+"Hill, Mr. James Colston",male,43,victualling crew,B,England,NA,NA,NA,NA,0
+"Hinckley, Mr. George Herbert",male,40,victualling crew,S,England,NA,NA,NA,NA,0
+"Hine, Mr. William Edward",male,36,victualling crew,S,England,NA,NA,NA,NA,0
+"Hinton, Mr. Stephen William",male,31,engineering crew,S,England,NA,NA,NA,NA,0
+"Hiscock, Mr. Sydney George",male,25,victualling crew,S,England,NA,NA,NA,NA,0
+"Hoare, Mr. Leonard James",male,19,victualling crew,B,England,NA,NA,NA,NA,0
+"Hodge, Mr. Charley",male,29,engineering crew,B,England,NA,NA,NA,NA,0
+"Hodges, Mr. W.",male,26,engineering crew,S,England,NA,NA,NA,NA,0
+"Hodgkinson, Mr. Leonard",male,46,engineering crew,B,England,NA,NA,NA,NA,0
+"Hogg, Mr. Charles William",male,43,victualling crew,S,England,NA,NA,NA,NA,0
+"Hogg, Mr. George Alfred",male,29,deck crew,B,England,NA,NA,NA,NA,1
+"Hogue, Mr. E.",male,22,victualling crew,S,England,NA,NA,NA,NA,0
+"Holland, Mr. Thomas",male,28,victualling crew,B,England,NA,NA,NA,NA,0
+"Holloway, Mr. Sidney",male,24,victualling crew,S,England,NA,NA,NA,NA,0
+"Holman, Mr. Harry",male,29,deck crew,B,England,NA,NA,NA,NA,0
+"Hopgood, Mr. Roland John C.",male,29,engineering crew,S,England,NA,NA,NA,NA,0
+"Hopkins, Mr. Frederick William",male,15,victualling crew,S,England,NA,NA,NA,NA,0
+"Hopkins, Mr. Robert John",male,40,deck crew,S,England,NA,NA,NA,NA,1
+"Horswill, Mr. Albert Edward James",male,33,deck crew,S,England,NA,NA,NA,NA,1
+"Hosgood, Mr. Richard William",male,23,engineering crew,S,England,NA,NA,NA,NA,0
+"Hosking, Mr. George Fox",male,36,engineering crew,B,England,NA,NA,NA,NA,0
+"House, Mr. William John",male,38,victualling crew,B,England,NA,NA,NA,NA,0
+"Howell, Mr. Arthur Albert",male,31,victualling crew,B,England,NA,NA,NA,NA,0
+"Hughes, Mr. William Thomas",male,34,victualling crew,S,England,NA,NA,NA,NA,0
+"Humby, Mr. Frederick Charles",male,18,victualling crew,S,England,NA,NA,NA,NA,0
+"Humphreys, Mr. Humphrey",male,32,victualling crew,S,England,NA,NA,NA,NA,0
+"Humphreys, Mr. Sidney",male,53,deck crew,S,England,NA,NA,NA,NA,1
+"Hunt, Mr. Albert Sylvanus",male,23,engineering crew,S,England,NA,NA,NA,NA,1
+"Hunt, Mr. Tom",male,27,engineering crew,S,England,NA,NA,NA,NA,0
+"Hurst, Mr. Charles John",male,41,engineering crew,S,England,NA,NA,NA,NA,0
+"Hurst, Mr. Walter",male,23,engineering crew,S,England,NA,NA,NA,NA,1
+"Hutchinson, Mr. James",male,31,victualling crew,S,England,NA,NA,NA,NA,0
+"Hutchinson, Mr. John Hall",male,28,deck crew,B,England,NA,NA,NA,NA,0
+"Hyland, Mr. James Leo",male,19,victualling crew,S,England,NA,NA,NA,NA,1
+"Ide, Mr. Harry John",male,31,victualling crew,S,England,NA,NA,NA,NA,0
+"Ingram, Mr. George",male,19,engineering crew,S,England,NA,NA,NA,NA,0
+"Ingrouille, Mr. Henry",male,21,victualling crew,S,England,NA,NA,NA,NA,0
+"Ings, Mr. William Ernest",male,20,victualling crew,S,England,NA,NA,NA,NA,0
+"Instance, Mr. T.",male,33,engineering crew,S,England,NA,NA,NA,NA,0
+"Jackopson, Mr. John Henry",male,30,engineering crew,S,England,NA,NA,NA,NA,0
+"Jackson, Mr. Cecil",male,22,victualling crew,B,England,NA,NA,NA,NA,0
+"Jago, Mr. Joseph",male,59,engineering crew,S,England,NA,NA,NA,NA,0
+"Jaillet, Mr. Henri Marie",male,38,restaurant staff,S,France,NA,NA,NA,NA,0
+"James, Mr. Thomas",male,27,engineering crew,S,Wales,NA,NA,NA,NA,0
+"Janaway, Mr. William Frank",male,35,victualling crew,B,England,NA,NA,NA,NA,0
+"Janin, Mr. Claude Marie",male,29,restaurant staff,S,England,NA,NA,NA,NA,0
+"Jeffery, Mr. William Alfred",male,28,restaurant staff,S,England,NA,NA,NA,NA,0
+"Jenner, Mr. Thomas Henry (Harry)",male,55,victualling crew,B,England,NA,NA,NA,NA,0
+"Jensen, Mr. Charles Valdemar",male,25,victualling crew,S,England,NA,NA,NA,NA,0
+"Jessop, Miss. Violet Constance",female,24,victualling crew,S,England,NA,NA,NA,NA,1
+"Jewell, Mr. Archie",male,23,deck crew,B,England,NA,NA,NA,NA,1
+"Joas, Mr. N.",male,38,engineering crew,S,England,NA,NA,NA,NA,0
+"Johnston, Mr. James",male,41,victualling crew,B,England,NA,NA,NA,NA,1
+"Jones, Mr. Albert Hugh Brabner",male,17,victualling crew,S,England,NA,NA,NA,NA,0
+"Jones, Mr. Arthur Ernest",male,37,victualling crew,S,England,NA,NA,NA,NA,0
+"Jones, Mr. Harry Owen G.",male,29,victualling crew,S,England,NA,NA,NA,NA,0
+"Jones, Mr. Thomas William",male,32,deck crew,S,England,NA,NA,NA,NA,1
+"Jones, Mr. Victor Reginald",male,21,victualling crew,S,England,NA,NA,NA,NA,0
+"Jouannault, Mr. Georges Jules",male,24,restaurant staff,S,England,NA,NA,NA,NA,0
+"Joughin, Mr. Charles John",male,32,victualling crew,B,England,NA,NA,NA,NA,1
+"Judd, Mr. Charles Edward",male,31,engineering crew,S,England,NA,NA,NA,NA,1
+"Jukes, Mr. Henry James",male,38,engineering crew,S,England,NA,NA,NA,NA,0
+"Jupe, Mr. Boykett Herbert",male,30,engineering crew,S,England,NA,NA,NA,NA,0
+"Kasper, Mr. Franz Wilhelm",male,40,engineering crew,S,England,NA,NA,NA,NA,1
+"Kearl, Mr. Charles Henry",male,44,engineering crew,S,England,NA,NA,NA,NA,0
+"Kearl, Mr. George Edward",male,25,engineering crew,S,England,NA,NA,NA,NA,0
+"Keen, Mr. Percy Edward",male,30,victualling crew,S,England,NA,NA,NA,NA,1
+"Kelland, Mr. Thomas",male,18,victualling crew,S,England,NA,NA,NA,NA,0
+"Kelly, Mr. William",male,23,engineering crew,B,Scotland,NA,NA,NA,NA,0
+"Kemish, Mr. George",male,22,engineering crew,S,England,NA,NA,NA,NA,1
+"Kemp, Mr. Thomas Hulman",male,43,engineering crew,B,England,NA,NA,NA,NA,0
+"Kenchenten, Mr. Frederick Charles",male,37,engineering crew,S,England,NA,NA,NA,NA,0
+"Kennell, Mr. Charles",male,30,victualling crew,S,England,NA,NA,NA,NA,0
+"Kenzler, Mr. August",male,44,engineering crew,B,England,NA,NA,NA,NA,0
+"Kerley, Mr. William Thomas",male,28,victualling crew,S,England,NA,NA,NA,NA,0
+"Kerr, Mr. Thomas Russell",male,26,engineering crew,S,Scotland,NA,NA,NA,NA,0
+"Ketchley, Mr. Henry",male,36,victualling crew,B,England,NA,NA,NA,NA,0
+"Kieran, Mr. Edgar Michael",male,34,victualling crew,S,Ireland,NA,NA,NA,NA,0
+"Kieran, Mr. James William",male,35,victualling crew,S,England,NA,NA,NA,NA,0
+"King, Mr. Alfred John Moffett",male,18,victualling crew,S,England,NA,NA,NA,NA,0
+"King, Mr. Ernest Waldron",male,28,victualling crew,S,Ireland,NA,NA,NA,NA,0
+"King, Mr. G.",male,20,victualling crew,S,England,NA,NA,NA,NA,0
+"King, Mr. Thomas Walter",male,42,deck crew,S,England,NA,NA,NA,NA,0
+"Kingscote, Mr. William Ford",male,48,victualling crew,S,England,NA,NA,NA,NA,0
+"Kinsella, Mr. Louis",male,30,engineering crew,S,England,NA,NA,NA,NA,0
+"Kirkaldy, Mr. Thomas Benjamin",male,36,victualling crew,S,England,NA,NA,NA,NA,0
+"Kirkham, Mr. James",male,43,engineering crew,S,England,NA,NA,NA,NA,0
+"Kitching, Mr. Arthur Alfred",male,31,victualling crew,S,England,NA,NA,NA,NA,0
+"Klein, Mr. Herbert",male,33,victualling crew,S,England,NA,NA,NA,NA,0
+"Knight, Mr. George",male,49,victualling crew,S,England,NA,NA,NA,NA,1
+"Knight, Mr. Leonard George",male,21,victualling crew,S,England,NA,NA,NA,NA,0
+"Knowles, Mr. Thomas",male,43,engineering crew,S,England,NA,NA,NA,NA,1
+"Lacey, Mr. Bertie William",male,20,victualling crew,S,England,NA,NA,NA,NA,0
+"Lahy, Mr. T.",male,41,engineering crew,S,England,NA,NA,NA,NA,0
+"Lake, Mr. William",male,46,victualling crew,B,England,NA,NA,NA,NA,0
+"Lane, Mr. Albert Edward",male,34,victualling crew,S,England,NA,NA,NA,NA,0
+"Latimer, Mr. Andrew",male,55,victualling crew,B,England,NA,NA,NA,NA,0
+"Lavington, Miss. Elizabeth",female,40,victualling crew,S,England,NA,NA,NA,NA,1
+"Lawrence, Mr. Arthur",male,36,victualling crew,B,England,NA,NA,NA,NA,0
+"Leader, Mr. Archibald",male,22,victualling crew,S,England,NA,NA,NA,NA,0
+"Leather, Mrs. Elizabeth Mary",female,50,victualling crew,S,England,NA,NA,NA,NA,1
+"Lee, Mr. H.",male,18,engineering crew,S,England,NA,NA,NA,NA,0
+"Lee, Mr. Henry Reginald",male,29,victualling crew,S,England,NA,NA,NA,NA,1
+"Lee, Mr. Reginald Robinson",male,41,deck crew,S,England,NA,NA,NA,NA,1
+"Lefebvre, Mr. Paul Georges",male,35,victualling crew,S,England,NA,NA,NA,NA,0
+"Leonard, Mr. Matthew",male,25,victualling crew,B,United States,NA,NA,NA,NA,0
+"Levett, Mr. George Alfred",male,26,victualling crew,B,England,NA,NA,NA,NA,0
+"Lewis, Mr. Arthur Ernest Read",male,27,victualling crew,S,England,NA,NA,NA,NA,1
+"Light, Mr. Charles Edward",male,24,victualling crew,S,England,NA,NA,NA,NA,0
+"Light, Mr. Christopher William",male,20,engineering crew,S,England,NA,NA,NA,NA,0
+"Light, Mr. W.",male,47,engineering crew,S,England,NA,NA,NA,NA,0
+"Lightoller, Mr. Charles Herbert",male,38,deck crew,B,England,NA,NA,NA,NA,1
+"Lindsay, Mr. William Charles",male,30,engineering crew,S,England,NA,NA,NA,NA,1
+"Littlejohn, Mr. Alexander James",male,40,victualling crew,B,England,NA,NA,NA,NA,1
+"Lloyd, Mr. Humphrey",male,41,victualling crew,B,England,NA,NA,NA,NA,0
+"Lloyd, Mr. William",male,29,engineering crew,S,England,NA,NA,NA,NA,0
+"Locke, Mr. A.",male,33,victualling crew,S,England,NA,NA,NA,NA,0
+"Long, Mr. Frank",male,31,engineering crew,S,England,NA,NA,NA,NA,0
+"Long, Mr. William",male,36,engineering crew,S,England,NA,NA,NA,NA,0
+"Longmuir, Mr. John Dickson",male,20,victualling crew,S,England,NA,NA,NA,NA,0
+"Lovell, Mr. John",male,37,victualling crew,S,England,NA,NA,NA,NA,0
+"Lowe, Mr. Harold Godfrey",male,29,deck crew,B,Wales,NA,NA,NA,NA,1
+"Lucas, Mr. William Arthur",male,25,deck crew,S,England,NA,NA,NA,NA,1
+"Lucas, Mr. William Watson",male,31,victualling crew,B,England,NA,NA,NA,NA,1
+"Lydiatt, Mr. Charles",male,45,victualling crew,S,England,NA,NA,NA,NA,0
+"Lyons, Mr. William Henry",male,26,deck crew,S,Ireland,NA,NA,NA,NA,0
+"Mabey, Mr. John Charles",male,24,victualling crew,S,England,NA,NA,NA,NA,0
+"MacKie, Mr. George William",male,34,victualling crew,S,England,NA,NA,NA,NA,0
+"Mackie, Mr. William Dickson",male,32,engineering crew,B,Scotland,NA,NA,NA,NA,0
+"Major, Mr. Thomas Edgar",male,36,victualling crew,B,England,NA,NA,NA,NA,0
+"Major, Mr. William James",male,32,engineering crew,S,England,NA,NA,NA,NA,1
+"Mantle, Mr. Roland Frederick",male,40,victualling crew,S,England,NA,NA,NA,NA,0
+"March, Mr. John Starr",male,50,victualling crew,S,United States,NA,NA,NA,NA,0
+"Marett, Mr. George John",male,27,engineering crew,S,England,NA,NA,NA,NA,0
+"Marks, Mr. James",male,27,victualling crew,S,Scotland,NA,NA,NA,NA,0
+"Marriott, Mr. John William",male,21,victualling crew,S,England,NA,NA,NA,NA,0
+"Marsden, Miss. Evelyn",female,28,victualling crew,S,England,NA,NA,NA,NA,1
+"Marsh, Mr. Frederick Charles",male,40,engineering crew,S,England,NA,NA,NA,NA,0
+"Martin, Miss. Mabel Elvina",female,20,restaurant staff,S,England,NA,NA,NA,NA,1
+"Martin, Mrs. Annie Martha",female,39,victualling crew,S,Channel Islands,NA,NA,NA,NA,1
+"Maskell, Mr. Leopold Adolphus",male,25,engineering crew,S,England,NA,NA,NA,NA,0
+"Mason, Mr. Frank Archibald Robert",male,32,engineering crew,S,England,NA,NA,NA,NA,1
+"Mason, Mr. J.",male,39,engineering crew,S,England,NA,NA,NA,NA,0
+"Matherson, Mr. David",male,30,deck crew,S,England,NA,NA,NA,NA,0
+"Mathias, Mr. Montague Vincent",male,29,deck crew,S,Wales,NA,NA,NA,NA,0
+"Mattmann, Sig. Adolf",male,20,restaurant staff,S,England,NA,NA,NA,NA,0
+"Mauge, Mr. Paul Achille Maurice Germain",male,25,restaurant staff,S,England,NA,NA,NA,NA,1
+"Maxwell, Mr. John",male,30,deck crew,B,England,NA,NA,NA,NA,0
+"May, Mr. Arthur William",male,22,engineering crew,S,England,NA,NA,NA,NA,0
+"May, Mr. Arthur William",male,59,engineering crew,S,England,NA,NA,NA,NA,0
+"Maynard, Mr. Isaac Hiram",male,31,victualling crew,B,England,NA,NA,NA,NA,1
+"Mayo, Mr. William Peter",male,28,engineering crew,S,England,NA,NA,NA,NA,0
+"Maytum, Mr. Alfred",male,53,victualling crew,B,England,NA,NA,NA,NA,0
+"Mayzes, Mr. Thomas Jubilee",male,25,engineering crew,S,England,NA,NA,NA,NA,1
+"McAndrew, Mr. Thomas Patrick",male,38,engineering crew,S,England,NA,NA,NA,NA,0
+"McAndrews, Mr. William",male,23,engineering crew,S,NA,NA,NA,NA,NA,0
+"McCarthy, Mr. Frederick James",male,38,victualling crew,S,England,NA,NA,NA,NA,0
+"McCarthy, Mr. William",male,47,deck crew,S,Ireland,NA,NA,NA,NA,1
+"McCastlan, Mr. W.",male,38,engineering crew,S,England,NA,NA,NA,NA,0
+"McCawley, Mr. Thomas W.",male,36,victualling crew,B,Scotland,NA,NA,NA,NA,0
+"McElroy, Mr. Hugh Walter",male,37,victualling crew,S,England,NA,NA,NA,NA,0
+"McGann, Mr. James",male,29,engineering crew,S,England,NA,NA,NA,NA,1
+"McGarvey, Mr. Edward Joseph",male,34,engineering crew,S,England,NA,NA,NA,NA,0
+"McGaw, Mr. Erroll Victor",male,30,engineering crew,S,England,NA,NA,NA,NA,0
+"McGough, Mr. George Francis 'Paddy'",male,36,deck crew,S,Ireland,NA,NA,NA,NA,1
+"McGrady, Mr. James",male,17,victualling crew,S,England,NA,NA,NA,NA,0
+"McInerney, Mr. Thomas",male,38,engineering crew,S,England,NA,NA,NA,NA,0
+"McIntyre, Mr. William",male,21,engineering crew,S,England,NA,NA,NA,NA,1
+"McKay, Mr. Charles Donald",male,30,victualling crew,B,England,NA,NA,NA,NA,1
+"McLaren, Mrs. Hypatia",female,40,victualling crew,S,England,NA,NA,NA,NA,1
+"McMicken, Mr. Arthur",male,23,victualling crew,B,England,NA,NA,NA,NA,1
+"McMicken, Mr. Benjamin Tucker",male,21,victualling crew,B,England,NA,NA,NA,NA,0
+"McMullin, Mr. John Richard",male,36,victualling crew,B,England,NA,NA,NA,NA,0
+"McMurray, Mr. William",male,44,victualling crew,B,England,NA,NA,NA,NA,0
+"McQuillan, Mr. William",male,26,engineering crew,B,Northern Ireland,NA,NA,NA,NA,0
+"McRae, Mr. William Alexander",male,32,engineering crew,S,England,NA,NA,NA,NA,0
+"McReynolds, Mr. William",male,22,engineering crew,B,Northern Ireland,NA,NA,NA,NA,0
+"Mellor, Mr. Arthur",male,34,victualling crew,S,England,NA,NA,NA,NA,0
+"Middleton, Mr. Alfred Pirrie",male,27,engineering crew,B,Ireland,NA,NA,NA,NA,0
+"Middleton, Mr. Mark Victor",male,28,victualling crew,S,England,NA,NA,NA,NA,0
+"Milford, Mr. George",male,28,engineering crew,S,England,NA,NA,NA,NA,0
+"Millar, Mr. Robert",male,26,engineering crew,B,Scotland,NA,NA,NA,NA,0
+"Millar, Mr. Thomas",male,32,engineering crew,B,Northern Ireland,NA,NA,NA,NA,0
+"Mills, Mr. Christopher",male,51,victualling crew,S,England,NA,NA,NA,NA,1
+"Mintram, Mr. William",male,46,engineering crew,S,England,NA,NA,NA,NA,0
+"Mishellany, Mr. Abraham Mansoor",male,53,victualling crew,B,Lebanon,NA,NA,NA,NA,0
+"Mitchell, Mr. Lorenzo (Lawrence) Horace",male,19,engineering crew,S,England,NA,NA,NA,NA,0
+"Monrós, Sr. Joan Javier",male,20,restaurant staff,S,Spain,NA,NA,NA,NA,0
+"Monteverdi, Sig. Giovanni",male,23,restaurant staff,S,England,NA,NA,NA,NA,0
+"Moody, Mr. James Paul",male,24,deck crew,B,England,NA,NA,NA,NA,0
+"Moore, Mr. Alfred Ernest",male,39,victualling crew,S,England,NA,NA,NA,NA,0
+"Moore, Mr. George Alfred",male,32,deck crew,S,England,NA,NA,NA,NA,1
+"Moore, Mr. John J.",male,29,engineering crew,S,England,NA,NA,NA,NA,1
+"Moore, Mr. Ralph",male,22,engineering crew,S,England,NA,NA,NA,NA,0
+"Moores, Mr. Richard Henry",male,44,engineering crew,S,England,NA,NA,NA,NA,0
+"Morgan (Bird), Mr. Charles Frederick",male,42,victualling crew,S,England,NA,NA,NA,NA,0
+"Morgan, Mr. Arthur Herbert",male,27,engineering crew,S,England,NA,NA,NA,NA,0
+"Morgan, Mr. Thomas A.",male,26,engineering crew,S,England,NA,NA,NA,NA,0
+"Morris, Mr. Arthur",male,30,engineering crew,S,England,NA,NA,NA,NA,0
+"Morris, Mr. Frank Herbert",male,28,victualling crew,B,England,NA,NA,NA,NA,1
+"Morris, Mr. William Edward",male,23,engineering crew,S,England,NA,NA,NA,NA,0
+"Moss, Mr. William",male,36,victualling crew,B,England,NA,NA,NA,NA,0
+"Moyes, Mr. William Young",male,24,engineering crew,B,Scotland,NA,NA,NA,NA,0
+"Müller, Mr. Ludwig",male,37,victualling crew,S,England,NA,NA,NA,NA,0
+"Mullin, Mr. Thomas",male,20,victualling crew,S,Scotland,NA,NA,NA,NA,0
+"Murdoch, Mr. William McMaster",male,39,deck crew,B,Scotland,NA,NA,NA,NA,0
+"Nannini, Sig. Francesco Luigi Arcangelo",male,42,restaurant staff,S,Italy,NA,NA,NA,NA,0
+"Neal, Mr. Bentley Harold",male,26,victualling crew,S,England,NA,NA,NA,NA,1
+"Nettleton, Mr. George Walter",male,30,engineering crew,S,England,NA,NA,NA,NA,0
+"Newman, Mr. Charles Thomas",male,33,engineering crew,S,England,NA,NA,NA,NA,0
+"Nicholls, Mr. Sidney",male,39,victualling crew,S,England,NA,NA,NA,NA,0
+"Nichols, Mr. Alfred William Stanley",male,48,deck crew,B,Australia,NA,NA,NA,NA,0
+"Nichols, Mr. Arthur",male,46,victualling crew,S,England,NA,NA,NA,NA,0
+"Nichols, Mr. Walter Henry",male,35,victualling crew,S,England,NA,NA,NA,NA,1
+"Niven, Mr. John Brown",male,30,engineering crew,S,Scotland,NA,NA,NA,NA,0
+"Noon, Mr. John Thomas",male,42,engineering crew,S,England,NA,NA,NA,NA,0
+"Norris, Mr. James",male,22,engineering crew,S,England,NA,NA,NA,NA,0
+"Noss, Mr. Bertram Arthur",male,21,engineering crew,S,England,NA,NA,NA,NA,0
+"Noss, Mr. Henry",male,30,engineering crew,S,England,NA,NA,NA,NA,1
+"Nutbean, Mr. William",male,30,engineering crew,S,England,NA,NA,NA,NA,1
+"O'Connor, Mr. John",male,29,engineering crew,S,England,NA,NA,NA,NA,1
+"O'Connor, Mr. Thomas Peter",male,44,victualling crew,B,England,NA,NA,NA,NA,0
+"Olive, Mr. Charles",male,31,engineering crew,S,England,NA,NA,NA,NA,0
+"Olive, Mr. Ernest Roskelly",male,27,victualling crew,S,England,NA,NA,NA,NA,0
+"Oliver, Mr. H.",male,32,engineering crew,S,England,NA,NA,NA,NA,1
+"Olliver, Mr. Alfred John",male,27,deck crew,B,Channel Islands,NA,NA,NA,NA,1
+"O'Loughlin, Dr. William Francis Norman",male,63,deck crew,B,England,NA,NA,NA,NA,0
+"Orpet, Mr. Walter Hayward",male,31,victualling crew,S,England,NA,NA,NA,NA,0
+"Orr, Mr. James",male,39,victualling crew,S,Scotland,NA,NA,NA,NA,0
+"Osborne, Mr. William Edward",male,32,victualling crew,B,England,NA,NA,NA,NA,0
+"Osman, Mr. Frank",male,27,deck crew,S,England,NA,NA,NA,NA,1
+"Othen, Mr. Charles Alfred",male,36,engineering crew,S,England,NA,NA,NA,NA,1
+"Owen, Mr. Lewis",male,43,victualling crew,S,Wales,NA,NA,NA,NA,0
+"Pacey, Mr. Reginald lvan",male,17,victualling crew,S,England,NA,NA,NA,NA,0
+"Pachera, Sig. Jean Baptiste Stanislas",male,19,restaurant staff,S,England,NA,NA,NA,NA,0
+"Paice, Mr. Richard Charles John",male,32,engineering crew,S,England,NA,NA,NA,NA,0
+"Painter, Mr. Charles",male,32,engineering crew,S,England,NA,NA,NA,NA,0
+"Painter, Mr. Frank",male,29,engineering crew,S,England,NA,NA,NA,NA,0
+"Paintin, Mr. James Arthur",male,29,victualling crew,S,England,NA,NA,NA,NA,0
+"Palles, Mr. Thomas Henry Michael",male,45,engineering crew,B,England,NA,NA,NA,NA,0
+"Parsons, Mr. Edward",male,37,victualling crew,S,England,NA,NA,NA,NA,0
+"Parsons, Mr. Frank Alfred",male,27,engineering crew,B,England,NA,NA,NA,NA,0
+"Parsons, Mr. Richard Henry",male,18,victualling crew,S,England,NA,NA,NA,NA,0
+"Pascoe, Mr. Charles H.",male,45,deck crew,S,England,NA,NA,NA,NA,1
+"Pearce, Mr. Alfred Emest",male,24,victualling crew,S,England,NA,NA,NA,NA,0
+"Pearce, Mr. John",male,28,engineering crew,S,England,NA,NA,NA,NA,1
+"Pearcey, Mr. Albert Victor",male,25,victualling crew,S,England,NA,NA,NA,NA,1
+"Pedrini, Sig. Alessandro",male,21,restaurant staff,S,England,NA,NA,NA,NA,0
+"Pelham, Mr. George",male,39,engineering crew,S,England,NA,NA,NA,NA,1
+"Pennal, Mr. Thomas Frederick Cohen",male,34,victualling crew,S,England,NA,NA,NA,NA,0
+"Penny, Mr. William Farr",male,31,victualling crew,S,England,NA,NA,NA,NA,0
+"Penrose, Mr. John Poole",male,49,victualling crew,B,England,NA,NA,NA,NA,0
+"Peracchio, Sig. Alberto",male,20,restaurant staff,S,England,NA,NA,NA,NA,0
+"Peracchio, Sig. Sebastiano",male,17,restaurant staff,S,England,NA,NA,NA,NA,0
+"Perkins, Mr. Laurence Alexander",male,22,victualling crew,S,England,NA,NA,NA,NA,0
+"Perkis, Mr. Walter John",male,37,deck crew,B,England,NA,NA,NA,NA,1
+"Perotti, Sig. Alfonso",male,20,restaurant staff,S,England,NA,NA,NA,NA,0
+"Perren, Mr. William Charles",male,48,victualling crew,S,England,NA,NA,NA,NA,0
+"Perriton, Mr. Hubert Prouse",male,32,victualling crew,S,England,NA,NA,NA,NA,0
+"Perry, Mr. Edgar Lionel",male,19,engineering crew,S,England,NA,NA,NA,NA,1
+"Perry, Mr. Henry Frederick",male,23,engineering crew,S,England,NA,NA,NA,NA,0
+"Peters, Mr. William Chapman",male,26,deck crew,S,England,NA,NA,NA,NA,1
+"Petty, Mr. Edwin Henry",male,25,victualling crew,S,England,NA,NA,NA,NA,0
+"Pfropper, Mr. Richard Paul Jozef",male,30,victualling crew,S,Germany,NA,NA,NA,NA,1
+"Phillimore, Mr. Harold Charles William",male,23,victualling crew,B,England,NA,NA,NA,NA,1
+"Phillips, Mr. A. George",male,27,engineering crew,S,England,NA,NA,NA,NA,0
+"Phillips, Mr. John George",male,25,victualling crew,B,England,NA,NA,NA,NA,0
+"Phillips, Mr. Walter John",male,35,restaurant staff,S,England,NA,NA,NA,NA,0
+"Piatti, Sig. Louis",male,17,restaurant staff,S,England,NA,NA,NA,NA,0
+"Piazza, Sig. Pompeo Gaspro",male,33,restaurant staff,S,England,NA,NA,NA,NA,0
+"Pitfield, Mr. William James",male,25,engineering crew,S,England,NA,NA,NA,NA,0
+"Pitman, Mr. Herbert John",male,34,deck crew,B,England,NA,NA,NA,NA,1
+"Platt, Mr. Wilfred George",male,18,victualling crew,S,England,NA,NA,NA,NA,0
+"Podesta, Mr. Alfred John Alexander",male,24,engineering crew,S,England,NA,NA,NA,NA,1
+"Poggi, Sig. Emilio",male,28,restaurant staff,S,England,NA,NA,NA,NA,0
+"Poingdestre, Mr. John Thomas",male,33,deck crew,S,Channel Islands,NA,NA,NA,NA,1
+"Pond, Mr. George",male,33,engineering crew,S,England,NA,NA,NA,NA,0
+"Pook, Mr. Percy Robert",male,36,victualling crew,S,England,NA,NA,NA,NA,0
+"Porteus, Mr. Thomas Henry",male,34,victualling crew,S,England,NA,NA,NA,NA,0
+"Port, Mr. Frank",male,22,victualling crew,S,England,NA,NA,NA,NA,1
+"Prangnell, Mr. George Alexander",male,30,engineering crew,S,England,NA,NA,NA,NA,1
+"Prentice, Mr. Frank Winnold",male,23,victualling crew,S,England,NA,NA,NA,NA,1
+"Preston, Mr. Thomas Charles Alfred",male,20,engineering crew,S,England,NA,NA,NA,NA,0
+"Price, Mr. Ernest Cyril",male,17,restaurant staff,S,England,NA,NA,NA,NA,0
+"Prichard, Mrs. Alice Maud",female,36,victualling crew,S,England,NA,NA,NA,NA,1
+"Prideaux, Mr. John Arthur (Jack)",male,23,victualling crew,S,England,NA,NA,NA,NA,0
+"Priest, Mr. Arthur John",male,24,engineering crew,S,England,NA,NA,NA,NA,1
+"Prior, Mr. Harold John Arnold",male,21,victualling crew,S,England,NA,NA,NA,NA,1
+"Proctor, Mr. Charles",male,46,victualling crew,B,England,NA,NA,NA,NA,0
+"Proudfoot, Mr. Richard Royston",male,22,engineering crew,S,England,NA,NA,NA,NA,0
+"Pryce, Mr. Charles William",male,23,victualling crew,S,England,NA,NA,NA,NA,0
+"Pugh, Mr. Alfred",male,20,victualling crew,S,England,NA,NA,NA,NA,1
+"Pugh, Mr. Arthur Percy",male,31,engineering crew,S,England,NA,NA,NA,NA,0
+"Pusey, Mr. William Robert Holland",male,22,engineering crew,S,England,NA,NA,NA,NA,1
+"Puzey, Mr. John Edward",male,44,victualling crew,B,England,NA,NA,NA,NA,0
+"Randall, Mr. Frank Henry",male,29,victualling crew,S,England,NA,NA,NA,NA,0
+"Ranger, Mr. Thomas",male,29,engineering crew,S,England,NA,NA,NA,NA,1
+"Ransom, Mr. James Augustus",male,50,victualling crew,B,England,NA,NA,NA,NA,0
+"Rattenbury, Mr. William Henry",male,38,victualling crew,B,Channel Islands,NA,NA,NA,NA,0
+"Ratti, Sig. Enrico",male,21,restaurant staff,S,England,NA,NA,NA,NA,0
+"Ray, Mr. Frederick Dent",male,32,victualling crew,B,England,NA,NA,NA,NA,1
+"Read, Mr. Joseph",male,20,engineering crew,S,England,NA,NA,NA,NA,0
+"Reed, Mr. Thomas Charles Prowse",male,55,victualling crew,S,England,NA,NA,NA,NA,0
+"Reeves, Mr. Frederick Simms",male,34,engineering crew,S,England,NA,NA,NA,NA,0
+"Reid, Mr. Robert Thomas",male,30,engineering crew,S,England,NA,NA,NA,NA,0
+"Revell, Mr. William James Francis",male,31,victualling crew,B,England,NA,NA,NA,NA,0
+"Ricaldone, Sig. Rinaldo Renato",male,22,restaurant staff,S,England,NA,NA,NA,NA,0
+"Rice, Mr. Charles",male,32,engineering crew,S,England,NA,NA,NA,NA,1
+"Rice, Mr. John Reginald",male,25,victualling crew,S,England,NA,NA,NA,NA,0
+"Rice, Mr. Percy",male,19,victualling crew,S,England,NA,NA,NA,NA,0
+"Richards, Mr. Joseph James",male,30,engineering crew,S,England,NA,NA,NA,NA,0
+"Rickman, Mr. George Albert",male,36,engineering crew,S,England,NA,NA,NA,NA,0
+"Ricks, Mr. Cyril Gordon",male,22,victualling crew,S,England,NA,NA,NA,NA,0
+"Ridout, Mr. Walter George",male,30,victualling crew,S,England,NA,NA,NA,NA,0
+"Rigozzi, Sig. Abele",male,22,restaurant staff,S,England,NA,NA,NA,NA,0
+"Rimmer, Mr. Gilbert",male,29,victualling crew,S,England,NA,NA,NA,NA,0
+"Roberton, Mr. George Edward",male,19,victualling crew,S,England,NA,NA,NA,NA,0
+"Roberts, Mr. Frank John",male,37,victualling crew,B,England,NA,NA,NA,NA,0
+"Roberts, Mr. Hugh H.",male,40,victualling crew,B,Wales,NA,NA,NA,NA,0
+"Roberts, Mr. Robert George",male,35,engineering crew,S,England,NA,NA,NA,NA,0
+"Roberts, Mrs. Mary Kezia",female,41,victualling crew,S,England,NA,NA,NA,NA,1
+"Robinson, Mr. James William",male,30,victualling crew,S,England,NA,NA,NA,NA,0
+"Robinson, Mrs. Annie",female,41,victualling crew,S,England,NA,NA,NA,NA,1
+"Rogers, Mr. Edward James William",male,31,victualling crew,S,England,NA,NA,NA,NA,0
+"Rogers, Mr. Michael",male,27,victualling crew,S,Ireland,NA,NA,NA,NA,0
+"Ross, Mr. Horace Leopold",male,36,victualling crew,S,England,NA,NA,NA,NA,1
+"Rotta, Sig. Angelo Mario",male,23,restaurant staff,S,England,NA,NA,NA,NA,0
+"Rous, Mr. Arthur John",male,26,engineering crew,B,England,NA,NA,NA,NA,0
+"Rousseau, Mr. Pierre",male,49,restaurant staff,S,England,NA,NA,NA,NA,0
+"Rowe, Mr. Edgar Maurice",male,31,victualling crew,B,England,NA,NA,NA,NA,0
+"Rowe, Mr. George Thomas",male,32,deck crew,B,England,NA,NA,NA,NA,1
+"Rudd, Mr. Henry",male,24,engineering crew,S,England,NA,NA,NA,NA,0
+"Rule, Mr. Samuel James",male,58,victualling crew,B,England,NA,NA,NA,NA,1
+"Russell, Mr. Boysie Richard",male,17,victualling crew,S,England,NA,NA,NA,NA,0
+"Rutter, Mr. Sidney Frank",male,27,engineering crew,S,England,NA,NA,NA,NA,0
+"Ryan, Mr. Thomas",male,28,victualling crew,S,Channel Islands,NA,NA,NA,NA,0
+"Ryerson, Mr. William Edwy",male,33,victualling crew,S,Canada,NA,NA,NA,NA,1
+"Saccaggi, Sig. Giovanni Giuseppe Emilio",male,24,restaurant staff,S,Italy,NA,NA,NA,NA,0
+"Salussolia, Sig. Govanni",male,25,restaurant staff,S,England,NA,NA,NA,NA,0
+"Samuel, Mr. Owen Wilmore",male,47,victualling crew,S,Wales,NA,NA,NA,NA,0
+"Sangster, Mr. Charles Edward",male,30,engineering crew,S,England,NA,NA,NA,NA,0
+"Sartori, Sig. Lazar",male,24,restaurant staff,S,England,NA,NA,NA,NA,0
+"Saunders, Mr. D. E.",male,26,victualling crew,S,England,NA,NA,NA,NA,0
+"Saunders, Mr. F.",male,22,engineering crew,S,England,NA,NA,NA,NA,0
+"Saunders, Mr. W.",male,23,engineering crew,S,England,NA,NA,NA,NA,0
+"Saunders, Mr. Walter Ernest",male,23,engineering crew,S,England,NA,NA,NA,NA,0
+"Savage, Mr. Charles Joseph",male,23,victualling crew,S,England,NA,NA,NA,NA,1
+"Sawyer, Mr. Robert James",male,31,deck crew,S,England,NA,NA,NA,NA,0
+"Scarrott, Mr. Joseph George",male,33,deck crew,S,England,NA,NA,NA,NA,1
+"Scavino, Sig. Candido",male,42,restaurant staff,S,Italy,NA,NA,NA,NA,0
+"Scott, Mr. Archibald",male,41,engineering crew,S,Northern Ireland,NA,NA,NA,NA,0
+"Scott, Mr. Frederick William",male,28,engineering crew,S,England,NA,NA,NA,NA,1
+"Scott, Mr. John",male,20,victualling crew,S,England,NA,NA,NA,NA,0
+"Scovell, Mr. Robert",male,55,victualling crew,S,England,NA,NA,NA,NA,0
+"Sedunary, Mr. Samuel Francis",male,25,victualling crew,S,England,NA,NA,NA,NA,0
+"Self, Mr. Albert Charles Edward",male,24,engineering crew,S,England,NA,NA,NA,NA,1
+"Self, Mr. Alfred Henry",male,40,engineering crew,S,England,NA,NA,NA,NA,0
+"Senior, Mr. Harry",male,31,engineering crew,S,England,NA,NA,NA,NA,1
+"Sesia, Sig. Giacomo",male,24,restaurant staff,S,England,NA,NA,NA,NA,0
+"Seward, Mr. Wilfred Deable",male,25,victualling crew,S,England,NA,NA,NA,NA,1
+"Shaw, Mr. Henry",male,42,victualling crew,S,England,NA,NA,NA,NA,0
+"Shea, Mr. John Joseph",male,40,victualling crew,B,England,NA,NA,NA,NA,0
+"Shea, Mr. Thomas",male,32,engineering crew,S,England,NA,NA,NA,NA,0
+"Sheath, Mr. Frederick",male,20,engineering crew,S,England,NA,NA,NA,NA,1
+"Shepherd, Mr. Jonathan",male,32,engineering crew,S,England,NA,NA,NA,NA,0
+"Shiers, Mr. Alfred Charles",male,25,engineering crew,S,England,NA,NA,NA,NA,1
+"Shillabeer, Mr. Charles Frederick",male,19,engineering crew,S,England,NA,NA,NA,NA,0
+"Siebert, Mr. Sidney Conrad",male,29,victualling crew,B,England,NA,NA,NA,NA,0
+"Simmons, Mr. Andrew George James",male,31,victualling crew,S,England,NA,NA,NA,NA,1
+"Simmons, Mr. Frederick Charles",male,24,victualling crew,S,England,NA,NA,NA,NA,0
+"Simmons, Mr. William Simon C.",male,37,victualling crew,S,England,NA,NA,NA,NA,0
+"Simpson, Dr. John Edward",male,37,deck crew,S,Northern Ireland,NA,NA,NA,NA,0
+"Sivier, Mr. William",male,23,victualling crew,S,England,NA,NA,NA,NA,0
+"Skeates, Mr. William",male,23,engineering crew,S,England,NA,NA,NA,NA,0
+"Skinner, Mr. Edward",male,41,victualling crew,B,England,NA,NA,NA,NA,0
+"Slight, Mr. Harry John",male,33,victualling crew,S,England,NA,NA,NA,NA,0
+"Slight, Mr. William Henry James",male,36,victualling crew,B,England,NA,NA,NA,NA,0
+"Sloan, Miss. Mary",female,28,victualling crew,S,Northern Ireland,NA,NA,NA,NA,1
+"Sloan, Mr. Peter",male,31,engineering crew,B,England,NA,NA,NA,NA,0
+"Slocombe, Mrs. Maude Louise",female,30,victualling crew,S,England,NA,NA,NA,NA,1
+"Small, Mr. William",male,40,engineering crew,S,England,NA,NA,NA,NA,0
+"Smillie, Mr. John",male,29,victualling crew,B,Scotland,NA,NA,NA,NA,0
+"Smith, Captain. Edward John",male,62,deck crew,S,England,NA,NA,NA,NA,0
+"Smither, Mr. Harry James",male,22,engineering crew,S,England,NA,NA,NA,NA,0
+"Smith, Miss. Katherine Elizabeth",female,45,victualling crew,S,England,NA,NA,NA,NA,1
+"Smith, Mr. Charles Edwin",male,40,victualling crew,S,England,NA,NA,NA,NA,0
+"Smith, Mr. Charles Henry James",male,38,victualling crew,S,England,NA,NA,NA,NA,0
+"Smith, Mr. Emest George",male,27,engineering crew,S,England,NA,NA,NA,NA,0
+"Smith, Mr. F.",male,20,victualling crew,B,England,NA,NA,NA,NA,0
+"Smith, Mr. James Muil",male,39,engineering crew,B,Scotland,NA,NA,NA,NA,0
+"Smith, Mr. James William",male,24,victualling crew,S,England,NA,NA,NA,NA,0
+"Smith, Mr. John Richard Jago",male,35,victualling crew,S,NA,NA,NA,NA,NA,0
+"Smith, Mr. Reginald George",male,33,victualling crew,S,England,NA,NA,NA,NA,0
+"Smith, Mr. William",male,26,deck crew,S,England,NA,NA,NA,NA,0
+"Snape, Mrs. Lucy Violet",female,22,victualling crew,S,England,NA,NA,NA,NA,0
+"Snellgrove, Mr. George",male,41,engineering crew,S,England,NA,NA,NA,NA,0
+"Snooks, Mr. W.",male,26,engineering crew,S,England,NA,NA,NA,NA,0
+"Snow, Mr. Eustace Philip",male,21,engineering crew,S,England,NA,NA,NA,NA,1
+"Sparkman, Mr. Henry William",male,36,engineering crew,S,England,NA,NA,NA,NA,1
+"Stagg, Mr. John Henry",male,38,victualling crew,S,England,NA,NA,NA,NA,0
+"Stanbrook, Mr. Augustus George",male,31,engineering crew,S,England,NA,NA,NA,NA,0
+"Stap, Miss. Sarah Agnes",female,47,victualling crew,S,England,NA,NA,NA,NA,1
+"Stebbings, Mr. Sydney Frederick",male,36,victualling crew,B,England,NA,NA,NA,NA,0
+"Steel, Mr. Robert Edward",male,30,engineering crew,S,NA,NA,NA,NA,NA,0
+"Stewart, Mr. John",male,28,victualling crew,B,Scotland,NA,NA,NA,NA,1
+"Stocker, Mr. Henry Dorey",male,20,engineering crew,S,England,NA,NA,NA,NA,0
+"Stone, Mr. Edmund",male,33,victualling crew,S,England,NA,NA,NA,NA,0
+"Stone, Mr. Edward Thomas",male,29,victualling crew,S,England,NA,NA,NA,NA,0
+"Street, Mr. Thomas Albert",male,25,engineering crew,S,England,NA,NA,NA,NA,1
+"Stroud, Mr. Edward Alfred Orlando",male,19,victualling crew,S,England,NA,NA,NA,NA,0
+"Stroud, Mr. Harry John",male,35,victualling crew,S,England,NA,NA,NA,NA,0
+"Strugnell, Mr. John Herbert",male,34,victualling crew,B,England,NA,NA,NA,NA,0
+"Stubbings, Mr. Harry Robert",male,31,victualling crew,B,England,NA,NA,NA,NA,0
+"Stubbs, Mr. James Henry",male,28,engineering crew,S,England,NA,NA,NA,NA,0
+"Sullivan, Mr. S.",male,25,engineering crew,S,England,NA,NA,NA,NA,0
+"Swan, Mr. William",male,48,victualling crew,B,Northern Ireland,NA,NA,NA,NA,0
+"Symonds, Mr. John Crane",male,45,victualling crew,B,England,NA,NA,NA,NA,0
+"Symons, Mr. George Thomas Macdonald",male,24,deck crew,S,England,NA,NA,NA,NA,1
+"Talbot, Mr. George Frederick Charles",male,20,victualling crew,S,England,NA,NA,NA,NA,0
+"Tamlyn, Mr. Frederick",male,24,deck crew,S,England,NA,NA,NA,NA,0
+"Taylor, Mr. Bernard Cuthbert",male,22,victualling crew,S,England,NA,NA,NA,NA,0
+"Taylor, Mr. Charles William Frederick",male,40,deck crew,S,England,NA,NA,NA,NA,0
+"Taylor, Mr. George",male,24,engineering crew,S,England,NA,NA,NA,NA,1
+"Taylor, Mr. J.",male,42,engineering crew,S,England,NA,NA,NA,NA,0
+"Taylor, Mr. John Henry",male,49,engineering crew,S,England,NA,NA,NA,NA,0
+"Taylor, Mr. Leonard",male,19,victualling crew,S,England,NA,NA,NA,NA,0
+"Taylor, Mr. William Henry",male,28,engineering crew,S,England,NA,NA,NA,NA,1
+"Taylor, Mr. William John",male,32,victualling crew,S,England,NA,NA,NA,NA,0
+"Terrell, Mr. Bertram",male,19,deck crew,S,England,NA,NA,NA,NA,0
+"Terrell, Mr. Frank",male,27,victualling crew,S,England,NA,NA,NA,NA,1
+"Testoni, Sig. Ercole",male,23,restaurant staff,S,England,NA,NA,NA,NA,0
+"Teuton, Mr. Thomas Moore",male,35,victualling crew,S,England,NA,NA,NA,NA,0
+"Thaler, Mr. Montague Donald",male,17,victualling crew,S,England,NA,NA,NA,NA,0
+"Theissinger, Mr. Alfred",male,46,victualling crew,S,England,NA,NA,NA,NA,1
+"Thomas, Mr. Albert Charles",male,23,victualling crew,S,England,NA,NA,NA,NA,1
+"Thomas, Mr. Benjamin James",male,30,victualling crew,B,England,NA,NA,NA,NA,1
+"Thomas, Mr. Joseph Wakefield",male,24,engineering crew,S,England,NA,NA,NA,NA,0
+"Thompson, Mr. Herbert Henry",male,25,victualling crew,B,England,NA,NA,NA,NA,0
+"Thompson, Mr. John William",male,35,engineering crew,S,England,NA,NA,NA,NA,1
+"Thorley, Mr. William",male,39,victualling crew,S,England,NA,NA,NA,NA,0
+"Thorn, Mr. Harry",male,25,victualling crew,S,England,NA,NA,NA,NA,0
+"Threlfall, Mr. Thomas",male,44,engineering crew,S,England,NA,NA,NA,NA,1
+"Thresher, Mr. George Terrill",male,25,engineering crew,S,England,NA,NA,NA,NA,1
+"Tietz, Sig. Carlo/Karl",male,27,restaurant staff,S,England,NA,NA,NA,NA,0
+"Tizard, Mr. Arthur Leopold",male,31,engineering crew,S,England,NA,NA,NA,NA,0
+"Toms, Mr. Fred",male,29,victualling crew,B,England,NA,NA,NA,NA,1
+"Topp, Mr. Thomas",male,28,victualling crew,S,England,NA,NA,NA,NA,0
+"Toshack, Mr. James Adamson",male,30,victualling crew,S,Scotland,NA,NA,NA,NA,0
+"Tozer, Mr. James",male,32,engineering crew,S,England,NA,NA,NA,NA,0
+"Triggs, Mr. Reuben Robert",male,39,engineering crew,S,England,NA,NA,NA,NA,1
+"Turley, Mr. Richard",male,37,engineering crew,B,Ireland,NA,NA,NA,NA,0
+"Turner, Mr. George Frederick",male,42,victualling crew,S,England,NA,NA,NA,NA,0
+"Turner, Mr. Leopold Olerenshaw",male,28,victualling crew,B,England,NA,NA,NA,NA,0
+"Turvey, Mr. Charles Thomas",male,17,restaurant staff,S,England,NA,NA,NA,NA,0
+"Urbini, Sig. Roberto",male,20,restaurant staff,S,Italy,NA,NA,NA,NA,0
+"Valvassori, Sig. Ettore Luigi",male,35,restaurant staff,S,England,NA,NA,NA,NA,0
+"van der Brugge, Mr. Wessel Adrianus",male,38,engineering crew,S,Netherlands,NA,NA,NA,NA,0
+"Veal, Mr. Arthur",male,36,engineering crew,S,England,NA,NA,NA,NA,0
+"Veal, Mr. Thomas Henry Edom",male,38,victualling crew,S,England,NA,NA,NA,NA,0
+"Vear, Mr. Henry",male,33,engineering crew,S,England,NA,NA,NA,NA,0
+"Vear, Mr. William",male,34,engineering crew,S,England,NA,NA,NA,NA,0
+"Vicat, Sig. Alphonse Jean Eugene",male,21,restaurant staff,S,England,NA,NA,NA,NA,0
+"Vigott, Mr. Philip Francis",male,32,deck crew,S,Channel Islands,NA,NA,NA,NA,1
+"Villvarlange, Mr. Pierre Léon Gabriel",male,19,restaurant staff,S,England,NA,NA,NA,NA,0
+"Vine, Mr. Herbert Thomas Gordon",male,18,restaurant staff,S,England,NA,NA,NA,NA,0
+"Vioni, Sig. Roberto",male,25,restaurant staff,S,Italy,NA,NA,NA,NA,0
+"Voegelin-Dubach, Sig. Johannes",male,35,restaurant staff,S,England,NA,NA,NA,NA,0
+"Wake, Mr. Percy",male,37,victualling crew,S,England,NA,NA,NA,NA,0
+"Wallis, Mrs. Catherine Jane",female,36,victualling crew,S,England,NA,NA,NA,NA,0
+"Walpole, Mr. James",male,48,victualling crew,B,England,NA,NA,NA,NA,0
+"Walsh, Miss. Catherine",female,32,victualling crew,S,Ireland,NA,NA,NA,NA,0
+"Ward, Mr. Arthur",male,23,engineering crew,B,England,NA,NA,NA,NA,0
+"Ward, Mr. Edward",male,34,victualling crew,B,England,NA,NA,NA,NA,0
+"Ward, Mr. James William",male,31,engineering crew,S,England,NA,NA,NA,NA,0
+"Ward, Mr. Percy Thomas",male,40,victualling crew,B,England,NA,NA,NA,NA,0
+"Ward, Mr. William",male,37,victualling crew,S,England,NA,NA,NA,NA,1
+"Wardner, Mr. Fred Albert",male,40,engineering crew,S,England,NA,NA,NA,NA,0
+"Wareham, Mr. Robert Arthur",male,37,victualling crew,B,England,NA,NA,NA,NA,0
+"Warwick, Mr. Tom",male,26,victualling crew,S,England,NA,NA,NA,NA,0
+"Wateridge, Mr. Edward Lewis",male,26,engineering crew,S,England,NA,NA,NA,NA,0
+"Watson, Mr. William Albert",male,15,victualling crew,S,England,NA,NA,NA,NA,0
+"Watson, Mr. Willim",male,27,engineering crew,S,England,NA,NA,NA,NA,0
+"Weatherston, Mr. Thomas Herbert",male,25,victualling crew,B,England,NA,NA,NA,NA,0
+"Webber, Mr. Francis Albert",male,31,engineering crew,S,England,NA,NA,NA,NA,0
+"Webb, Mr. Brook Holding",male,50,victualling crew,B,England,NA,NA,NA,NA,0
+"Webb, Mr. Samuel Francis",male,28,engineering crew,S,England,NA,NA,NA,NA,0
+"Weikman, Mr. Augustus Henry",male,52,victualling crew,S,United States,NA,NA,NA,NA,1
+"Welch, Mr. William Harold",male,21,victualling crew,S,England,NA,NA,NA,NA,0
+"Weller, Mr. William Clifford",male,30,deck crew,B,England,NA,NA,NA,NA,1
+"Wheat, Mr. Joseph Thomas",male,30,victualling crew,B,England,NA,NA,NA,NA,1
+"Wheelton, Mr. Edneser Edward",male,29,victualling crew,B,England,NA,NA,NA,NA,1
+"Whiteley, Mr. Thomas Arthur",male,18,victualling crew,S,England,NA,NA,NA,NA,1
+"White, Mr. Albert",male,21,engineering crew,S,England,NA,NA,NA,NA,0
+"White, Mr. Alfred",male,32,engineering crew,S,England,NA,NA,NA,NA,1
+"White, Mr. Arthur",male,37,victualling crew,S,England,NA,NA,NA,NA,0
+"White, Mr. Edward Joseph",male,27,victualling crew,S,England,NA,NA,NA,NA,0
+"White, Mr. Frank Leonard",male,28,engineering crew,S,England,NA,NA,NA,NA,0
+"White, Mr. Leonard Lisle Oliver",male,32,victualling crew,B,Australia,NA,NA,NA,NA,0
+"White, Mr. William George",male,23,engineering crew,S,England,NA,NA,NA,NA,1
+"Whitford, Mr. Alfred Henry",male,39,victualling crew,S,England,NA,NA,NA,NA,0
+"Widgery, Mr. Isaac George",male,37,victualling crew,S,England,NA,NA,NA,NA,1
+"Wilde, Mr. Henry Tingle",male,39,deck crew,S,England,NA,NA,NA,NA,0
+"Williams, Mr. Arthur John",male,42,victualling crew,S,England,NA,NA,NA,NA,0
+"Williams, Mr. Samuel Solomon",male,26,engineering crew,S,England,NA,NA,NA,NA,0
+"Williams, Mr. Walter John",male,28,victualling crew,S,England,NA,NA,NA,NA,1
+"Williamson, Mr. James Bertram",male,35,victualling crew,S,Ireland,NA,NA,NA,NA,0
+"Willis, Mr. William",male,59,victualling crew,S,England,NA,NA,NA,NA,0
+"Willsher, Mr. William Aubrey",male,34,victualling crew,S,England,NA,NA,NA,NA,0
+"Wilson, Mr. Herbert 'Bertie'",male,28,engineering crew,B,England,NA,NA,NA,NA,0
+"Wilton, Mr. William Edward",male,53,engineering crew,S,England,NA,NA,NA,NA,0
+"Windebank, Mr. Alfred Edgar",male,38,victualling crew,S,England,NA,NA,NA,NA,1
+"Winser, Mr. Rowland",male,36,victualling crew,S,England,NA,NA,NA,NA,0
+"Witcher, Mr. Albert Ernest",male,39,engineering crew,S,England,NA,NA,NA,NA,0
+"Witter, Mr. James William Cheetham",male,31,victualling crew,S,England,NA,NA,NA,NA,1
+"Wittman, Mr. Henry",male,39,victualling crew,S,Austria,NA,NA,NA,NA,0
+"Witt, Mr. Henry Dennis",male,37,engineering crew,S,England,NA,NA,NA,NA,0
+"Witts, Mr. William Francis",male,35,engineering crew,S,England,NA,NA,NA,NA,0
+"Woodford, Mr. Frederick Ernest",male,40,engineering crew,S,England,NA,NA,NA,NA,0
+"Wood, Mr. Henry",male,31,engineering crew,S,England,NA,NA,NA,NA,0
+"Wood, Mr. James Thomas",male,49,victualling crew,S,England,NA,NA,NA,NA,0
+"Woody, Mr. Oscar Scott",male,41,victualling crew,S,United States,NA,NA,NA,NA,0
+"Wormald, Mr. Henry Frederick Charles",male,45,victualling crew,S,England,NA,NA,NA,NA,0
+"Worthman, Mr. William Henry",male,37,engineering crew,S,England,NA,NA,NA,NA,0
+"Wrapson, Mr. Frederick Bernard",male,19,victualling crew,B,England,NA,NA,NA,NA,0
+"Wright, Mr. Frederick",male,24,victualling crew,S,England,NA,NA,NA,NA,0
+"Wright, Mr. William",male,40,victualling crew,S,England,NA,NA,NA,NA,1
+"Wyeth, Mr. James Robert",male,26,engineering crew,S,England,NA,NA,NA,NA,0
+"Wynn, Mr. Walter",male,41,deck crew,B,England,NA,NA,NA,NA,1
+"Yearsley, Mr. Harry",male,40,victualling crew,S,England,NA,NA,NA,NA,1
+"Young, Mr. Francis James",male,32,engineering crew,S,England,NA,NA,NA,NA,0
+"Zanetti, Sig. Minio",male,20,restaurant staff,S,England,NA,NA,NA,NA,0
+"Zarracchi, Sig. L.",male,26,restaurant staff,S,England,NA,NA,NA,NA,0
