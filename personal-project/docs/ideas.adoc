@@ -1,13 +1,11 @@
-# Personal Project : Ideas
+# Personal Project - Ideas
 
 For the personal project we have to include AI, this can be done in various ways.
 What would be the most suitable idea is difficult to decide right away.
 Therefor, some ideas are brainstormed and listed.
 Allowing for a clear comparison in possibilties and feasabilties.
 
-## Ideas
-
-### AI-Assisted Cinematic Tribute Editing Pipeline
+## AI-Assisted Cinematic Tribute Editing Pipeline
 
 This project extends a custom wrapper around yt-dlp into an AI-powered preprocessing tool for movie and TV tribute editing.
 The system will automatically download selected videos and extract audio for analysis.
@@ -20,7 +18,7 @@ All processing will run locally to ensure speed and privacy.
 The goal is to reduce manual scrubbing time while enhancing creative workflow.
 This project demonstrates applied AI, NLP, DSP, and automated media pipeline design.
 
-### Local AI-Powered Semantic File Finder
+## Local AI-Powered Semantic File Finder
 
 This project creates a lightweight local AI tool that allows users to search their documents by meaning instead of filename.
 It will scan a user-selected folder and extract text from PDFs, Word documents, Markdown, and TXT files.
@@ -33,7 +31,7 @@ The entire pipeline runs locally, ensuring privacy and low latency.
 The goal is a fully functional, AI-assisted document search tool that can retrieve hard-to-find content quickly.
 This project demonstrates applied AI, NLP, vector search, and lightweight system design.
 
-### AI-Powered Smart Desk Plant Monitor with Embedded Dashboard
+## AI-Powered Smart Desk Plant Monitor with Embedded Dashboard
 
 This project develops an embedded system for monitoring multiple desk plants in real time.
 Each plant has sensors for soil moisture, light, temperature, and humidity, reporting data to a central microcontroller.
