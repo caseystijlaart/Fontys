@@ -1,0 +1,47 @@
+# Personal Project : Ideas
+
+For the personal project we have to include AI, this can be done in various ways.
+What would be the most suitable idea is difficult to decide right away.
+Therefor, some ideas are brainstormed and listed.
+Allowing for a clear comparison in possibilties and feasabilties.
+
+## Ideas
+
+### AI-Assisted Cinematic Tribute Editing Pipeline
+
+This project extends a custom wrapper around yt-dlp into an AI-powered preprocessing tool for movie and TV tribute editing.
+The system will automatically download selected videos and extract audio for analysis.
+Using speech-to-text and sentiment analysis, it will detect emotionally intense dialogue segments.
+Audio signal processing (energy, spectral flux, tempo change) will identify dramatic peaks and transitions.
+A scoring engine will rank scenes based on emotional and cinematic weight.
+The tool will automatically generate timestamped highlights and export ready-to-edit clips.
+It will also extract impactful quotes for subtitle overlays.
+All processing will run locally to ensure speed and privacy.
+The goal is to reduce manual scrubbing time while enhancing creative workflow.
+This project demonstrates applied AI, NLP, DSP, and automated media pipeline design.
+
+### Local AI-Powered Semantic File Finder
+
+This project creates a lightweight local AI tool that allows users to search their documents by meaning instead of filename.
+It will scan a user-selected folder and extract text from PDFs, Word documents, Markdown, and TXT files.
+Documents will be split into chunks (paragraph-level) and converted into embeddings using a small pre-trained transformer model.
+All embeddings are stored in a local vector database for fast retrieval.
+Users can type natural language queries to find relevant files or passages.
+The system will rank results using semantic similarity and optionally basic keyword matching.
+A simple CLI interface will display the file name, chunk snippet, and relevance score.
+The entire pipeline runs locally, ensuring privacy and low latency.
+The goal is a fully functional, AI-assisted document search tool that can retrieve hard-to-find content quickly.
+This project demonstrates applied AI, NLP, vector search, and lightweight system design.
+
+### AI-Powered Smart Desk Plant Monitor with Embedded Dashboard
+
+This project develops an embedded system for monitoring multiple desk plants in real time.
+Each plant has sensors for soil moisture, light, temperature, and humidity, reporting data to a central microcontroller.
+A local database stores sensor readings, plant type, and historical trends.
+A touchscreen dashboard provides an overview of all plants, with color-coded health indicators.
+Selecting a plant shows detailed status, sensor trends, and AI-generated care suggestions.
+A TinyML model predicts plant stress and watering/light needs based on sensor data patterns.
+Optional camera input allows AI classification of plant type to tailor recommendations.
+The system provides actionable advice, alerts, and trends entirely locally without cloud dependence.
+This combines embedded system design, database management, TinyML inference, and interactive display integration.
+The goal is a privacy-focused, AI-assisted desk plant management system that is demonstrable, practical, and engaging.
