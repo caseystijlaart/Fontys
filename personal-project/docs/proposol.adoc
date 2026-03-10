@@ -1,0 +1,141 @@
+# Personal Project Ideas : Minor AI for Society
+:title-page: true
+:author: Casey Stijlaart
+:docdatetime: datetime (ISO)
+:doctype: book
+:toc:
+:toclevels: 2
+:pdf-page-size: A4
+:pdf-page-layout: portrait
+
+<<<
+
+## Introduction
+For the personal project we have to include AI, which can be done in many different ways. 
+At the beginning of the minor it was difficult to immediately determine which project would be the most suitable and realistic to execute within the available time.
+
+During a feedback meeting with my teacher, Li Li (Fontys University of Applied Sciences), we discussed my current knowledge level and possible directions for a personal AI project. 
+Based on this conversation, I decided that before committing to a specific project idea, it would be beneficial to strengthen my foundational understanding of machine learning.
+
+For this reason, I started the Machine Learning Specialization by Andrew Ng. 
+The goal of following this course is to establish a clearer baseline of what I already understand about AI and machine learning, as well as what skills I still need to develop. 
+By building this foundation first, I will be better able to define a realistic and technically meaningful project later in the minor.
+
+While I have not yet committed to one specific project, I have brainstormed several possible directions. 
+These ideas help explore different applications of AI and allow for comparison in terms of feasibility, technical requirements, and learning potential. 
+As I progress further in the course, I will refine these ideas and determine which one aligns best with my skills and interests.
+
+<<<
+
+## The Ideas
+As of now, I have three main project ideas that I am considering. Each of these projects incorporates AI in a different way and has its own unique focus and challenges.
+After completing the Machine Learning Specialization course, I will continue on working on these ideas, refining them, or maybe even coming up with new ones based on the knowledge I have gained.
+But for now, these three ideas serve as a starting point for exploration and comparison.
+
+### AI-Assisted Cinematic Tribute Editing Pipeline
+This project extends a custom wrapper around `yt-dlp` into an AI-powered preprocessing tool for movie and TV tribute editing.
+
+The system will automatically download selected videos and extract audio for analysis. 
+Using speech-to-text and sentiment analysis, it will detect emotionally intense dialogue segments. 
+Audio signal processing techniques will identify dramatic peaks and transitions.
+
+A scoring engine will rank scenes based on emotional and cinematic weight. 
+The tool will automatically generate timestamped highlights and export ready-to-edit clips. 
+It will also extract impactful quotes that could be used for subtitle overlays.
+
+All processing would run locally to ensure speed and privacy. 
+The main goal is to reduce the amount of manual scrubbing required when creating tribute videos, while also enhancing the creative editing workflow.
+
+This project would demonstrate applied AI techniques including natural language processing, audio signal processing, and automated media pipeline design.
+
+### Local AI-Powered Semantic File Finder
+This project focuses on building a lightweight local AI tool that allows users to search their documents based on meaning instead of filenames.
+
+The system would scan a user-selected folder and extract text from PDFs, Word documents, Markdown files, and TXT files. 
+Documents would be split into smaller chunks (for example paragraph-level) and converted into embeddings using a small pre-trained transformer model.
+
+These embeddings would be stored in a local vector database to enable efficient semantic search. 
+Users could enter natural language queries to find relevant documents or passages.
+
+The system would rank results based on semantic similarity and optionally combine this with keyword matching. 
+A simple command line interface would display the file name, a short snippet of the relevant text, and a relevance score.
+
+The goal is to create a practical AI-assisted document search tool that can quickly retrieve hard-to-find information. 
+This project would demonstrate applications of AI in natural language processing, vector search, and lightweight system design.
+
+### AI-Powered Smart Desk Plant Monitor with Embedded Dashboard
+This project explores the combination of embedded systems and AI by developing a smart desk plant monitoring system.
+
+Each plant would be equipped with sensors that measure soil moisture, light intensity, temperature, and humidity. 
+These sensors would report data to a central microcontroller that stores the readings in a local database.
+
+A small touchscreen dashboard would provide an overview of all monitored plants, displaying color-coded health indicators. 
+Selecting a specific plant would show detailed sensor readings, historical trends, and AI-generated care suggestions.
+
+A TinyML model could be used to predict plant stress or watering needs based on patterns in the sensor data. 
+Optionally, a small camera could allow AI-based plant classification to tailor care recommendations.
+
+All processing would run locally without reliance on cloud services. 
+The goal is to build a demonstrable and practical system that combines embedded hardware, sensor data analysis, and lightweight AI inference.
+
+This project would demonstrate embedded system design, data collection, TinyML inference, and interactive interface development.
+
+## Next Steps
+At this stage, these ideas serve as a starting point for exploration rather than finalized project proposals. 
+As I continue progressing through the Machine Learning Specialization course, I will gain a clearer understanding of which techniques are realistic to implement and which project direction aligns best with my skills and learning goals.
+
+Once a stronger technical baseline is established, I will refine one of these ideas into a concrete project plan with clearly defined scope, tools, and objectives.
+
+<<<
+
+## Defining Technical Baseline & Goals
+The next step in this process is to define a clear technical baseline and set specific goals for the project.
+
+### Directions in AI and Machine Learning
+In general, it could be said that there are seven major directions in AI and Machine Learning that I could explore for this project.
+
+1. Classical Machine Learning : algorithm that learn patterns from structured date.
+2. Deep Learning : neural networks that can learn from unstructured data like images, text, and audio.
+3. Natural Language Processing (NLP) : techniques for understanding and generating human language.
+4. Computer Vision : techniques for analyzing and interpreting visual data.
+5. Reinforcement Learning : learning trough trial and error by interacting with an environment.
+6. Edge AI and TinyML : running AI models on low-power devices without cloud connectivity.
+7. AI systems / MLOps : designing and managing machine learning models.
+
+### Core Knowledge Areas in AI
+There are multiple core areas of knowdlege, which are important when it comes to AI.
+These domains are math, programming, machine learning concepts, data skills, and model skills.
+
+1. Math : linear algebra, calculus, probability, and statistics.
+2. Programming : proficiency in languages like Python, and familiarity with AI libraries such as TensorFlow or PyTorch.
+3. Machine Learning Concepts : understanding of supervised, unsupervised, and reinforcement learning, as well as model evaluation and selection.
+4. Data Skills : ability to preprocess, clean, and analyze data effectively.
+5. Model Skills : experience with training, fine-tuning, and deploying machine learning models.
+
+Generally speaking, I would say that I have a basic understanding of all of these areas, but there is still a lot to learn and improve on.
+Coming from ICT & Technology, I have a strong programming background and some experience with machine learning concepts.
+In previous projects there has been made use of computer vision, object detection, for example.
+Besides that, with the help of my first minor, embedded signals, I have experience with digital signal processing.
+Yet while I have a good foundation, I recognize that there are gaps in my knowledge, particularly in areas like deep learning and reinforcement learning.
+Simply as I previusly did not get the chance to dive deeper into these topics.
+
+## Directions for the Project
+Based upon the ideas I brainstormed prior to defining my technical baseline and directions, I can already see that the first two ideas (AI-Assisted Cinematic Tribute Editing Pipeline and Local AI-Powered Semantic File Finder) would primarily involve natural language processing and deep learning techniques.
+The third idea (AI-Powered Smart Desk Plant Monitor) would involve a combination of embedded systems, sensor data analysis, and TinyML.
+As I would like to continue my focus on AI and embedded systems, the third idea seems to be the most aligned with my interests and goals for this project.
+It combines Edge AI and TinyML with practical applications in a way that is both demonstrable and engaging.
+The given project could be adapated in such a way it could become a general health monitoring platform, which also does align with the fact that in the future I would love to develop something that people with fore example disabilties could profit form, but for the demonstration purposes, I think it would be more interesting to focus on a specific use case, such as desk plants.
+
+## Concrete Project Proposal
+The project will involve designing and building an embedded system that monitors the health of desk plants using various sensors.
+The system will collect data on soil moisture, light intensity, temperature, and humidity, and store this data in a local database.
+A dashboard will provide an overview of all monitored plants, displaying health indicators and detailed sensor readings.
+A TinyML model will be developed to analyze the sensor data and provide care suggestions based on patterns that indicate plant stress or watering needs.
+Optionally, a camera could be integrated to allow for AI-based plant classification, which would further tailor care recommendations.
+All processing will run locally to ensure privacy and low latency, making it a practical tool for desk plant management.
+This project will demonstrate skills in embedded system design, sensor data analysis, TinyML inference, and interactive interface development, while also providing a tangible and useful application of AI technology.
+
+## Conclusion
+In conclusion, the process of brainstorming and defining project ideas has been valuable in exploring different applications of AI and understanding the technical requirements for each.
+And choosing for the AI-Powered Smart Desk Plant Monitor with Embedded Dashboard as the most promising direction as it ties together my interests in AI and embedded systems while also offering a practical and engaging project scope.
+It is good to mention, while developing the project, I will continue with the machine learning specialization course, as I want to further strengthen my technical baseline for AI and ensure that I have the necessary skills to successfully execute the project.
