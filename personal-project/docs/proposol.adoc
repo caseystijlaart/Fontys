@@ -129,7 +129,7 @@ The given project could be adapated in such a way it could become a general heal
 ## Concrete Project Proposal
 The project will involve designing and building an embedded system that monitors the health of desk plants using various sensors.
 The system will collect data on soil moisture, light intensity, temperature, and humidity, and store this data in a local database.
-A small touchscreen dashboard will provide an overview of all monitored plants, displaying health indicators and detailed sensor readings.
+A dashboard will provide an overview of all monitored plants, displaying health indicators and detailed sensor readings.
 A TinyML model will be developed to analyze the sensor data and provide care suggestions based on patterns that indicate plant stress or watering needs.
 Optionally, a camera could be integrated to allow for AI-based plant classification, which would further tailor care recommendations.
 All processing will run locally to ensure privacy and low latency, making it a practical tool for desk plant management.
