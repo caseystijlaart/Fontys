@@ -1,0 +1,25 @@
+# Research Questions
+
+To successfully deliver the project, several key aspects must be explored.  
+Each of these aspects plays an important role in determining the functioning and usability of the system.  
+To investigate these areas thoroughly, research questions have been formulated, each addressing a specific focus.
+
+## Main Question
+
+How can a smart desk plant monitoring system use AI to provide accurate, user-friendly care recommendations while addressing ethical, legal, and societal considerations?
+
+## Sub-questions
+
+### Technical / AI-related  
+- Which type of AI is most suitable for monitoring plant health and generating care recommendations?  
+- Are there existing models that can be used or adapted for this purpose, or is it necessary to develop a custom model?  
+- Which sensors and data collection methods provide the most reliable and relevant input for real-time plant monitoring?  
+- How can the system be implemented effectively in a small embedded setup?  
+
+### User / Human Interaction  
+- How can the system present care recommendations in a clear and actionable way to users?  
+- Which features improve usability and engagement for desk plant monitoring?
+
+### Ethical and Legal Considerations  
+- How can user data be collected, stored, and processed while maintaining privacy and security?  
+- What ethical considerations arise from automating plant care, and how should they influence system design?
