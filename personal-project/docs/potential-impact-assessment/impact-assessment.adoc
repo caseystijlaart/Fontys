@@ -9,6 +9,17 @@
 :pdf-page-layout: portrait
 
 <<<
+## Document History
+
+.Document History
+|===
+| Version | Date       |Status | Author        | Description  
+
+| 1.0     | 09-03-2025 | First Version  | Casey Stijlaart | Initial version
+| 1.1     | 12-03-2025 | Finished First Version | Casey Stijlaart | Added mitigation strategies and sustainability considerations
+|===
+
+<<<
 
 ## Introduction
 This assessment evaluates the potential impacts of the AI-powered Smart Desk Plant Monitoring system.
@@ -51,10 +62,8 @@ Additionally, the hardware required for the system, such as sensors and microcon
 
 ## Privacy, Security, and Ethics
 The project is designed with privacy in mind.
-All data processing takes place locally on the device, and no personal data is transmitted to external servers.
-This reduces privacy risks and aligns with privacy-by-design principles.
-
-If a camera module is later added for plant classification, care should be taken to ensure that the system does not capture identifiable personal information or images of people.
+All data processing takes place locally on the device, and no personal data is transmitted to external servers. 
+If any data is send to external services, for example for the dashboard, it should be anonymized and encrypted to protect user privacy.
 
 From an ethical perspective, the system should present recommendations as suggestions rather than authoritative decisions, ensuring that the user remains in control.
 
@@ -67,7 +76,7 @@ Designing the system with durable components and low power consumption can help 
 
 ## Mitigation Strategies
 Several strategies can help reduce potential risks.
-First, the system should clearly communicate that its recommendations are suggestions rather than guaranteed solutions.
+First, the system should clearly communicate that the given recommendations are suggestions rather than definitive instructions, and encourage users to use their judgment in plant care decisions.
 Second, calibration and validation of sensor data can help improve reliability.
 
 In addition, designing the system to run locally and minimize unnecessary data collection helps protect user privacy.
