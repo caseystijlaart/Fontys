@@ -1,0 +1,7 @@
+= Timeline
+
+The project's overall timeline, depicted in <<Project Timeline>>, offers a high-level overview of project phases and significant events.
+
+[.figure]
+.Project Timeline
+image::../images/project-timeline.png[]

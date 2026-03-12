@@ -21,9 +21,9 @@ include::document-history.adoc[]
 
 include::project-assignment/project-assignment.adoc[]
 
-// <<<
+<<<
 
-// include::approach-planning/approach-planning.adoc[]
+include::approach-planning/approach-planning.adoc[]
 
 // <<<
 

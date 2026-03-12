@@ -1,4 +1,4 @@
-# Finished Product
+= Finished Product
 
 The finished product of this project will be a fully functional smart desk plant monitoring system that combines AI software and embedded hardware.  
 

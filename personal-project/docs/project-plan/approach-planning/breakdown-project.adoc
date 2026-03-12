@@ -1,0 +1,12 @@
+= Breakdown Project
+
+The project follows an Agile workflow, enabling iterative development and continuous improvement. The main phases are:
+
+1. **Requirements & Concept** : Define project goals, functional and non-functional requirements, and create an initial backlog of tasks.  
+2. **System Design** : Plan the overall architecture, including hardware-software interactions, modules, and interfaces.  
+3. **Sprint Planning** : Select tasks from the backlog for each sprint and break them into actionable development items.  
+4. **Implementation** : Develop firmware and software modules incrementally, integrating with hardware.  
+5. **Testing & Integration** : Perform unit tests, integration tests, and hardware-in-the-loop testing to ensure correctness and reliability.  
+6. **Review & Retrospective** : Demonstrate progress, gather feedback, and reflect on improvements for the next sprint.
+
+This iterative approach ensures flexibility, early detection of issues, possibilties for adaptions based upon feedback and continuous delivery of working system increments.

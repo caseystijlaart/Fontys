@@ -1,0 +1,54 @@
+@startuml
+[plantuml, gantt-overall, png]
+----
+
+.Project Timeline
+
+@startgantt
+printscale weekly
+saturday are closed
+sunday are closed
+
+2026-03-04 are closed
+2026-03-04 is colored LightBlue
+2026-06-04 are closed
+2026-06-04 is colored LightBlue
+2026-05-05 are closed
+2026-05-05 is colored LightBlue
+2026-05-14 are closed
+2026-05-14 is colored LightBlue
+2026-05-15 are closed
+2026-05-15 is colored LightBlue
+2026-05-25 are closed
+2026-05-25 is colored LightBlue
+
+project starts 2026-02-09
+
+[Sprint 0] starts 2026-02-09
+[Carnaval holiday] starts 2026-02-16
+[Carnaval holiday] ends 2026-02-22
+[Carnaval holiday] is colored in Blue
+[Sprint 0] ends 2026-03-01
+
+[Sprint 1] starts 2026-03-02
+[Sprint 1] ends 2026-03-15
+
+[Sprint 2] starts 2026-03-16
+[Sprint 2] ends 2026-04-12
+
+[Sprint 3] starts 2026-04-13
+[May holiday] starts 2026-04-27
+[May holiday] ends 2026-05-02
+[May holiday] is colored in Blue
+[Sprint 3] ends 2026-05-24
+
+[Sprint 4] starts 2026-05-25
+[Sprint 4] ends 2026-06-21
+
+[Evaluation] starts 2026-06-21
+[Evaluation] ends 2026-06-21
+@endgantt
+
+
+----
+@enduml

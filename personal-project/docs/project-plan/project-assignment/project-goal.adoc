@@ -1,4 +1,4 @@
-# Project Goal
+= Project Goal
 
 The goal of this project is to gain practical experience with integrating AI into a practical system.  
 To support this goal, a smart desk plant monitoring system will be developed that provides real-time insights and care recommendations for indoor plants.

@@ -1,4 +1,4 @@
-# Research Methods
+= Research Methods
 
 In this project, the DOT-framework is used as primary research methodology. 
 The DOT framework is a systematic approach that focusses on various research strategies to build system.
