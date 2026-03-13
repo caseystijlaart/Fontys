@@ -1,0 +1,5 @@
+= Transparency
+The system communicates plant recommendations as suggestions, not authoritative commands.
+Limitations and operational principles are clearly documented in the dashboard.
+
+**Improvements:** Add FAQs, visual explanations of AI reasoning, and feedback channels for users to challenge outputs.

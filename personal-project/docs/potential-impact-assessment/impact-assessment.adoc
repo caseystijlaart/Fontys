@@ -1,4 +1,6 @@
-# Potential Impact Assessment: Minor AI for Society
+= Potential Impact Assesment  : Minor AI for Society
+:numbered:
+:imagesdir: images
 :title-page: true
 :author: Casey Stijlaart
 :docdatetime: datetime (ISO)
@@ -7,82 +9,29 @@
 :toclevels: 2
 :pdf-page-size: A4
 :pdf-page-layout: portrait
+:xrefstyle: short
+:pdf-theme: default
+:pdf-fontsize: 11
 
+:leveloffset:  +1
 <<<
-## Document History
 
-.Document History
-|===
-| Version | Date       |Status | Author        | Description  
-
-| 1.0     | 09-03-2025 | First Version  | Casey Stijlaart | Initial version
-| 1.1     | 12-03-2025 | Finished First Version | Casey Stijlaart | Added mitigation strategies and sustainability considerations
-|===
+include::document-history.adoc[]
 
 <<<
 
-## Introduction
-This assessment evaluates the potential impacts of the AI-powered Smart Desk Plant Monitoring system.
-It considers the benefits, risks, and broader implications of the project for users, society, and the environment.
-The goal is to critically reflect on how the system could affect stakeholders, ensure responsible use of AI, and identify strategies to mitigate potential negative effects.
-
-## Project Overview
-The proposed project is an AI-powered smart desk plant monitoring system that uses sensors and a TinyML model to monitor plant health.
-The system collects environmental data such as soil moisture, light intensity, temperature, and humidity.
-Based on patterns in this data, the AI model provides recommendations to improve plant care.
-A local dashboard allows users to view plant health indicators and historical trends.
-The system is designed to run locally on an embedded device to ensure low latency and protect user privacy.
-
-## Stakeholders
-The primary stakeholders of this system are individuals who keep plants at home or in office environments and want support in maintaining healthy plants.
-Secondary stakeholders may include hobby gardeners, technology enthusiasts, or educators who are interested in experimenting with AI-powered monitoring systems.
-
-Indirect stakeholders could include individuals who benefit from improved environmental awareness or organizations exploring similar monitoring technologies for other applications such as indoor environmental monitoring.
+include::purpose-context/purpose-context.adoc[]
 
 <<<
 
-## Positive Impact
-The project can have several positive impacts.
-First, it can help users better understand the environmental conditions that affect plant health, which may lead to improved plant care and reduced plant loss.
-This may also encourage users to develop a greater awareness of environmental factors such as light and humidity.
+include::societal-impact/societal-impact.adoc[]
 
-Second, the system demonstrates how AI can be applied in a practical and accessible way using embedded systems and TinyML.
-This can contribute to educational value by showcasing how AI can be implemented on small devices without requiring cloud infrastructure.
+<<<
 
-Finally, because the system processes data locally, it promotes privacy-friendly AI solutions that reduce dependence on external servers.
+include::future-scenarios/future-scenarios.adoc[]
 
-## Risks and Negative Impacts
-Despite its benefits, the system may also present potential risks.
-Sensor inaccuracies or limitations in the AI model could lead to incorrect recommendations, such as suggesting watering when it is not necessary.
-If users rely too heavily on the system, this could negatively affect plant care.
+<<<
 
-Another potential risk is that users may misunderstand the AI suggestions as definitive instructions rather than recommendations based on limited sensor data.
+include::impact-reflection/impact-reflection.adoc[]
 
-Additionally, the hardware required for the system, such as sensors and microcontrollers, introduces material and electronic resource use.
-
-## Privacy, Security, and Ethics
-The project is designed with privacy in mind.
-All data processing takes place locally on the device, and no personal data is transmitted to external servers. 
-If any data is send to external services, for example for the dashboard, it should be anonymized and encrypted to protect user privacy.
-
-From an ethical perspective, the system should present recommendations as suggestions rather than authoritative decisions, ensuring that the user remains in control.
-
-## Sustainability Considerations
-Running AI models locally using TinyML reduces the need for cloud computing resources and continuous internet connectivity.
-This can reduce energy consumption associated with remote servers and data transmission.
-
-However, the use of electronic components such as sensors, microcontrollers, and displays does contribute to material usage and electronic waste.
-Designing the system with durable components and low power consumption can help mitigate these effects.
-
-## Mitigation Strategies
-Several strategies can help reduce potential risks.
-First, the system should clearly communicate that the given recommendations are suggestions rather than definitive instructions, and encourage users to use their judgment in plant care decisions.
-Second, calibration and validation of sensor data can help improve reliability.
-
-In addition, designing the system to run locally and minimize unnecessary data collection helps protect user privacy.
-Using energy-efficient hardware and modular components can also improve sustainability and maintainability of the system.
-
-## Conclusion
-The AI-powered Smart Desk Plant Monitoring system has the potential to provide valuable insights and support for plant care while demonstrating practical applications of AI on embedded devices.
-While there are potential risks related to sensor accuracy and user reliance, these can be mitigated through clear communication and careful design.
-Overall, the project promotes responsible AI use by prioritizing privacy and sustainability, while offering educational value and practical benefits for plant enthusiasts.
+:leveloffset: -1

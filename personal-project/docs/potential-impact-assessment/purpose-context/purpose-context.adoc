@@ -1,0 +1,11 @@
+= Purpose & Context
+
+:leveloffset: +1
+
+include::impact-society.adoc[]
+
+include::domain-understanding.adoc[]
+
+include::stakeholders.adoc[]
+
+:leveloffset: -1

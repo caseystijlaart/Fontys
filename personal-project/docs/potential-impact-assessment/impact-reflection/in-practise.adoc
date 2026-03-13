@@ -1,0 +1,2 @@
+= In Practice
+TBD: Reflect on how the project evolved, what was learned about the problem space, and how the design adapted to address unforeseen challenges.
