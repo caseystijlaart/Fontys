@@ -1,0 +1,4 @@
+= Sustainability
+Local TinyML operation reduces cloud energy consumption, but materials like sensors and microcontrollers have environmental cost.
+
+**Improvements:** Select durable, low-power components, design for repairability and modularity, and encourage recycling.

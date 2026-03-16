@@ -1,0 +1,4 @@
+= Dystopian Future
+AI-driven monitoring is over-adopted, leading to dependency on devices, loss of traditional plant knowledge, and electronic waste proliferation.
+Corporate control or proprietary lock-in could limit user agency and accessibility, concentrating benefits to affluent groups.
+Misuse of aggregated environmental data could enable indirect profiling of households.
