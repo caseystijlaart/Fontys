@@ -1,0 +1,5 @@
+= Assignment
+
+In this personal project, the assignment is to design and implement a system that makes use of AI.  
+The system will be a smart desk plant monitoring system that provides real-time insights and care recommendations for indoor plants.  
+The primary objective of this project is to develop practical experience and expand knowledge in AI and embedded software development.

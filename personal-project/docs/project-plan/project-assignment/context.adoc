@@ -1,0 +1,7 @@
+= Context
+
+This project is part of the AI for Society minor at Fontys Eindhoven, which focuses on understanding and applying AI to practical problems that can benefit individuals and society.  
+Indoor plants are a common feature in homes and offices, but many people struggle to provide the right care, leading to poor plant health and reduced benefits such as improved air quality and wellbeing.
+
+By developing a smart desk plant monitoring system, this project applies AI techniques to a real-world context, providing automated insights and care recommendations for plants.  
+The project also serves as a personal learning opportunity to gain hands-on experience with AI and embedded software, bridging theoretical knowledge from the minor with practical application.

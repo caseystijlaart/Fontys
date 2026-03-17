@@ -1,0 +1,14 @@
+= Test environment
+
+Within the project there is made use of various approach to verify the system and its software.
+There are two approaches that will be used.
+These approaches are integration testing and unit testing.
+Both tests a different aspect of the system.
+Where unit testing focusses more on the actual software side, the integration testing focuses more on testing the various components together.
+
+Integration testing is done each time components are added. 
+This to ensure the system still operates in the expected manner.
+
+When it comes to unit testing, it allows for a continuous verification of the software.
+Individual parts are tested in an more isolated manner, ensuring that each individual parts do not have any hidden bugs.
+Besides that, when adding new code is added, unit tests will ensure that the software will still work accordingly.

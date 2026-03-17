@@ -1,0 +1,12 @@
+= Finished Product
+
+The finished product of this project will be a fully functional smart desk plant monitoring system that combines AI software and embedded hardware.  
+
+Key features of the system include:  
+
+- Real-time monitoring of plant health using sensors (e.g., soil moisture, light, humidity).  
+- AI-driven analysis of sensor data to provide care recommendations for each plant.  
+- User-friendly interface for displaying plant status and actionable advice.  
+- Documentation of system architecture, AI models, and implementation details to support future improvements or adaptation.  
+
+The final deliverable will be a working prototype that demonstrates the system’s capabilities in a practical desk environment, along with supporting documentation that explains the design, AI integration, and ethical and legal considerations addressed during development.
