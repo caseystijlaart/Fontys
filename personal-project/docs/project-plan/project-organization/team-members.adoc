@@ -1,0 +1,32 @@
+= Team Members
+
+== Project group members
+.Team Members
+|===
+| Name                |   E-mail      
+
+| Casey Stijlaart     |   c.stijlaart@student.fontys.nl   
+|===
+
+== Coaches
+.Coaches
+|===
+| Name | E-mail | Remarks
+| Lody Aeckerlin   |   l.aeckerlin@fontys.nl | 1st coach. General mentor & first point of contact. Semester Coach.
+|===
+
+== Teachers
+.Teachers
+|===
+| Name | E-mail | Remarks
+| Coen Crombach | c.crombach@fontys.nl | Techinical and contextual teacher.
+| Marc van Grootel | m.vangrootel@fontys.nl | Technical and contextual teacher.
+| Li Li | l.li@fontys.nl | Technical teacher.
+| Martijn Lamers | m.lamers@fontys.nl | Technical teacher.
+| Kadian Davis-Owusu | k.davis-owusu@fontys.nl | Contextual teacher.
+| Danny Bloks | d.bloks@fontys.nl | Contextual teacher.
+| Niek Schmitz | n.schmitz@fontys.nl | Contextual teacher.
+| Marielle Rosendaal | m.rosendaal@fontys.nl | Psychology Consultant.
+| Mara Paun | m.paun@fontys.nl | Legal Consultant.
+| Vivian Dank | v.dank@fontys.nl | Legal consultant.
+|===
