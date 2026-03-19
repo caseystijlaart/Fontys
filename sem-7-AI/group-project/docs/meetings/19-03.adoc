@@ -1,0 +1,20 @@
+# Coach Meeting – 19-03-2026
+
+## Direction & Focus
+
+* There is no need to further analyze data on phone and social media usage, as the impact has already been well established.
+* Focus should shift toward behavioral change: understanding how individuals can become aware of their usage patterns and change their habits.
+* Explore different strategies and tools that encourage awareness and behavior change:
+** Current tools and interventions available
+** Effectiveness of each approach
+** Potential for personal testing through user studies or experiments
+
+### Questions to Consider
+* How can we effectively demonstrate behavior change in Fitphone?
+* The client’s idea may not align directly with Fitphone’s core goal, can we explain and showcase this discrepancy clearly?
+
+## Example References
+* [Dries de Poorter](https://driesdepoorter.be) – Personal projects on digital well-being
+* [Famavolat](https://famavolat.com) – Apps or tools promoting mindful phone use
+* [Opal](https://www.opal.so) – Phone usage management solutions
+* [CNET Article](https://www.cnet.com/tech/mobile/this-50-magnet-curbed-my-iphone-addiction/) – Physical interventions to reduce phone addiction
