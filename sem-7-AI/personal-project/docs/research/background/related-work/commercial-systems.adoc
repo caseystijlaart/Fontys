@@ -5,13 +5,13 @@ While they provide reliable data and automated management for farms and commerci
 
 **Examples of commercial systems include:**  
 
-* Connected Green – Soil Moisture Sensor [[[commercial_connectedgreen]]]: A commercial sensor solution for monitoring soil moisture in large crop environments.  
+* Connected Green – Soil Moisture Sensor: A commercial sensor solution for monitoring soil moisture in large crop environments.  
   Available at: https://connectedgreen.nl/bodemvochtsensor
 
-* Cropwise Interra Scan [[[commercial_cropwise]]]: A precision agriculture platform that uses IoT devices and analytics for crop monitoring and management.  
+* Cropwise Interra Scan: A precision agriculture platform that uses IoT devices and analytics for crop monitoring and management.  
   Available at: https://www.cropwise.com/netherlands/interra-scan
 
-* Vivent Biosignals – Food and Agriculture Inputs [[[commercial_vivent]]]: Provides sensor-based monitoring and analytics for plant and crop health on a commercial scale.  
+* Vivent Biosignals – Food and Agriculture Inputs: Provides sensor-based monitoring and analytics for plant and crop health on a commercial scale.  
   Available at: https://vivent-biosignals.com/solutions/food-and-ag-inputs
 
 These systems illustrate how IoT and sensor technologies are applied in commercial agriculture, but also highlight the gap for small-scale, AI/ML-based plant care systems suitable for personal or hobbyist use.

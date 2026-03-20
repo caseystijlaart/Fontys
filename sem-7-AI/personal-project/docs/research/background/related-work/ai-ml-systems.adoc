@@ -14,11 +14,11 @@ These advancements enable more proactive and efficient plant management, surpass
 
 **Examples of AI/ML-based systems include:**  
 
-* IoT-Based Smart Plant Monitoring System (Emergent Mind) [[[ai_plant_emergentmind]]]
-* AI-Enabled IoT-Based Smart Indoor Plant Care System (Academia.edu) [[[ai_plant_academia]]]
-* Deep Learning for Plant Health Monitoring (Nature Scientific Reports) [[[ai_plant_nature]]]
-* AI-Driven Smart Plant Monitoring (IJSAT Journal) [[[ai_plant_ijsat]]]
-* Plant Health Monitoring System (GitHub) [[[ai_plant_github]]]
+* IoT-Based Smart Plant Monitoring System (Emergent Mind)
+* AI-Enabled IoT-Based Smart Indoor Plant Care System (Academia.edu)
+* Deep Learning for Plant Health Monitoring (Nature Scientific Reports)
+* AI-Driven Smart Plant Monitoring (IJSAT Journal)
+* Plant Health Monitoring System (GitHub)
 
 These systems illustrate the potential for combining IoT hardware with AI/ML algorithms to achieve intelligent, autonomous plant care and monitoring.
 
