@@ -5,7 +5,7 @@ These systems generally focus on environmental monitoring rather than advanced A
 
 
 Many of these solutions are open-source, providing access to hardware and software designs, while others are proprietary.
-The majority of existing systems do not integrate AI or Machine Learning; instead, they monitor environmental parameters—such as soil moisture, temperature, and humidity—and notify users when predefined thresholds are exceeded.
+The majority of existing systems do not integrate AI or Machine Learning; instead, they monitor environmental parameters,such as soil moisture, temperature, and humidity,and notify users when predefined thresholds are exceeded.
 
 
 Some implementations are more advanced, incorporating automated irrigation systems that water plants when certain conditions are met, improving plant care efficiency.
