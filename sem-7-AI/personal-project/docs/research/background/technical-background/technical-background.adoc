@@ -5,12 +5,20 @@ This section provides an in-depth technical background relevant to the design an
 
 include::edge-ai.adoc[]
 
+<<< 
+
 include::sensor-data.adoc[]
+
+<<<
 
 include::datasets.adoc[]
 
+<<<
+
 include::model-overview.adoc[]
 
+<<<
+    
 include::validation-overview.adoc[]
 
 include::summary.adoc[]

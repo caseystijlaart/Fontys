@@ -1,27 +1,14 @@
 = Summary of Existing Plant Monitoring Systems
 
-Plant monitoring systems can be broadly categorized into three main groups:
+Plant monitoring systems can be grouped into three categories:
 
-* **IoT-Based Systems (Non-AI/ML):**  
-These systems monitor environmental parameters such as soil moisture, temperature, and humidity, often sending alerts when thresholds are exceeded.
-Some include basic automation, like watering when soil moisture is low.
-They are widely implemented in open-source hobbyist projects and student prototypes.
-However, they lack AI/ML capabilities for predictive or adaptive care.
+* **IoT-Based (Non-AI/ML):** Monitor parameters like soil moisture, temperature, and humidity, often triggering alerts or basic automation
+Widely used in hobbyist projects, but lack predictive intelligence 
 
-* **AI/ML-Based Systems:**  
-Recent research and prototype systems integrate AI/ML to predict irrigation needs, detect plant stress or disease, and provide intelligent recommendations.
-These systems are still largely experimental or research-based, with limited adoption in consumer-grade products.
-They demonstrate the potential for proactive, adaptive plant care that goes beyond threshold-based monitoring.
+* **AI/ML-Based Systems:** Research prototypes that predict irrigation needs, detect stress or disease, and provide adaptive recommendations
+Mostly experimental with limited consumer adoption 
 
-* **Commercial Solutions:**  
-Commercial products primarily target large-scale agriculture, monitoring crop health across fields using sophisticated sensors and IoT platforms.
-These solutions are highly capable but are not designed for regular indoor or household plants, and they are often cost-prohibitive for small-scale applications.
+* **Commercial Solutions:** Large-scale agricultural systems with advanced sensors and IoT platforms
+Highly capable but costly and unsuitable for indoor or small-scale plants 
 
-Despite these developments, there is a clear gap for affordable, small-scale AI/ML-based plant health monitoring systems suitable for hobbyists or home users.
-Most current systems either:  
-
-1. Focus on simple threshold-based alerts (IoT-only). 
-2. Are experimental research prototypes (AI/ML). 
-3. Are expensive and targeted at commercial agriculture. 
-
-There is no widely-available, low-cost solution that combines AI/ML intelligence with IoT for personal plant care.
+Overall, there is a gap for **affordable, small-scale AI/ML-based plant monitoring**, combining intelligent predictions with IoT for personal plant care.

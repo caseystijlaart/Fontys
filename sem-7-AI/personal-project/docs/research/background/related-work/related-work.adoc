@@ -19,8 +19,6 @@ include::commercial-systems.adoc[]
 <<<
 
 include::comparison-existing.adoc[]
-
-<<<
     
 include::summary.adoc[]
 

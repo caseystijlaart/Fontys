@@ -4,23 +4,27 @@
 
 Low‑power microcontrollers enable embedded artificial intelligence systems by combining compact size with energy-efficient computation.
 These devices can interface directly with environmental sensors while performing real-time inference locally, which is critical for applications such as autonomous plant monitoring.
-Research and community projects have demonstrated that even constrained architectures like the ESP32 family can execute lightweight machine learning workloads when models are optimized for on-device inference [plantmonitoring_github][plantmonitoring_mdpi][planthealth_academia].
+Research and community projects have demonstrated that even constrained architectures like the ESP32 family can execute lightweight machine learning workloads when models are optimized for on-device inference.
 
 == TinyML Concept
 
 **Tiny Machine Learning (TinyML)** refers to deploying optimized machine learning models on microcontrollers and other resource-constrained embedded devices.
-TinyML workflows focus on converting trained models (e.g., small neural networks or classical classifiers) into lightweight, quantized representations that can run efficiently with limited RAM and processing power [ai_plant_academia][ai_plant_emergentmind].
+TinyML workflows focus on converting trained models (e.g., small neural networks or classical classifiers) into lightweight, quantized representations that can run efficiently with limited RAM and processing power.
 
 
 Key aspects of TinyML include:  
+
 * **Quantization:** Reducing model weights and activations to 8-bit or lower precision.
 * **Memory efficiency:** Ensuring models fit within small flash and SRAM capacities.
 * **Optimization:** Tailoring model architecture for real-time inference on low-power hardware.
 
 In plant monitoring systems, TinyML enables:  
+
 * Real-time event detection such as soil moisture thresholds or plant stress.
 * Minimal dependency on cloud infrastructure, reducing latency and preserving privacy.
 * Energy-efficient operation, allowing prolonged deployment in remote or battery-powered environments.
+
+<<<
 
 == Edge AI vs Hybrid AI
 
@@ -29,22 +33,22 @@ Edge AI and hybrid AI represent different approaches for deploying machine learn
 * **Edge AI:**  
 All inference occurs locally on the device, with data captured, processed, and classified in real-time.
 Advantages include low latency, independence from network connectivity, and improved privacy.
-This is particularly suitable for plant monitoring systems operating in greenhouses or outdoor areas where connectivity is limited [ai_plant_nature][ai_plant_ijsat].
+This is particularly suitable for plant monitoring systems operating in greenhouses or outdoor areas where connectivity is limited.
 
 * **Hybrid AI:**  
 Combines local edge inference with cloud-based processing.
 Lightweight models handle immediate tasks on-device, while complex analytics or model retraining occurs in the cloud.
 This approach allows more sophisticated analysis but relies on reliable connectivity and may introduce latency.
 
-For autonomous plant monitoring, **Edge AI** is generally preferred for resilience, energy efficiency, and responsiveness, while hybrid AI may support periodic model updates or long-term analytics [ai_plant_github][commercial_connectedgreen].
+For autonomous plant monitoring, Edge AI is generally preferred for resilience, energy efficiency, and responsiveness, while hybrid AI may support periodic model updates or long-term analytics.
 
 == Edge AI on ESP32
 
 Although documentation specific to the ESP32 CH2102 is limited, several resources demonstrate the feasibility of Edge AI on ESP32-class microcontrollers:
 
-* **Edge Impulse on ESP32:** Provides end-to-end TinyML workflows including data acquisition, training, and deployment to ESP32 boards for tasks such as vision and sensor-based classification [ai_plant_emergentmind][ai_plant_academia].
-* **Community projects:** Open-source projects show TensorFlow Lite Micro and Edge Impulse models running on ESP32 devices for plant health monitoring, demonstrating real-time on-device inference and sensor integration [plantmonitoring_github][ai_plant_github].
-* **Research applications:** ESP32 microcontrollers have been used in IoT-based smart irrigation and plant monitoring systems where lightweight ML models predict watering needs or detect environmental stress [planthealth_academia][smartirrigation_academia].
+* **Edge Impulse on ESP32:** Provides end-to-end TinyML workflows including data acquisition, training, and deployment to ESP32 boards for tasks such as vision and sensor-based classification.
+* **Community projects:** Open-source projects show TensorFlow Lite Micro and Edge Impulse models running on ESP32 devices for plant health monitoring, demonstrating real-time on-device inference and sensor integration.
+* **Research applications:** ESP32 microcontrollers have been used in IoT-based smart irrigation and plant monitoring systems where lightweight ML models predict watering needs or detect environmental stress.
 
 These examples collectively indicate that Edge AI is practical and effective on ESP32-class MCUs, including variants like the CH2102.
 
