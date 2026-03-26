@@ -17,6 +17,10 @@ To validate found public datasets, there are multiple things that must me verifi
 == Datasets
 
 === Dataset 1 : Plant Health Data
+Very usuable. 
+While initially very one feature dominant, see images (INSERT), it can be engineerd to be more dimensional.
+see images, (INSERT)
+
 
 === Dataset 2 : Indoor Plant Health And Growth Factors
 
@@ -27,11 +31,7 @@ This would suggest that the model is trying to make predictions on something tha
 Example, for a cactus low moisture, it is healthy, while for another plant, it can cause stress.
 
 After including the plant type, it did increase in accuracy, but not significantly, it went up to 0.395.
-More than half of the time, the prediction would be wrong regardless.
-
-This made me wonder if in general, taking all the given labels, would result in a better model accuracy. 
-Yet, this seemed to only make things worse as the accuracy collapsed down to 0.215 .
-While it isn't completly certain what could cause this, my predeiction is a combination of several factors, such as label noise/ bad labeling, ro real signal, problem is temporal, but dataset is static ( the dataset is taken at one moment of time, while plant health can change over time). 
+More than half of the time, the prediction would be wrong regardless. 
 
 To actually partially idenitfy the problem within the dataset, we can plot it. 
 
@@ -44,10 +44,7 @@ Adding additional features such as light exposure, soil type, and pest presence 
 
 In a well-structured dataset, adding relevant features should improve predictive performance. The observed degradation suggests that the additional features do not provide meaningful or consistent information for predicting plant health.
 
-image::../proof/indoor-plant/indoor-plant-report.png[]
-image::../proof/indoor-plant/indoor-plant-summary-id.png[]
-image::../proof/indoor-plant/indoor-plant-summary.png[]
-image::../proof/indoor-plant/indoor-plants-summary-all.png[]
-image::../proof/indoor-plant/indoor-plant-correlation.png[]
-
 === Dataset 3 : Agriculture Dataset With Target
+
+== Conclusion
+
