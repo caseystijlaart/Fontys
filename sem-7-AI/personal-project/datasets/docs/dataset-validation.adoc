@@ -1,50 +1,145 @@
-= Dataset Validation
+= Dataset Validation Report
+:toc:
+:toclevels: 3
 
-== Introduction
-In order to verify if any of the available datasets are viable for the given purpose, these are verified.
-This validation process includes using simple random forest model as a baseline, to see how it would perform.
-Besides that, the dataset will also be validated how it is expected to perform with TinyMLP, TinyRegression and anomaly detection.
-This method will allow for clear insights if a dataset it usage for the intended purpose.
+== Purpose
+This document summarizes the validation work for the four collected datasets and evaluates whether each dataset is suitable for the personal project goals.
 
-To validate found public datasets, there are multiple things that must me verified.
+The validation focuses on:
 
-* Does the dataset contain the necessary columns? ( light, soil moisture, humidity, ambient temperature, and plant health)
-* Does the dataset contains missing values?
-* What are the data types?
-* Are there any duplicate rows?
-* Is the dataset balanced?
+* feature availability for the target use case,
+* basic data quality checks,
+* baseline model behavior,
+* compatibility with small models (TinyMLP / TinyRegression), and
+* anomaly-detection potential.
 
-== Datasets
+== Used Datasets (Sources)
 
-=== Dataset 1 : Plant Health Data
-Very usuable. 
-While initially very one feature dominant, see images (INSERT), it can be engineerd to be more dimensional.
-see images, (INSERT)
+The validation in this report uses the following public datasets:
 
+. Plant Health Diseases Dataset (Kaggle): https://www.kaggle.com/datasets/muqaddasejaz/plant-health-diseases-dataset
+. Indoor Plant Health and Growth Dataset (Kaggle): https://www.kaggle.com/datasets/souvikrana17/indoor-plant-health-and-growth-dataset
+. Edge Assisted Agricultural Sensor Dataset (Kaggle): https://www.kaggle.com/datasets/colabsss/edge-assisted-agricultural-sensor-dataset
+. Plant Health Biosensor Dataset (Kaggle): https://www.kaggle.com/datasets/programmer3/plant-health-biosensor-dataset
 
-=== Dataset 2 : Indoor Plant Health And Growth Factors
+== Validation Criteria
+Each dataset was reviewed using the same checklist:
 
-As I am only looking for a model that can make decent accurate decisions with only a few parameters, this is what i tested.
-Upon doing so, I noticed that the model had very poor accuracy, 0.36 at first. 
-After thinking about it, i made the assumptions that root cause is that the Plant_ID is not used.
-This would suggest that the model is trying to make predictions on something that has labels to it, which put weight on whether the plant is healthy.
-Example, for a cactus low moisture, it is healthy, while for another plant, it can cause stress.
+* Required fields available (light, soil moisture, humidity, ambient temperature, plant health or equivalent target).
+* Missing values and duplicates.
+* Data types and label format.
+* Class balance / target signal quality.
+* Baseline Random Forest test performance.
+* TinyMLP / TinyRegression feasibility.
 
-After including the plant type, it did increase in accuracy, but not significantly, it went up to 0.395.
-More than half of the time, the prediction would be wrong regardless. 
+== Executive Summary
 
-To actually partially idenitfy the problem within the dataset, we can plot it. 
+[cols="1,1,1,2"]
+|===
+| Dataset | Baseline Signal | TinyML Readiness | Overall Verdict
 
-This plot and correlation, shows what was predecited. 
-The values are near zero, meaning there is no relation between the various labels and the plant health.
-To put it bluntly, yhe model cannot predict plant health from these features, because the features do not influence the target in this dataset.
-Even when looking at the diffrent feature importances, it shows that all of them are pretty much similar, suggesting a weak signal.
+| Plant Health Data
+| Strong
+| Good
+| Recommended after feature engineering.
 
-Adding additional features such as light exposure, soil type, and pest presence did not improve model performance. Instead, it led to a decrease in accuracy. This indicates that the dataset likely contains noisy or inconsistent relationships between the features and the target variable. 
+| Indoor Plant Health & Growth Factors
+| Weak
+| Poor
+| Not recommended in current form (weak relationship to target).
 
-In a well-structured dataset, adding relevant features should improve predictive performance. The observed degradation suggests that the additional features do not provide meaningful or consistent information for predicting plant health.
+| Agriculture Dataset with Target
+| Weak-to-moderate
+| Limited
+| Usable for experiments, not strong for reliable prediction.
 
-=== Dataset 3 : Agriculture Dataset With Target
+| Plant Health Biosensor Dataset
+| Moderate
+| Promising
+| Potentially usable for constrained embedded models.
+|===
 
-== Conclusion
+== Dataset 1: Plant Health Data
 
+=== Findings
+* The dataset is one of the most usable options for the project.
+* Raw features show imbalance in predictive power (single-feature dominance).
+* After feature engineering, model behavior improves significantly and becomes more suitable for compact models.
+
+=== Key Metrics
+* Random Forest test accuracy: `0.8250`
+* TinyMLP test accuracy: `0.6958`
+* TinyRegression: `MSE 0.2850`, `MAE 0.4148`, `R² 0.5388`
+
+=== Proof Images
+image::../proof/plant-health-data/summary.png[Plant Health Data Summary]
+image::../proof/plant-health-data/correlation.png[Plant Health Data Correlation]
+image::../proof/plant-health-data/report.png[Plant Health Data Report]
+
+==== Engineered Version
+image::../proof/plant-health-data/engi-summary.png[Engineered Plant Health Summary]
+image::../proof/plant-health-data/engi-correlation.png[Engineered Plant Health Correlation]
+image::../proof/plant-health-data/engi-report.png[Engineered Plant Health Report]
+
+== Dataset 2: Indoor Plant Health and Growth Factors
+
+=== Findings
+* Baseline performance is low and unstable.
+* Adding `Plant_ID` / plant-specific information produces only marginal improvement.
+* Correlation analysis indicates weak relationships between input features and the health target.
+* Feature importances are relatively flat, suggesting low signal strength.
+* Adding extra columns (for example light exposure, soil type, pest presence) did not improve results and in some runs reduced performance.
+
+=== Key Metrics
+* Random Forest test accuracy: `0.2150`
+* TinyMLP test accuracy: `0.2050`
+* Anomaly detections: `132`
+
+=== Proof Images
+image::../proof/indoor-plant/indoor-plant-summary.png[Indoor Plant Summary]
+image::../proof/indoor-plant/indoor-plant-summary-id.png[Indoor Plant Summary with Plant ID]
+image::../proof/indoor-plant/indoor-plant-correlation.png[Indoor Plant Correlation]
+image::../proof/indoor-plant/indoor-plant-report.png[Indoor Plant Report]
+image::../proof/indoor-plant/indoor-plants-summary-all.png[Indoor Plant Combined Summary]
+
+== Dataset 3: Agriculture Dataset with Target
+
+=== Findings
+* The dataset can be used for broad experimentation, but predictive strength is limited.
+* Baseline classification quality is low, indicating noisy or weakly informative feature-target mapping.
+* TinyRegression results also indicate weak explanatory power (`R² < 0`).
+
+=== Key Metrics
+* Random Forest test accuracy: `0.3125`
+* TinyMLP test accuracy: `0.3650`
+* TinyRegression: `MSE 0.7001`, `MAE 0.7157`, `R² -0.0730`
+* Anomaly detections: `218`
+
+=== Proof Images
+image::../proof/agriculture/summary-time.png[Agriculture Summary]
+image::../proof/agriculture/correlation.png[Agriculture Correlation]
+image::../proof/agriculture/report.png[Agriculture Report]
+
+== Dataset 4: Plant Health Biosensor Dataset
+
+=== Findings
+* The dataset shows a moderate predictive signal.
+* It appears more aligned with sensor-driven use cases and may transfer better to constrained (TinyML-style) deployment than the weaker datasets.
+* Requires the same quality checks as the others, but initial behavior is promising.
+
+=== Key Metrics
+* Baseline test accuracy (notebook run): `0.6295`
+
+=== Proof Images
+image::../proof/plant-bio/summary.png[Plant Biosensor Summary]
+image::../proof/plant-bio/correlation.png[Plant Biosensor Correlation]
+image::../proof/plant-bio/importance.png[Plant Biosensor Feature Importance]
+
+== Final Recommendation
+
+For the project objective (small, practical, and deployable predictive models), prioritize:
+
+. *Plant Health Data (engineered version)* as the primary dataset.
+. *Plant Health Biosensor Dataset* as a secondary candidate.
+
+Use *Agriculture* as an exploratory dataset only, and avoid relying on *Indoor Plant Health and Growth Factors* for final model training unless substantial restructuring/label redesign is performed.
