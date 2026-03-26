@@ -1,0 +1,53 @@
+= Dataset Validation
+
+== Introduction
+In order to verify if any of the available datasets are viable for the given purpose, these are verified.
+This validation process includes using simple random forest model as a baseline, to see how it would perform.
+Besides that, the dataset will also be validated how it is expected to perform with TinyMLP, TinyRegression and anomaly detection.
+This method will allow for clear insights if a dataset it usage for the intended purpose.
+
+To validate found public datasets, there are multiple things that must me verified.
+
+* Does the dataset contain the necessary columns? ( light, soil moisture, humidity, ambient temperature, and plant health)
+* Does the dataset contains missing values?
+* What are the data types?
+* Are there any duplicate rows?
+* Is the dataset balanced?
+
+== Datasets
+
+=== Dataset 1 : Plant Health Data
+
+=== Dataset 2 : Indoor Plant Health And Growth Factors
+
+As I am only looking for a model that can make decent accurate decisions with only a few parameters, this is what i tested.
+Upon doing so, I noticed that the model had very poor accuracy, 0.36 at first. 
+After thinking about it, i made the assumptions that root cause is that the Plant_ID is not used.
+This would suggest that the model is trying to make predictions on something that has labels to it, which put weight on whether the plant is healthy.
+Example, for a cactus low moisture, it is healthy, while for another plant, it can cause stress.
+
+After including the plant type, it did increase in accuracy, but not significantly, it went up to 0.395.
+More than half of the time, the prediction would be wrong regardless.
+
+This made me wonder if in general, taking all the given labels, would result in a better model accuracy. 
+Yet, this seemed to only make things worse as the accuracy collapsed down to 0.215 .
+While it isn't completly certain what could cause this, my predeiction is a combination of several factors, such as label noise/ bad labeling, ro real signal, problem is temporal, but dataset is static ( the dataset is taken at one moment of time, while plant health can change over time). 
+
+To actually partially idenitfy the problem within the dataset, we can plot it. 
+
+This plot and correlation, shows what was predecited. 
+The values are near zero, meaning there is no relation between the various labels and the plant health.
+To put it bluntly, yhe model cannot predict plant health from these features, because the features do not influence the target in this dataset.
+Even when looking at the diffrent feature importances, it shows that all of them are pretty much similar, suggesting a weak signal.
+
+Adding additional features such as light exposure, soil type, and pest presence did not improve model performance. Instead, it led to a decrease in accuracy. This indicates that the dataset likely contains noisy or inconsistent relationships between the features and the target variable. 
+
+In a well-structured dataset, adding relevant features should improve predictive performance. The observed degradation suggests that the additional features do not provide meaningful or consistent information for predicting plant health.
+
+image::../proof/indoor-plant/indoor-plant-report.png[]
+image::../proof/indoor-plant/indoor-plant-summary-id.png[]
+image::../proof/indoor-plant/indoor-plant-summary.png[]
+image::../proof/indoor-plant/indoor-plants-summary-all.png[]
+image::../proof/indoor-plant/indoor-plant-correlation.png[]
+
+=== Dataset 3 : Agriculture Dataset With Target
