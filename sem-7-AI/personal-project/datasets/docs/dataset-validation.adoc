@@ -36,12 +36,16 @@ The validation focuses on:
 
 == Used Datasets
 
+Kaggle offers a variety of datasets regarding to the given objective.
+While many had potential, not all were suitable.
+In order to find suitable datasets, it was of great importance to have certain key features be included, such as plant health, soil moisture, temperature and humidity.
+
 The validation in this report uses the following public datasets:
 
-. Plant Health Diseases Dataset (Kaggle): https://www.kaggle.com/datasets/muqaddasejaz/plant-health-diseases-dataset
 . Indoor Plant Health and Growth Dataset (Kaggle): https://www.kaggle.com/datasets/souvikrana17/indoor-plant-health-and-growth-dataset
 . Edge Assisted Agricultural Sensor Dataset (Kaggle): https://www.kaggle.com/datasets/colabsss/edge-assisted-agricultural-sensor-dataset
 . Plant Health Biosensor Dataset (Kaggle): https://www.kaggle.com/datasets/programmer3/plant-health-biosensor-dataset
+. Plant Health Diseases Dataset (Kaggle): https://www.kaggle.com/datasets/muqaddasejaz/plant-health-diseases-dataset
 
 == Validation Workflow 
 The following steps were used for each dataset to keep the validation process consistent and reproducible:
@@ -70,39 +74,7 @@ Each dataset was reviewed using the same checklist:
 
 <<<
 
-== Dataset 1: Plant Health Data
-
-=== Findings
-
-* The dataset is one of the most usable options for the project.
-* Raw features show imbalance in predictive power (single-feature dominance).
-* After feature engineering, model behavior improves significantly and becomes more suitable for compact models.
-
-=== Key Metrics
-
-* Random Forest test accuracy: `0.8240`
-* TinyMLP test accuracy: `0.6958`
-* TinyRegression: `MSE 0.2840`, `MAE 0.4148`, `R² 0.5388`
-
-=== Engineered Version
-The engineered version focuses on finding the relation between different raw values. 
-Rather taking the raw data as is, it looks for how can it be used to improve the models feature importance.
-
-=== Proof Images
-
-image:../../proof/plant-health-data/summary.png[scaledwidth=75%]
-
-image:../../proof/plant-health-data/correlation.png[height=250] image:../../proof/plant-health-data/report.png[height=250]
-
-==== Engineered Version
-
-image:../../proof/plant-health-data/engi-summary.png[scaledwidth=75%]
-
-image:../../proof/plant-health-data/engi-correlation.png[height=250] image:../../proof/plant-health-data/engi-report.png[height=250]
-
-<<<
-
-== Dataset 2: Indoor Plant Health and Growth Factors
+== Dataset 1: Indoor Plant Health and Growth Factors
 
 === Findings
 
@@ -121,16 +93,24 @@ image:../../proof/plant-health-data/engi-correlation.png[height=250] image:../..
 === Proof Images
 
 .Indoor Plant Health Summary
-image:../../proof/indoor-plant/indoor-plant-summary.png[scaledwidth=75%]
+image::../../proof/indoor-plant/indoor-plant-summary.png[scaledwidth=75%]
 
 .Indoor Plant Health With ID Summary
-image:../../proof/indoor-plant/indoor-plant-summary-id.png[scaledwidth=75%]
+image::../../proof/indoor-plant/indoor-plant-summary-id.png[scaledwidth=75%]
 
-image:../../proof/indoor-plant/indoor-plant-correlation.png[height=250] image:../../proof/indoor-plant/indoor-plant-report.png[height=250]
+[cols="a,a", frame=none, grid=none]
+|===
+a|
+.Indoor Plant Health Report
+image::../../proof/indoor-plant/indoor-plant-report.png[height=250]
+a| 
+.Indoor Plant Health Correlation
+image::../../proof/indoor-plant/indoor-plant-correlation.png[height=250] 
+|===
 
 <<<
 
-== Dataset 3: Agriculture Dataset with Target
+== Dataset 2: Agriculture Dataset with Target
 
 === Findings
 
@@ -148,13 +128,21 @@ image:../../proof/indoor-plant/indoor-plant-correlation.png[height=250] image:..
 === Proof Images
 
 .Agriculture Dataset Summary
-image:../../proof/agriculture/report.png[scaledwidth=75%]
+image::../../proof/agriculture/summary.png[scaledwidth=75%]
 
-image:../../proof/agriculture/correlation.png[height=250] image:../../proof/agriculture/summary-time.png[height=250]
+[cols="a,a", frame=none, grid=none]
+|===
+a|
+.Agriculture Dataset Report
+image::../../proof/agriculture/report.png[height=250]
+a| 
+.Agriculture Dataset Correlation
+image::../../proof/agriculture/correlation.png[height=300]
+|===
 
 <<<
 
-== Dataset 4: Plant Health Biosensor Dataset
+== Dataset 3: Plant Health Biosensor Dataset
 
 === Findings
 
@@ -169,13 +157,83 @@ image:../../proof/agriculture/correlation.png[height=250] image:../../proof/agri
 === Proof Images
 
 .Plant health BioSensor Summary
-image:../../proof/plant-bio/summary.png[scaledwidth=75%]
+image::../../proof/plant-bio/summary.png[scaledwidth=75%]
 
-.Plant health BioSensor Correlation
-image:../../proof/plant-bio/correlation.png[scaledwidth=40%]
-
+[cols="a,a", frame=none, grid=none]
+|===
+a|
 .Plant health BioSensor Feature Importance
-image:../../proof/plant-bio/importance.png[scaledwidth=40%]
+image::../../proof/plant-bio/importance.png[width=275]
+a| 
+.Plant health BioSensor Correlation
+image::../../proof/plant-bio/correlation.png[width=275]
+|===
+
+<<<
+
+== Dataset 4: Plant Health Data
+
+=== Findings
+
+* The dataset is one of the most usable options for the project.
+* Raw features show imbalance in predictive power (single-feature dominance).
+* After feature engineering, model behavior improves significantly and becomes more suitable for compact models.
+* The engineered data set shows a more divided feature importance, rather than being mainly reliable upon one feature as the non-engineered model is.
+
+=== Key Metrics
+
+* Random Forest test accuracy: `0.8240`
+* TinyMLP test accuracy: `0.6958`
+* TinyRegression: `MSE 0.2840`, `MAE 0.4148`, `R² 0.5388`
+
+=== Engineered Version
+As the given dataset appeared to be the most promising, it was decided to do some small data engineering.
+The type of data engineering that is used, feature engineering, allows a model to learn better patterns.
+Besides that, as the dataset is overly focused on one feature, relationships between features are introduced, interaction features.
+This is implemented as in the real world, certain features are connected, but this can not be read from the data, as the model has no idea of the real world relations.
+
+Therefore, the engineered version focuses on finding the relation between different raw values. 
+Rather taking the raw data as is, it looks for how can it be used to improve the models feature importance.
+
+=== Proof Images
+
+.Plant Health Summary
+image::../../proof/plant-health-data/summary.png[scaledwidth=75%]
+
+.Plant Health Data Importance
+image::../../proof/plant-health-data/importance.png[scaledwidth=75%]
+
+
+[cols="a,a", frame=none, grid=none]
+|===
+a| 
+.Plant Health Data Report
+image::../../proof/plant-health-data/report.png[width=275]
+a| 
+.Plant Health Data Correlation
+image::../../proof/plant-health-data/correlation.png[width=275]
+|===
+
+==== Engineered Version
+
+.Plant Health Data Engineered Summary
+image::../../proof/plant-health-data/engi-summary.png[scaledwidth=75%]
+
+.Plant Health Data Engineered Importance
+image::../../proof/plant-health-data/engi-importance.png[scaledwidth=75%]
+
+
+[cols="a,a", frame=none, grid=none]
+|===
+a|
+.Plant Health Data Engineered Report
+image::../../proof/plant-health-data/engi-report.png[width=275]
+a| 
+.Plant Health Data Engineered Correlation
+image::../../proof/plant-health-data/engi-correlation.png[width=275]
+|===
+
+<<<
 
 == Cross-Dataset Comparison (TinyML / TinyRegression / Anomaly Detection)
 
@@ -187,7 +245,7 @@ The combined comparison supports the final dataset ranking by showing how each d
 * anomaly detection (`IsolationForest`)
 
 .Datasets Comparison
-image:../../proof/comparison.png[scaledwidth=75%]
+image::../../proof/comparison.png[scaledwidth=100%]
 
 The comparison image is used as supporting evidence that Plant Health Data (especially engineered) is the strongest candidate for lightweight deployment scenarios.
 
@@ -223,9 +281,24 @@ The comparison image is used as supporting evidence that Plant Health Data (espe
 
 == Final Recommendation
 
-For the project objective (small, practical, and deployable predictive models), prioritize:
+For the project objective (small, practical, and deployable predictive models), the Plant Health Data (engineered version) should be used as the primary dataset.
+It has the most potential, as from the original dataset validation, it showed promising results.
 
-. *Plant Health Data (engineered version)* as the primary dataset.
-. *Plant Health Biosensor Dataset* as a secondary candidate.
+As back-up or exploratory, the Plant Health Biosensor data should be kept in mind.
+While it is not the best suitable for the given objective, it does show some potential, which with further engineer could be brought to light.
 
-Use Agriculture as an exploratory dataset only, and avoid relying on Indoor Plant Health and Growth Factors for final model training unless substantial restructuring/label redesign is performed.
+<<<
+
+== References
+
+[bibliography]
+* [[[ml_google]]] Google. *ML Crash Course*. Available at: https://developers.google.com/machine-learning/crash-course
+* [[[scikit_model]]] Scikit. *Model Selection*. Available at: https://scikit-learn.org/stable/model_selection.html
+* [[[ibm_evaluation]]] IBM. *Model Evaluation*. Available at: https://www.ibm.com/think/topics/model-evaluation
+* [[[kaggle_intro]]] Kaggle. *Intro To Machine learning*. Available at: https://www.kaggle.com/learn/intro-to-machine-learning
+* [[[microcontroller_google]]] Google. *Microcontrollers Overview*. Available at: https://ai.google.dev/edge/litert/microcontrollers/overview
+* [[[shap]]] Shap. *Shap*. Available at: https://shap.readthedocs.io/en/latest/
+* [[[christophm_gh]]] ChristophM. *ML Interaction*. Available at: https://christophm.github.io/interpretable-ml-book/interaction.html
+* [[[apxml_features]]] Apxml. *Feature Interaction*. Available at:
+https://apxml.com/courses/intro-feature-engineering/chapter-5-feature-creation/interaction-features?
+* [[[metadesign_ml]]] MetaDesignSolutions. *Feature Engineering in ML*. Available at: https://metadesignsolutions.com/feature-engineering-in-machine-learning
