@@ -1,0 +1,12 @@
+@startuml
+left to right direction
+
+component "Environmental Sensors" as ES
+component "ESP32" as ESP
+component "Interface" as IF
+
+ES --> ESP : Sensor data
+ESP --> IF : Predictions / readings
+IF --> ESP : User input / configuration
+
+@enduml
