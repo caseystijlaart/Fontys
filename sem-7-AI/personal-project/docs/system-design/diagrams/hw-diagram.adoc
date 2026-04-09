@@ -1,12 +1,17 @@
 @startuml
-left to right direction
 
 component "Environmental Sensors" as ES
-component "ESP32" as ESP
+component "ESP32 " as ESP
+component "Data Storage" as DS
 component "Interface" as IF
 
 ES --> ESP : Sensor data
-ESP --> IF : Predictions / readings
-IF --> ESP : User input / configuration
+
+ESP --> DS : Upload data (WiFi)
+DS --> IF : Plant data / history
+
+IF --> DS : Plant settings / profiles
+
+IF --> ESP : Provisioning (BLE)
 
 @enduml

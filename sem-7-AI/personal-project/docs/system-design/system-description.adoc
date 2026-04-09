@@ -26,16 +26,13 @@ These features are important and would significantly improve the system, but the
 
 * The system should allow the user to enter plant-specific preferences, such as whether a plant prefers low, medium, or high moisture.
 * The system should store historical sensor readings for later review.
-* The system should support calibration of sensor thresholds to improve accuracy.
-* The system should be designed in a modular way so that sensors or software components can be replaced more easily.
+* The system could support multiple plants instead of only one monitored plant.
 
 === Could
 These are optional enhancements that may improve usability or functionality if time and resources allow.
 
 * The system could include additional sensors, such as light intensity or air quality sensors.
-* The system could support multiple plants instead of only one monitored plant.
 * The system could provide trend visualization, such as graphs of moisture or temperature over time.
-* The system could connect to a lightweight external database or cloud dashboard.
 * The system could include personalized recommendations for plant care actions.
 
 === Won't
