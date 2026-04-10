@@ -4,9 +4,15 @@
 
 include::component.adoc[]
 
+<<<
+    
 include::use-cases.adoc[]
 
+<<<
+
 include::requirements.adoc[]
+
+<<<
 
 include::requirements-matrix.adoc[]
 

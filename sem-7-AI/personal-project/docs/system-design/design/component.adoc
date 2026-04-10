@@ -22,7 +22,9 @@ It communicates with the central storage for data access and uses BLE to provisi
 
 [[Diagram]]
 .Component Diagram
-image::../images/component-diagram.png[]
+image::../images/component-diagram.svg[]
+
+<<<
 
 == Messages Between Components
 To showcase how each component is connected to another, the overall message that connects them are defined, see <<Messages between components>>.
@@ -31,9 +33,9 @@ To showcase how each component is connected to another, the overall message that
 |===
 | Component | Message name | From | To | Description
 
-| Sensor Array | GetSensorData(`sensor_id`, `sensor_data`) | Edge Node | Sensor Array | Retrieves measured sensor data from the sensor array.
+| Sensor Array | GetData() | Edge Node | Sensor Array | Retrieves measured sensor data from the sensor array.
 
-| Edge Node | UploadData(`device_id`, `data`) | Edge Node | Data Storage | Sends sensor readings and inferred plant health data to the central storage.
+| Edge Node | Send(`data`) | Edge Node | Data Storage | Sends sensor readings and inferred plant health data to the central storage.
 
 | User Interface | AddPlant(`plant_info`) | Interface | Data Storage | Stores a new plant profile with user-defined settings such as soil moisture and light preferences.
 

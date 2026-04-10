@@ -2,14 +2,14 @@
 left to right direction
 
 component "Sensor Array" as SA
-component "Processing Unit\n(ESP32)" as PU
+component "Edge Node\n(ESP32)" as EN
 component "Data Storage" as DS
 component "User Interface" as UI
 
-SA --> PU : Sensor data
-PU --> DS : Upload measurements /\ninference results
+SA --> EN : Sensor data
+EN --> DS : Upload measurements /\ninference results
 UI --> DS : Plant profiles /\nsettings requests
 DS --> UI : Historical data /\nhealth status
-UI --> PU : BLE provisioning /\ndevice configuration
+UI --> EN : BLE provisioning /\ndevice configuration
 
 @enduml

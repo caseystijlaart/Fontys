@@ -4,6 +4,8 @@
 
 include::sequence-diagrams.adoc[]
 
+<<<
+    
 include::class-diagram.adoc[]
 
 :leveloffset: -1

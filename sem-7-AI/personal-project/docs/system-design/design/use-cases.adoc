@@ -5,7 +5,7 @@ The use cases focus on plant monitoring, configuration, and data visualization.
 
 [.figure]
 .Use Case Diagram
-image::use-cases-diagram.png[]
+image::../images/use-case-diagram.png[]
 
 <<Use Case Diagram>> depicts some of the use cases.
 It shows system boundary and specifies how actors interact with the system.
