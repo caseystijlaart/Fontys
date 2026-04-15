@@ -1,8 +1,16 @@
 #pragma once
 
+#include <math.h>
 #include "SensorData.hpp"
 #include "PlantConfiguration.hpp"
 #include "PlantHealth.hpp"
+
+struct PredictionResult
+{
+    PlantHealth health;
+    float confidence;
+    float probabilities[3];
+};
 
 class Prediction
 {
@@ -17,7 +25,7 @@ public:
      * @param config The plant configuration thresholds to be used for classification
      * @return The predicted plant health status (HEALTHY, MODERATE_STRESS, or HIGH_STRESS)
      */
-    PlantHealth Predict(const SensorData &data, const PlantConfiguration &config);
+    PredictionResult Predict(const SensorData &data, const PlantConfiguration &config);
 
 private:
     /** @brief Apply the ReLU activation function
@@ -38,4 +46,10 @@ private:
      * @param output The output values
      */
     void Forward(const float input[3], float output[3]);
+
+    /** @brief Apply the softmax function to the output of the neural network
+     * @param input The input values (logits) to be transformed into probabilities
+     * @param output The output values (probabilities) after applying softmax
+     */
+    void Softmax(const float input[3], float output[3]);
 };

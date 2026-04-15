@@ -17,6 +17,6 @@ bool Communication::Send(const SensorData& data) {
 }
 
 PlantConfiguration Communication::ReceiveConfig() {
-    PlantConfiguration config(30.0f, 25.0f); // Example configuration To adjust
+    PlantConfiguration config(30.0f, 25.0f, 80.0f, 245.0f); // Example configuration To adjust
     return config;
 }

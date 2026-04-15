@@ -6,10 +6,12 @@ PlantConfiguration::PlantConfiguration()
     config.temperatureThreshold = 25.0f;
 }
 
-PlantConfiguration::PlantConfiguration(float moistureThreshold, float temperatureThreshold)
+PlantConfiguration::PlantConfiguration(float moistureThreshold, float temperatureThreshold, float humidityThreshold, float lightThreshold)
 {
     config.moistureThreshold = moistureThreshold;
     config.temperatureThreshold = temperatureThreshold;
+    config.humidityThreshold = humidityThreshold;
+    config.lightThreshold = lightThreshold;
 }
 
 const PlantConfig &PlantConfiguration::getConfig() const

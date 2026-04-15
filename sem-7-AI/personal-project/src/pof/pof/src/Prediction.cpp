@@ -26,9 +26,35 @@ int Prediction::ArgMax(const float values[], int size)
     return maxIndex;
 }
 
+void Prediction::Softmax(const float input[3], float output[3])
+{
+    float maxVal = input[0];
+    for (int i = 1; i < 3; i++)
+    {
+        if (input[i] > maxVal)
+        {
+            maxVal = input[i];
+        }
+    }
+
+    float sum = 0.0f;
+    for (int i = 0; i < 3; i++)
+    {
+        output[i] = expf(input[i] - maxVal);
+        sum += output[i];
+    }
+
+    if (sum > 0.0f)
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            output[i] /= sum;
+        }
+    }
+}
+
 void Prediction::Forward(const float input[3], float output[3])
 {
-    // Hidden layer: 3 -> 8
     const float W1[3][8] = {
         {-1.66090395f, 1.28863049f, 1.23965745f, 0.25400533f, -1.21944919f, -2.50832765f, -1.63462578f, 0.85975954f},
         {-0.02208931f, -0.01401896f, -0.13590374f, 0.57209713f, 0.82869254f, -0.05283282f, 0.00269596f, -0.86147397f},
@@ -52,7 +78,6 @@ void Prediction::Forward(const float input[3], float output[3])
         hidden[i] = Relu(hidden[i]);
     }
 
-    // Output layer: 8 -> 3
     const float W2[8][3] = {
         {-3.02247220f, 1.30793735f, 0.88963572f},
         {0.77690098f, 0.06565555f, -1.09702521f},
@@ -77,13 +102,12 @@ void Prediction::Forward(const float input[3], float output[3])
     }
 }
 
-PlantHealth Prediction::Predict(const SensorData &data, const PlantConfiguration &config)
+PredictionResult Prediction::Predict(const SensorData &data, const PlantConfiguration &config)
 {
     float soilMoisture = data.soilMoisture;
-    float humidityStress = fabs(data.humidity - config.GetHumidityThreshold());
+    float humidityStress = fabs(data.humidity - config.getConfig().humidityThreshold);
     float moistureTempInteraction = data.soilMoisture * data.temperature;
 
-    // Normalize using training scaler values
     const float mean[3] = {
         25.04231369f,
         8.39165835f,
@@ -99,22 +123,35 @@ PlantHealth Prediction::Predict(const SensorData &data, const PlantConfiguration
     input[1] = (humidityStress - mean[1]) / stdDev[1];
     input[2] = (moistureTempInteraction - mean[2]) / stdDev[2];
 
-    // 3. Forward pass
-    float output[3];
-    Forward(input, output);
+    float logits[3];
+    Forward(input, logits);
 
-    // 4. Pick class
-    int predictedClass = ArgMax(output, 3);
+    float probabilities[3];
+    Softmax(logits, probabilities);
+
+    int predictedClass = ArgMax(probabilities, 3);
+
+    PredictionResult result;
+    result.confidence = probabilities[predictedClass];
+    result.probabilities[0] = probabilities[0];
+    result.probabilities[1] = probabilities[1];
+    result.probabilities[2] = probabilities[2];
 
     switch (predictedClass)
     {
     case 0:
-        return PlantHealth::HEALTHY;
+        result.health = PlantHealth::HEALTHY;
+        break;
     case 1:
-        return PlantHealth::HIGH_STRESS;
+        result.health = PlantHealth::HIGH_STRESS;
+        break;
     case 2:
-        return PlantHealth::MODERATE_STRESS;
+        result.health = PlantHealth::MODERATE_STRESS;
+        break;
     default:
-        return PlantHealth::MODERATE_STRESS;
+        result.health = PlantHealth::MODERATE_STRESS;
+        break;
     }
+
+    return result;
 }

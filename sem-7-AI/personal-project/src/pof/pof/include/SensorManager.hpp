@@ -3,8 +3,7 @@
 #include "ISensor.hpp"
 #include "SensorData.hpp"
 
-/
-    class SensorManager
+class SensorManager
 {
 private:
     /* Maximum number of sensors that can be managed */
