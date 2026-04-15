@@ -10,4 +10,7 @@ struct SensorData
     float temperature = 0.0f;
     float soilMoisture = 0.0f;
     float light = 0.0f;
+    float humidityStress = 0.0f;
+    float moistureStress = 0.0f;
+    float moistureTempInteraction = 0.0f;
 };

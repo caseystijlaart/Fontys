@@ -103,7 +103,7 @@ void Prediction::Forward(const float input[4], float output[3])
     }
 }
 
-PredictionResult Prediction::Predict(const SensorData &data, const PlantConfiguration &config)
+PredictionResult Prediction::Predict(SensorData &data, const PlantConfiguration &config)
 {
     float soilMoisture = data.soilMoisture;
 
@@ -111,6 +111,9 @@ PredictionResult Prediction::Predict(const SensorData &data, const PlantConfigur
     float humidityStress = fabs(data.humidity - config.getConfig().humidityThreshold);
     float moistureStress = fabs(data.soilMoisture - config.getConfig().moistureThreshold);
     float moistureTempInteraction = data.soilMoisture * data.temperature;
+    data.humidityStress = humidityStress;
+    data.moistureStress = moistureStress;
+    data.moistureTempInteraction = moistureTempInteraction;
 
     const float mean[4] = {
         25.04231369f,

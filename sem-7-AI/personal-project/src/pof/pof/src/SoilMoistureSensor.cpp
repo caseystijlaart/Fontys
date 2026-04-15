@@ -23,8 +23,8 @@ float SoilMoistureSensor::GetData() {
 
     if (percent < 0.0f) percent = 0.0f;
     if (percent > 100.0f) percent = 100.0f;
-
-    return percent;
+    float soilMoisture = 10.0f + (percent / 100.0f) * 30.0f;
+    return soilMoisture;
 }
 
 SensorType SoilMoistureSensor::GetType() const {

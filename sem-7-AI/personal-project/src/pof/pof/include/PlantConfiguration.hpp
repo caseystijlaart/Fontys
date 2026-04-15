@@ -8,8 +8,8 @@
  */
 struct PlantConfig
 {
-    float moistureThreshold = 60.0f;
-    float temperatureThreshold = 25.0f;
+    float moistureThreshold = 35.0f;
+    float temperatureThreshold = 22.5f;
     float humidityThreshold = 60.0f;
     float lightThreshold = 245.0f;
 };
@@ -18,7 +18,7 @@ class PlantConfiguration
 {
 public:
     /** @brief Default constructor */
-    PlantConfiguration();
+    PlantConfiguration() {};
 
     /** @brief Parameterized constructor
      * @param moistureThreshold The soil moisture threshold for plant health classification

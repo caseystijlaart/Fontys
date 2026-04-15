@@ -25,7 +25,7 @@ public:
      * @param config The plant configuration thresholds to be used for classification
      * @return The predicted plant health status (HEALTHY, MODERATE_STRESS, or HIGH_STRESS)
      */
-    PredictionResult Predict(const SensorData &data, const PlantConfiguration &config);
+    PredictionResult Predict(SensorData &data, const PlantConfiguration &config);
 
 private:
     /** @brief Apply the ReLU activation function

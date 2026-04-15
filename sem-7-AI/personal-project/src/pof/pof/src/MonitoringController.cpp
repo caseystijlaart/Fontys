@@ -21,16 +21,20 @@ void MonitoringController::RunCycle()
     PredictionResult result = prediction.Predict(data, configuration);
 
     // communication.Send(data);
-    // Serial.println(result.probabilities[2], 4);
+    // Serial.println(result.probabilities[2], 2);
 
     Serial.print("1,");
-    Serial.print(data.humidity, 4);
+    Serial.print(data.humidity, 2);
     Serial.print(",");
-    Serial.print(data.temperature, 4);
+    Serial.print(data.temperature, 2);
     Serial.print(",");
-    Serial.print(data.soilMoisture, 4);
+    Serial.print(data.soilMoisture, 2);
     Serial.print(",");
-    Serial.print(result.health == PlantHealth::HEALTHY ? "HEALTHY" : (result.health == PlantHealth::HIGH_STRESS ? "HIGH_STRESS" : "MODERATE_STRESS"));
+    Serial.print(data.humidityStress, 2);
     Serial.print(",");
-    Serial.println(result.confidence, 4);
+    Serial.print(data.moistureStress, 2);
+    Serial.print(",");
+    Serial.print(data.moistureTempInteraction, 2);
+    Serial.print(",");
+    Serial.println(result.health == PlantHealth::HEALTHY ? "HEALTHY" : (result.health == PlantHealth::HIGH_STRESS ? "HIGH_STRESS" : "MODERATE_STRESS"));
 }

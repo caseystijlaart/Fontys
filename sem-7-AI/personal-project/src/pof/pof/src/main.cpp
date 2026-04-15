@@ -1,5 +1,6 @@
 #include <Arduino.h>
 #include <DHT.h>
+#include <ctime>
 
 #include "DHTSensor.hpp"
 #include "SoilMoistureSensor.hpp"
@@ -11,6 +12,14 @@
 #define DHT_PIN 4
 #define DHT_TYPE DHT22
 #define SOIL_PIN 34
+
+#ifndef DEVICE_ID
+#define DEVICE_ID 0
+#endif
+
+#ifndef DEVICE_NAME
+#define DEVICE_NAME "Unknown Device"
+#endif
 
 DHT dht(DHT_PIN, DHT_TYPE);
 
@@ -24,7 +33,7 @@ Communication communication;
 MonitoringController *controller = nullptr;
 
 unsigned long lastSampleTime = 0;
-const unsigned long sampleIntervalMs = 3000;
+const unsigned long sampleIntervalMs = 150000; // 2.5 minutes
 
 void setup()
 {
@@ -55,6 +64,7 @@ void setup()
     controller->UpdateConfiguration();
 
     Serial.println("System initialized.");
+    controller->RunCycle();
 }
 
 void loop()
@@ -66,5 +76,4 @@ void loop()
         controller->RunCycle();
         lastSampleTime = now;
     }
-
 }
