@@ -1,0 +1,108 @@
+# Persona : <name>
+
+voor striketrough gebruik [.line-through]#text#
+
+## Basic Information
+**Name:**  
+
+**Age:** 
+
+**Gender:**  
+
+**Occupation / Study:**
+
+**Location:**  
+
+**Living Situation:** (e.g., alone, with parents, roommates)
+
+## Background & Context
+*Short description of daily life (5–7 lines):*
+
+*Typical day structure (work/study, free time):*
+
+*Relationship with technology (heavy user / moderate / minimal):*
+
+## Goals & Motivations
+**Primary Goal:** (e.g., reduce screen time, improve focus)  
+
+**Secondary Goals:**  
+
+**Motivations:**
+<examples>
+
+* Productivity
+* Mental health
+* Sleep improvement
+* Social balance
+
+## Phone Usage Behavior
+**Average Screen Time:**  
+
+**Pickups per Day:**  
+
+**Most Used Apps:**  
+    
+**Usage Patterns:** (e.g., latenight scrolling, frequent short checks)  
+
+**Trigger Moments:**
+<examples>
+
+* Boredom  
+* Stress  
+* Habit / muscle memory  
+
+## Pain Points
+*What frustrates them about their phone usage:*
+    
+*Consequences:*
+<examples>
+
+* Loss of focus  
+* Poor sleep  
+* Guilt / lack of control  
+
+## Needs & Expectations
+*What they expect from your app:*
+
+* Clear insights (simple dashboard)  
+* Personalized suggestions  
+* Nonintrusive nudges  
+
+*Preferences:*
+
+* Subtle vs strict interventions  
+* Visual vs text feedback  
+
+## Personality & Behavior Type
+**Persona Type:**  
+
+* 🔵 The Addict (high usage, low control)  
+* 🟢 The Balanced User  
+* 🟡 The GoalOriented Improver  
+* 🔴 The Resistant User  
+
+**Traits:**
+
+* Discipline level: Low / Medium / High  
+* Openness to change: Low / Medium / High  
+* Response to nudges: (ignores / reacts / adapts)
+
+
+
+## 8. Preferred Nudges (JITAI)
+
+**Best timing for intervention:** <examples>
+
+* After X minutes of usage  
+* During latenight use  
+* During frequent pickups  
+
+**Effective nudges:** <examples>
+
+* Notifications (e.g., “You’ve picked up your phone 20 times in 1 hour”)  
+* Reflection prompts  
+* Goal reminders  
+* App blocking / friction  
+
+**What does NOT work:**
+    

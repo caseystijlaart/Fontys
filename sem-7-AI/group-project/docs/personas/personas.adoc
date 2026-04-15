@@ -1,0 +1,31 @@
+= GP Personas : Minor AI for Society
+:numbered:
+:imagesdir: images
+:title-page: true
+:author: Casey Stijlaart
+:docdatetime: datetime (ISO)
+:doctype: report
+:toc:
+:toclevels: 2
+:pdf-page-size: A4
+:pdf-page-layout: portrait
+:xrefstyle: short
+:pdf-theme: default
+:pdf-fontsize: 11
+
+== Context
+This document outlines the personas developed for the group project in the Minor AI for Society course. 
+As each individual in the group has a different background and perspective, we each created a persona that represents our own views and experiences.
+These personas will be used to guide the development of our project and ensure that we are creating a solution that is inclusive and considers the needs of a diverse range of users.
+
+== Personas
+
+:leveloffset: +2
+
+include::casey.adoc[]
+
+<<<
+
+include::laelie.adoc[]
+
+:leveloffset: -2

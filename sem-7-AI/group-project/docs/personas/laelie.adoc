@@ -1,0 +1,115 @@
+# Persona : Laelie
+
+## Basic Information
+**Name:** Laelie
+
+**Age:** 22
+
+**Gender:** Female
+
+**Occupation / Study:** Applied Science – Materials Science
+
+**Location:** Eindhoven
+
+**Living Situation:** with partner
+
+## Background & Context
+*Short description of daily life:*
+
+I am a student and a mom, and I really enjoy spending time outdoors. In the past, I used to scroll on social media a lot, but recently I decided to quit, and it has made me feel much better. I feel like I have more time and can truly connect with people in real life again. I’ve also started reading books about social media addiction, which helped me realize how much I was actually addicted to scrolling.
+
+*Typical day structure (work/study, free time):*
+
+* *Morning:* bring my daughter to daycare, go to school/work 
+* *Afternoon:* working 
+* *Evening:* pick my daughter up, cooking, eating, go to sleep 
+
+*Relationship with technology:* Moderate 
+
+Short explanation: Lately i don’t scroll that much anymore since I am aware about the effect it has on my life 
+
+## Goals & Motivations
+**Primary Goal:** improve concentration skill
+
+**Secondary Goals:**  connect more with people in real life.
+
+**Motivations:**
+
+* Productivity
+* Mental health
+* Sleep improvement
+* Social balance
+
+## Phone Usage Behavior
+**Average Screen Time:** 2,5-3 hours per day
+
+**Pickups per Day:** 120 per day
+
+**Most Used Apps:** whatsapp, messages
+    
+**Usage Patterns:** short checks 
+
+**Trigger Moments:**
+
+* Boredom  
+* Stress   
+
+## Pain Points
+*What frustrates you about your phone usage:*
+
+* Difficulty to focus
+* Distracting
+* Once you are scrolling, you don't want to stop.
+
+*Consequences:*
+
+* Loss of focus  
+* lack of control  
+
+## Needs & Expectations
+*What you expect from the app:*
+
+* Clear insights (simple dashboard)  
+* Personalized suggestions  
+* Nonintrusive nudges  
+
+*Preferences:*
+
+* Subtle interventions  
+* Visual feedback  
+
+## Personality & Behavior Type
+**Persona Type:**  
+
+* [.line-through]#🔵 The Addict (high usage, low control)#
+* *🟢 The Balanced User*
+* [.line-through]#🟡 The Goal Oriented Improver# 
+* [.line-through]#🔴 The Resistant User#
+
+**Traits:**
+
+* Discipline level: [.line-through]#Low# / *Medium* / [.line-through]#High#
+* Openness to change: [.line-through]#Low# / [.line-through]#Medium# / *High*  
+* Response to nudges: adapts
+
+## Preferred Nudges (JITAI)
+
+**Best timing for intervention:** <examples>
+
+* After X minutes of usage  
+* During late night use  
+* During frequent pickups  
+
+**Effective nudges:** <examples>
+
+* Notifications (e.g., “You’ve picked up your phone 20 times in 1 hour”)  
+* Reflection prompts  
+* Goal reminders  
+* App blocking / friction  
+* Slower scrolling
+* Screen fading
+
+**What does NOT work:**
+
+* Front camera
+    

@@ -1,0 +1,110 @@
+= Persona: Casey
+
+== Basic Information
+**Name:** Casey
+
+**Age:**  25
+
+**Gender:** Male 
+
+**Occupation / Study:**  ICT & Technology student at Fontys University of Applied Sciences
+
+**Location:**  Den Dungen
+
+**Living Situation:** with parent
+
+== Background & Context
+
+*Short description of daily life:*
+
+My daily life includes either working on my college degree. 
+Besides college, I also have a part*time job at a local supermarket.
+Next to these two main activities, I also spend a lot of time behind a screen, whether it be for entertainment, social media, or gaming.
+
+*Typical day structure:*
+
+I tend to sleep in, and after work on college related tasks, I usually spend my free time on my phone or computer.
+
+*Relationship with technology:*
+
+I am an heavy user of technology, especially smartphones and computers. I rely on them for both work and leisure activities, and I often find myself spending several hours a day on these devices.
+
+== Goals & Motivations
+
+**Primary Goal:** 
+
+My primary goal is to reduce my screen time and improve my focus on tasks, especially when it comes to my studies and work.
+I want to be able to manage my time better and avoid getting distracted by my phone or computer.
+
+**Secondary Goals:**  
+
+My secondary goals include improving my sleep quality by reducing late night screen time, and finding a better balance between my online and offline activities.
+
+**Motivations:**
+
+I care about these goals because I want to be more productive and successful in my studies and work. 
+I also want to improve my overall wellbeing by reducing the negative effects of excessive screen time, such as poor sleep and decreased focus.
+
+== Phone Usage Behavior
+**Average Screen Time:**  6 hours per day
+**Pickups per Day:**  80 times
+**Most Used Apps:**  TikTok and Reddit
+**Usage Patterns:** frequent pickups throughout the day, with increased usage in the evenings and late at night.
+**Trigger Moments:**  when i am bored, during breaks, or when i need to decompress at the end of the day.
+
+== Pain Points
+*What frustrates me about my phone usage:*
+
+* Difficulty focusing on tasks due to constant distractions from notifications and apps.
+* Poor sleep quality due to late*night screen time.
+
+*Consequences:*
+
+* Loss of focus  
+* Poor sleep  
+
+== Needs & Expectations
+*What do I expect from the app:*
+
+* Effective nudges that help me reduce my screen time and improve my focus.
+* Personalization based on my usage patterns and preferences.
+
+*Preferences:*
+
+* Strict nudges that block access to distracting apps during certain times of the day.
+* Visual feedback on my usage patterns and progress towards my goals.
+* Reminders to take breaks and engage in offline activities.
+
+== Personality & Behavior Type
+**Persona Type:**  
+
+* [.line-through]#🔵 The Addict (high usage, low control)#
+* *🟢 The Balanced User*  
+* [.line-through]#🟡 The Goal Oriented Improver#
+* [.line-through]#🔴 The Resistant User#
+
+**Traits:**
+
+* Discipline level: [.line-through]#low# / *medium* / [.line-through]#high#
+* Openness to change: [.line-through]#low# / *medium* / [.line-through]#high#
+* Response to nudges: [.line-through]#ignore# / *reacts* / [.line-through]#adapts#
+
+== Preferred Nudges (JITAI)
+**Best timing for intervention:**
+
+* After 30 minutes of constant usage  
+* During late night use  
+* During frequent pickups  
+
+**Effective nudges:**
+
+* Notifications with usage insights  
+* Reminders to take breaks
+* Reflection prompts  
+* App blocking / friction  
+
+**What does NOT work:**
+
+* Gentle reminders that can be easily ignored.
+* Generic advice without personalization.
+* Nudges that do not provide actionable insights or feedback.
