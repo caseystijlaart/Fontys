@@ -1,5 +1,7 @@
 #pragma once
 
+#include <ctime>
+
 #include "SensorData.hpp"
 #include "PlantConfiguration.hpp"
 

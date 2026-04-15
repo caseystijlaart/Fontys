@@ -7,18 +7,21 @@ from sklearn.metrics import accuracy_score, classification_report, confusion_mat
 from sklearn.linear_model import LogisticRegression
 from sklearn.neural_network import MLPClassifier
 
-df = pd.read_csv("sem-7-AI\\personal-project\\src\\pof\\plant_health_data.csv")
+df = pd.read_csv("sem-7-AI\personal-project\datasets\datasets\plant_health_data.csv")
 
-# Down the line it should add the differences in possibilities for e.g. ideal soil moisture, ideal humidity, etc.
+# Ideal values for this plant
+ideal_humidity = 60
+ideal_soil_moisture = 35
 
-ideal_humidity = 60 # Ideal humidity for the plant (example value)
-
+# Engineered features
 df["humidity_stress"] = (df["Humidity"] - ideal_humidity).abs()
+df["moisture_stress"] = (df["Soil_Moisture"] - ideal_soil_moisture).abs()
 df["moisture_temp_interaction"] = df["Soil_Moisture"] * df["Ambient_Temperature"]
 
 feature_columns = [
     "Soil_Moisture",
     "humidity_stress",
+    "moisture_stress",
     "moisture_temp_interaction"
 ]
 target_column = "Plant_Health_Status"

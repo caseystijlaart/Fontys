@@ -23,6 +23,9 @@ Prediction prediction;
 Communication communication;
 MonitoringController *controller = nullptr;
 
+unsigned long lastSampleTime = 0;
+const unsigned long sampleIntervalMs = 3000;
+
 void setup()
 {
     Serial.begin(115200);
@@ -56,10 +59,12 @@ void setup()
 
 void loop()
 {
-    if (controller != nullptr)
+    unsigned long now = millis();
+
+    if (controller != nullptr && (now - lastSampleTime >= sampleIntervalMs))
     {
         controller->RunCycle();
+        lastSampleTime = now;
     }
 
-    delay(3000);
 }

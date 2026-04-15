@@ -2,8 +2,9 @@
 
 PlantConfiguration::PlantConfiguration()
 {
-    config.moistureThreshold = 60.0f;
-    config.temperatureThreshold = 25.0f;
+    config.moistureThreshold = 35.0f;
+    config.temperatureThreshold = 22.5f;
+    config.humidityThreshold = 55.0f;
 }
 
 PlantConfiguration::PlantConfiguration(float moistureThreshold, float temperatureThreshold, float humidityThreshold, float lightThreshold)

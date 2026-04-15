@@ -1,5 +1,6 @@
 #include <Arduino.h>
 #include "MonitoringController.hpp"
+#include <ctime>
 
 MonitoringController::MonitoringController(
     SensorManager &sensorMgr,
@@ -19,33 +20,17 @@ void MonitoringController::RunCycle()
     SensorData data = sensorManager.ReadAll();
     PredictionResult result = prediction.Predict(data, configuration);
 
-    communication.Send(data);
+    // communication.Send(data);
+    // Serial.println(result.probabilities[2], 4);
 
-    Serial.print("Plant health: ");
-    switch (result.health)
-    {
-    case PlantHealth::HEALTHY:
-        Serial.println("HEALTHY");
-        break;
-    case PlantHealth::MODERATE_STRESS:
-        Serial.println("MODERATE_STRESS");
-        break;
-    case PlantHealth::HIGH_STRESS:
-        Serial.println("HIGH_STRESS");
-        break;
-    }
-
-    Serial.print("Confidence: ");
+    Serial.print("1,");
+    Serial.print(data.humidity, 4);
+    Serial.print(",");
+    Serial.print(data.temperature, 4);
+    Serial.print(",");
+    Serial.print(data.soilMoisture, 4);
+    Serial.print(",");
+    Serial.print(result.health == PlantHealth::HEALTHY ? "HEALTHY" : (result.health == PlantHealth::HIGH_STRESS ? "HIGH_STRESS" : "MODERATE_STRESS"));
+    Serial.print(",");
     Serial.println(result.confidence, 4);
-
-    Serial.print("P(Healthy): ");
-    Serial.println(result.probabilities[0], 4);
-
-    Serial.print("P(High Stress): ");
-    Serial.println(result.probabilities[1], 4);
-
-    Serial.print("P(Moderate Stress): ");
-    Serial.println(result.probabilities[2], 4);
-
-    Serial.println("----------------------");
 }

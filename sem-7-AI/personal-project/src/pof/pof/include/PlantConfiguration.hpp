@@ -10,8 +10,8 @@ struct PlantConfig
 {
     float moistureThreshold = 60.0f;
     float temperatureThreshold = 25.0f;
-    float humidityThreshold = 50.0f;
-    float lightThreshold = 0.0f;
+    float humidityThreshold = 60.0f;
+    float lightThreshold = 245.0f;
 };
 
 class PlantConfiguration

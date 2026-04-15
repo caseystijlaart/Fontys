@@ -53,16 +53,17 @@ void Prediction::Softmax(const float input[3], float output[3])
     }
 }
 
-void Prediction::Forward(const float input[3], float output[3])
+void Prediction::Forward(const float input[4], float output[3])
 {
-    const float W1[3][8] = {
-        {-1.66090395f, 1.28863049f, 1.23965745f, 0.25400533f, -1.21944919f, -2.50832765f, -1.63462578f, 0.85975954f},
-        {-0.02208931f, -0.01401896f, -0.13590374f, 0.57209713f, 0.82869254f, -0.05283282f, 0.00269596f, -0.86147397f},
-        {-0.05387287f, -0.23540778f, -0.04325007f, -0.29359517f, -0.43342775f, -0.30334154f, -0.05451270f, -0.18861791f}};
+    const float W1[4][8] = {
+        {-1.79645792e-29f, 7.36498821e-01f, -9.18600517e-02f, -2.10526377e-01f, -1.72966167e+00f, -3.01354694e-01f, -1.48001689e+00f, -3.95681758e-01f},
+        {-1.35178853e-36f, 4.35073876e-01f, -2.91407781e-01f, 7.96449588e-01f, 9.78928099e-02f, -4.32019975e-01f, 2.23871442e-02f, -1.08806332e-01f},
+        {-3.34885520e-17f, -5.12598063e-01f, 7.11559822e-01f, 1.64137753e-01f, 1.47223939e+00f, -8.45731228e-01f, 4.47049556e-01f, 8.05428686e-01f},
+        {-2.90912615e-53f, -1.70884586e-01f, -1.53713027e-01f, -1.79259987e-01f, -1.72184163e-01f, -6.43409964e-01f, -5.11267071e-02f, -3.82988747e-01f}};
 
     const float b1[8] = {
-        1.13610458f, 0.51206488f, 0.17462122f, 0.93053437f,
-        0.41859057f, -1.08522127f, 1.14938218f, 0.41616960f};
+        -0.61510994f, 0.98456392f, 1.34801918f, 0.62498837f,
+        -0.62260429f, -0.53317746f, 1.48285706f, -0.62640286f};
 
     float hidden[8];
 
@@ -70,7 +71,7 @@ void Prediction::Forward(const float input[3], float output[3])
     {
         hidden[i] = b1[i];
 
-        for (int j = 0; j < 3; j++)
+        for (int j = 0; j < 4; j++)
         {
             hidden[i] += input[j] * W1[j][i];
         }
@@ -79,17 +80,17 @@ void Prediction::Forward(const float input[3], float output[3])
     }
 
     const float W2[8][3] = {
-        {-3.02247220f, 1.30793735f, 0.88963572f},
-        {0.77690098f, 0.06565555f, -1.09702521f},
-        {-0.30470337f, 0.70747872f, -0.61820458f},
-        {0.24103667f, -1.19770835f, 0.89838840f},
-        {-1.61411744f, 0.86172138f, -0.21602353f},
-        {-0.32693233f, 1.73635854f, -2.54433441f},
-        {-0.55514585f, 0.82761545f, 1.15932432f},
-        {0.31188915f, -0.15159676f, 1.16560239f}};
+        {-2.38286671e-07f, 2.33239966e-61f, -1.26438362e-05f},
+        {9.20674149e-01f, -3.07979130e-01f, -3.83742656e-01f},
+        {-7.67074403e-01f, -9.62592381e-02f, 5.60254877e-01f},
+        {-5.11815437e-01f, 3.25727921e-01f, 9.33384644e-01f},
+        {2.81582279e-01f, 1.77559772e+00f, -1.34934653e+00f},
+        {9.95476323e-01f, -1.09633088e+00f, -2.56174251e-01f},
+        {-2.03751764e+00f, 8.73951817e-02f, 8.75917921e-01f},
+        {-2.89642740e-01f, 1.10247179e+00f, -1.15883387e+00f}};
 
     const float b2[3] = {
-        -0.58318004f, -1.11053463f, -0.14287843f};
+        -0.58697311f, -0.24807985f, -0.09958299f};
 
     for (int i = 0; i < 3; i++)
     {
@@ -105,23 +106,29 @@ void Prediction::Forward(const float input[3], float output[3])
 PredictionResult Prediction::Predict(const SensorData &data, const PlantConfiguration &config)
 {
     float soilMoisture = data.soilMoisture;
+
+    // Assumes these config values represent ideal values / target thresholds
     float humidityStress = fabs(data.humidity - config.getConfig().humidityThreshold);
+    float moistureStress = fabs(data.soilMoisture - config.getConfig().moistureThreshold);
     float moistureTempInteraction = data.soilMoisture * data.temperature;
 
-    const float mean[3] = {
+    const float mean[4] = {
         25.04231369f,
         8.39165835f,
+        10.88692942f,
         600.06397933f};
 
-    const float stdDev[3] = {
+    const float stdDev[4] = {
         8.77016247f,
         5.48159131f,
+        7.58591024f,
         225.02376219f};
 
-    float input[3];
+    float input[4];
     input[0] = (soilMoisture - mean[0]) / stdDev[0];
     input[1] = (humidityStress - mean[1]) / stdDev[1];
-    input[2] = (moistureTempInteraction - mean[2]) / stdDev[2];
+    input[2] = (moistureStress - mean[2]) / stdDev[2];
+    input[3] = (moistureTempInteraction - mean[3]) / stdDev[3];
 
     float logits[3];
     Forward(input, logits);
