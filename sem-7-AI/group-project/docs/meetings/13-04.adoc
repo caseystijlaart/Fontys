@@ -1,0 +1,16 @@
+= Client Meeting : 13-04-2026
+
+== Actie punten
+
+* Herm emailen met verdeling van taken.
+* Herm emailen met link naar github repo met alle huidige documentatie.
+
+== Front-end Prototype
+
+* Het idee van slow scrolling en screen fading is besproken. 
+Dit kan een goede manier zijn om de gebruiker bewust te maken van hun telefoon gebruik en de impact ervan op hun mentale gezondheid.
+* Implentatie van dark/light mode is voorkeur i.p.v een statische kleurenschema.
+* Creatieve nudges is geen must, meer een gimmick. Het is belangrijker dat de app een educatief doel heeft en gebruikers bewust maakt van hun telefoon gebruik.
+* Denk na over wat er nodig is voor de toekomost, zoals zijn er limitaties voor de huidige grote apps en wat er dan wel kan.
+* Duidelijke feedback geven binnen de app voor de gebruiker, zodat er bv inzicht is op de winsten die ze al behaald hebben.
+* Een idee voor een nudge zou kunnen zijn, een die voor de gebruiker een reminder geeft waarvoor ze het doen.
