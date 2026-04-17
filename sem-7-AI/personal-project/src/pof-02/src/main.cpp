@@ -14,11 +14,12 @@ MLLayer ml(MLBackend::TINYML_TFLM);
 RecommendationEngine recEngine;
 MonitoringSystem monitoringSystem(soil, dht, light, ml, recEngine, 24);
 
-const unsigned long INTERVAL = 10000;
+const unsigned long INTERVAL = 150000;
 unsigned long lastRun = 0;
 bool wroteCsvHeader = false;
 
-void PrintCsvHeader() {
+void PrintCsvHeader()
+{
     Serial.println(
         "timestamp_utc,soil_moisture_pct,temperature_c,humidity_pct,light_level_pct,"
         "risk_class,confidence,prob_healthy,prob_moderate_stress,prob_high_stress,"
@@ -27,24 +28,16 @@ void PrintCsvHeader() {
         "feature0,feature1,feature2,feature3,feature4,feature5,feature6,feature7,feature8,feature9,feature10,feature11");
 }
 
-void PrintTimestampUtc(std::int64_t unixTime) {
+void PrintTimestampUtc(std::int64_t unixTime)
+{
     const std::time_t ts = static_cast<std::time_t>(unixTime);
     std::tm timeInfo{};
-
-#if defined(ESP32)
     gmtime_r(&ts, &timeInfo);
-#else
-    const std::tm* utc = std::gmtime(&ts);
-    if (utc == nullptr) {
-        Serial.print("1970-01-01 00:00");
-        return;
-    }
-    timeInfo = *utc;
-#endif
 
     char buffer[20];
     const std::size_t len = std::strftime(buffer, sizeof(buffer), "%Y-%m-%d %H:%M", &timeInfo);
-    if (len == 0) {
+    if (len == 0)
+    {
         Serial.print("1970-01-01 00:00");
         return;
     }
@@ -52,11 +45,12 @@ void PrintTimestampUtc(std::int64_t unixTime) {
     Serial.print(buffer);
 }
 
-void PrintCsvRow(const MonitoringCycleResult& result) {
-    const auto& snapshot = result.snapshot;
-    const auto& mlResult = result.mlResult;
-    const auto& rec = result.recommendation;
-    const auto& features = result.features.values;
+void PrintCsvRow(const MonitoringCycleResult &result)
+{
+    const auto &snapshot = result.snapshot;
+    const auto &mlResult = result.mlResult;
+    const auto &rec = result.recommendation;
+    const auto &features = result.features.values;
 
     PrintTimestampUtc(snapshot.unixTime);
     Serial.print(',');
@@ -87,44 +81,67 @@ void PrintCsvRow(const MonitoringCycleResult& result) {
     Serial.print(rec.increaseLight ? 1 : 0);
     Serial.print(',');
 
-    for (char ch : rec.summary) {
-        if (ch == ',') {
+    for (char ch : rec.summary)
+    {
+        if (ch == ',')
+        {
             Serial.print(';');
-        } else if (ch == '"') {
+        }
+        else if (ch == '"')
+        {
             Serial.print('\'');
-        } else {
+        }
+        else
+        {
             Serial.print(ch);
         }
     }
 
-    for (std::size_t i = 0; i < features.size(); ++i) {
+    for (std::size_t i = 0; i < features.size(); ++i)
+    {
         Serial.print(',');
         Serial.print(features[i], 6);
     }
     Serial.println();
 }
 
-void setup() {
+void setup()
+{
     Serial.begin(115200);
 
-    if (!monitoringSystem.Init()) {
+    if (!monitoringSystem.Init())
+    {
         Serial.println("Failed to initialize monitoring system");
-        while (true) {
+        while (true)
+        {
         }
     }
 
     Serial.println("Monitoring system initialized");
+
+    const auto result = monitoringSystem.RunCycleDetailed();
+
+    if (!wroteCsvHeader)
+    {
+        PrintCsvHeader();
+        wroteCsvHeader = true;
+    }
+
+    PrintCsvRow(result);
 }
 
-void loop() {
+void loop()
+{
     unsigned long now = millis();
 
-    if (now - lastRun >= INTERVAL) {
+    if (now - lastRun >= INTERVAL)
+    {
         lastRun = now;
 
         const auto result = monitoringSystem.RunCycleDetailed();
 
-        if (!wroteCsvHeader) {
+        if (!wroteCsvHeader)
+        {
             PrintCsvHeader();
             wroteCsvHeader = true;
         }
