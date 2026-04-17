@@ -4,12 +4,12 @@ namespace pof02 {
 
 Level Classification::Classify(float value, const ClassificationThresholds& thresholds) {
     if (value < thresholds.low) {
-        return Level::LOW;
+        return Level::kLow ;
     }
     if (value > thresholds.high) {
-        return Level::HIGH;
+        return Level::kHigh;
     }
-    return Level::OK;
+    return Level::kOk;
 }
 
 } // namespace pof02

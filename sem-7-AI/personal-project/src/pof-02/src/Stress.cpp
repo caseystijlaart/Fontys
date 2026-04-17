@@ -4,10 +4,10 @@ namespace pof02 {
 
 float Stress::Score(Level level) {
     switch (level) {
-        case Level::OK:
+        case Level::kOk:
             return 0.0f;
-        case Level::LOW:
-        case Level::HIGH:
+        case Level::kLow :
+        case Level::kHigh:
             return 1.0f;
     }
     return 1.0f;

@@ -7,9 +7,9 @@
 namespace pof02 {
 
 enum class Level : uint8_t {
-    LOW = 0,
-    OK = 1,
-    HIGH = 2,
+    kLow  = 0,
+    kOk = 1,
+    kHigh = 2,
 };
 
 enum class RiskClass : uint8_t {
