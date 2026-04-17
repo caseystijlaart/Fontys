@@ -5,7 +5,7 @@ namespace pof02 {
 class LightSensor {
 public:
     explicit LightSensor(int pin);
-    float ReadLux() const;
+    float ReadLightLevelPct() const; // 0 = dark, 100 = max ADC brightness
 
 private:
     int pin_;

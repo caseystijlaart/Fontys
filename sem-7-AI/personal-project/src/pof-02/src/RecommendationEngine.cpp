@@ -10,7 +10,7 @@ Recommendation RecommendationEngine::Build(const SensorSnapshot& snapshot, const
     rec.water = snapshot.soilMoisturePct < 35.0f || mlResult.risk == RiskClass::HIGH_STRESS;
     rec.reduceTemp = snapshot.temperatureC > 27.0f;
     rec.increaseHumidity = snapshot.humidityPct < 55.0f;
-    rec.increaseLight = snapshot.lightLux < 250.0f;
+    rec.increaseLight = snapshot.lightLevelPct < 30.0f;
 
     std::ostringstream oss;
     oss << "risk=" << static_cast<int>(mlResult.risk)

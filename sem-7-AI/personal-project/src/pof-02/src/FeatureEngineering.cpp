@@ -77,7 +77,7 @@ FeatureVector FeatureEngineering::Build(const SensorHistory& history) {
         dryDuration,
         latest.temperatureC,
         latest.humidityPct,
-        latest.lightLux,
+        latest.lightLevelPct,
         static_cast<float>(std::sin(2.0 * kPi * hour / 24.0)),
         static_cast<float>(std::cos(2.0 * kPi * hour / 24.0)),
         static_cast<float>(std::sin(2.0 * kPi * dow / 7.0)),

@@ -8,7 +8,7 @@ Build a real-time monitoring pipeline:
 `Sensors -> Preprocessing -> Classification -> Temporal Analysis -> ML Layer -> Recommendation`
 
 ## C++ modules
-- Sensor layer: moisture, temp/humidity, light with calibration + averaging
+- Sensor layer: moisture, temp/humidity, light from a standard LDR + 10k resistor (0 = dark) with calibration + averaging
 - Classification layer: `kLow  / kOk / kHigh` per environmental factor
 - Stress layer: per-factor and combined stress
 - Temporal core: circular history buffer with mean, delta, slope, dry-duration proxies
@@ -38,11 +38,11 @@ This lets you train using external platforms and only map outputs to `MLResult` 
 ## Time-aware dataset note
 Synthetic training data now uses real timestamps (e.g. `2026-03-04 10:20:00`) with unix epoch and cyclical time features (`hour_sin/cos`, `dow_sin/cos`) so training is date/time-aware instead of simple step ids.
 
-## Local build (desktop simulation)
+## Build and upload (Arduino/PlatformIO)
 ```bash
-cmake -S . -B build
-cmake --build build
-./build/pof02_demo
+platformio run
+platformio run -t upload
+platformio device monitor -b 115200
 ```
 
 ## Python workflow
@@ -52,3 +52,19 @@ python3 python/train_models.py
 python3 python/validate_models.py
 python3 python/export_for_tinyml.py
 ```
+
+
+## CSV logging on your laptop
+`main.cpp` now streams a CSV header + full data rows over Serial every cycle (human-readable UTC timestamp like `2026-03-04 12:10`, raw sensors including LDR light level %, ML risk, class probabilities, confidence, recommendation booleans, summary, and engineered features).
+
+To persist that stream directly to a CSV file on your laptop:
+
+```bash
+python3 -m pip install pyserial
+python3 python/log_serial_to_csv.py --port /dev/ttyUSB0 --baud 115200 --output ~/pof02-runs/run1.csv
+```
+
+Notes:
+- The firmware uses a configurable start timestamp (`2026-03-04 12:10 UTC` by default) and advances it with elapsed runtime, so CSV output aligns with date-time based datasets.
+- On Windows, use `--port COM4` (or your active COM port).
+- The script only writes valid CSV lines from the device and keeps informational boot logs in terminal output.

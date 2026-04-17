@@ -22,7 +22,7 @@ struct SensorSnapshot {
     float soilMoisturePct = 0.0f;
     float temperatureC = 0.0f;
     float humidityPct = 0.0f;
-    float lightLux = 0.0f;
+    float lightLevelPct = 0.0f;
     std::int64_t unixTime = 0;
 };
 
@@ -43,6 +43,13 @@ struct Recommendation {
     bool increaseHumidity = false;
     bool increaseLight = false;
     std::string summary;
+};
+
+struct MonitoringCycleResult {
+    SensorSnapshot snapshot;
+    FeatureVector features;
+    MLResult mlResult;
+    Recommendation recommendation;
 };
 
 } // namespace pof02
