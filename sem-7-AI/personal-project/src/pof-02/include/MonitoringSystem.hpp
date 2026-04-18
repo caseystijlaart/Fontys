@@ -11,7 +11,7 @@
 
 namespace pof02 {
 
-inline constexpr std::int64_t kDefaultDatasetStartUnixTime = 1772626200; // 2026-03-04 12:10:00 UTC
+inline constexpr std::int64_t kDefaultDatasetStartUnixTime = 1776466884; // 2026-03-04 12:10:00 UTC
 
 class MonitoringSystem {
 public:

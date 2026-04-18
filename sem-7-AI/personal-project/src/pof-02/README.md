@@ -54,17 +54,78 @@ python3 python/export_for_tinyml.py
 ```
 
 
-## CSV logging on your laptop
-`main.cpp` now streams a CSV header + full data rows over Serial every cycle (human-readable UTC timestamp like `2026-03-04 12:10`, raw sensors including LDR light level %, ML risk, class probabilities, confidence, recommendation booleans, summary, and engineered features).
+## WiFi logging to a shared CSV-friendly store (Google Sheets)
+`main.cpp` now logs every cycle through WiFi (`INTERVAL = 3600000`, so once per hour) by sending JSON to a web endpoint. This allows **multiple ESP32 devices** to upload without being connected to a laptop.
 
-To persist that stream directly to a CSV file on your laptop:
+Recommended target: a Google Apps Script web app that appends to a Google Sheet (which you can download as CSV anytime).
 
-```bash
-python3 -m pip install pyserial
-python3 python/log_serial_to_csv.py --port /dev/ttyUSB0 --baud 115200 --output ~/pof02-runs/run1.csv
+### 1) Configure each ESP32 environment
+`platformio.ini` now includes:
+- `WIFI_SSID`
+- `WIFI_PASSWORD`
+- `LOG_ENDPOINT_URL` (Google Apps Script URL)
+- `PLANT_LABEL` (e.g. `aglaonema`, `prayer_plant`)
+
+Set these values for each environment before upload.
+
+### 2) Create Apps Script endpoint (example)
+In a Google Sheet: **Extensions -> Apps Script**, then paste:
+
+```javascript
+const SHEET_NAME = 'logs';
+
+function doPost(e) {
+  const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(SHEET_NAME)
+    || SpreadsheetApp.getActiveSpreadsheet().insertSheet(SHEET_NAME);
+
+  const payload = JSON.parse(e.postData.contents);
+
+  if (sheet.getLastRow() === 0) {
+    sheet.appendRow([
+      'timestamp_utc', 'unix_time', 'plant_label', 'device_name', 'device_id',
+      'soil_moisture_pct', 'temperature_c', 'humidity_pct', 'light_level_pct',
+      'risk_class', 'confidence', 'prob_healthy', 'prob_moderate_stress',
+      'prob_high_stress', 'action_water', 'action_reduce_temp',
+      'action_increase_humidity', 'action_increase_light', 'recommendation_summary'
+    ]);
+  }
+
+  sheet.appendRow([
+    payload.timestamp_utc,
+    payload.unix_time,
+    payload.plant_label,
+    payload.device_name,
+    payload.device_id,
+    payload.soil_moisture_pct,
+    payload.temperature_c,
+    payload.humidity_pct,
+    payload.light_level_pct,
+    payload.risk_class,
+    payload.confidence,
+    payload.prob_healthy,
+    payload.prob_moderate_stress,
+    payload.prob_high_stress,
+    payload.action_water,
+    payload.action_reduce_temp,
+    payload.action_increase_humidity,
+    payload.action_increase_light,
+    payload.recommendation_summary
+  ]);
+
+  return ContentService
+    .createTextOutput(JSON.stringify({ status: 'ok' }))
+    .setMimeType(ContentService.MimeType.JSON);
+}
 ```
 
-Notes:
-- The firmware uses a configurable start timestamp (`2026-03-04 12:10 UTC` by default) and advances it with elapsed runtime, so CSV output aligns with date-time based datasets.
-- On Windows, use `--port COM4` (or your active COM port).
-- The script only writes valid CSV lines from the device and keeps informational boot logs in terminal output.
+Deploy with **Deploy -> New deployment -> Web app**, access level:
+- Execute as: **Me**
+- Who has access: **Anyone with the link**
+
+Copy the web app URL into `LOG_ENDPOINT_URL`.
+
+### 3) Export to CSV
+In Google Sheets:
+- `File -> Download -> Comma Separated Values (.csv)`
+
+The `plant_label` column is included so you can quickly filter rows per plant/device.
