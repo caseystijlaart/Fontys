@@ -1,0 +1,21 @@
+= AI Augmented Learning
+
+== Used Tools
+
+* ChatGPT Codex
+** Used for code review and debugging.
+** Used for small HTML and CSS snippets to deploy a web app.
+
+* ChatGPT 5.3
+** Used for brainstorming and ideation.
+** Used for reviewing documentation and providing feedback.
+
+== Examples
+
+=== ChatGPT Codex : Code Review
+
+
+=== ChatGPT 5.3 : Brainstorming and Ideation
+
+
+=== ChatGPT 5.3 : Documentation Review

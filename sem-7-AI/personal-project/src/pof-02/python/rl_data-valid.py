@@ -1,11 +1,5 @@
 #!/usr/bin/env python3
-"""Run exported model inference on a captured device log.
-
-Purpose:
-- Ignore prediction/action columns captured by the ESP32 logger.
-- Rebuild training-style engineered features from raw sensor telemetry.
-- Run model_export.json inference to compare behavior in practice.
-"""
+"""Run exported model inference on a captured device log and compare logged vs rebuilt predictions."""
 
 from __future__ import annotations
 
@@ -20,7 +14,7 @@ import pandas as pd
 ROOT = Path(__file__).resolve().parent
 DEFAULT_INPUT = ROOT.parent / "data" / "log_2026-04-18.csv"
 DEFAULT_MODEL = ROOT / "data" / "model_export.json"
-DEFAULT_OUTPUT = ROOT / "data" / "log_2026-04-18_model_predictions.csv"
+DEFAULT_OUTPUT = ROOT / "data" / "output" / "log_2026-04-18_model_predictions.csv"
 
 IGNORED_CAPTURED_COLUMNS = [
     "risk_class",
@@ -84,9 +78,18 @@ def _require_columns(df: pd.DataFrame, required: list[str]) -> None:
         raise ValueError(f"Missing required input columns: {missing}")
 
 
+def preserve_logged_outputs(df: pd.DataFrame) -> pd.DataFrame:
+    """Copy logged prediction/action columns to prefixed columns for later comparison."""
+    out = df.copy()
+    for col in IGNORED_CAPTURED_COLUMNS:
+        if col in out.columns:
+            out[f"logged_{col}"] = out[col]
+    return out
+
+
 def engineer_features(raw_df: pd.DataFrame) -> pd.DataFrame:
     """Create training-style features expected by model_export.json from device logs."""
-    df = raw_df.copy()
+    df = preserve_logged_outputs(raw_df)
 
     present_ignored = [c for c in IGNORED_CAPTURED_COLUMNS if c in df.columns]
     if present_ignored:
@@ -102,7 +105,6 @@ def engineer_features(raw_df: pd.DataFrame) -> pd.DataFrame:
     ]
     _require_columns(df, required)
 
-    # Fallbacks in case some log columns are absent
     if "plant_label" not in df.columns:
         df["plant_label"] = "plant_1"
     if "device_id" not in df.columns:
@@ -118,7 +120,6 @@ def engineer_features(raw_df: pd.DataFrame) -> pd.DataFrame:
     group_cols = ["plant_label", "device_id"]
     df = df.sort_values(group_cols + ["timestamp_utc"]).reset_index(drop=True)
 
-    # Base renamed columns matching training data naming
     df["timestamp_iso"] = df["timestamp_utc"].dt.strftime("%Y-%m-%d %H:%M:%S")
     df["timestamp_unix"] = df["unix_time"].astype(int)
 
@@ -127,7 +128,6 @@ def engineer_features(raw_df: pd.DataFrame) -> pd.DataFrame:
     df["humidity_now"] = df["humidity_pct"].astype(float)
     df["light_now"] = df["light_level_pct"].astype(float)
 
-    # Time features
     df["hour_of_day"] = df["timestamp_utc"].dt.hour.astype(int)
     df["day_of_week"] = df["timestamp_utc"].dt.dayofweek.astype(int)
 
@@ -136,15 +136,12 @@ def engineer_features(raw_df: pd.DataFrame) -> pd.DataFrame:
     df["dow_sin"] = np.sin(2 * np.pi * df["day_of_week"] / 7.0)
     df["dow_cos"] = np.cos(2 * np.pi * df["day_of_week"] / 7.0)
 
-    # Sequence bookkeeping
     df["step_in_sequence"] = df.groupby(group_cols).cumcount().astype(int)
 
-    # Give every plant/device stream its own synthetic sequence id
     group_id_map = {key: idx for idx, key in enumerate(df.groupby(group_cols).groups.keys())}
     df["sequence"] = [group_id_map[(pl, dev)] for pl, dev in zip(df["plant_label"], df["device_id"])]
     df["sequence"] = df["sequence"].astype(int)
 
-    # Rolling / delta / slope like training script
     df["moisture_mean"] = (
         df.groupby(group_cols)["soil_now"]
         .transform(lambda s: s.rolling(window=4, min_periods=1).mean())
@@ -178,9 +175,7 @@ def engineer_features(raw_df: pd.DataFrame) -> pd.DataFrame:
         .astype(float)
     )
 
-    # dry_duration reconstructed from actual time spacing
     df["dry_duration"] = 0.0
-
     for _, idx in df.groupby(group_cols, sort=False).groups.items():
         group_idx = list(idx)
         g = df.loc[group_idx].sort_values("timestamp_utc")
@@ -196,9 +191,6 @@ def engineer_features(raw_df: pd.DataFrame) -> pd.DataFrame:
             if dry:
                 acc += delta_h
             else:
-                # closer to your earlier synthetic logic would be:
-                # acc = max(0.0, acc - delta_h)
-                # but reset is usually cleaner for "continuous dry duration"
                 acc = 0.0
             out[i] = acc
 
@@ -206,7 +198,6 @@ def engineer_features(raw_df: pd.DataFrame) -> pd.DataFrame:
 
     df["dry_duration"] = df["dry_duration"].fillna(0.0).astype(float)
 
-    # Rebuild the same style of engineered environment features from training
     temp_factor = clip01((df["temp_now"] - 20.0) / 15.0)
     humidity_factor = clip01((60.0 - df["humidity_now"]) / 40.0)
     light_factor = clip01((df["light_now"] - 200.0) / 700.0)
@@ -233,7 +224,6 @@ def engineer_features(raw_df: pd.DataFrame) -> pd.DataFrame:
         (df["moisture_delta"] > 4.0) & (df["moisture_slope"] > 1.0)
     ).astype(int)
 
-    # Optional extra columns that may help with inspection
     low_soil = clip01((45.0 - df["soil_now"]) / 35.0)
     drying_trend = clip01((-df["moisture_slope"]) / 4.0)
     dryness_accum = clip01(df["dry_duration"] / 3.0)
@@ -253,6 +243,50 @@ def engineer_features(raw_df: pd.DataFrame) -> pd.DataFrame:
     ).astype(float)
 
     return df
+
+
+def print_comparison_summary(out: pd.DataFrame) -> None:
+    """Print comparison info instead of writing separate CSVs."""
+    if "logged_risk_class" not in out.columns:
+        print("\nNo logged_risk_class column found; skipping comparison summary.")
+        return
+
+    out["risk_class_match"] = (
+        pd.to_numeric(out["logged_risk_class"], errors="coerce")
+        == pd.to_numeric(out["model_risk_class"], errors="coerce")
+    )
+
+    confusion = pd.crosstab(
+        out["logged_risk_class"],
+        out["model_risk_class"],
+        rownames=["logged_risk_class"],
+        colnames=["model_risk_class"],
+        dropna=False,
+    )
+
+    mismatches = out.loc[~out["risk_class_match"]].copy()
+    agreement = float(out["risk_class_match"].mean()) * 100.0
+
+    print(f"\nRisk class agreement: {agreement:.2f}%")
+    print("\nConfusion matrix:")
+    print(confusion)
+
+    print(f"\nMismatch rows: {len(mismatches)}")
+    if not mismatches.empty:
+        cols = [
+            c for c in [
+                "plant_label",
+                "device_name",
+                "timestamp_iso",
+                "logged_risk_class",
+                "model_risk_class",
+                "logged_confidence",
+                "model_confidence",
+                "confidence_gap",
+            ]
+            if c in mismatches.columns
+        ]
+        print(mismatches[cols].to_string(index=False))
 
 
 def parse_args() -> argparse.Namespace:
@@ -299,6 +333,17 @@ def main() -> None:
         elif int(cls_value) == 2:
             out["model_prob_high_stress"] = probs[:, cls_idx]
 
+    if "logged_confidence" in out.columns:
+        out["confidence_gap"] = (
+            out["model_confidence"] - pd.to_numeric(out["logged_confidence"], errors="coerce")
+        )
+
+    if "logged_risk_class" in out.columns:
+        out["risk_class_match"] = (
+            pd.to_numeric(out["logged_risk_class"], errors="coerce")
+            == pd.to_numeric(out["model_risk_class"], errors="coerce")
+        )
+
     keep_cols = [
         "plant_label",
         "device_name",
@@ -325,23 +370,35 @@ def main() -> None:
         "dow_sin",
         "dow_cos",
         "stress_score_proxy",
+        "logged_risk_class",
+        "logged_confidence",
+        "logged_prob_healthy",
+        "logged_prob_moderate_stress",
+        "logged_prob_high_stress",
         "model_risk_class",
         "model_confidence",
         "model_prob_healthy",
         "model_prob_moderate_stress",
         "model_prob_high_stress",
+        "risk_class_match",
+        "confidence_gap",
     ]
 
     available_keep = [c for c in keep_cols if c in out.columns]
+
     args.output.parent.mkdir(parents=True, exist_ok=True)
     out[available_keep].to_csv(args.output, index=False)
 
     print(f"Input rows: {len(raw_df)}")
-    print(f"Wrote model-only predictions to: {args.output}")
+    print(f"Wrote predictions to: {args.output}")
+
     print("\nModel feature order:")
     print(feature_order)
+
     print("\nPredicted class distribution:")
     print(out["model_risk_class"].value_counts(normalize=True).sort_index())
+
+    print_comparison_summary(out)
 
 
 if __name__ == "__main__":

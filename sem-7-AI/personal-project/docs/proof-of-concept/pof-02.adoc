@@ -1,8 +1,16 @@
 = Proof of Concept 02 – Dataset & Model Revision
+:numbered:
+:title-page: true
 :author: Casey Stijlaart
+:docdatetime: datetime (ISO)
 :doctype: report
 :toc:
 :toclevels: 2
+:pdf-page-size: A4
+:pdf-page-layout: portrait
+:xrefstyle: short
+:pdf-theme: default
+:pdf-fontsize: 11
 
 == Introduction
 

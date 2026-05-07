@@ -7,6 +7,9 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 add_executable(
     pof03_demo
     src/main.cpp
+    src/FileStorageService.cpp
+    src/WiFiCommunication.cpp
+    src/TimeService.cpp
     src/SoilMoistureSensor.cpp
     src/TempHumiditySensor.cpp
     src/LightSensor.cpp
