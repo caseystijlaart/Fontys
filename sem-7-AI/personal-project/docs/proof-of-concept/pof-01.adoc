@@ -99,9 +99,9 @@ To address these limitations, the system is redesigned with a hybrid approach co
 
 Instead of a single health label, the system now classifies:
 
-* Temperature (LOW / OK / HIGH)
-* Humidity (LOW / OK / HIGH)
-* Soil moisture (LOW / OK / HIGH)
+* Temperature (kLow  / kOk / kHigh)
+* Humidity (kLow  / kOk / kHigh)
+* Soil moisture (kLow  / kOk / kHigh)
 
 This provides a more interpretable and modular representation of plant conditions.
 
