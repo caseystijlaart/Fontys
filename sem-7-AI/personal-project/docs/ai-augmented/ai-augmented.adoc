@@ -10,6 +10,9 @@
 ** Used for brainstorming and ideation.
 ** Used for reviewing documentation and providing feedback.
 
+* Schematik.io
+** Used for creating and visualizing hardware schematics and circuit designs.
+
 == Examples
 
 === ChatGPT Codex : Code Review
@@ -19,3 +22,5 @@
 
 
 === ChatGPT 5.3 : Documentation Review
+
+=== Schematik.io : Hardware Design
