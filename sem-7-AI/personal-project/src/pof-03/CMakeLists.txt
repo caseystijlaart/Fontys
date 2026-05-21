@@ -19,6 +19,7 @@ add_executable(
     src/FeatureEngineering.cpp
     src/MLLayer.cpp
     src/RecommendationEngine.cpp
-    src/MonitoringSystem.cpp)
+    src/MonitoringSystem.cpp
+    src/ThresholdWarningService.cpp)
 
 target_include_directories(pof03_demo PRIVATE include)

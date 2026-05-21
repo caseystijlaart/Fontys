@@ -3,9 +3,9 @@
 #include <LittleFS.h>
 #include <WiFi.h>
 #include <WebServer.h>
-
 #include "FileStorageService.hpp"
 #include "MonitoringSystem.hpp"
+#include "ThresholdWarningService.hpp"
 #include "TimeService.hpp"
 #include "WiFiCommunication.hpp"
 
@@ -52,10 +52,10 @@ TimeService timeService;
 WiFiCommunication wifiCommunication(WIFI_SSID, WIFI_PASSWORD, timeService);
 FileStorageService fileStorageService(timeService);
 WebServer server(80);
+ThresholdWarningService thresholdWarningService;
 
 unsigned long lastRun = 0;
 unsigned long logCount = 0;
-
 PreferenceBand ParsePreferenceBand(const String &input)
 {
     if (input.equalsIgnoreCase("pLow") || input.equalsIgnoreCase("low"))
@@ -137,6 +137,7 @@ void HandleDelete()
 void HandleRoot()
 {
     const PlantRuleProfile profile = monitoringSystem.GetPlantProfile();
+    const auto thresholdWarnings = thresholdWarningService.BuildWarningsFromLog(fileStorageService.FindLatestLogFile(), profile);
     String html;
     html.reserve(18000);
 
@@ -157,6 +158,22 @@ void HandleRoot()
     if (nowUnix > 0)
     {
         html += "<p><strong>Current local time:</strong> " + timeService.FormatTimestampLocal(nowUnix) + "</p>";
+    }
+    html += "<h2>Long-running threshold warnings</h2>";
+    if (thresholdWarnings.empty())
+    {
+        html += "<p>No warnings for prolonged max-threshold exceedance in the last ~5 days.</p>";
+    }
+    else
+    {
+        html += "<ul>";
+        for (const auto &warning : thresholdWarnings)
+        {
+            html += "<li><strong>" + warning.metric + ":</strong> above max threshold for about 5 days ";
+            html += "(latest " + String(warning.latestValue, 1) + ", max " + String(warning.threshold, 1) + "). ";
+            html += "Suggested action: " + warning.action + "</li>";
+        }
+        html += "</ul>";
     }
 
     html += "<h2>Adjust current plant settings</h2>";
@@ -449,12 +466,13 @@ void setup()
         wifiCommunication.Connect();
     }
 
-    PlantRuleProfile initialProfile;
-    initialProfile.plantName = PLANT_LABEL;
-    initialProfile.deviceName = DEVICE_NAME;
-    initialProfile.deviceId = String(DEVICE_ID).c_str();
-    monitoringSystem.SetPlantProfile(initialProfile);
-    fileStorageService.SavePlantSettingsToFile(initialProfile, PLANT_SETTINGS_FILE);
+    PlantRuleProfile defaultProfile;
+    defaultProfile.plantName = PLANT_LABEL;
+    defaultProfile.deviceName = DEVICE_NAME;
+    defaultProfile.deviceId = String(DEVICE_ID).c_str();
+
+    PlantRuleProfile activeProfile = fileStorageService.LoadPlantSettingsFromFile(PLANT_SETTINGS_FILE, defaultProfile);
+    monitoringSystem.SetPlantProfile(activeProfile);
 
     if (!monitoringSystem.Init())
     {

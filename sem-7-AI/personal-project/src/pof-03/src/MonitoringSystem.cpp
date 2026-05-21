@@ -49,7 +49,7 @@ MonitoringCycleResult MonitoringSystem::RunCycleDetailed() {
 
     const FeatureVector features = FeatureEngineering::Build(history_);
     const MLResult mlResult = mlLayer_.Predict(features);
-    const Recommendation recommendation = recommendationEngine_.Build(snapshot, mlResult, plantProfile_);
+    const Recommendation recommendation = recommendationEngine_.Build(snapshot, features, mlResult, plantProfile_);
 
     return MonitoringCycleResult{snapshot, features, mlResult, recommendation};
 }

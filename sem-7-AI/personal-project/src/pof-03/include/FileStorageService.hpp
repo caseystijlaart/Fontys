@@ -15,6 +15,7 @@ public:
     bool LogToCsv(const pof02::MonitoringCycleResult &result, const char *plantLabel, const char *deviceName, int deviceId, unsigned long &logCount);
 
     bool SavePlantSettingsToFile(const pof02::PlantRuleProfile &profile, const char *plantSettingsFile);
+    pof02::PlantRuleProfile LoadPlantSettingsFromFile(const char *plantSettingsFile, const pof02::PlantRuleProfile &fallbackProfile);
 
     String FindLatestLogFile();
     void DumpFileToSerial(const String &filePath);
