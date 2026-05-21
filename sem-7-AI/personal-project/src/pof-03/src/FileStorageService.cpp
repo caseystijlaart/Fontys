@@ -147,6 +147,71 @@ bool FileStorageService::SavePlantSettingsToFile(const PlantRuleProfile &profile
     return true;
 }
 
+PlantRuleProfile FileStorageService::LoadPlantSettingsFromFile(const char *plantSettingsFile, const PlantRuleProfile &fallbackProfile)
+{
+    if (!LittleFS.exists(plantSettingsFile))
+    {
+        return fallbackProfile;
+    }
+
+    File file = LittleFS.open(plantSettingsFile, FILE_READ);
+    if (!file)
+    {
+        return fallbackProfile;
+    }
+
+    PlantRuleProfile loaded = fallbackProfile;
+    while (file.available())
+    {
+        const String line = file.readStringUntil('\n');
+        const int equalsIndex = line.indexOf('=');
+        if (equalsIndex <= 0)
+        {
+            continue;
+        }
+
+        const String key = line.substring(0, equalsIndex);
+        String value = line.substring(equalsIndex + 1);
+        value.trim();
+
+        if (key == "plantName")
+        {
+            loaded.plantName = value.c_str();
+        }
+        else if (key == "deviceName")
+        {
+            loaded.deviceName = value.c_str();
+        }
+        else if (key == "deviceId")
+        {
+            loaded.deviceId = value.c_str();
+        }
+        else if (key == "soilPreference")
+        {
+            loaded.preferences.soilMoisture = value.equalsIgnoreCase("pLow") || value.equalsIgnoreCase("low") ? PreferenceBand::pLow : value.equalsIgnoreCase("pHigh") || value.equalsIgnoreCase("high") ? PreferenceBand::pHigh
+                                                                                                                                                                                                     : PreferenceBand::pMid;
+        }
+        else if (key == "temperaturePreference")
+        {
+            loaded.preferences.temperature = value.equalsIgnoreCase("pLow") || value.equalsIgnoreCase("low") ? PreferenceBand::pLow : value.equalsIgnoreCase("pHigh") || value.equalsIgnoreCase("high") ? PreferenceBand::pHigh
+                                                                                                                                                                                                   : PreferenceBand::pMid;
+        }
+        else if (key == "humidityPreference")
+        {
+            loaded.preferences.humidity = value.equalsIgnoreCase("pLow") || value.equalsIgnoreCase("low") ? PreferenceBand::pLow : value.equalsIgnoreCase("pHigh") || value.equalsIgnoreCase("high") ? PreferenceBand::pHigh
+                                                                                                                                                                                                : PreferenceBand::pMid;
+        }
+        else if (key == "lightPreference")
+        {
+            loaded.preferences.light = value.equalsIgnoreCase("pLow") || value.equalsIgnoreCase("low") ? PreferenceBand::pLow : value.equalsIgnoreCase("pHigh") || value.equalsIgnoreCase("high") ? PreferenceBand::pHigh
+                                                                                                                                                                                             : PreferenceBand::pMid;
+        }
+    }
+
+    file.close();
+    return loaded;
+}
+
 String FileStorageService::FindLatestLogFile()
 {
     File root = LittleFS.open("/");
