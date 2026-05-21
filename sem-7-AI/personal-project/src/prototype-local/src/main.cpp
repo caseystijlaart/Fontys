@@ -3,9 +3,9 @@
 #include <LittleFS.h>
 #include <WiFi.h>
 #include <WebServer.h>
+
 #include "FileStorageService.hpp"
 #include "MonitoringSystem.hpp"
-#include "ThresholdWarningService.hpp"
 #include "TimeService.hpp"
 #include "WiFiCommunication.hpp"
 
@@ -52,10 +52,12 @@ TimeService timeService;
 WiFiCommunication wifiCommunication(WIFI_SSID, WIFI_PASSWORD, timeService);
 FileStorageService fileStorageService(timeService);
 WebServer server(80);
-ThresholdWarningService thresholdWarningService;
+MonitoringCycleResult latestResult{};
+bool hasLatestResult = false;
 
 unsigned long lastRun = 0;
 unsigned long logCount = 0;
+
 PreferenceBand ParsePreferenceBand(const String &input)
 {
     if (input.equalsIgnoreCase("pLow") || input.equalsIgnoreCase("low"))
@@ -81,6 +83,40 @@ String PreferenceToString(PreferenceBand band)
     default:
         return "pMid";
     }
+}
+
+String EscapeJsonString(const String &input)
+{
+    String output = input;
+    output.replace("\\", "\\\\");
+    output.replace("\"", "\\\"");
+    output.replace("\n", "\\n");
+    output.replace("\r", "\\r");
+    return output;
+}
+
+String GetCurrentLogDirectory()
+{
+    String currentLogDir = "/logs";
+
+    if (server.hasArg("dir"))
+    {
+        currentLogDir = server.arg("dir");
+    }
+
+    currentLogDir = fileStorageService.NormalizeFilePath(currentLogDir);
+
+    if (!currentLogDir.startsWith("/logs"))
+    {
+        currentLogDir = "/logs";
+    }
+
+    if (!fileStorageService.IsSafePath(currentLogDir))
+    {
+        currentLogDir = "/logs";
+    }
+
+    return currentLogDir;
 }
 
 PlantRuleProfile BuildPlantSettingsFromForm(const PlantRuleProfile &existingProfile)
@@ -131,15 +167,72 @@ void HandleDelete()
 
     Serial.print("Deleted file: ");
     Serial.println(filePath);
-    server.send(200, "text/plain", "Deleted " + filePath);
+
+    String redirectTarget = "/";
+    const int lastSlash = filePath.lastIndexOf('/');
+    if (lastSlash > 0)
+    {
+        redirectTarget = "/?dir=" + filePath.substring(0, lastSlash);
+    }
+
+    server.sendHeader("Location", redirectTarget);
+    server.send(303);
+}
+
+void HandleDeleteFolder()
+{
+    if (!server.hasArg("folder"))
+    {
+        server.send(400, "text/plain", "Missing 'folder' form field");
+        return;
+    }
+
+    const String rawPath = server.arg("folder");
+
+    if (!fileStorageService.IsSafePath(rawPath))
+    {
+        server.send(400, "text/plain", "Invalid folder path");
+        return;
+    }
+
+    const String folderPath = fileStorageService.NormalizeFilePath(rawPath);
+
+    if (!folderPath.startsWith("/logs") || folderPath == "/logs")
+    {
+        server.send(400, "text/plain", "Refusing to delete protected folder");
+        return;
+    }
+
+    const int lastSlash = folderPath.lastIndexOf('/');
+    String parentDir = "/logs";
+
+    if (lastSlash > 0)
+    {
+        parentDir = folderPath.substring(0, lastSlash);
+    }
+
+    if (parentDir.length() == 0 || !parentDir.startsWith("/logs"))
+    {
+        parentDir = "/logs";
+    }
+
+    if (!fileStorageService.DeleteFolderRecursive(folderPath))
+    {
+        server.send(500, "text/plain", "Failed to delete folder");
+        return;
+    }
+
+    server.sendHeader("Location", "/?dir=" + parentDir);
+    server.send(303);
 }
 
 void HandleRoot()
 {
     const PlantRuleProfile profile = monitoringSystem.GetPlantProfile();
-    const auto thresholdWarnings = thresholdWarningService.BuildWarningsFromLog(fileStorageService.FindLatestLogFile(), profile);
+    const String currentLogDir = GetCurrentLogDirectory();
+
     String html;
-    html.reserve(18000);
+    html.reserve(24000);
 
     html += "<!DOCTYPE html><html><head><meta charset='utf-8'>";
     html += "<meta name='viewport' content='width=device-width, initial-scale=1'>";
@@ -159,22 +252,14 @@ void HandleRoot()
     {
         html += "<p><strong>Current local time:</strong> " + timeService.FormatTimestampLocal(nowUnix) + "</p>";
     }
-    html += "<h2>Long-running threshold warnings</h2>";
-    if (thresholdWarnings.empty())
-    {
-        html += "<p>No warnings for prolonged max-threshold exceedance in the last ~5 days.</p>";
-    }
-    else
-    {
-        html += "<ul>";
-        for (const auto &warning : thresholdWarnings)
-        {
-            html += "<li><strong>" + warning.metric + ":</strong> above max threshold for about 5 days ";
-            html += "(latest " + String(warning.latestValue, 1) + ", max " + String(warning.threshold, 1) + "). ";
-            html += "Suggested action: " + warning.action + "</li>";
-        }
-        html += "</ul>";
-    }
+
+    html += "<h2>Current Plant Status</h2>";
+    html += "<div id='plantStatus' style='padding:10px;border-radius:8px;font-weight:bold;background:#f2f2f2;color:#333;'>Loading...</div>";
+    html += "<table style='margin-top:10px;border-collapse:collapse;width:100%;max-width:700px;'>";
+    html += "<tr><th style='text-align:left;border-bottom:1px solid #ddd;padding:8px;'>Metric</th><th style='text-align:left;border-bottom:1px solid #ddd;padding:8px;'>Value</th></tr>";
+    html += "<tr><td style='padding:8px;border-bottom:1px solid #eee;'>Expected watering</td><td id='expectedWatering' style='padding:8px;border-bottom:1px solid #eee;'>-</td></tr>";
+    html += "<tr><td style='padding:8px;'>Suggestion</td><td id='suggestion' style='padding:8px;'>-</td></tr>";
+    html += "</table><hr>";
 
     html += "<h2>Adjust current plant settings</h2>";
     html += "<p>This ESP32 is already linked to a specific device. Use this page only to adjust the active plant preferences.</p>";
@@ -184,15 +269,19 @@ void HandleRoot()
     html += "<label>Humidity preference<br><select name='humidityPreference' style='padding:6px;'>";
     html += "<option value='pLow'>pLow</option><option value='pMid'>pMid</option><option value='pHigh'>pHigh</option>";
     html += "</select></label><br><br>";
+
     html += "<label>Temperature preference<br><select name='temperaturePreference' style='padding:6px;'>";
     html += "<option value='pLow'>pLow</option><option value='pMid'>pMid</option><option value='pHigh'>pHigh</option>";
     html += "</select></label><br><br>";
+
     html += "<label>Soil moisture preference<br><select name='soilPreference' style='padding:6px;'>";
     html += "<option value='pLow'>pLow</option><option value='pMid'>pMid</option><option value='pHigh'>pHigh</option>";
     html += "</select></label><br><br>";
+
     html += "<label>Light preference<br><select name='lightPreference' style='padding:6px;'>";
     html += "<option value='pLow'>pLow</option><option value='pMid'>pMid</option><option value='pHigh'>pHigh</option>";
     html += "</select></label><br><br>";
+
     html += "<button type='submit' style='padding:8px 14px;'>Save settings</button>";
     html += " <button type='button' onclick='location.reload()' style='padding:8px 14px;'>Refresh page</button></form>";
     html += "<pre id='result' style='background:#f5f5f5;padding:10px;white-space:pre-wrap;'></pre><hr>";
@@ -204,19 +293,57 @@ void HandleRoot()
                                                            PLANT_SETTINGS_FILE,
                                                            LAST_STATE_FILE);
 
-    html += "<hr><h2>Log files</h2><p>Total log files found: " + String(fileStorageService.CountLogFiles()) + "</p>";
-    html += fileStorageService.BuildFilteredFilesHtmlTable(&FileStorageService::IsLogFile,
+    html += "<hr><h2>Log files</h2>";
+    html += "<p>Total log files found: " + String(fileStorageService.CountLogFiles()) + "</p>";
+    html += fileStorageService.BuildFolderBrowserHtmlTable(currentLogDir,
+                                                           &FileStorageService::IsLogFile,
                                                            PLANT_SETTINGS_FILE,
                                                            LAST_STATE_FILE);
     html += "<p style='margin-top:16px;'><a href='/latest'>Download latest log</a></p>";
     html += "<p><a href='/list'>View file list as plain text</a></p>";
 
     html += "<script>";
+    html += "function formatDuration(minutes){if(minutes===undefined||minutes===null||isNaN(minutes))return '-';if(minutes<=0)return 'now';if(minutes<60)return Math.round(minutes)+' minutes';const h=minutes/60;if(h<48)return (h<10?h.toFixed(1):Math.round(h))+' hours';const d=h/24;return (d<10?d.toFixed(1):Math.round(d))+' days';}";
+    html += "function riskInfo(risk){if(risk===0)return {label:'Healthy',bg:'#d1fae5',fg:'#065f46'};if(risk===2)return {label:'High stress',bg:'#fee2e2',fg:'#991b1b'};return {label:'Moderate stress',bg:'#fef3c7',fg:'#92400e'};}";
     html += "async function loadSettings(){const r=await fetch('/api/plant-settings');const s=await r.json();const form=document.getElementById('settingsForm');form.plantName.value=s.plantName;form.humidityPreference.value=s.humidityPreference;form.temperaturePreference.value=s.temperaturePreference;form.soilPreference.value=s.soilPreference;form.lightPreference.value=s.lightPreference;}";
+    html += "async function loadPlantStatus(){try{const r=await fetch('/api/status');if(!r.ok)return;const s=await r.json();const info=riskInfo(s.riskClass);const card=document.getElementById('plantStatus');card.textContent=info.label;card.style.background=info.bg;card.style.color=info.fg;document.getElementById('expectedWatering').textContent='in '+formatDuration(s.predictedMinutesToWater);document.getElementById('suggestion').textContent=s.suggestion;}catch(e){console.log(e);}}";
     html += "document.getElementById('settingsForm').addEventListener('submit', async (e)=>{e.preventDefault();const fd=new FormData(e.target);const body=new URLSearchParams(fd);const response=await fetch('/api/plant-settings',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body});document.getElementById('result').textContent=await response.text();await loadSettings();});";
-    html += "loadSettings();</script></body></html>";
+    html += "loadSettings();loadPlantStatus();setInterval(loadPlantStatus,15000);";
+    html += "</script></body></html>";
 
     server.send(200, "text/html", html);
+}
+
+void HandleStatus()
+{
+    if (!hasLatestResult)
+    {
+        server.send(503, "application/json", "{\"error\":\"No monitoring data yet\"}");
+        return;
+    }
+
+    const auto &rec = latestResult.recommendation;
+    const auto &mlResult = latestResult.mlResult;
+
+    String suggestion = rec.water ? "Water soon and re-check soil moisture." : "No immediate watering required; continue monitoring.";
+
+    if (rec.increaseLight)
+    {
+        suggestion += " Increase light exposure.";
+    }
+
+    if (rec.reduceTemp)
+    {
+        suggestion += " Reduce temperature slightly.";
+    }
+
+    String json = "{";
+    json += "\"riskClass\":" + String(static_cast<int>(mlResult.risk)) + ",";
+    json += "\"predictedMinutesToWater\":" + String(rec.predictedMinutesToWater, 1) + ",";
+    json += "\"suggestion\":\"" + EscapeJsonString(suggestion) + "\"";
+    json += "}";
+
+    server.send(200, "application/json", json);
 }
 
 void HandleDownload()
@@ -290,17 +417,26 @@ void HandleView()
 
     String content;
     content.reserve(file.size() + 64);
+
     while (file.available())
     {
         content += char(file.read());
     }
+
     file.close();
+
+    String backTarget = "/";
+    const int lastSlash = filePath.lastIndexOf('/');
+    if (lastSlash > 0)
+    {
+        backTarget = "/?dir=" + filePath.substring(0, lastSlash);
+    }
 
     String html;
     html.reserve(content.length() + 1200);
     html += "<!DOCTYPE html><html><head><meta charset='utf-8'><meta name='viewport' content='width=device-width, initial-scale=1'><title>View file</title></head><body style='font-family:Arial,sans-serif;padding:20px;'>";
     html += "<h1>Viewing " + filePath + "</h1>";
-    html += "<p><a href='/'>Back</a> | <a href='/download?file=" + rawPath + "'>Download</a></p>";
+    html += "<p><a href='" + backTarget + "'>Back</a> | <a href='/download?file=" + rawPath + "'>Download</a></p>";
     html += "<pre style='white-space:pre-wrap;word-wrap:break-word;background:#f5f5f5;padding:12px;border:1px solid #ddd;'>";
     html += content;
     html += "</pre></body></html>";
@@ -345,8 +481,11 @@ void HandleList()
     while (file)
     {
         text += String(file.name()) + " | " + String(file.size()) + " bytes\n";
+        file.close();
         file = root.openNextFile();
     }
+
+    root.close();
 
     if (text.length() == 0)
     {
@@ -361,9 +500,9 @@ void HandleGetPlantSettings()
     const PlantRuleProfile profile = monitoringSystem.GetPlantProfile();
 
     String json = "{";
-    json += "\"plantName\":\"" + String(profile.plantName.c_str()) + "\",";
-    json += "\"deviceId\":\"" + String(profile.deviceId.c_str()) + "\",";
-    json += "\"deviceName\":\"" + String(profile.deviceName.c_str()) + "\",";
+    json += "\"plantName\":\"" + EscapeJsonString(String(profile.plantName.c_str())) + "\",";
+    json += "\"deviceId\":\"" + EscapeJsonString(String(profile.deviceId.c_str())) + "\",";
+    json += "\"deviceName\":\"" + EscapeJsonString(String(profile.deviceName.c_str())) + "\",";
     json += "\"soilPreference\":\"" + PreferenceToString(profile.preferences.soilMoisture) + "\",";
     json += "\"temperaturePreference\":\"" + PreferenceToString(profile.preferences.temperature) + "\",";
     json += "\"humidityPreference\":\"" + PreferenceToString(profile.preferences.humidity) + "\",";
@@ -414,7 +553,9 @@ void StartWebServer()
     server.on("/list", HTTP_GET, HandleList);
     server.on("/api/plant-settings", HTTP_GET, HandleGetPlantSettings);
     server.on("/api/plant-settings", HTTP_POST, HandleUpdatePlantSettings);
+    server.on("/api/status", HTTP_GET, HandleStatus);
     server.on("/delete", HTTP_POST, HandleDelete);
+    server.on("/delete-folder", HTTP_POST, HandleDeleteFolder);
     server.on("/favicon.ico", HTTP_GET, []() { server.send(204); });
 
     server.onNotFound([]() {
@@ -438,9 +579,10 @@ void StartWebServer()
 
 void RunMonitoringCycle()
 {
-    const auto result = monitoringSystem.RunCycleDetailed();
-    fileStorageService.LogToCsv(result, PLANT_LABEL, DEVICE_NAME, DEVICE_ID, logCount);
-    fileStorageService.SaveLastStateToFile(result, LAST_STATE_FILE);
+    latestResult = monitoringSystem.RunCycleDetailed();
+    hasLatestResult = true;
+    fileStorageService.LogToCsv(latestResult, PLANT_LABEL, DEVICE_NAME, DEVICE_ID, logCount);
+    fileStorageService.SaveLastStateToFile(latestResult, LAST_STATE_FILE);
 }
 
 } // namespace
@@ -457,6 +599,7 @@ void setup()
         {
         }
     }
+
     Serial.println("LittleFS mounted");
 
     fileStorageService.SetImportantFiles(PLANT_SETTINGS_FILE, LAST_STATE_FILE);
@@ -466,13 +609,12 @@ void setup()
         wifiCommunication.Connect();
     }
 
-    PlantRuleProfile defaultProfile;
-    defaultProfile.plantName = PLANT_LABEL;
-    defaultProfile.deviceName = DEVICE_NAME;
-    defaultProfile.deviceId = String(DEVICE_ID).c_str();
-
-    PlantRuleProfile activeProfile = fileStorageService.LoadPlantSettingsFromFile(PLANT_SETTINGS_FILE, defaultProfile);
-    monitoringSystem.SetPlantProfile(activeProfile);
+    PlantRuleProfile initialProfile;
+    initialProfile.plantName = PLANT_LABEL;
+    initialProfile.deviceName = DEVICE_NAME;
+    initialProfile.deviceId = String(DEVICE_ID).c_str();
+    monitoringSystem.SetPlantProfile(initialProfile);
+    fileStorageService.SavePlantSettingsToFile(initialProfile, PLANT_SETTINGS_FILE);
 
     if (!monitoringSystem.Init())
     {
@@ -484,12 +626,6 @@ void setup()
 
     Serial.println("Monitoring system initialized");
     RunMonitoringCycle();
-
-    const String latestFile = fileStorageService.FindLatestLogFile();
-    if (latestFile.length() > 0)
-    {
-        fileStorageService.DumpFileToSerial(latestFile);
-    }
 
     StartWebServer();
     lastRun = millis();
@@ -508,6 +644,7 @@ void loop()
     }
 
     lastRun = now;
+
     if (wifiCommunication.HasCredentials() && !wifiCommunication.IsConnected())
     {
         wifiCommunication.Connect();
