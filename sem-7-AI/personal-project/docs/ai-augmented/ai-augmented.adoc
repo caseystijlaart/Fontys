@@ -1,4 +1,29 @@
-= AI Augmented Learning
+= AI Augmented Learning : Minor AI for Society
+:title-page: true
+:author: Casey Stijlaart
+:docdatetime: datetime (ISO)
+:doctype: report
+:toc:
+:toclevels: 2
+:pdf-page-size: A4
+:pdf-page-layout: portrait
+
+<<<
+
+== Introduction
+
+During the semester there is made use of learning outcomes, which must be achieved by the end of the semester. 
+To achieve these learning outcomes, various tools and resources are utilized, including AI technologies. 
+This document outlines the AI tools used during the semester and provides examples of their application in different contexts.
+
+The learning outcome itself is defined as follows:
+
+[quote,Learning Outcome AI Augmented Learning]
+You use conversational AI to learn, plan, critique, and reflect. You set boundaries, cite AI contributions, and demonstrate growth over time. 
+
+When it comes to conversational AI, I have utilized various tools. 
+Each tool has its own strengths and weaknesses, and I have used them in different contexts to achieve specific goals.
+To outline the tools I have used, I will provide examples of how I have applied them in different scenarios, such as code review, brainstorming, documentation review, and hardware design.
 
 == Used Tools
 
@@ -13,14 +38,134 @@
 * Schematik.io
 ** Used for creating and visualizing hardware schematics and circuit designs.
 
+<<<
+
 == Examples
+
+For each of the tools mentioned above, I will provide examples of how I have used them in different contexts, along with the outcomes and reflections on their effectiveness.
 
 === ChatGPT Codex : Code Review
 
+A good example of using ChatGPT Codex for code review is when I was working on the software development aspect of my personal project, a plant health monitoring system.
+I had written a piece of code that was supposed to read data from a sensor and process it to determine the health status of the plant.
+However, I started to notice the program started to take up a significant amount of memory, which could lead to problems in the long run, especially if the program was running for an extended period of time.
+
+[quote,ChatGPT Codex Prompt]
+____
+"regarding to sem-7-ai/personal-project/src/prototype, I am working on an esp32 cp210x, now i would like some feedback and suggestion regarding to program and flash size. Currently these are the results:
+
+    text    data     bss     dec     hex filename
+    915252  228052   25457 1168761  11d579 .pio\build\esp32_com3\firmware.elf
+    RAM:   [==        ]  15.8% (used 51632 bytes from 327680 bytes)
+    Flash: [========= ]  85.5% (used 1121021 bytes from 1310720 bytes)."
+____
+
+I decided to use ChatGPT Codex to review my code and help me identify any potential issues, suggest improvements, and optimize the code for better performance.
+I provided ChatGPT Codex with the entire project and asked it to review the code and provide feedback on how to optimize it for better performance and memory usage.
+The response I got was quite helpful, as it pointed out specific areas of the code that were causing the memory issues and provided suggestions on how to optimize it.
+For example, moving UI assets out of C++ string concatenation, compress/quantize model export, and move away from local storage and local webpage hosting.
+While this was a good starting point, I had to use my own knowledge and judgment to implement the suggested changes and ensure that they were appropriate for my specific use case and constraints.
+
+For the full code review and suggestions, please refer to the following link: https://chatgpt.com/s/cd_6a103333908081918edc18451c4d2e68[ChatGPT Codex Code Review].
+
+<<<
+
+=== ChatGPT Codex : HTML and CSS Snippets
+
+Another example of using ChatGPT Codex is when I was working on the web development aspect of my project, specifically creating a local web app for the initial proof of concepts and prototype to display the plant health data.
+It did not need to be a complex web app, but it had to be simple and responsive, as I wanted to display the data in an clear way that was easy to understand and to navigate.
+As I had near zero experience with web development, I decided to use ChatGPT Codex to help me generate small HTML and CSS snippets that I could use to quickly create the web app.
+This allowed me to save time and focus on the functionality of the app rather than spending a lot of time on understanding and learning HTML and CSS from scratch.
+As I was having a chat within ChatGPT Codex already regarding to a similar topic on the same github branch, I decided to ask it for help with generating the javascript, HTML, CSS snippets for the web app in the same conversation, as I thought it would be more efficient to have everything in one place and to be able to easily refer back to it if needed.
+The response I got was quite helpful, as it provided me with the necessary code snippets to create a simple and responsive web app that met my requirements, see figure <<web-app-codex>> for an example of the generated code snippets and conversation.
+
+[[web-app-codex]]
+.Web App Code Snippets from ChatGPT Codex
+image::web-app-codex.png[]
+
+Throughout the process of the personal project, I continued to adapt the web page for added functionality, thus I continued to ask ChatGPT Codex for help with generating additional code snippets and making adjustments to the existing code as needed.
+
+This is a clear example of how AI can be used to augment human learning and problem-solving, especially for those who may not have a lot of experience in a specific area, such as web development in this case.
+By providing AI-generated code snippets, it can help individuals quickly create functional applications without needing to spend a lot of time learning the underlying technologies, while still allowing them to focus on the specific functionality and design of their application.
+
+<<<
 
 === ChatGPT 5.3 : Brainstorming and Ideation
 
+A good example of using ChatGPT 5.3 for brainstorming and ideation is when I was trying to come up with a more tangible idea on how to make my personal project, a plant health monitoring system, more interactive and engaging for users.
+I asked ChatGPT 5.3 for suggestions on how to make the system more interactive, and it provided me with several ideas.
+While some suggestion were great, there were also some that weren't as good.
+This as it wasn't particularly great for a fragile indoor plant, and next to that it initially suggested many screen bound solutions, which I had already ruled out as I wanted to create a more physical and tangible product.
+However, it did lead to a sparring sessions where I could bounce ideas off of the AI and refine my concept further.
+
+The initial prompt I used was: 
+
+[quote,ChatGPT 5.3 Prompt]
+"What are fun and interactive ways to have a plants health be more immersive? It should consider what is not directly harmful to the plant. Example scenerio's are when the plant has perfect health, moderate stress or high stress."
+
+And a part of the response I got was:
+
+[[Example-response]]
+.Example Response from ChatGPT 5.3
+image::example-response.png[width=375]
+
+For the given example of how ChatGPT 5.3 was used only a part of the response is shown, as it was quite long and contained many suggestions.
+Beside the multiple suggestions, it also included a sparring session of where we went back and forth on the ideas, which is not shown in the figure.
+The entire conversation was quite lengthy, but it provided me with a lot of inspiration and ideas to work with, which I could then refine and adapt to fit my specific needs and constraints for the project.
+For the full conversation, please refer to the following link: https://chatgpt.com/share/6a1030ee-04f8-83eb-b2bc-d7a38125fcc7[ChatGPT 5.3 Brainstorming Session].
+
+<<<
+
+=== ChatGPT 5.3 : Brainstorming and Ideation - 2
+
+Another example of using ChatGPT 5.3 for brainstorming and ideation is when I was trying to come up with ideas and feasible solution for allowing for non-local access to the plant health monitoring system, as I wanted to be able to access the data and control the system remotely, without needing to be physically present near the plant.
+I asked ChatGPT 5.3 for suggestions on how to achieve this, yet it initially struggled to provide feasible solutions that met my requirements and constraints, as it suggested many solutions that were either too complex, too expensive, or not suitable for my specific use case.
+However, through a back-and-forth conversation and sparring session, it eventually provided more viable options, which I could then evaluate and adapt to fit my specific needs and constraints for the project.
+
+[quote,ChatGPT 5.3 Prompt]
+"All right, so I'm working on my plant health monitoring system, and the general prototype is there, but it's all local through a web app as well. Now, the problem is that the current flash is at 85%, so for long term it's definitely not great, especially as all the data is stored locally on the ESP32. Now, what I was thinking, either I need to run MQTT and then, or something, and then have it integrated into a dashboard, like an existing platform such maybe Grafana, or I could integrate MongoDB on the ESP32 and then use it within like Grafana, for example. But I'm not really sure or entirely sure what that would mean for, um, example, program size, because the flash and the program is just getting out of hand, especially because I have a lot of stuff on there. So I need some advice on what would be the best approach, but also something that is not meaning that I need to throw my whole project around, like a 180. i can run something on my laptop if necessary, but i prefer not to, and it would be great if my data isn't just stored for a month. i would like to keep it until i decide to delete it. e.g. influxdb only allows for 30 days storage."
+
+For the full conversation, please refer to the following link: https://chatgpt.com/share/6a1040ce-6584-83eb-8edd-f5ff9311f8e4[ChatGPT 5.3 Brainstorming Session Non-Local Solutions].
+
+<<<
 
 === ChatGPT 5.3 : Documentation Review
 
+As I personally struggle with documentation and writing (grammar) in general, I found it helpful to use ChatGPT 5.3 for reviewing my documentation and providing feedback on how to improve it.
+I would provide ChatGPT 5.3 with a draft of my documentation, and it would review it and provide suggestions on how to improve the clarity, structure, and overall quality of the writing.
+
+An example of this can be seen in the figures <<documentation-review>> and <<documentation-review-2>>, where I provided ChatGPT 5.3 with a draft of my proof of concept 3 documentation, and it provided feedback and suggestions on how to improve it.
+
+[[documentation-review]]
+.Documentation Review by ChatGPT 5.3
+image::doc-fb.png[width=350]
+
+[[documentation-review-2]]
+.Documentation Review by ChatGPT 5.3 (Continued)
+image::doc-fb-2.png[width=350]
+
+While the feedback I received was helpful, I had to use my own judgment and knowledge to decide which suggestions to implement and how to implement them, as not all suggestions were necessarily appropriate for my specific context or writing style, and sometimes ChatGPT 5.3 would advise to completely remove certain sections, which I felt were important to keep in the documentation, even if they were not perfectly written.
+For example, it might suggest rephrasing certain sentences for better clarity, or it might suggest adding more details to certain sections to provide a better understanding of the topic.
+
+<<<
+
 === Schematik.io : Hardware Design
+
+As I had to create a hardware design for my project, I used Schematik.io to create and visualize the schematics and circuit designs.
+This tool allowed me to easily create the schematics for my hardware design.
+Yet, it showed clear limitations as it did not always allow me to create the exact design I had in mind.
+For example, I clearly outlined the design and made suggestions when for example components were missing, but the tool did not always accommodate these suggestions.
+So rather than blindly relying on the tool, I had to use my own knowledge to fill in the gaps and make the necessary adjustments to achieve the desired outcome.
+
+This is clearly displayed in the figure <<schematik>>, where the design is not exactly as I wanted it to be, even after pointing out the issues and suggesting improvements.
+
+[[schematik]]
+.Schematik.io Hardware Design
+image::schematik.png[]
+
+Therefore I had to make adjustments to achieve the desired outcome.
+The adjusted outcome is shown in the figure <<schematik-adjusted>>, where the design is more in line with my original vision, but still not perfect due to the limitations of the tool.
+
+[[schematik-adjusted]]
+.Schematik.io Adjusted Hardware Design
+image::schematik-adjusted.png[]
