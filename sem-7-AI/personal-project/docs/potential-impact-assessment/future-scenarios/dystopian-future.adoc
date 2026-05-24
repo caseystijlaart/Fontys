@@ -1,4 +1,15 @@
 = Dystopian Future
-AI-driven monitoring is over-adopted, leading to dependency on devices, loss of traditional plant knowledge, and electronic waste proliferation.
-Corporate control or proprietary lock-in could limit user agency and accessibility, concentrating benefits to affluent groups.
-Misuse of aggregated environmental data could enable indirect profiling of households.
+
+When looking into a dystopian future, a future where embedded AI has  severely negatively impacted both the environment and human values, many concerning things could be concluded.
+
+Small systems such as the Smart Desk Plant Monitoring system could become heavily commercialized and over-adopted in everyday life.
+Users have become overly dependent on AI systems, reducing critical engagement with their surroundings and weakening environmental knowledge and practical skills.
+A extreme lack of awareness of their surroundings could lead to a disconnect from nature and a lack of understanding of how their actions impact the environment, which indirectly contributes to environmental degradation and a loss of biodiversity.
+
+Something that could have an even bigger impact is the continuous replacement and adaptation cycle of embedded AI systems.
+In the dystopian future, systems that are not designed with long-term use in mind.
+Instead of allowing for long-term use, repairability, upgradability, and sustainability, they are designed to be replaced frequently with newer versions that have minor improvements or changes.
+This has caused a cycle of constant replacements, where users continuously throw out the old and replace it with the new.
+Overtime leading to the growing throwaway culture and significantly increased electronic waste.
+
+As society becomes unable to keep up with recycling old electronic devices, pollution and resource depletion will become even more severe environmental problems.

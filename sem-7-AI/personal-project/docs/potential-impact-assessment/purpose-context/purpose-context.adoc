@@ -6,6 +6,10 @@ include::impact-society.adoc[]
 
 include::domain-understanding.adoc[]
 
+<<<
+    
 include::stakeholders.adoc[]
+
+include::broader-context.adoc[]
 
 :leveloffset: -1
