@@ -16,6 +16,10 @@ It delves into how the system could influence users' emotions, behaviors, and ov
 
 image::IMG_5402.jpeg[]
 
+== Context
+The Smart Desk Plant Monitoring system is designed to provide users with real-time feedback and suggestions for caring for their plants, using sensors and AI predictions to monitor plant health and environmental conditions.
+The system aims to enhance users' experience with plant care, making it more accessible and engaging, while also promoting a deeper connection and understanding of their plants and environment.
+
 <<<
 
 == Intended Psychological Benefits
