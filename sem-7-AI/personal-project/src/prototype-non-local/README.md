@@ -153,3 +153,22 @@ In Google Sheets:
 - `File -> Download -> Comma Separated Values (.csv)`
 
 The `plant_label` column is included so you can quickly filter rows per plant/device.
+
+## MQTT logging (HiveMQ Cloud Serverless)
+This prototype now publishes each monitoring cycle as JSON over **MQTT (TLS)** instead of writing cycle logs to local CSV files.
+
+- Broker type: HiveMQ Cloud Serverless (remote, no local MQTT broker needed)
+- Transport: MQTT over TLS (`MQTT_HOST` + `MQTT_PORT`, default `8883`)
+- Auth: username/password
+- Topic format: `<MQTT_TOPIC_PREFIX>/<PLANT_LABEL>/<DEVICE_ID>`
+
+### PlatformIO configuration
+Set these build flags per device environment:
+- `MQTT_HOST`
+- `MQTT_PORT` (typically `8883`)
+- `MQTT_USERNAME`
+- `MQTT_PASSWORD`
+- `MQTT_TOPIC_PREFIX`
+
+### MongoDB Atlas storage flow
+The ESP32 publishes to HiveMQ. Persisting into MongoDB Atlas is done by a downstream cloud subscriber (for example HiveMQ Data Hub extension, HiveMQ webhook bridge + serverless function, Node-RED cloud flow, or custom consumer) that validates incoming messages and inserts valid records into Atlas.
