@@ -106,6 +106,7 @@ namespace
         hasLatestResult = true;
 
         String payload = "{";
+        payload += "\"request_id\":\"" + String(millis()) + "\",";
         payload += "\"plant_label\":\"" + EscapeJsonString(String(PLANT_LABEL)) + "\",";
         payload += "\"device_id\":" + String(DEVICE_ID) + ",";
         payload += "\"soil_moisture_pct\":" + String(latestResult.snapshot.soilMoisturePct, 2) + ",";
@@ -148,7 +149,6 @@ void setup()
     }
 
     Serial.println("Monitoring system initialized");
-    RunMonitoringCycle();
 
     lastRun = millis();
 }
