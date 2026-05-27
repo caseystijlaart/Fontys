@@ -2,12 +2,10 @@
 
 #include <Arduino.h>
 
-class TimeService;
-
 class WiFiCommunication
 {
 public:
-    WiFiCommunication(const char *ssid, const char *password, TimeService &timeService);
+    WiFiCommunication(const char *ssid, const char *password);
 
     void Connect();
     bool IsConnected() const;
@@ -17,5 +15,4 @@ public:
 private:
     const char *ssid_;
     const char *password_;
-    TimeService &timeService_;
 };

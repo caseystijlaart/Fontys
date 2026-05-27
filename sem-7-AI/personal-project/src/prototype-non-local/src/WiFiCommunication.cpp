@@ -2,10 +2,9 @@
 
 #include <WiFi.h>
 
-#include "TimeService.hpp"
 
-WiFiCommunication::WiFiCommunication(const char *ssid, const char *password, TimeService &timeService)
-    : ssid_(ssid), password_(password), timeService_(timeService)
+WiFiCommunication::WiFiCommunication(const char *ssid, const char *password)
+    : ssid_(ssid), password_(password)
 {
 }
 
@@ -22,7 +21,6 @@ void WiFiCommunication::Connect()
         Serial.print("WiFi connected. IP: ");
         Serial.println(WiFi.localIP());
         delay(1000);
-        timeService_.SyncTimeWithNtp();
         return;
     }
 
@@ -45,7 +43,6 @@ void WiFiCommunication::Connect()
         Serial.print("WiFi connected. IP: ");
         Serial.println(WiFi.localIP());
         delay(1000);
-        timeService_.SyncTimeWithNtp();
     }
     else
     {

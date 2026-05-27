@@ -41,7 +41,9 @@ const char *LAST_STATE_FILE = "/last_state.txt";
 #define ENABLE_WIFI_DOWNLOAD 1
 #endif
 
-SoilMoistureSensor soil(34, 3200.0f, 1200.0f);
+// Calibrated for a chunkier mix (~50% soil / 25% perlite / 25% bark)
+// that retains moisture differently than dense potting soil.
+SoilMoistureSensor soil(34, 3500.0f, 1450.0f);
 TempHumiditySensor dht(4, 22);
 LightSensor light(35);
 MLLayer ml(MLBackend::TINYML_TFLM);
