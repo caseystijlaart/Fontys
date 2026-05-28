@@ -10,7 +10,7 @@ using namespace pof02;
 
 namespace
 {
-    const unsigned long INTERVAL = 5 * 60 * 1000UL; // 5 minutes
+    const unsigned long INTERVAL = 1000UL * 60UL * 60UL * 3UL; // 3 hours
     const char *PLANT_SETTINGS_FILE = "/plant_settings.txt";
     const char *LAST_STATE_FILE = "/last_state.txt";
 
@@ -52,7 +52,7 @@ namespace
     bool hasLatestResult = false;
 
     const char *API_URL = "https://yjjpgvsycxlaqubvedoa.supabase.co/rest/v1/plant_readings";
-    const char* API_KEY = "sb_publishable_gbOIlHncD9H3VKJLcXKoUw_hJZ7J_-5";
+    const char *API_KEY = "sb_publishable_gbOIlHncD9H3VKJLcXKoUw_hJZ7J_-5";
     unsigned long lastRun = 0;
 
     String EscapeJsonString(const String &input)
@@ -116,7 +116,8 @@ namespace
         payload += "\"action_water\":" + String(latestResult.recommendation.water ? "true" : "false") + ",";
         payload += "\"action_reduce_temp\":" + String(latestResult.recommendation.reduceTemp ? "true" : "false") + ",";
         payload += "\"action_increase_light\":" + String(latestResult.recommendation.increaseLight ? "true" : "false") + ",";
-        payload += "\"recommendation_summary\":\"" + EscapeJsonString(String(latestResult.recommendation.summary.c_str())) + "\"";
+        payload += "\"recommendation_summary\":\"" + EscapeJsonString(String(latestResult.recommendation.summary.c_str())) + "\",";
+        payload += "\"risk_class\":" + String(static_cast<int>(latestResult.mlResult.risk));
         payload += "}";
 
         SendToCloud(payload);
@@ -149,6 +150,7 @@ void setup()
     }
 
     Serial.println("Monitoring system initialized");
+    RunMonitoringCycle();
 
     lastRun = millis();
 }
