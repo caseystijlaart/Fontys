@@ -5,6 +5,7 @@
 
 #include "MonitoringSystem.hpp"
 #include "WiFiCommunication.hpp"
+#include "PlantTypes.hpp"
 
 using namespace pof02;
 
@@ -51,8 +52,17 @@ namespace
     MonitoringCycleResult latestResult{};
     bool hasLatestResult = false;
 
+    const char *BASE_URL = "https://yjjpgvsycxlaqubvedoa.supabase.co";
     const char *API_URL = "https://yjjpgvsycxlaqubvedoa.supabase.co/rest/v1/plant_readings";
+    String API_URL_SETTING = "https://YOUR_PROJECT.supabase.co/rest/v1/plant_settings"
+                             "?plant_name=eq." +
+                             String(PLANT_LABEL) +
+                             "&select=*"
+                             "&limit=1";
     const char *API_KEY = "sb_publishable_gbOIlHncD9H3VKJLcXKoUw_hJZ7J_-5";
+
+    uint8_t current_version = 1;
+
     unsigned long lastRun = 0;
 
     String EscapeJsonString(const String &input)
@@ -63,6 +73,76 @@ namespace
         output.replace("\n", "\\n");
         output.replace("\r", "\\r");
         return output;
+    }
+    bool ReceiveProfileSettings(String payload)
+    {
+
+        if (payload.length() > 0)
+        {
+            PlantRuleProfile profile = monitoringSystem.GetPlantProfile();
+            if (payload.indexOf("\"plant_label\":\"" + String(PLANT_LABEL) + "\"") == -1)
+            {
+                Serial.println("No settings found for this plant label");
+                return false;
+            }
+            profile.preferences.humidity = payload.indexOf("\"humidityPreference\":\"pLow\"") >= 0 ? PreferenceBand::pLow : (payload.indexOf("\"humidityPreference\":\"pHigh\"") >= 0 ? PreferenceBand::pHigh : PreferenceBand::pMid);
+            profile.preferences.light = payload.indexOf("\"lightPreference\":\"pLow\"") >= 0 ? PreferenceBand::pLow : (payload.indexOf("\"lightPreference\":\"pHigh\"") >= 0 ? PreferenceBand::pHigh : PreferenceBand::pMid);
+            profile.preferences.soilMoisture = payload.indexOf("\"soilPreference\":\"pLow\"") >= 0 ? PreferenceBand::pLow : (payload.indexOf("\"soilPreference\":\"pHigh\"") >= 0 ? PreferenceBand::pHigh : PreferenceBand::pMid);
+            profile.preferences.temperature = payload.indexOf("\"temperaturePreference\":\"pLow\"") >= 0 ? PreferenceBand::pLow : (payload.indexOf("\"temperaturePreference\":\"pHigh\"") >= 0 ? PreferenceBand::pHigh : PreferenceBand::pMid);
+            monitoringSystem.SetPlantProfile(profile);
+            return true;
+        }
+        return false;
+    }
+
+    bool GetProfileSettings()
+    {
+
+        WiFiClientSecure client;
+        client.setInsecure(); // ok for now (we can harden later)
+
+        HTTPClient https;
+
+        if (https.begin(client, API_URL_SETTING))
+        {
+            https.addHeader("apikey", API_KEY);
+            https.addHeader("Authorization", String("Bearer ") + API_KEY);
+        }
+
+        int httpCode = https.GET();
+
+        if (httpCode > 0)
+        {
+            String payload = https.getString();
+
+            Serial.println(payload);
+
+            if (payload.indexOf("\"plant_label\":\"" + String(PLANT_LABEL) + "\"") == -1)
+            {
+                Serial.println("No settings found for this plant label");
+                return false;
+            }
+            uint8_t latest_version = payload.indexOf("\"version\":");
+            if (latest_version != current_version)
+            {
+                if (ReceiveProfileSettings(payload))
+                {
+                    Serial.println("Received updated profile settings");
+                    return true;
+                }
+                else
+                {
+                    Serial.println("Failed to receive profile settings");
+                    return false;
+                }
+            }
+            else
+            {
+                Serial.println("Profile settings are up to date");
+                return true;
+            }
+        } 
+        return false;
     }
 
     void SendToCloud(const String &payload)
@@ -136,6 +216,10 @@ void setup()
     }
 
     PlantRuleProfile initialProfile;
+    if (!GetProfileSettings())
+    {
+        Serial.println("Failed to get profile settings, using defaults");
+    }
     initialProfile.plantName = PLANT_LABEL;
     initialProfile.deviceName = DEVICE_NAME;
     initialProfile.deviceId = String(DEVICE_ID).c_str();
@@ -171,5 +255,6 @@ void loop()
         wifiCommunication.Connect();
     }
 
+    GetProfileSettings();
     RunMonitoringCycle();
 }
