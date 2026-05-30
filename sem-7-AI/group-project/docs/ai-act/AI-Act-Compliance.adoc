@@ -1,0 +1,262 @@
+= AI Act Compliance Fitphone : Minor AI for Society
+:title-page: true
+:author: Casey Stijlaart
+:docdatetime: datetime (ISO)
+:doctype: report
+:toc:
+:toclevels: 3
+:pdf-page-size: A4
+:pdf-page-layout: portrait
+
+== Version Information
+*Project Name :* Fitphone
+
+*Version :* Prototype
+
+*Document Version :* 1.0
+
+== Purpose of this Document
+This document assesses the Fitphone system against the requirements of Regulation (EU) 2024/1689 (Artificial Intelligence Act).
+
+The purpose of this assessment is to:
+
+* Determine whether Fitphone qualifies as an AI system under the AI Act.
+* Identify which articles and annexes of the AI Act are applicable.
+* Assess whether the system is prohibited or high-risk.
+* Define the resulting risk classification and its obligations.
+
+The AI Act is a risk-based regulation. Therefore, only provisions relevant to the system’s intended purpose and risk level are assessed in detail.
+
+<<<
+
+== System Description
+Fitphone is a digital wellbeing application designed to help users better understand and manage their smartphone usage habits.
+
+The system collects and analyzes behavioral usage information generated through interactions with a mobile device. 
+Based on identified patterns, the system provides insights, predictions, and recommendations/nudges intended to support healthier device usage habits.
+
+The system is designed as a support tool that assists users in understanding their behavior and does not make decisions on behalf of users.
+
+== Intended Purpose
+The primary purpose of Fitphone is to:
+
+* Monitor smartphone usage behavior.
+* Identify behavioral usage patterns.
+* Predict future usage trends.
+* Enhance digital wellbeing by providing personalized advice.
+* Raise awareness among users regarding smartphone habits.
+
+The system is intended exclusively for personal use and self-reflection.
+
+The system is not intended for:
+
+* Employee monitoring.
+* Educational assessment.
+* Healthcare diagnosis.
+* Creditworthiness assessment.
+* Legal decision-making.
+* Government or law-enforcement purposes.
+
+<<<
+
+== System Functionality
+=== Input Data
+The system processes the following categories of behavioral information:
+
+* Screen time per application.
+* Application launch frequency.
+* Application usage duration.
+* Device unlock events.
+* Device pickup frequency.
+* Time of day.
+* Day of week.
+
+Please note that no biometric data is being collected or processed.
+
+=== System Outputs
+The system generates outputs including:
+
+* Usage summaries.
+* Behavioral trend analyses.
+* Predicted usage patterns.
+* Personalized recommendations.
+* Digital wellbeing nudges.
+
+Examples include:
+
+* Notifications indicating increased device usage.
+* Suggestions to reduce distractions.
+* Insights regarding daily routines.
+* Predictions regarding future application usage.
+
+<<<
+
+=== AI Functionality
+==== Current Functionality
+The current functionality includes:
+
+* Usage trend detection.
+* User insight generation.
+* Behavioral pattern analysis.
+* Statistical aggregation of smartphone activity.
+* Predicting likely future app usage.
+* generating personalized recommendations based on historical behavior.
+
+==== Future Functionality
+Future versions of the system may be able to:
+
+* Detect patterns of recurrent distraction.
+* Recognize periods of increased smartphone usage.
+
+All recommendations provided by the app are always intended as optional guidance.
+
+<<<
+
+== AI Act Assessment
+The AI Act establishes a risk-based regulatory framework, meaning that different legal obligations apply depending on the nature and risk level of an AI system. 
+
+To support this assessment, the https://artificialintelligenceact.eu/assessment/eu-ai-act-compliance-checker/[EU AI Act Compliance Checker], was used as an indicative tool to identify potentially relevant provisions.
+
+This assessment focuses only on provisions relevant to determining:
+
+* Whether the system qualifies as an AI system (Article 3).
+* Whether the system is prohibited (Article 5).
+* Whether the system is deployed (Article 4).
+* Whether the system is high-risk (Annex III, Chapter III).
+
+Other provisions, such as conformity assessment obligations for high-risk systems, are not applicable because Fitphone does not fall into that category.
+
+=== Article 3 - Definition of AI System
+Article 3(1) defines an AI system as a machine-based system that operates with varying levels of autonomy and generates outputs such as predictions or recommendations. When it comes to Fitphone, it generates:
+
+* Behavioral predictions.
+* Usage pattern analysis.
+* Recommendations and nudges.
+
+It can therefore be characterized as an AI system according to Article 3(1).
+
+=== Article 4 – AI Literacy (Testing Context)
+
+Article 4 requires providers and deployer of AI systems to ensure an appropriate level of AI literacy among persons involved in the operation or use of the system.
+
+Fitphone is likely to be tested in the future with a group of students in a controlled environment. Participants will be informed about:
+
+* The AI-driven nature of predictions and recommendations
+* The probabilistic and non-deterministic nature of outputs
+* The advisory (non-binding) nature of system recommendations
+* The possibility of inaccurate or incomplete predictions
+
+These measures ensure an appropriate level of awareness of system capabilities and limitations within the testing context.
+
+<<<
+
+=== Article 5 - Prohibited AI Practices
+Article 5 defines AI practices that are prohibited due to unacceptable risk. Fitphone has been assessed against these prohibitions and:
+
+* Does not use subliminal or manipulative techniques.
+* Does not exploit vulnerabilities of individuals or groups.
+* Does not perform social scoring.
+* Does not perform biometric identification or categorization.
+* Does not use deceptive behavioral manipulation.
+
+All nudges and recommendations are provided in a way that it is clear to the user and it always gives the user full control to apply or dismiss suggestions.
+
+Conclusion: Fitphone does not practice any prohibited AI practices under Article 5.
+
+=== Annex III – High-Risk AI Systems
+
+Annex III defines specific use cases considered high-risk due to their impact on safety, rights, or access to essential services. To determine whether Fitphone is high-risk, the system was evaluated against the following criteria:
+
+* Use in regulated high-impact domains.
+* Production of legally or similarly significant effects.
+* Influence on access to essential services or opportunities.
+
+Fitphone does not meet these criteria, as the system is not used for:
+
+* Employment or worker management
+* Education or academic evaluation
+* Healthcare diagnosis or treatment
+* Credit scoring or financial assessment
+* Law enforcement or judicial decision-making
+* Migration or border control processes
+* Access to essential services
+
+Additionally:
+
+* The system does not produce legally binding decisions
+* The system does not restrict access to services or opportunities
+* The system does not affect eligibility for rights or benefits
+
+Instead, Fitphone is limited to personal digital wellbeing analysis and voluntary user insights. Therefore it can be concluded that Fitphone is not a high-risk AI system under Annex III.
+
+<<<
+
+=== Risk Classification
+Based on the assessment of the assessment of various articles and Annex II, it is supported that Fitphone is classified as a limited-risk AI System under the AI Act.
+The system provides predictions and recommendations but does not operate in high-risk domains or engage in prohibited AI practices.
+
+== Transparency Measures 
+In accordance with Article 50, the system ensures transparency through:
+
+* Informing users when AI is used to generate insights or recommendations
+* Clearly marking recommendations as suggestions, not instructions
+* Communicating the purpose of predictions and nudges
+* Presenting outputs in an understandable form where possible
+
+These measures ensure users are aware of AI involvement in system outputs.
+
+== Human Oversight
+Human oversight is maintained at all times.
+
+The system:
+
+* Does not autonomously make decisions
+* Does not enforce behavioral changes
+* Does not restrict or block applications
+* Does not modify device settings automatically
+
+Users retain full control over all decisions and may ignore or disable recommendations at any time.
+
+<<<
+    
+== Risk Assessment
+
+|===
+| Risk	| Likelihood	| Impact	| Mitigation
+
+| Incorrect usage prediction	| Medium	| Low	| Outputs remain advisory
+| Misclassification of distraction periods	| Medium	| Low	| Recommendations are optional
+| Sleep inference inaccuracies	| Medium	| Low	| Sleep data treated as estimates
+| Overreliance on recommendations	| Low	| Medium	| No enforcement mechanisms
+| Excessive nudging	| Medium	| Low	| User can disable notifications
+|===
+
+== Technical Limitations
+The system has several limitations:
+
+* Predictions are probabilistic, not deterministic
+* Model accuracy depends on available historical data
+* Irregular user behavior reduces prediction reliability
+* Sleep inference is approximate unless explicitly provided
+* Recommendation quality may vary across users
+
+Outputs should be interpreted as informational guidance rather than factual determinations.
+
+<<<
+
+== Conclusion
+Fitphone is an AI-enabled digital wellbeing system that analyses smartphone usage behavior and generates predictions and recommendations.
+
+The system qualifies as an AI system under Article 3(1) of Regulation (EU) 2024/1689.
+
+It does not involve prohibited AI practices under Article 5 and does not fall within any high-risk category defined in Annex III.
+
+The system is therefore classified as a Limited-Risk AI System, subject primarily to transparency obligations under Article 50.
+
+Appropriate safeguards, including human oversight and user awareness measures in line with Article 4, have been implemented to ensure responsible and transparent use.
+
+== References
+
+* EU AI Act Compliance Checker | EU Artificial Intelligence Act. (z.d.). https://artificialintelligenceact.eu/assessment/eu-ai-act-compliance-checker/
+* The AI Act Explorer | EU Artificial Intelligence Act. (z.d.). https://artificialintelligenceact.eu/ai-act-explorer/
+* Kosinski, M., & Scapicchio, M. (2025, 17 november). EU AI Act: What is the EU AI Act? IBM. https://www.ibm.com/think/topics/eu-ai-act
