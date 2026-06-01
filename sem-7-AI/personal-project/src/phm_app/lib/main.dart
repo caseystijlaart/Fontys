@@ -44,6 +44,12 @@ class _DashboardState extends State<Dashboard> {
   String? selectedPlant;
   List<DateTime> timestamps = [];
   String recommendationText = "";
+  List<String> actions = [];
+
+  String humidityPref = "mid";
+  String temperaturePref = "mid";
+  String soilPref = "mid";
+  String lightPref = "mid";
 
   // 📊 metrics
   final metrics = [
@@ -64,6 +70,78 @@ class _DashboardState extends State<Dashboard> {
   // 🟩 status
   String statusText = "Loading...";
   Color statusColor = Colors.grey;
+
+  void showTopMessage(String message, Color color) {
+    final overlay = Overlay.of(context);
+
+    final entry = OverlayEntry(
+      builder: (context) => Positioned(
+        top: 50,
+        left: 20,
+        right: 20,
+        child: Material(
+          color: Colors.transparent,
+          child: Container(
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: color,
+              borderRadius: BorderRadius.circular(12),
+              boxShadow: [BoxShadow(color: Colors.black26, blurRadius: 10)],
+            ),
+            child: Text(
+              message,
+              style: const TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+
+    overlay.insert(entry);
+
+    Future.delayed(const Duration(seconds: 2), () {
+      entry.remove();
+    });
+  }
+
+  Widget buildDropdown(
+    String label,
+    String value,
+    Function(String?) onChanged,
+  ) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(label),
+        DropdownButton<String>(
+          value: ["low", "mid", "high"].contains(value) ? value : "mid",
+          items: const [
+            DropdownMenuItem(value: "low", child: Text("Low")),
+            DropdownMenuItem(value: "mid", child: Text("Mid")),
+            DropdownMenuItem(value: "high", child: Text("High")),
+          ],
+          onChanged: onChanged,
+        ),
+        const SizedBox(height: 10),
+      ],
+    );
+  }
+
+  String normalize(String? v) {
+    switch (v) {
+      case "pLow":
+        return "low";
+      case "pMid":
+        return "mid";
+      case "pHigh":
+        return "high";
+      default:
+        return "mid";
+    }
+  }
 
   // =========================
   // LOAD PLANTS
@@ -87,7 +165,7 @@ class _DashboardState extends State<Dashboard> {
 
     final res = await supabase
         .from('plant_readings')
-        .select('risk_class, timestamp')
+        .select()
         .eq('plant_label', selectedPlant!)
         .order('timestamp', ascending: false)
         .limit(1);
@@ -97,6 +175,28 @@ class _DashboardState extends State<Dashboard> {
     final latest = res[0];
 
     final int risk = latest['risk_class'] ?? 0;
+
+    // reset actions
+    actions = [];
+
+    // build actions from DB flags
+    if (latest['action_reduce_temp'] == true ||
+        latest['action_reduce_temp'] == "true" ||
+        latest['action_reduce_temp'] == 1) {
+      actions.add("❄ Reduce temperature");
+    }
+
+    if (latest['action_water'] == true ||
+        latest['action_water'] == "true" ||
+        latest['action_water'] == 1) {
+      actions.add("💧 Water the plant");
+    }
+
+    if (latest['action_increase_light'] == true ||
+        latest['action_increase_light'] == "true" ||
+        latest['action_increase_light'] == 1) {
+      actions.add("☀ Increase light exposure");
+    }
 
     setState(() {
       riskClass = risk;
@@ -125,6 +225,10 @@ class _DashboardState extends State<Dashboard> {
           statusColor = Colors.grey;
           statusText = "No data";
       }
+
+      recommendationText = actions.isEmpty
+          ? "No actions required"
+          : actions.join("\n");
     });
   }
 
@@ -187,6 +291,68 @@ class _DashboardState extends State<Dashboard> {
     });
   }
 
+  Future<void> loadPlantSettings() async {
+    if (selectedPlant == null) return;
+
+    final res = await supabase
+        .from('plant_settings')
+        .select()
+        .eq('plant_label', selectedPlant!)
+        .limit(1);
+
+    if (res.isEmpty) return;
+
+    final row = res[0];
+
+    setState(() {
+      humidityPref = normalize(row['humidity_preference']);
+      temperaturePref = normalize(row['temperature_preference']);
+      soilPref = normalize(row['soil_preference']);
+      lightPref = normalize(row['light_preference']);
+    });
+  }
+
+  Future<void> savePlantSettings() async {
+    if (selectedPlant == null) {
+      showTopMessage("❌ No plant selected", Colors.red);
+      return;
+    }
+
+    final current = await supabase
+        .from('plant_settings')
+        .select('version')
+        .eq('plant_label', selectedPlant!.trim())
+        .single();
+
+    final int newVersion = (current['version'] ?? 0) + 1;
+
+    try {
+      final response = await supabase
+          .from('plant_settings')
+          .update({
+            'humidity_preference': toDbValue(humidityPref),
+            'temperature_preference': toDbValue(temperaturePref),
+            'soil_preference': toDbValue(soilPref),
+            'light_preference': toDbValue(lightPref),
+            'version': newVersion,
+          })
+          .eq('plant_label', selectedPlant!.trim())
+          .select();
+
+      if (response.isEmpty) {
+        showTopMessage(
+          "⚠️ Nothing updated. Check plant selection.",
+          Colors.orange,
+        );
+        return;
+      }
+
+      showTopMessage("✅ Settings saved successfully", Colors.green);
+    } catch (_) {
+      showTopMessage("❌ Failed to save settings", Colors.red);
+    }
+  }
+
   // =========================
   // COLOR MAP
   // =========================
@@ -217,6 +383,19 @@ class _DashboardState extends State<Dashboard> {
         return "Light";
       default:
         return m;
+    }
+  }
+
+  String toDbValue(String v) {
+    switch (v) {
+      case "low":
+        return "pLow";
+      case "mid":
+        return "pMid";
+      case "high":
+        return "pHigh";
+      default:
+        return "pMid";
     }
   }
 
@@ -252,6 +431,7 @@ class _DashboardState extends State<Dashboard> {
                 setState(() => selectedPlant = v);
                 loadGraph();
                 loadLatestStatus();
+                loadPlantSettings();
               },
             ),
 
@@ -322,56 +502,117 @@ class _DashboardState extends State<Dashboard> {
 
             // 📊 GRAPH (NO ZOOMING)
             Expanded(
-              child: LineChart(
-                LineChartData(
-                  minY: 0,
-                  maxY: 100,
-
-                  gridData: const FlGridData(show: true),
-
-                  titlesData: FlTitlesData(
-                    rightTitles: const AxisTitles(
-                      sideTitles: SideTitles(showTitles: false),
-                    ),
-                    topTitles: const AxisTitles(
-                      sideTitles: SideTitles(showTitles: false),
-                    ),
-                    bottomTitles: AxisTitles(
-                      sideTitles: SideTitles(
-                        showTitles: true,
-                        interval: timestamps.isNotEmpty
-                            ? (timestamps.length / 5).ceilToDouble()
-                            : 1,
-                        getTitlesWidget: (value, meta) {
-                          if (value.toInt() >= timestamps.length) {
-                            return const Text("");
-                          }
-
-                          final t = timestamps[value.toInt()];
-                          return Text(
-                            "${t.day}/${t.month} ${t.hour}:${t.minute.toString().padLeft(2, '0')}",
+              child: Row(
+                children: [
+                  // =====================
+                  // GRAPH SIDE
+                  // =====================
+                  Expanded(
+                    flex: 3,
+                    child: LineChart(
+                      LineChartData(
+                        minY: 0,
+                        maxY: 100,
+                        gridData: const FlGridData(show: true),
+                        titlesData: FlTitlesData(
+                          rightTitles: const AxisTitles(
+                            sideTitles: SideTitles(showTitles: false),
+                          ),
+                          topTitles: const AxisTitles(
+                            sideTitles: SideTitles(showTitles: false),
+                          ),
+                          bottomTitles: AxisTitles(
+                            sideTitles: SideTitles(
+                              showTitles: true,
+                              interval: timestamps.isNotEmpty
+                                  ? (timestamps.length / 5).ceilToDouble()
+                                  : 1,
+                              getTitlesWidget: (value, meta) {
+                                final i = value.toInt();
+                                if (i < 0 || i >= timestamps.length) {
+                                  return const Text("");
+                                }
+                                final t = timestamps[i];
+                                return Text("${t.day}/${t.month}");
+                              },
+                            ),
+                          ),
+                          leftTitles: const AxisTitles(
+                            sideTitles: SideTitles(
+                              showTitles: true,
+                              reservedSize: 40,
+                            ),
+                          ),
+                        ),
+                        lineBarsData: selectedMetrics.map((m) {
+                          return LineChartBarData(
+                            spots: graphData[m] ?? [],
+                            isCurved: true,
+                            barWidth: 2,
+                            color: colorFor(m),
                           );
-                        },
-                      ),
-                    ),
-
-                    leftTitles: const AxisTitles(
-                      sideTitles: SideTitles(
-                        showTitles: true,
-                        reservedSize: 40, // prevents overlap
+                        }).toList(),
                       ),
                     ),
                   ),
 
-                  lineBarsData: selectedMetrics.map((m) {
-                    return LineChartBarData(
-                      spots: graphData[m] ?? [],
-                      isCurved: true,
-                      barWidth: 2,
-                      color: colorFor(m),
-                    );
-                  }).toList(),
-                ),
+                  const SizedBox(width: 12),
+
+                  // =====================
+                  // SETTINGS PANEL
+                  // =====================
+                  Expanded(
+                    flex: 2,
+                    child: Container(
+                      padding: const EdgeInsets.all(16),
+                      decoration: BoxDecoration(
+                        color: Colors.white.withOpacity(0.05),
+                        borderRadius: BorderRadius.circular(16),
+                        border: Border.all(color: Colors.white24),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            "Plant Settings",
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+
+                          const SizedBox(height: 15),
+
+                          buildDropdown("Humidity", humidityPref, (v) {
+                            setState(() => humidityPref = v!);
+                          }),
+
+                          buildDropdown("Temperature", temperaturePref, (v) {
+                            setState(() => temperaturePref = v!);
+                          }),
+
+                          buildDropdown("Soil Moisture", soilPref, (v) {
+                            setState(() => soilPref = v!);
+                          }),
+
+                          buildDropdown("Light", lightPref, (v) {
+                            setState(() => lightPref = v!);
+                          }),
+
+                          const Spacer(),
+
+                          SizedBox(
+                            width: double.infinity,
+                            child: ElevatedButton(
+                              onPressed: savePlantSettings,
+                              child: const Text("Save Settings"),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
             Container(
@@ -391,8 +632,21 @@ class _DashboardState extends State<Dashboard> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
+
                   const SizedBox(height: 5),
+
                   Text(statusText),
+
+                  const SizedBox(height: 12),
+
+                  const Text(
+                    "Recommendation:",
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+
+                  const SizedBox(height: 6),
+
+                  Text(recommendationText),
                 ],
               ),
             ),
