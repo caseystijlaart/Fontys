@@ -8,8 +8,20 @@ workflows:
       cocoapods: default
     working_directory: sem-7-AI/personal-project/src/phm_app
     scripts:
+      - name: Debug - show directory structure
+        script: |
+          echo "Clone root:"
+          ls /Users/builder/clone/
+          echo "---"
+          find /Users/builder/clone -maxdepth 5 -type d
+
       - name: Install dependencies
         script: flutter pub get
+
+      - name: Install CocoaPods
+        script: |
+          cd ios
+          pod install
 
       - name: Build iOS (no codesign)
         script: flutter build ios --release --no-codesign
@@ -24,11 +36,3 @@ workflows:
     artifacts:
       - build/ios/iphoneos/Runner.ipa
       - /tmp/xcodebuild_logs/*.log
-
-      - name: Debug - show directory structure
-  script: |
-    echo "Clone root contents:"
-    ls /Users/builder/clone/
-    echo "---"
-    find /Users/builder/clone -maxdepth 4 -type d
-    
