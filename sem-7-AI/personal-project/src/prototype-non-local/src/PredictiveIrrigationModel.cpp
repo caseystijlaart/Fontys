@@ -70,7 +70,7 @@ float PredictiveIrrigationModel::MinutesToCrossThreshold(float currentValue, flo
         return 0.0f;
     }
 
-    if (ratePerMinute >= -0.001f) {
+    if (ratePerMinute >= 0.0f) {
         return 7.0f * 24.0f * 60.0f;
     }
 

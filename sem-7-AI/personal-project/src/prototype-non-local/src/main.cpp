@@ -2,10 +2,14 @@
 #include <WiFi.h>
 #include <WiFiClientSecure.h>
 #include <HTTPClient.h>
+#include <LittleFS.h>
 
 #include "MonitoringSystem.hpp"
 #include "WiFiCommunication.hpp"
 #include "PlantTypes.hpp"
+#include "FileStorageService.hpp"
+#include "TimeService.hpp"
+#include "Certs.hpp"
 
 using namespace pof02;
 
@@ -14,6 +18,7 @@ namespace
     const unsigned long INTERVAL = 1000UL * 60UL * 60UL * 3UL; // 3 hours
     const char *PLANT_SETTINGS_FILE = "/plant_settings.txt";
     const char *LAST_STATE_FILE = "/last_state.txt";
+    const char *SENSOR_HISTORY_FILE = "/sensor_history.csv";
 
 #ifndef WIFI_SSID
 #define WIFI_SSID ""
@@ -46,7 +51,11 @@ namespace
     LightSensor light(35);
     MLLayer ml(MLBackend::TINYML_TFLM);
     RecommendationEngine recEngine;
-    MonitoringSystem monitoringSystem(soil, dht, light, ml, recEngine, PlantRuleProfile{}, 24);
+    constexpr std::size_t kHistorySize = 56; // 1 week at 3h intervals
+    MonitoringSystem monitoringSystem(soil, dht, light, ml, recEngine, PlantRuleProfile{}, kHistorySize);
+
+    TimeService timeService;
+    FileStorageService fileStorage(timeService);
 
     WiFiCommunication wifiCommunication(WIFI_SSID, WIFI_PASSWORD);
     MonitoringCycleResult latestResult{};
@@ -54,12 +63,14 @@ namespace
 
     const char *BASE_URL = "https://yjjpgvsycxlaqubvedoa.supabase.co";
     const char *API_URL = "https://yjjpgvsycxlaqubvedoa.supabase.co/rest/v1/plant_readings";
-    String API_URL_SETTING = "https://YOUR_PROJECT.supabase.co/rest/v1/plant_settings"
-                             "?plant_name=eq." +
+    String API_URL_SETTING = "https://yjjpgvsycxlaqubvedoa.supabase.co/rest/v1/plant_settings"
+                             "?plant_label=eq." +
                              String(PLANT_LABEL) +
                              "&select=*"
                              "&limit=1";
-    const char *API_KEY = "sb_publishable_gbOIlHncD9H3VKJLcXKoUw_hJZ7J_-5";
+#ifndef API_KEY
+#error "API_KEY must be set as a build flag in platformio.ini: -D API_KEY=\"your_key\""
+#endif
 
     uint8_t current_version = 1;
 
@@ -99,7 +110,7 @@ namespace
     {
 
         WiFiClientSecure client;
-        client.setInsecure(); // ok for now (we can harden later)
+        client.setCACert(kSupabaseRootCA);
 
         HTTPClient https;
 
@@ -122,11 +133,20 @@ namespace
                 Serial.println("No settings found for this plant label");
                 return false;
             }
-            uint8_t latest_version = payload.indexOf("\"version\":");
-            if (latest_version != current_version)
+
+            // Parse the actual version number from the JSON payload
+            int latestVersion = 0;
+            const int versionIdx = payload.indexOf("\"version\":");
+            if (versionIdx >= 0)
+            {
+                latestVersion = payload.substring(versionIdx + 10).toInt();
+            }
+
+            if (latestVersion != current_version)
             {
                 if (ReceiveProfileSettings(payload))
                 {
+                    current_version = static_cast<uint8_t>(latestVersion);
                     Serial.println("Received updated profile settings");
                     return true;
                 }
@@ -141,7 +161,7 @@ namespace
                 Serial.println("Profile settings are up to date");
                 return true;
             }
-        } 
+        }
         return false;
     }
 
@@ -154,7 +174,7 @@ namespace
         }
 
         WiFiClientSecure client;
-        client.setInsecure(); // ok for now (we can harden later)
+        client.setCACert(kSupabaseRootCA);
 
         HTTPClient https;
 
@@ -184,6 +204,7 @@ namespace
     {
         latestResult = monitoringSystem.RunCycleDetailed();
         hasLatestResult = true;
+        fileStorage.AppendToHistoryFile(SENSOR_HISTORY_FILE, latestResult, PLANT_LABEL, DEVICE_ID, kHistorySize);
 
         String payload = "{";
         payload += "\"request_id\":\"" + String(millis()) + "\",";
@@ -210,20 +231,42 @@ void setup()
     Serial.begin(115200);
     delay(200);
 
+    LittleFS.begin(true);
+
     if (wifiCommunication.HasCredentials())
     {
         wifiCommunication.Connect();
+        timeService.SyncTimeWithNtp(10000);
+    }
+
+    const std::int64_t nowUnix = timeService.GetCurrentUnixTimeUtc();
+    if (nowUnix > 0)
+    {
+        monitoringSystem.SetStartUnixTime(nowUnix);
     }
 
     PlantRuleProfile initialProfile;
     if (!GetProfileSettings())
     {
         Serial.println("Failed to get profile settings, using defaults");
+        Serial.println(String(PLANT_LABEL));
     }
     initialProfile.plantName = PLANT_LABEL;
     initialProfile.deviceName = DEVICE_NAME;
     initialProfile.deviceId = String(DEVICE_ID).c_str();
     monitoringSystem.SetPlantProfile(initialProfile);
+
+    std::size_t existingEntries = 0;
+    const auto historicalSnapshots = fileStorage.LoadHistoryFile(SENSOR_HISTORY_FILE, kHistorySize, existingEntries);
+    if (!historicalSnapshots.empty())
+    {
+        monitoringSystem.LoadHistoricalSnapshots(historicalSnapshots);
+        Serial.printf("Restored %u snapshots (%u total on file)\n", historicalSnapshots.size(), existingEntries);
+    }
+    else
+    {
+        Serial.printf("No history file found, starting fresh\n");
+    }
 
     if (!monitoringSystem.Init())
     {

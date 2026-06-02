@@ -45,6 +45,12 @@ MonitoringCycleResult MonitoringSystem::RunCycleDetailed() {
     const unsigned long elapsedMs = millis() - startMillis_;
     snapshot.unixTime = startUnixTime_ + static_cast<std::int64_t>(elapsedMs / 1000UL);
 
+    // Skip cycle if soil sensor read is invalid (disconnected / shorted)
+    if (snapshot.soilMoisturePct < 0.0f) {
+        Serial.println("[MonitoringSystem] Soil sensor returned invalid reading — skipping cycle");
+        return MonitoringCycleResult{};
+    }
+
     history_.Add(snapshot);
 
     predictiveIrrigationModel_.Update(history_);
@@ -70,6 +76,11 @@ void MonitoringSystem::LoadHistoricalSnapshots(const std::vector<SensorSnapshot>
         history_.Add(snapshot);
     }
     predictiveIrrigationModel_.Update(history_);
+}
+
+void MonitoringSystem::SetStartUnixTime(std::int64_t unixTime) {
+    startUnixTime_ = unixTime;
+    startMillis_ = millis();
 }
 
 } // namespace pof02

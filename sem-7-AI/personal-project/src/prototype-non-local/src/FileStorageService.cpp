@@ -210,83 +210,287 @@ bool FileStorageService::LogToCsv(const MonitoringCycleResult &result,
     return true;
 }
 
+namespace
+{
+
+std::vector<String> ParseCsvLine(const String &line)
+{
+    std::vector<String> parts;
+    int i = 0;
+    const int len = static_cast<int>(line.length());
+
+    while (i <= len)
+    {
+        if (i < len && line[i] == '"')
+        {
+            ++i;
+            String field;
+            while (i < len)
+            {
+                if (line[i] == '"')
+                {
+                    if (i + 1 < len && line[i + 1] == '"')
+                    {
+                        field += '"';
+                        i += 2;
+                    }
+                    else
+                    {
+                        ++i;
+                        break;
+                    }
+                }
+                else
+                {
+                    field += line[i++];
+                }
+            }
+            parts.push_back(field);
+            if (i < len && line[i] == ',')
+                ++i;
+        }
+        else
+        {
+            const int comma = line.indexOf(',', i);
+            if (comma < 0)
+            {
+                parts.push_back(line.substring(i));
+                break;
+            }
+            parts.push_back(line.substring(i, comma));
+            i = comma + 1;
+        }
+    }
+
+    return parts;
+}
+
+std::int64_t ParseTimestamp(const String &ts)
+{
+    int year, month, day, hour, min, sec;
+    if (sscanf(ts.c_str(), "%d-%d-%d %d:%d:%d", &year, &month, &day, &hour, &min, &sec) != 6)
+    {
+        return 0;
+    }
+
+    std::tm t{};
+    t.tm_year = year - 1900;
+    t.tm_mon = month - 1;
+    t.tm_mday = day;
+    t.tm_hour = hour;
+    t.tm_min = min;
+    t.tm_sec = sec;
+    t.tm_isdst = -1;
+
+    const time_t result = mktime(&t);
+    return result < 0 ? 0 : static_cast<std::int64_t>(result);
+}
+
+} // namespace
+
 std::vector<SensorSnapshot> FileStorageService::LoadRecentSnapshots(std::size_t maxEntries) const
 {
-    std::vector<SensorSnapshot> snapshots;
-    String latest = const_cast<FileStorageService *>(this)->FindLatestLogFile();
-
-    if (latest.length() == 0)
+    // Collect all sensor log files (not ML logs), sorted newest-first
+    std::vector<String> logFiles;
+    for (const auto &name : ListAllFilesRecursive())
     {
-        return snapshots;
+        if (name.indexOf("/log_") >= 0 && name.endsWith(".csv") && name.indexOf("/ml_") < 0)
+        {
+            logFiles.push_back(name);
+        }
+    }
+    std::sort(logFiles.rbegin(), logFiles.rend());
+
+    // Collect snapshots newest-first across files, then reverse to chronological order
+    std::vector<SensorSnapshot> collected;
+    collected.reserve(maxEntries);
+
+    for (const auto &filePath : logFiles)
+    {
+        if (collected.size() >= maxEntries)
+            break;
+
+        File file = LittleFS.open(filePath, FILE_READ);
+        if (!file)
+            continue;
+
+        std::vector<String> lines;
+        while (file.available())
+        {
+            String line = file.readStringUntil('\n');
+            line.trim();
+            if (line.length() > 0)
+                lines.push_back(line);
+        }
+        file.close();
+
+        // Skip header row (index 0), iterate rows newest-first
+        for (int i = static_cast<int>(lines.size()) - 1; i >= 1; --i)
+        {
+            if (collected.size() >= maxEntries)
+                break;
+
+            const auto parts = ParseCsvLine(lines[i]);
+            if (parts.size() < 7)
+                continue;
+
+            const std::int64_t ts = ParseTimestamp(parts[2]);
+            if (ts <= 0)
+                continue;
+
+            SensorSnapshot s{};
+            s.unixTime = ts;
+            s.soilMoisturePct = parts[3].toFloat();
+            s.temperatureC = parts[4].toFloat();
+            s.humidityPct = parts[5].toFloat();
+            s.lightLevelPct = parts[6].toFloat();
+            collected.push_back(s);
+        }
     }
 
-    File file = LittleFS.open(latest, FILE_READ);
+    // Reverse to chronological order (oldest first) as SensorHistory expects
+    std::reverse(collected.begin(), collected.end());
+    return collected;
+}
+
+std::vector<SensorSnapshot> FileStorageService::LoadHistoryFile(const char *filePath, std::size_t maxEntries, std::size_t &outTotalCount) const
+{
+    outTotalCount = 0;
+
+    File file = LittleFS.open(filePath, FILE_READ);
     if (!file)
-    {
-        return snapshots;
-    }
+        return {};
 
     std::vector<String> lines;
     while (file.available())
     {
-        const String line = file.readStringUntil('\n');
+        String line = file.readStringUntil('\n');
+        line.trim();
         if (line.length() > 0)
-        {
             lines.push_back(line);
-        }
     }
-
     file.close();
 
     if (lines.size() <= 1)
-    {
-        return snapshots;
-    }
+        return {};
 
-    const std::size_t startIdx = lines.size() > maxEntries ? lines.size() - maxEntries : 1;
+    const std::size_t dataRows = lines.size() - 1; // subtract header
+    outTotalCount = dataRows;
+
+    const std::size_t startIdx = dataRows > maxEntries ? lines.size() - maxEntries : 1;
+
+    std::vector<SensorSnapshot> snapshots;
+    snapshots.reserve(std::min(dataRows, maxEntries));
 
     for (std::size_t i = startIdx; i < lines.size(); ++i)
     {
-        String line = lines[i];
-        line.trim();
-
-        if (line.length() == 0)
-        {
-            continue;
-        }
-
-        std::vector<String> parts;
-        int from = 0;
-
-        while (from >= 0)
-        {
-            const int comma = line.indexOf(',', from);
-            if (comma < 0)
-            {
-                parts.push_back(line.substring(from));
-                break;
-            }
-
-            parts.push_back(line.substring(from, comma));
-            from = comma + 1;
-        }
-
+        const auto parts = ParseCsvLine(lines[i]);
         if (parts.size() < 7)
-        {
             continue;
-        }
+
+        const std::int64_t ts = ParseTimestamp(parts[2]);
+        if (ts <= 0)
+            continue;
 
         SensorSnapshot s{};
-        s.unixTime = 0;
+        s.unixTime = ts;
         s.soilMoisturePct = parts[3].toFloat();
         s.temperatureC = parts[4].toFloat();
         s.humidityPct = parts[5].toFloat();
         s.lightLevelPct = parts[6].toFloat();
-
         snapshots.push_back(s);
     }
 
     return snapshots;
+}
+
+bool FileStorageService::AppendToHistoryFile(const char *filePath, const pof02::MonitoringCycleResult &result, const char *plantLabel, int deviceId, std::size_t maxEntries)
+{
+    const std::int64_t unixTime = timeService_.GetCurrentUnixTimeUtc() > 0
+                                      ? timeService_.GetCurrentUnixTimeUtc()
+                                      : result.snapshot.unixTime;
+    const String timestamp = timeService_.FormatTimestampLocal(unixTime);
+
+    // Create file with header if it does not exist yet
+    if (!LittleFS.exists(filePath))
+    {
+        File f = LittleFS.open(filePath, FILE_WRITE);
+        if (!f)
+            return false;
+        f.println("plant_label,device_id,timestamp_utc,soil_moisture_pct,temperature_c,humidity_pct,light_level_pct,action_water,action_reduce_temp,action_increase_light,recommendation_summary");
+        f.close();
+    }
+
+    File file = LittleFS.open(filePath, FILE_APPEND);
+    if (!file)
+        return false;
+
+    const auto &s = result.snapshot;
+    const auto &rec = result.recommendation;
+
+    String line;
+    line.reserve(200);
+    line += CsvEscape(String(plantLabel)) + ",";
+    line += String(deviceId) + ",";
+    line += CsvEscape(timestamp) + ",";
+    line += String(s.soilMoisturePct, 3) + ",";
+    line += String(s.temperatureC, 3) + ",";
+    line += String(s.humidityPct, 3) + ",";
+    line += String(s.lightLevelPct, 3) + ",";
+    line += String(rec.water ? 1 : 0) + ",";
+    line += String(rec.reduceTemp ? 1 : 0) + ",";
+    line += String(rec.increaseLight ? 1 : 0) + ",";
+    line += CsvEscape(String(rec.summary.c_str()));
+
+    file.println(line);
+    file.close();
+
+    // Trim file when it has grown to double the desired window so flash usage stays bounded
+    std::size_t ignored = 0;
+    const std::size_t total = LoadHistoryFile(filePath, SIZE_MAX, ignored).size() + 1; // +1 for what we just wrote, approximate
+    // Re-count properly
+    File countFile = LittleFS.open(filePath, FILE_READ);
+    std::size_t rowCount = 0;
+    if (countFile)
+    {
+        while (countFile.available())
+        {
+            countFile.readStringUntil('\n');
+            ++rowCount;
+        }
+        countFile.close();
+        rowCount = rowCount > 1 ? rowCount - 1 : 0; // subtract header
+    }
+
+    if (rowCount > maxEntries * 2)
+    {
+        std::size_t dummy = 0;
+        const auto keep = LoadHistoryFile(filePath, maxEntries, dummy);
+
+        File rewrite = LittleFS.open(filePath, FILE_WRITE);
+        if (rewrite)
+        {
+            rewrite.println("plant_label,device_id,timestamp_utc,soil_moisture_pct,temperature_c,humidity_pct,light_level_pct,action_water,action_reduce_temp,action_increase_light,recommendation_summary");
+            // We only have parsed snapshots here so we re-format them minimally
+            for (const auto &snap : keep)
+            {
+                const String ts = timeService_.FormatTimestampLocal(snap.unixTime);
+                String l;
+                l += CsvEscape(String(plantLabel)) + ",";
+                l += String(deviceId) + ",";
+                l += CsvEscape(ts) + ",";
+                l += String(snap.soilMoisturePct, 3) + ",";
+                l += String(snap.temperatureC, 3) + ",";
+                l += String(snap.humidityPct, 3) + ",";
+                l += String(snap.lightLevelPct, 3) + ",0,0,0,\"\"";
+                rewrite.println(l);
+            }
+            rewrite.close();
+            Serial.println("Trimmed sensor history file");
+        }
+    }
+
+    return true;
 }
 
 bool FileStorageService::SavePlantSettingsToFile(const PlantRuleProfile &profile, const char *plantSettingsFile)

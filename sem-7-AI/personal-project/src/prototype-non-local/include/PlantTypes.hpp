@@ -59,6 +59,7 @@ struct MetricThresholds {
     float midMin;
     float midMax;
     float highMin;
+    float highMax;
 };
 
 struct UserPreferences {
@@ -73,10 +74,10 @@ struct PlantRuleProfile {
     std::string deviceId = "unknown-device";
     std::string deviceName = "unknown";
     // Tuned for airy/chunky soil mixes: moisture drops slower and sensor reads lower.
-    MetricThresholds soilMoistureThresholds{28.0f, 33.0f, 55.0f, 60.0f};
-    MetricThresholds temperatureThresholds{16.0f, 18.0f, 26.0f, 28.0f};
-    MetricThresholds humidityThresholds{45.0f, 50.0f, 70.0f, 75.0f};
-    MetricThresholds lightThresholds{20.0f, 25.0f, 65.0f, 70.0f};
+    MetricThresholds soilMoistureThresholds{28.0f, 33.0f, 55.0f, 60.0f, 90.0f};
+    MetricThresholds temperatureThresholds{16.0f, 18.0f, 26.0f, 28.0f, 35.0f};
+    MetricThresholds humidityThresholds{45.0f, 50.0f, 70.0f, 75.0f, 95.0f};
+    MetricThresholds lightThresholds{20.0f, 25.0f, 65.0f, 70.0f, 95.0f};
     UserPreferences preferences{};
 };
 

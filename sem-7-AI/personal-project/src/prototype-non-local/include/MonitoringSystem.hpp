@@ -33,6 +33,7 @@ namespace pof02
         void SetPlantProfile(const PlantRuleProfile &plantProfile);
         const PlantRuleProfile &GetPlantProfile() const;
         void LoadHistoricalSnapshots(const std::vector<SensorSnapshot> &snapshots);
+        void SetStartUnixTime(std::int64_t unixTime);
 
     private:
         SoilMoistureSensor soilSensor_;

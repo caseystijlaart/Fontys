@@ -16,6 +16,10 @@ public:
     bool LogToCsv(const pof02::MonitoringCycleResult &result, const char *plantLabel, const char *deviceName, int deviceId, unsigned long &logCount);
     std::vector<pof02::SensorSnapshot> LoadRecentSnapshots(std::size_t maxEntries) const;
 
+    // Single-file history used for the regression model
+    std::vector<pof02::SensorSnapshot> LoadHistoryFile(const char *filePath, std::size_t maxEntries, std::size_t &outTotalCount) const;
+    bool AppendToHistoryFile(const char *filePath, const pof02::MonitoringCycleResult &result, const char *plantLabel, int deviceId, std::size_t maxEntries);
+
     bool SavePlantSettingsToFile(const pof02::PlantRuleProfile &profile, const char *plantSettingsFile);
 
     String FindLatestLogFile();

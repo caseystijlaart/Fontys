@@ -1,5 +1,6 @@
 #pragma once
 
+#include <DHT.h>
 #include <utility>
 
 namespace pof02 {
@@ -13,6 +14,7 @@ public:
 private:
     int pin_;
     int dhtType_;
+    mutable DHT dht_;
 };
 
 } // namespace pof02

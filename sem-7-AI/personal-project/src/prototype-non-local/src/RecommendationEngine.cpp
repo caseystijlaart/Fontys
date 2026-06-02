@@ -1,7 +1,7 @@
 #include "RecommendationEngine.hpp"
 
 #include <algorithm>
-#include <sstream>
+#include <Arduino.h>
 
 namespace pof02 {
 
@@ -23,11 +23,11 @@ bool IsBelowPreference(const float value, const MetricThresholds& thresholds, co
 bool IsAbovePreference(const float value, const MetricThresholds& thresholds, const PreferenceBand preference) {
     switch (preference) {
         case PreferenceBand::pLow:
-            return false;
+            return false; // pLow plants can't be "too low" for reduceTemp
         case PreferenceBand::pMid:
             return value > thresholds.midMax;
         case PreferenceBand::pHigh:
-            return false;
+            return value > thresholds.highMax;
         default:
             return false;
     }
@@ -53,16 +53,19 @@ Recommendation RecommendationEngine::Build(const SensorSnapshot& snapshot,
     rec.estimatedPowerSavingPct = (1.0f - (rec.baselineCycleMinutes / rec.optimizedCycleMinutes)) * 100.0f;
     rec.estimatedPowerSavingPct = std::clamp(rec.estimatedPowerSavingPct, 0.0f, 95.0f);
 
-    std::ostringstream oss;
-    oss << "predWaterMin=" << rec.predictedMinutesToWater
-        << " nextCycleMin=" << rec.optimizedCycleMinutes
-        << " powerSavingPct=" << rec.estimatedPowerSavingPct
-        << " actions:["
-        << (rec.water ? "water " : "")
-        << (rec.reduceTemp ? "cool " : "")
-        << (rec.increaseLight ? "light " : "")
-        << "]";
-    rec.summary = oss.str();
+    String summary;
+    summary += "predWaterMin=";
+    summary += String(rec.predictedMinutesToWater, 1);
+    summary += " nextCycleMin=";
+    summary += String(rec.optimizedCycleMinutes, 1);
+    summary += " powerSavingPct=";
+    summary += String(rec.estimatedPowerSavingPct, 1);
+    summary += " actions:[";
+    if (rec.water)       summary += "water ";
+    if (rec.reduceTemp)  summary += "cool ";
+    if (rec.increaseLight) summary += "light ";
+    summary += "]";
+    rec.summary = summary.c_str();
 
     return rec;
 }

@@ -5,24 +5,17 @@
 
 namespace pof02 {
 
-TempHumiditySensor::TempHumiditySensor(int pin, int dhtType) : pin_(pin), dhtType_(dhtType) {}
+TempHumiditySensor::TempHumiditySensor(int pin, int dhtType)
+    : pin_(pin), dhtType_(dhtType), dht_(static_cast<uint8_t>(pin), static_cast<uint8_t>(dhtType)) {}
 
 bool TempHumiditySensor::Init() {
-    (void)pin_;
-    (void)dhtType_;
+    dht_.begin();
     return true;
 }
 
 std::pair<float, float> TempHumiditySensor::Read() const {
-    static DHT dht(pin_, dhtType_);
-    static bool dhtInitialized = false;
-    if (!dhtInitialized) {
-        dht.begin();
-        dhtInitialized = true;
-    }
-
-    const float temperature = dht.readTemperature();
-    const float humidity = dht.readHumidity();
+    const float temperature = dht_.readTemperature();
+    const float humidity = dht_.readHumidity();
 
     if (isnan(temperature) || isnan(humidity)) {
         return {23.0f, 60.0f};

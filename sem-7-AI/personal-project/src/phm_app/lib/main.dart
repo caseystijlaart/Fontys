@@ -11,8 +11,6 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 const String supabaseUrl = 'https://yjjpgvsycxlaqubvedoa.supabase.co';
 const String supabaseAnonKey = 'sb_publishable_mf_gFIoOv0-tIu9bhe6fzw_-CYi7BTd';
-int riskClass = 0;
-String riskLabel = "UNKNOWN";
 
 // ─── Brand palette (matches the HTML splash) ───────────────────────────────
 class AppColors {
@@ -1071,24 +1069,26 @@ class Dashboard extends StatefulWidget {
 class _DashboardState extends State<Dashboard> {
   List<String> plants = [];
   String? selectedPlant;
-  List<DateTime> timestamps = [];
-  String recommendationText = "";
-  List<String> actions = [];
-  Map<String, double> predictions = {};
 
-  final metrics = [
-    "soil_moisture_pct",
-    "temperature_c",
-    "humidity_pct",
-    "light_level_pct",
-  ];
+  int _riskClass = 0;
+  String _riskLabel = "UNKNOWN";
+  String _recommendationText = "No data";
+  Map<String, double> _predictions = {};
 
-  List<String> selectedMetrics = ["soil_moisture_pct"];
-  String timeRange = "24h";
-  Map<String, List<FlSpot>> graphData = {};
-  String statusText = "No plant selected...";
-  Color statusColor = AppColors.surface;
+  double? _soilPct;
+  double? _tempC;
+  double? _humidityPct;
+  double? _lightPct;
+
+  Color _statusColor = AppColors.surface;
+  bool _loading = false;
   Timer? _stressTimer;
+
+  Future<void> _loadAll() async {
+    setState(() => _loading = true);
+    await Future.wait([loadPlants(), loadLatestStatus()]);
+    if (mounted) setState(() => _loading = false);
+  }
 
   Future<void> loadPlants() async {
     final res = await supabase.from('plant_settings').select('plant_label');
@@ -1114,9 +1114,8 @@ class _DashboardState extends State<Dashboard> {
 
     final latest = res[0];
     final int risk = latest['risk_class'] ?? 0;
-    actions = [];
+    final actions = <String>[];
 
-    // Parse predictions from recommendation_summary (e.g. "predWaterMin=120 predTempMin=45")
     final Map<String, double> parsedPredictions = {};
     final summary = latest['recommendation_summary'] as String?;
     if (summary != null && summary.isNotEmpty) {
@@ -1126,51 +1125,47 @@ class _DashboardState extends State<Dashboard> {
       }
     }
 
-    if (latest['action_reduce_temp'] == true ||
-        latest['action_reduce_temp'] == "true" ||
-        latest['action_reduce_temp'] == 1) {
+    if (latest['action_reduce_temp'] == true || latest['action_reduce_temp'] == "true" || latest['action_reduce_temp'] == 1) {
       actions.add("Reduce temperature");
     }
-    if (latest['action_water'] == true ||
-        latest['action_water'] == "true" ||
-        latest['action_water'] == 1) {
+    if (latest['action_water'] == true || latest['action_water'] == "true" || latest['action_water'] == 1) {
       actions.add("Water the plant");
     }
-    if (latest['action_increase_light'] == true ||
-        latest['action_increase_light'] == "true" ||
-        latest['action_increase_light'] == 1) {
+    if (latest['action_increase_light'] == true || latest['action_increase_light'] == "true" || latest['action_increase_light'] == 1) {
       actions.add("Increase light exposure");
     }
 
     if (!mounted) return;
 
     setState(() {
-      riskClass = risk;
+      _riskClass = risk;
+      _predictions = parsedPredictions;
+      _soilPct = (latest['soil_moisture_pct'] as num?)?.toDouble();
+      _tempC = (latest['temperature_c'] as num?)?.toDouble();
+      _humidityPct = (latest['humidity_pct'] as num?)?.toDouble();
+      _lightPct = (latest['light_level_pct'] as num?)?.toDouble();
+
       switch (risk) {
         case 0:
-          riskLabel = "HEALTHY";
-          statusColor = AppColors.healthy;
-          statusText = "Plant is healthy";
+          _riskLabel = "HEALTHY";
+          _statusColor = AppColors.healthy;
+          _recommendationText = "No actions required";
           break;
         case 1:
-          riskLabel = "MODERATE RISK";
-          statusColor = AppColors.moderate;
-          statusText = "Moderate risk detected";
+          _riskLabel = "MODERATE RISK";
+          _statusColor = AppColors.moderate;
+          _recommendationText = actions.isEmpty ? "No actions required" : actions.join("\n");
           break;
         case 2:
-          riskLabel = "HIGH RISK";
-          statusColor = AppColors.high;
-          statusText = "High risk detected";
+          _riskLabel = "HIGH RISK";
+          _statusColor = AppColors.high;
+          _recommendationText = actions.isEmpty ? "No actions required" : actions.join("\n");
           break;
         default:
-          riskLabel = "UNKNOWN";
-          statusColor = AppColors.textLow;
-          statusText = "No data";
+          _riskLabel = "UNKNOWN";
+          _statusColor = AppColors.textLow;
+          _recommendationText = "No data";
       }
-      recommendationText = actions.isEmpty
-          ? "No actions required"
-          : actions.join("\n");
-      predictions = parsedPredictions;
     });
 
     if (selectedPlant != null) {
@@ -1178,86 +1173,10 @@ class _DashboardState extends State<Dashboard> {
     }
   }
 
-  bool isInRange(DateTime t) {
-    final now = DateTime.now();
-    if (timeRange == "24h") return now.difference(t).inHours <= 24;
-    if (timeRange == "7d") return now.difference(t).inDays <= 7;
-    return true;
-  }
-
-  Future<void> loadGraph() async {
-    if (selectedPlant == null) return;
-
-    final response = await supabase
-        .from('plant_readings')
-        .select()
-        .eq('plant_label', selectedPlant!)
-        .order('timestamp', ascending: true);
-
-    final List<Map<String, dynamic>> data = List<Map<String, dynamic>>.from(
-      response,
-    );
-    final Map<String, List<FlSpot>> temp = {};
-    final List<DateTime> loadedTimestamps = [];
-
-    final filtered = data.where((row) {
-      final t = DateTime.parse(row['timestamp']);
-      return isInRange(t);
-    }).toList();
-
-    for (int i = 0; i < filtered.length; i++) {
-      final row = filtered[i];
-      final time = DateTime.parse(row['timestamp']);
-      loadedTimestamps.add(time);
-      for (final m in selectedMetrics) {
-        final value = (row[m] ?? 0).toDouble().clamp(0.0, 100.0);
-        temp.putIfAbsent(m, () => []);
-        temp[m]!.add(FlSpot(i.toDouble(), value));
-      }
-    }
-
-    if (!mounted) return;
-    setState(() {
-      timestamps = loadedTimestamps;
-      graphData = temp;
-    });
-  }
-
-  Color colorFor(String metric) {
-    switch (metric) {
-      case "soil_moisture_pct":
-        return AppColors.accent;
-      case "temperature_c":
-        return AppColors.high;
-      case "humidity_pct":
-        return const Color(0xFF60A5FA);
-      case "light_level_pct":
-        return const Color(0xFFFBBF24);
-      default:
-        return AppColors.textMid;
-    }
-  }
-
-  String label(String m) {
-    switch (m) {
-      case "soil_moisture_pct":
-        return "Soil Moisture";
-      case "temperature_c":
-        return "Temperature";
-      case "humidity_pct":
-        return "Humidity";
-      case "light_level_pct":
-        return "Light";
-      default:
-        return m;
-    }
-  }
-
   @override
   void initState() {
     super.initState();
-    loadPlants().then((_) => loadGraph());
-    loadLatestStatus();
+    _loadAll();
     _stressTimer = Timer.periodic(const Duration(hours: 3), (_) async {
       if (selectedPlant == null) return;
       final res = await supabase
@@ -1295,7 +1214,6 @@ class _DashboardState extends State<Dashboard> {
     );
     if (!mounted || selected == null) return;
     setState(() => selectedPlant = selected);
-    await loadGraph();
     await loadLatestStatus();
   }
 
@@ -1313,232 +1231,70 @@ class _DashboardState extends State<Dashboard> {
           .map(
             (p) => DropdownMenuItem(
               value: p,
-              child: Text(
-                p,
-                style: GoogleFonts.outfit(color: AppColors.textMid),
-              ),
+              child: Text(p, style: GoogleFonts.outfit(color: AppColors.textMid)),
             ),
           )
           .toList(),
       onChanged: (v) {
         setState(() => selectedPlant = v);
-        loadGraph();
         loadLatestStatus();
       },
     );
   }
 
-  Widget buildTimeRangeSelector() {
-    return DropdownButtonFormField<String>(
-      key: ValueKey("dashboard-range-$timeRange"),
-      initialValue: timeRange,
-      decoration: const InputDecoration(labelText: "Time range"),
-      items: [
-        DropdownMenuItem(
-          value: "24h",
-          child: Text(
-            "Past 24 hours",
-            style: GoogleFonts.outfit(color: AppColors.textMid),
-          ),
-        ),
-        DropdownMenuItem(
-          value: "7d",
-          child: Text(
-            "Past 7 days",
-            style: GoogleFonts.outfit(color: AppColors.textMid),
-          ),
-        ),
-        DropdownMenuItem(
-          value: "all",
-          child: Text(
-            "All time",
-            style: GoogleFonts.outfit(color: AppColors.textMid),
-          ),
-        ),
-      ],
-      onChanged: (v) {
-        if (v == null) return;
-        setState(() => timeRange = v);
-        loadGraph();
-      },
-    );
-  }
-
-  Widget buildMetricSelector() {
-    return Wrap(
-      spacing: 8,
-      runSpacing: 8,
-      children: metrics.map((m) {
-        final selected = selectedMetrics.contains(m);
-        return FilterChip(
-          label: Text(label(m)),
-          selected: selected,
-          onSelected: (v) {
-            setState(() {
-              if (v)
-                selectedMetrics.add(m);
-              else
-                selectedMetrics.remove(m);
-            });
-            loadGraph();
-          },
-        );
-      }).toList(),
-    );
-  }
-
-  Widget buildLegend() {
-    return Wrap(
-      spacing: 14,
-      runSpacing: 8,
-      children: selectedMetrics.map((m) {
-        return Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Container(
-              width: 10,
-              height: 10,
-              decoration: BoxDecoration(
-                color: colorFor(m),
-                borderRadius: BorderRadius.circular(3),
-              ),
-            ),
-            const SizedBox(width: 6),
-            Text(
-              label(m),
-              style: GoogleFonts.outfit(fontSize: 12, color: AppColors.textMid),
-            ),
-          ],
-        );
-      }).toList(),
-    );
-  }
-
-  Widget buildChart() {
-    if (selectedPlant == null) {
-      return Center(
-        child: Text(
-          "Select a plant to view readings",
-          style: GoogleFonts.outfit(color: AppColors.textLow),
-        ),
-      );
-    }
-    if (selectedMetrics.isEmpty) {
-      return Center(
-        child: Text(
-          "Select at least one metric",
-          style: GoogleFonts.outfit(color: AppColors.textLow),
-        ),
-      );
-    }
-
-    return LineChart(
-      LineChartData(
-        minY: 0,
-        maxY: 100,
-        backgroundColor: Colors.transparent,
-        lineTouchData: LineTouchData(
-          handleBuiltInTouches: true,
-          touchTooltipData: LineTouchTooltipData(
-            getTooltipColor: (_) => AppColors.surface2,
-            getTooltipItems: (spots) {
-              final i = spots.first.x.toInt();
-              final t = (i >= 0 && i < timestamps.length) ? timestamps[i] : null;
-              final dateStr = t != null
-                  ? "${t.day}/${t.month}  ${t.hour.toString().padLeft(2, '0')}:${t.minute.toString().padLeft(2, '0')}"
-                  : "";
-              return List.generate(spots.length, (idx) {
-                final spot = spots[idx];
-                final metricName = spot.barIndex < selectedMetrics.length
-                    ? selectedMetrics[spot.barIndex]
-                    : '';
-                final isLast = idx == spots.length - 1;
-                return LineTooltipItem(
-                  "${label(metricName)}: ${spot.y.toStringAsFixed(1)}",
-                  GoogleFonts.outfit(color: colorFor(metricName), fontSize: 11),
-                  children: isLast && dateStr.isNotEmpty
-                      ? [
-                          TextSpan(
-                            text: '\n$dateStr',
-                            style: GoogleFonts.outfit(
-                              color: AppColors.textLow,
-                              fontSize: 10,
-                            ),
-                          ),
-                        ]
-                      : [],
-                );
-              });
-            },
-          ),
-        ),
-        gridData: FlGridData(
-          show: true,
-          getDrawingHorizontalLine: (_) =>
-              const FlLine(color: AppColors.gridLine, strokeWidth: 1),
-          getDrawingVerticalLine: (_) =>
-              const FlLine(color: AppColors.gridLine, strokeWidth: 1),
-        ),
-        borderData: FlBorderData(
-          show: true,
-          border: Border.all(color: AppColors.border),
-        ),
-        titlesData: FlTitlesData(
-          rightTitles: const AxisTitles(
-            sideTitles: SideTitles(showTitles: false),
-          ),
-          topTitles: const AxisTitles(
-            sideTitles: SideTitles(showTitles: false),
-          ),
-          bottomTitles: AxisTitles(
-            sideTitles: SideTitles(
-              showTitles: true,
-              interval: timestamps.isNotEmpty
-                  ? (timestamps.length / 5).ceilToDouble()
-                  : 1,
-              getTitlesWidget: (value, meta) {
-                final i = value.toInt();
-                if (i < 0 || i >= timestamps.length) return const Text("");
-                final t = timestamps[i];
-                return Text(
-                  "${t.day}/${t.month}",
-                  style: GoogleFonts.outfit(
-                    fontSize: 10,
-                    color: AppColors.textLow,
-                  ),
-                );
-              },
-            ),
-          ),
-          leftTitles: AxisTitles(
-            sideTitles: SideTitles(
-              showTitles: true,
-              reservedSize: 40,
-              getTitlesWidget: (value, meta) => Text(
-                value.toInt().toString(),
-                style: GoogleFonts.outfit(
-                  fontSize: 10,
-                  color: AppColors.textLow,
-                ),
-              ),
-            ),
-          ),
-        ),
-        lineBarsData: selectedMetrics.map((m) {
-          return LineChartBarData(
-            spots: graphData[m] ?? [],
-            isCurved: true,
-            preventCurveOverShooting: true,
-            barWidth: 2,
-            color: colorFor(m),
-            dotData: const FlDotData(show: false),
-            belowBarData: BarAreaData(
-              show: true,
-              color: colorFor(m).withOpacity(0.06),
-            ),
-          );
-        }).toList(),
+  Widget _sensorTile(String lbl, String? value, String unit, IconData icon, Color color) {
+    return Container(
+      padding: const EdgeInsets.all(14),
+      decoration: BoxDecoration(
+        color: AppColors.surface,
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: AppColors.border),
       ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(children: [
+            Icon(icon, size: 13, color: color),
+            const SizedBox(width: 5),
+            Text(lbl, style: GoogleFonts.outfit(fontSize: 11, color: AppColors.textLow, letterSpacing: 0.5)),
+          ]),
+          const SizedBox(height: 8),
+          value == null
+              ? Text("—", style: GoogleFonts.outfit(fontSize: 20, color: AppColors.textLow))
+              : Row(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Text(value, style: GoogleFonts.outfit(fontSize: 20, fontWeight: FontWeight.w600, color: AppColors.textHigh)),
+                    const SizedBox(width: 3),
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 2),
+                      child: Text(unit, style: GoogleFonts.outfit(fontSize: 12, color: AppColors.textLow)),
+                    ),
+                  ],
+                ),
+        ],
+      ),
+    );
+  }
+
+  Widget buildSensorGrid() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text("LIVE READINGS", style: GoogleFonts.outfit(fontSize: 11, fontWeight: FontWeight.w500, color: AppColors.textLow, letterSpacing: 1.8)),
+        const SizedBox(height: 12),
+        Row(children: [
+          Expanded(child: _sensorTile("SOIL", _soilPct?.toStringAsFixed(1), "%", Icons.water_drop_outlined, AppColors.accent)),
+          const SizedBox(width: 10),
+          Expanded(child: _sensorTile("TEMP", _tempC?.toStringAsFixed(1), "°C", Icons.thermostat_outlined, AppColors.high)),
+        ]),
+        const SizedBox(height: 10),
+        Row(children: [
+          Expanded(child: _sensorTile("HUMIDITY", _humidityPct?.toStringAsFixed(1), "%", Icons.water_outlined, const Color(0xFF60A5FA))),
+          const SizedBox(width: 10),
+          Expanded(child: _sensorTile("LIGHT", _lightPct?.toStringAsFixed(1), "%", Icons.light_mode_outlined, const Color(0xFFFBBF24))),
+        ]),
+      ],
     );
   }
 
@@ -1556,21 +1312,21 @@ class _DashboardState extends State<Dashboard> {
 
   String _predLabel(String key) {
     switch (key.toLowerCase()) {
-      case 'water':
-        return 'Water in';
+      case 'water': return 'Water in';
       case 'temp':
-      case 'temperature':
-        return 'Temp action in';
-      case 'light':
-        return 'Light action in';
-      default:
-        return '$key in';
+      case 'temperature': return 'Temp action in';
+      case 'light': return 'Light action in';
+      default: return '$key in';
     }
   }
 
   Widget buildStatusCard() {
-    final isHealthy = riskClass == 0;
-    final borderColor = statusColor.withOpacity(0.4);
+    final noPlant = selectedPlant == null;
+    final isHealthy = !noPlant && _riskClass == 0;
+    final displayColor = noPlant ? AppColors.textLow : _statusColor;
+    final displayLabel = noPlant ? "UNKNOWN" : _riskLabel;
+    final displayRec   = noPlant ? "Select a plant to see recommendations" : _recommendationText;
+    final borderColor = displayColor.withOpacity(0.4);
 
     return Container(
       width: double.infinity,
@@ -1590,62 +1346,33 @@ class _DashboardState extends State<Dashboard> {
                 height: 10,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: statusColor,
-                  boxShadow: [
-                    BoxShadow(
-                      color: statusColor.withOpacity(0.5),
-                      blurRadius: 6,
-                    ),
-                  ],
+                  color: displayColor,
+                  boxShadow: [BoxShadow(color: displayColor.withOpacity(0.5), blurRadius: 6)],
                 ),
               ),
               const SizedBox(width: 10),
               Text(
-                "STATUS: $riskLabel",
-                style: GoogleFonts.outfit(
-                  fontSize: 15,
-                  fontWeight: FontWeight.w600,
-                  color: statusColor,
-                  letterSpacing: 0.5,
-                ),
+                "STATUS: $displayLabel",
+                style: GoogleFonts.outfit(fontSize: 15, fontWeight: FontWeight.w600, color: displayColor, letterSpacing: 0.5),
               ),
             ],
           ),
           const SizedBox(height: 16),
           Container(height: 1, color: AppColors.border),
           const SizedBox(height: 14),
-          Text(
-            "RECOMMENDATION",
-            style: GoogleFonts.outfit(
-              fontSize: 11,
-              fontWeight: FontWeight.w500,
-              color: AppColors.textLow,
-              letterSpacing: 1.5,
-            ),
-          ),
+          Text("RECOMMENDATION", style: GoogleFonts.outfit(fontSize: 11, fontWeight: FontWeight.w500, color: AppColors.textLow, letterSpacing: 1.5)),
           const SizedBox(height: 8),
           Text(
-            recommendationText,
-            style: GoogleFonts.outfit(
-              fontSize: 14,
-              color: isHealthy ? AppColors.accent : AppColors.textMid,
-            ),
+            displayRec,
+            style: GoogleFonts.outfit(fontSize: 14, color: isHealthy ? AppColors.accent : AppColors.textMid),
           ),
-          if (predictions.isNotEmpty) ...[
+          if (!noPlant && _predictions.isNotEmpty) ...[
             const SizedBox(height: 16),
             Container(height: 1, color: AppColors.border),
             const SizedBox(height: 14),
-            Text(
-              "PREDICTIONS",
-              style: GoogleFonts.outfit(
-                fontSize: 11,
-                fontWeight: FontWeight.w500,
-                color: AppColors.textLow,
-                letterSpacing: 1.5,
-              ),
-            ),
+            Text("PREDICTIONS", style: GoogleFonts.outfit(fontSize: 11, fontWeight: FontWeight.w500, color: AppColors.textLow, letterSpacing: 1.5)),
             const SizedBox(height: 10),
-            ...predictions.entries.map((e) {
+            ..._predictions.entries.map((e) {
               final timeStr = _fmtMinutes(e.value);
               final urgent = e.value < 60;
               final color = urgent ? AppColors.moderate : AppColors.textMid;
@@ -1653,27 +1380,10 @@ class _DashboardState extends State<Dashboard> {
                 padding: const EdgeInsets.only(bottom: 6),
                 child: Row(
                   children: [
-                    Icon(
-                      Icons.schedule,
-                      size: 14,
-                      color: color,
-                    ),
+                    Icon(Icons.schedule, size: 14, color: color),
                     const SizedBox(width: 8),
-                    Text(
-                      "${_predLabel(e.key)}: ",
-                      style: GoogleFonts.outfit(
-                        fontSize: 13,
-                        color: AppColors.textLow,
-                      ),
-                    ),
-                    Text(
-                      timeStr,
-                      style: GoogleFonts.outfit(
-                        fontSize: 13,
-                        fontWeight: FontWeight.w600,
-                        color: color,
-                      ),
-                    ),
+                    Text("${_predLabel(e.key)}: ", style: GoogleFonts.outfit(fontSize: 13, color: AppColors.textLow)),
+                    Text(timeStr, style: GoogleFonts.outfit(fontSize: 13, fontWeight: FontWeight.w600, color: color)),
                   ],
                 ),
               );
@@ -1689,7 +1399,6 @@ class _DashboardState extends State<Dashboard> {
     final screenWidth = MediaQuery.sizeOf(context).width;
     final isWide = screenWidth >= 700;
     final showSettingsLabel = screenWidth >= 420;
-    final contentWidth = isWide ? 1100.0 : double.infinity;
 
     return Scaffold(
       appBar: AppBar(
@@ -1715,16 +1424,8 @@ class _DashboardState extends State<Dashboard> {
               label: const Text("Settings"),
             ),
           ] else ...[
-            IconButton(
-              tooltip: "Plant Preferences",
-              onPressed: openProfileSettings,
-              icon: const Icon(Icons.tune),
-            ),
-            IconButton(
-              tooltip: "App Settings",
-              onPressed: openAppSettings,
-              icon: const Icon(Icons.settings),
-            ),
+            IconButton(tooltip: "Plant Preferences", onPressed: openProfileSettings, icon: const Icon(Icons.tune)),
+            IconButton(tooltip: "App Settings", onPressed: openAppSettings, icon: const Icon(Icons.settings)),
           ],
           const SizedBox(width: 8),
         ],
@@ -1735,54 +1436,40 @@ class _DashboardState extends State<Dashboard> {
       ),
       body: Stack(
         children: [
-          // Subtle grid background
           Positioned.fill(child: CustomPaint(painter: _GridPainter())),
           SafeArea(
             child: Center(
               child: ConstrainedBox(
-                constraints: BoxConstraints(maxWidth: contentWidth),
-                child: ListView(
-                  padding: const EdgeInsets.all(16),
-                  children: [
-                    buildPlantSelector(),
-                    const SizedBox(height: 12),
-                    buildStatusCard(),
-                    const SizedBox(height: 12),
-                    buildMetricSelector(),
-                    const SizedBox(height: 12),
-                    buildLegend(),
-                    const SizedBox(height: 16),
-                    Container(
-                      height: isWide ? 420 : 320,
-                      padding: const EdgeInsets.all(16),
-                      decoration: BoxDecoration(
-                        color: AppColors.surface,
-                        borderRadius: BorderRadius.circular(16),
-                        border: Border.all(color: AppColors.border),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.only(right: 8),
-                        child: buildChart(),
-                      ),
-                    ),
-                    const SizedBox(height: 12),
-                    buildTimeRangeSelector(),
-                    const SizedBox(height: 12),
-                    OutlinedButton.icon(
-                      onPressed: () => Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (_) => DataTablePage(
-                            plants: plants,
-                            initialPlant: selectedPlant,
-                          ),
+                constraints: BoxConstraints(maxWidth: isWide ? 1100.0 : double.infinity),
+                child: _loading
+                    ? const Center(child: CircularProgressIndicator(color: AppColors.accent))
+                    : RefreshIndicator(
+                        color: AppColors.accent,
+                        onRefresh: loadLatestStatus,
+                        child: ListView(
+                          padding: const EdgeInsets.all(16),
+                          children: [
+                            buildPlantSelector(),
+                            const SizedBox(height: 12),
+                            buildStatusCard(),
+                            const SizedBox(height: 20),
+                            buildSensorGrid(),
+                            if (selectedPlant != null) ...[
+                              const SizedBox(height: 20),
+                              OutlinedButton.icon(
+                                onPressed: () => Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (_) => DataPage(plants: plants, selectedPlant: selectedPlant),
+                                  ),
+                                ),
+                                icon: const Icon(Icons.show_chart, size: 16),
+                                label: const Text("View Charts & Data"),
+                              ),
+                            ],
+                            const SizedBox(height: 16),
+                          ],
                         ),
                       ),
-                      icon: const Icon(Icons.table_chart_outlined, size: 16),
-                      label: const Text("View Data Table"),
-                    ),
-                    const SizedBox(height: 16),
-                  ],
-                ),
               ),
             ),
           ),
@@ -2152,37 +1839,42 @@ class _ProfileSettingsPageState extends State<ProfileSettingsPage> {
     );
   }
 
+  static const _prefRanges = {
+    "Humidity":      {"low": "≤ 45%",     "mid": "50 – 70%",   "high": "≥ 75%"},
+    "Temperature":   {"low": "≤ 16 °C",   "mid": "18 – 26 °C", "high": "≥ 28 °C"},
+    "Soil Moisture": {"low": "≤ 28%",     "mid": "33 – 55%",   "high": "≥ 60%"},
+    "Light":         {"low": "≤ 20%",     "mid": "25 – 65%",   "high": "≥ 70%"},
+  };
+
   Widget buildPreferenceDropdown(
     String lbl,
     String value,
     ValueChanged<String?> onChanged,
   ) {
+    final ranges = _prefRanges[lbl];
+    final band = ["low", "mid", "high"].contains(value) ? value : "mid";
+
+    Widget item(String label, String band) {
+      final range = ranges?[band];
+      return Row(
+        children: [
+          Text(label, style: GoogleFonts.outfit(color: AppColors.textMid)),
+          if (range != null) ...[
+            const SizedBox(width: 8),
+            Text(range, style: GoogleFonts.outfit(fontSize: 12, color: AppColors.textLow)),
+          ],
+        ],
+      );
+    }
+
     return DropdownButtonFormField<String>(
       key: ValueKey("preference-$lbl-$value"),
-      initialValue: ["low", "mid", "high"].contains(value) ? value : "mid",
+      initialValue: band,
       decoration: InputDecoration(labelText: lbl),
       items: [
-        DropdownMenuItem(
-          value: "low",
-          child: Text(
-            "Low",
-            style: GoogleFonts.outfit(color: AppColors.textMid),
-          ),
-        ),
-        DropdownMenuItem(
-          value: "mid",
-          child: Text(
-            "Mid",
-            style: GoogleFonts.outfit(color: AppColors.textMid),
-          ),
-        ),
-        DropdownMenuItem(
-          value: "high",
-          child: Text(
-            "High",
-            style: GoogleFonts.outfit(color: AppColors.textMid),
-          ),
-        ),
+        DropdownMenuItem(value: "low",  child: item("Low",  "low")),
+        DropdownMenuItem(value: "mid",  child: item("Mid",  "mid")),
+        DropdownMenuItem(value: "high", child: item("High", "high")),
       ],
       onChanged: onChanged,
     );
@@ -2311,6 +2003,440 @@ class _ProfileSettingsPageState extends State<ProfileSettingsPage> {
                     ),
                     const SizedBox(height: 16),
                   ],
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+//  DATA PAGE  (charts + table access)
+// ═══════════════════════════════════════════════════════════════════════════════
+
+Color _colorFor(String metric) {
+  switch (metric) {
+    case "soil_moisture_pct": return AppColors.accent;
+    case "temperature_c":     return AppColors.high;
+    case "humidity_pct":      return const Color(0xFF60A5FA);
+    case "light_level_pct":   return const Color(0xFFFBBF24);
+    default:                  return AppColors.textMid;
+  }
+}
+
+String _metricLabel(String m) {
+  switch (m) {
+    case "soil_moisture_pct": return "Soil Moisture";
+    case "temperature_c":     return "Temperature";
+    case "humidity_pct":      return "Humidity";
+    case "light_level_pct":   return "Light";
+    default:                  return m;
+  }
+}
+
+class DataPage extends StatefulWidget {
+  const DataPage({super.key, required this.plants, required this.selectedPlant});
+  final List<String> plants;
+  final String? selectedPlant;
+
+  @override
+  State<DataPage> createState() => _DataPageState();
+}
+
+class _DataPageState extends State<DataPage> {
+  static const _metrics = ["soil_moisture_pct", "temperature_c", "humidity_pct", "light_level_pct"];
+  static const _allColumns = [
+    ('soil_moisture_pct', 'Soil %'),
+    ('temperature_c',     'Temp °C'),
+    ('humidity_pct',      'Humidity %'),
+    ('light_level_pct',   'Light %'),
+    ('risk_class',        'Risk'),
+    ('recommendation_summary', 'Water in'),
+  ];
+
+  List<String> selectedMetrics = ["soil_moisture_pct"];
+  String timeRange = "24h";
+  List<DateTime> timestamps = [];
+  Map<String, List<FlSpot>> graphData = {};
+  bool _loading = false;
+
+  // ── inline table state ──
+  List<String> _tableColumns = ['soil_moisture_pct'];
+  List<Map<String, dynamic>> _tableRows = [];
+  bool _tableLoading = false;
+  bool _tableVisible = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadAll();
+  }
+
+  Future<void> _loadAll() => Future.wait([loadGraph(), _fetchTable()]);
+
+  bool isInRange(DateTime t) {
+    final now = DateTime.now();
+    if (timeRange == "24h") return now.difference(t).inHours <= 24;
+    if (timeRange == "7d") return now.difference(t).inDays <= 7;
+    return true;
+  }
+
+  Future<void> loadGraph() async {
+    if (widget.selectedPlant == null) return;
+    setState(() => _loading = true);
+
+    final response = await supabase
+        .from('plant_readings')
+        .select()
+        .eq('plant_label', widget.selectedPlant!)
+        .order('timestamp', ascending: true);
+
+    final data = List<Map<String, dynamic>>.from(response);
+    final Map<String, List<FlSpot>> temp = {};
+    final List<DateTime> loadedTimestamps = [];
+
+    final filtered = data.where((row) => isInRange(DateTime.parse(row['timestamp']))).toList();
+
+    for (int i = 0; i < filtered.length; i++) {
+      final row = filtered[i];
+      loadedTimestamps.add(DateTime.parse(row['timestamp']));
+      for (final m in selectedMetrics) {
+        final value = (row[m] ?? 0).toDouble().clamp(0.0, 100.0);
+        temp.putIfAbsent(m, () => []);
+        temp[m]!.add(FlSpot(i.toDouble(), value));
+      }
+    }
+
+    if (!mounted) return;
+    setState(() {
+      timestamps = loadedTimestamps;
+      graphData = temp;
+      _loading = false;
+    });
+  }
+
+  Future<void> _fetchTable() async {
+    if (widget.selectedPlant == null) return;
+    setState(() => _tableLoading = true);
+
+    final cols = ['plant_label', 'timestamp', ..._tableColumns].join(',');
+    final res = await supabase
+        .from('plant_readings')
+        .select(cols)
+        .eq('plant_label', widget.selectedPlant!)
+        .order('timestamp', ascending: false)
+        .limit(200);
+
+    final now = DateTime.now();
+    final rows = List<Map<String, dynamic>>.from(res).where((row) {
+      final t = DateTime.parse(row['timestamp']);
+      if (timeRange == '24h') return now.difference(t).inHours <= 24;
+      if (timeRange == '7d') return now.difference(t).inDays <= 7;
+      return true;
+    }).toList();
+
+    if (!mounted) return;
+    setState(() {
+      _tableRows = rows;
+      _tableLoading = false;
+    });
+  }
+
+  String _fmtTimestamp(String ts) {
+    final t = DateTime.parse(ts);
+    return "${t.day.toString().padLeft(2, '0')}/${t.month.toString().padLeft(2, '0')} "
+        "${t.hour.toString().padLeft(2, '0')}:${t.minute.toString().padLeft(2, '0')}";
+  }
+
+  String _fmtValue(dynamic v, String col) {
+    if (v == null) return '—';
+    if (col == 'risk_class') {
+      return switch (v) { 0 => 'Healthy', 1 => 'Moderate', 2 => 'High', _ => '$v' };
+    }
+    if (col == 'recommendation_summary') {
+      final match = RegExp(r'predWaterMin[=:\s]+([\d.]+)').firstMatch(v as String? ?? '');
+      if (match == null) return '—';
+      final minutes = double.parse(match.group(1)!);
+      if (minutes >= 1440) { final d = minutes / 1440; return "${d % 1 == 0 ? d.toInt() : d.toStringAsFixed(1)}d"; }
+      if (minutes >= 60)   { final h = minutes / 60;   return "${h % 1 == 0 ? h.toInt() : h.toStringAsFixed(1)}h"; }
+      return "${minutes.toInt()} min";
+    }
+    return (v as num).toStringAsFixed(1);
+  }
+
+  Color _riskColor(dynamic v) => switch (v) {
+    0 => AppColors.healthy, 1 => AppColors.moderate, 2 => AppColors.high, _ => AppColors.textLow
+  };
+
+  Widget buildMetricSelector() {
+    return Wrap(
+      spacing: 8,
+      runSpacing: 8,
+      children: _metrics.map((m) {
+        final sel = selectedMetrics.contains(m);
+        return FilterChip(
+          label: Text(_metricLabel(m)),
+          selected: sel,
+          onSelected: (v) {
+            setState(() { if (v) selectedMetrics.add(m); else selectedMetrics.remove(m); });
+            loadGraph();
+          },
+        );
+      }).toList(),
+    );
+  }
+
+  Widget buildLegend() {
+    return Wrap(
+      spacing: 14,
+      runSpacing: 8,
+      children: selectedMetrics.map((m) {
+        return Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(width: 10, height: 10, decoration: BoxDecoration(color: _colorFor(m), borderRadius: BorderRadius.circular(3))),
+            const SizedBox(width: 6),
+            Text(_metricLabel(m), style: GoogleFonts.outfit(fontSize: 12, color: AppColors.textMid)),
+          ],
+        );
+      }).toList(),
+    );
+  }
+
+  Widget buildChart(bool isWide) {
+    if (selectedMetrics.isEmpty) {
+      return Center(child: Text("Select at least one metric", style: GoogleFonts.outfit(color: AppColors.textLow)));
+    }
+    if (_loading) {
+      return const Center(child: CircularProgressIndicator(color: AppColors.accent));
+    }
+    if (graphData.isEmpty) {
+      return Center(child: Text("No data for selected range", style: GoogleFonts.outfit(color: AppColors.textLow)));
+    }
+
+    return LineChart(
+      LineChartData(
+        minY: 0,
+        maxY: 100,
+        backgroundColor: Colors.transparent,
+        lineTouchData: LineTouchData(
+          handleBuiltInTouches: true,
+          touchTooltipData: LineTouchTooltipData(
+            getTooltipColor: (_) => AppColors.surface2,
+            getTooltipItems: (spots) {
+              final i = spots.first.x.toInt();
+              final t = (i >= 0 && i < timestamps.length) ? timestamps[i] : null;
+              final dateStr = t != null
+                  ? "${t.day}/${t.month}  ${t.hour.toString().padLeft(2, '0')}:${t.minute.toString().padLeft(2, '0')}"
+                  : "";
+              return List.generate(spots.length, (idx) {
+                final spot = spots[idx];
+                final metricName = spot.barIndex < selectedMetrics.length ? selectedMetrics[spot.barIndex] : '';
+                final isLast = idx == spots.length - 1;
+                return LineTooltipItem(
+                  "${_metricLabel(metricName)}: ${spot.y.toStringAsFixed(1)}",
+                  GoogleFonts.outfit(color: _colorFor(metricName), fontSize: 11),
+                  children: isLast && dateStr.isNotEmpty
+                      ? [TextSpan(text: '\n$dateStr', style: GoogleFonts.outfit(color: AppColors.textLow, fontSize: 10))]
+                      : [],
+                );
+              });
+            },
+          ),
+        ),
+        gridData: FlGridData(
+          show: true,
+          getDrawingHorizontalLine: (_) => const FlLine(color: AppColors.gridLine, strokeWidth: 1),
+          getDrawingVerticalLine: (_) => const FlLine(color: AppColors.gridLine, strokeWidth: 1),
+        ),
+        borderData: FlBorderData(show: true, border: Border.all(color: AppColors.border)),
+        titlesData: FlTitlesData(
+          rightTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+          topTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+          bottomTitles: AxisTitles(
+            sideTitles: SideTitles(
+              showTitles: true,
+              interval: timestamps.isNotEmpty ? (timestamps.length / 5).ceilToDouble() : 1,
+              getTitlesWidget: (value, meta) {
+                final i = value.toInt();
+                if (i < 0 || i >= timestamps.length) return const Text("");
+                final t = timestamps[i];
+                return Text("${t.day}/${t.month}", style: GoogleFonts.outfit(fontSize: 10, color: AppColors.textLow));
+              },
+            ),
+          ),
+          leftTitles: AxisTitles(
+            sideTitles: SideTitles(
+              showTitles: true,
+              reservedSize: 40,
+              getTitlesWidget: (value, meta) => Text(
+                value.toInt().toString(),
+                style: GoogleFonts.outfit(fontSize: 10, color: AppColors.textLow),
+              ),
+            ),
+          ),
+        ),
+        lineBarsData: selectedMetrics.map((m) {
+          return LineChartBarData(
+            spots: graphData[m] ?? [],
+            isCurved: true,
+            preventCurveOverShooting: true,
+            barWidth: 2,
+            color: _colorFor(m),
+            dotData: const FlDotData(show: false),
+            belowBarData: BarAreaData(show: true, color: _colorFor(m).withOpacity(0.06)),
+          );
+        }).toList(),
+      ),
+    );
+  }
+
+  Widget _buildInlineTable() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text("DATA", style: GoogleFonts.outfit(fontSize: 11, fontWeight: FontWeight.w500, color: AppColors.textLow, letterSpacing: 1.8)),
+        const SizedBox(height: 10),
+        Wrap(
+          spacing: 8,
+          runSpacing: 6,
+          children: _allColumns.map((c) {
+            final sel = _tableColumns.contains(c.$1);
+            final atMax = _tableColumns.length >= 2 && !sel;
+            return FilterChip(
+              label: Text(c.$2),
+              selected: sel,
+              onSelected: atMax ? null : (v) {
+                setState(() { if (v) _tableColumns.add(c.$1); else _tableColumns.remove(c.$1); });
+                _fetchTable();
+              },
+            );
+          }).toList(),
+        ),
+        const SizedBox(height: 12),
+        if (_tableLoading)
+          const Center(child: CircularProgressIndicator(color: AppColors.accent))
+        else if (_tableRows.isEmpty)
+          Center(child: Text("No data found", style: GoogleFonts.outfit(color: AppColors.textLow, fontSize: 13)))
+        else
+          LayoutBuilder(builder: (context, constraints) {
+            final totalCols = 1 + _tableColumns.length; // TIME + selected
+            const minColWidth = 88.0;
+            final minTableWidth = totalCols * minColWidth;
+            final tableWidth = minTableWidth > constraints.maxWidth ? minTableWidth : constraints.maxWidth;
+            return SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: SizedBox(
+                width: tableWidth,
+                child: DataTable(
+                  headingRowColor: WidgetStateProperty.all(AppColors.surface),
+                  dataRowColor: WidgetStateProperty.all(Colors.transparent),
+                  dividerThickness: 1,
+                  columnSpacing: 20,
+                  headingTextStyle: GoogleFonts.outfit(color: AppColors.textLow, fontSize: 11, fontWeight: FontWeight.w600, letterSpacing: 1.2),
+                  dataTextStyle: GoogleFonts.outfit(color: AppColors.textMid, fontSize: 13),
+                  columns: [
+                    const DataColumn(label: Text("TIME")),
+                    ..._tableColumns.map((col) {
+                      final lbl = _allColumns.firstWhere((c) => c.$1 == col).$2.toUpperCase();
+                      return DataColumn(label: Text(lbl));
+                    }),
+                  ],
+                  rows: _tableRows.map((row) {
+                    return DataRow(cells: [
+                      DataCell(Text(_fmtTimestamp(row['timestamp']), style: GoogleFonts.outfit(color: AppColors.textLow, fontSize: 12))),
+                      ..._tableColumns.map((col) {
+                        final v = row[col];
+                        if (col == 'risk_class') {
+                          return DataCell(Text(_fmtValue(v, col), style: GoogleFonts.outfit(color: _riskColor(v), fontSize: 13, fontWeight: FontWeight.w600)));
+                        }
+                        return DataCell(Text(_fmtValue(v, col)));
+                      }),
+                    ]);
+                  }).toList(),
+                ),
+              ),
+            );
+          }),
+      ],
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final isWide = MediaQuery.sizeOf(context).width >= 700;
+
+    return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(tooltip: "Back", onPressed: () => Navigator.of(context).pop(), icon: const Icon(CupertinoIcons.back)),
+        title: const Text("Charts & Data"),
+        bottom: PreferredSize(preferredSize: const Size.fromHeight(1), child: Container(height: 1, color: AppColors.border)),
+      ),
+      body: Stack(
+        children: [
+          Positioned.fill(child: CustomPaint(painter: _GridPainter())),
+          SafeArea(
+            child: Center(
+              child: ConstrainedBox(
+                constraints: BoxConstraints(maxWidth: isWide ? 1100.0 : double.infinity),
+                child: RefreshIndicator(
+                  color: AppColors.accent,
+                  onRefresh: _loadAll,
+                  child: ListView(
+                    padding: const EdgeInsets.all(16),
+                    children: [
+                      buildMetricSelector(),
+                      const SizedBox(height: 12),
+                      buildLegend(),
+                      const SizedBox(height: 16),
+                      Container(
+                        height: isWide ? 420 : 320,
+                        padding: const EdgeInsets.all(16),
+                        decoration: BoxDecoration(
+                          color: AppColors.surface,
+                          borderRadius: BorderRadius.circular(16),
+                          border: Border.all(color: AppColors.border),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.only(right: 8),
+                          child: buildChart(isWide),
+                        ),
+                      ),
+                      const SizedBox(height: 12),
+                      DropdownButtonFormField<String>(
+                        key: ValueKey("datapage-range-$timeRange"),
+                        initialValue: timeRange,
+                        decoration: const InputDecoration(labelText: "Time range"),
+                        items: [
+                          DropdownMenuItem(value: "24h", child: Text("Past 24 hours", style: GoogleFonts.outfit(color: AppColors.textMid))),
+                          DropdownMenuItem(value: "7d",  child: Text("Past 7 days",   style: GoogleFonts.outfit(color: AppColors.textMid))),
+                          DropdownMenuItem(value: "all", child: Text("All time",       style: GoogleFonts.outfit(color: AppColors.textMid))),
+                        ],
+                        onChanged: (v) {
+                          if (v == null) return;
+                          setState(() => timeRange = v);
+                          _loadAll();
+                        },
+                      ),
+                      const SizedBox(height: 16),
+                      OutlinedButton.icon(
+                        onPressed: () {
+                          setState(() => _tableVisible = !_tableVisible);
+                          if (_tableVisible && _tableRows.isEmpty) _fetchTable();
+                        },
+                        icon: Icon(_tableVisible ? Icons.table_chart : Icons.table_chart_outlined, size: 16),
+                        label: Text(_tableVisible ? "Hide Data Table" : "Show Data Table"),
+                      ),
+                      if (_tableVisible) ...[
+                        const SizedBox(height: 16),
+                        _buildInlineTable(),
+                      ],
+                      const SizedBox(height: 16),
+                    ],
+                  ),
                 ),
               ),
             ),
