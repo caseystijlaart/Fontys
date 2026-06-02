@@ -8,6 +8,8 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:timezone/data/latest_all.dart' as tz_data;
+import 'package:timezone/timezone.dart' as tz;
 
 const String supabaseUrl = 'https://yjjpgvsycxlaqubvedoa.supabase.co';
 const String supabaseAnonKey = 'sb_publishable_mf_gFIoOv0-tIu9bhe6fzw_-CYi7BTd';
@@ -176,6 +178,7 @@ ThemeData buildAppTheme(TargetPlatform platform) {
 // ─── Entry point ─────────────────────────────────────────────────────────────
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  tz_data.initializeTimeZones();
   await Supabase.initialize(url: supabaseUrl, anonKey: supabaseAnonKey);
   await AppSettings.load();
   await NotificationService.init();
@@ -187,13 +190,17 @@ final supabase = Supabase.instance.client;
 // ─── App settings (persisted) ────────────────────────────────────────────────
 class AppSettings {
   static bool notificationsEnabled = true;
-  static bool stressUpdatesEnabled = true;
+  static bool dailyReportEnabled = false;
+  static int dailyReportHour = 8;
+  static int dailyReportMinute = 0;
   static SharedPreferences? _prefs;
 
   static Future<void> load() async {
     _prefs = await SharedPreferences.getInstance();
     notificationsEnabled = _prefs?.getBool('notifications_enabled') ?? true;
-    stressUpdatesEnabled = _prefs?.getBool('stress_updates_enabled') ?? true;
+    dailyReportEnabled   = _prefs?.getBool('daily_report_enabled')   ?? false;
+    dailyReportHour      = _prefs?.getInt('daily_report_hour')       ?? 8;
+    dailyReportMinute    = _prefs?.getInt('daily_report_minute')     ?? 0;
   }
 
   static Future<void> setNotificationsEnabled(bool value) async {
@@ -201,9 +208,13 @@ class AppSettings {
     await _prefs?.setBool('notifications_enabled', value);
   }
 
-  static Future<void> setStressUpdatesEnabled(bool value) async {
-    stressUpdatesEnabled = value;
-    await _prefs?.setBool('stress_updates_enabled', value);
+  static Future<void> setDailyReport({required bool enabled, int? hour, int? minute}) async {
+    dailyReportEnabled = enabled;
+    if (hour != null)   dailyReportHour   = hour;
+    if (minute != null) dailyReportMinute = minute;
+    await _prefs?.setBool('daily_report_enabled', dailyReportEnabled);
+    await _prefs?.setInt('daily_report_hour',     dailyReportHour);
+    await _prefs?.setInt('daily_report_minute',   dailyReportMinute);
   }
 }
 
@@ -213,8 +224,13 @@ class NotificationService {
   static bool _initialized = false;
   static String? _lastNotifiedKey;
 
+  /// Notifications are only supported on Android and iOS.
+  static bool get _supported =>
+      defaultTargetPlatform == TargetPlatform.android ||
+      defaultTargetPlatform == TargetPlatform.iOS;
+
   static Future<void> init() async {
-    if (_initialized) return;
+    if (!_supported || _initialized) return;
     const android = AndroidInitializationSettings('@mipmap/ic_launcher');
     const ios = DarwinInitializationSettings(
       requestAlertPermission: true,
@@ -232,6 +248,7 @@ class NotificationService {
     int risk,
     List<String> actions,
   ) async {
+    if (!_supported || !_initialized) return;
     if (!AppSettings.notificationsEnabled) return;
     if (risk == 0 || actions.isEmpty) return;
 
@@ -258,30 +275,71 @@ class NotificationService {
     );
   }
 
-  static Future<void> sendStressUpdate(String plantName, int risk) async {
-    if (!AppSettings.stressUpdatesEnabled) return;
+  /// Schedules (or reschedules) the daily plant status report notification.
+  /// Fetches the latest risk for every plant in [plants] and fires at [hour]:[minute] each day.
+  static Future<void> scheduleDailyReport({
+    required List<String> plants,
+    required int hour,
+    required int minute,
+  }) async {
+    if (!_supported || !_initialized) return;
+    // Cancel any existing daily report first.
+    await _plugin.cancel(2);
+    if (plants.isEmpty) return;
 
-    final stressLabel = switch (risk) {
-      0 => 'Healthy — no stress detected',
-      1 => 'Moderate stress — check your plant soon',
-      2 => 'High stress — your plant needs attention',
-      _ => 'Status unknown',
-    };
+    // Build the body by querying each plant's latest risk.
+    final lines = <String>[];
+    for (final plant in plants) {
+      final res = await Supabase.instance.client
+          .from('plant_readings')
+          .select('risk_class')
+          .eq('plant_label', plant)
+          .order('timestamp', ascending: false)
+          .limit(1);
+      if (res.isNotEmpty) {
+        final risk = (res[0]['risk_class'] ?? 0) as int;
+        final status = switch (risk) {
+          0 => 'Healthy',
+          1 => 'Moderate risk',
+          2 => 'High risk',
+          _ => 'Unknown',
+        };
+        lines.add('$plant: $status');
+      }
+    }
+    if (lines.isEmpty) return;
+
+    final location = tz.local;
+    final now = tz.TZDateTime.now(location);
+    var scheduled = tz.TZDateTime(location, now.year, now.month, now.day, hour, minute);
+    if (scheduled.isBefore(now)) {
+      scheduled = scheduled.add(const Duration(days: 1));
+    }
 
     const androidDetails = AndroidNotificationDetails(
-      'stress_updates',
-      'Stress Updates',
-      channelDescription: 'Periodic plant stress level updates every 3 hours',
+      'daily_report',
+      'Daily Plant Report',
+      channelDescription: 'Daily summary of all plant statuses',
       importance: Importance.defaultImportance,
       priority: Priority.defaultPriority,
     );
     const iosDetails = DarwinNotificationDetails();
-    await _plugin.show(
-      1,
-      'Stress update: $plantName',
-      stressLabel,
+
+    await _plugin.zonedSchedule(
+      2,
+      'Daily plant report',
+      lines.join(' · '),
+      scheduled,
       const NotificationDetails(android: androidDetails, iOS: iosDetails),
+      androidScheduleMode: AndroidScheduleMode.inexactAllowWhileIdle,
+      uiLocalNotificationDateInterpretation: UILocalNotificationDateInterpretation.absoluteTime,
+      matchDateTimeComponents: DateTimeComponents.time,
     );
+  }
+
+  static Future<void> cancelDailyReport() async {
+    if (!_supported || !_initialized) return;
+    await _plugin.cancel(2);
   }
 }
 
@@ -1082,7 +1140,97 @@ class _DashboardState extends State<Dashboard> {
 
   Color _statusColor = AppColors.surface;
   bool _loading = false;
-  Timer? _stressTimer;
+  RealtimeChannel? _realtimeChannel;
+
+  // ── Easter egg state ──
+  int _iconTapCount = 0;
+  Timer? _iconTapTimer;
+  int _refreshCount = 0;
+  int _readingsTapCount = 0;
+  Timer? _readingsTapTimer;
+
+  static const _plantWisdom = [
+    "🌱 A plant once outsmarted a botanist. The botanist is still recovering.",
+    "🍃 Talking to your plants isn't weird. It's advanced horticulture.",
+    "🌿 Did you know plants sleep too? Unlike you at 2am checking this app.",
+    "☀️ Your plant doesn't need Wi-Fi to grow. You could learn from that.",
+    "🌵 Cacti store water for years. You can't even finish a glass before bed.",
+    "🌺 Plants convert CO₂ to oxygen. You're welcome for the CO₂, little guy.",
+    "🍀 Some plants live for thousands of years. Your streak is 3 days. Keep going.",
+    "🌙 Plants use moonlight too. So don't feel bad about staying up late.",
+  ];
+
+  static const _statusMessages = {
+    0: [
+      "Your plant is basically meditating right now. 🧘",
+      "Peak plant performance. Truly inspiring.",
+      "It's thriving. Unlike my work-life balance.",
+    ],
+    1: [
+      "Your plant is sending mixed signals. Very millennial of it.",
+      "Moderate stress? Relatable. 😅",
+      "It'll be fine. Probably. Maybe water it.",
+    ],
+    2: [
+      "Your plant is dramatically wilting. It went to theater school.",
+      "HELP. ME. — your plant, probably.",
+      "It's not not dying. Please act fast. 🆘",
+    ],
+  };
+
+  void _onIconTap() {
+    _iconTapTimer?.cancel();
+    _iconTapCount++;
+    if (_iconTapCount >= 3) {
+      _iconTapCount = 0;
+      final msg = (_plantWisdom..shuffle()).first;
+      _showEasterEgg(msg);
+    } else {
+      _iconTapTimer = Timer(const Duration(milliseconds: 600), () => _iconTapCount = 0);
+    }
+  }
+
+  void _onStatusDotLongPress() {
+    final msgs = _statusMessages[_riskClass] ?? ["Your plant is a mystery. 🌿"];
+    final msg = (msgs.toList()..shuffle()).first;
+    _showEasterEgg(msg);
+  }
+
+  void _onReadingsTap() {
+    _readingsTapTimer?.cancel();
+    _readingsTapCount++;
+    if (_readingsTapCount >= 5) {
+      _readingsTapCount = 0;
+      _showEasterEgg("👀 The plants know you're watching. They're watching back.");
+    } else {
+      _readingsTapTimer = Timer(const Duration(milliseconds: 800), () => _readingsTapCount = 0);
+    }
+  }
+
+  Future<void> _refreshWithEasterEgg() async {
+    _refreshCount++;
+    if (_refreshCount >= 5) {
+      _refreshCount = 0;
+      _showEasterEgg("🌱 Okay okay! Plants grow at their own pace. Calm down.");
+    }
+    await loadLatestStatus();
+  }
+
+  void _showEasterEgg(String message) {
+    if (!mounted) return;
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message, style: GoogleFonts.outfit(color: AppColors.textHigh, fontSize: 13)),
+        backgroundColor: AppColors.surface2,
+        behavior: SnackBarBehavior.floating,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+          side: const BorderSide(color: AppColors.border),
+        ),
+        duration: const Duration(seconds: 4),
+      ),
+    );
+  }
 
   Future<void> _loadAll() async {
     setState(() => _loading = true);
@@ -1177,24 +1325,45 @@ class _DashboardState extends State<Dashboard> {
   void initState() {
     super.initState();
     _loadAll();
-    _stressTimer = Timer.periodic(const Duration(hours: 3), (_) async {
-      if (selectedPlant == null) return;
-      final res = await supabase
-          .from('plant_readings')
-          .select('risk_class')
-          .eq('plant_label', selectedPlant!)
-          .order('timestamp', ascending: false)
-          .limit(1);
-      if (res.isNotEmpty) {
-        final risk = (res[0]['risk_class'] ?? 0) as int;
-        NotificationService.sendStressUpdate(selectedPlant!, risk);
-      }
-    });
+    _subscribeRealtime();
+  }
+
+  void _subscribeRealtime() {
+    _realtimeChannel = supabase
+        .channel('plant_readings_inserts')
+        .onPostgresChanges(
+          event: PostgresChangeEvent.insert,
+          schema: 'public',
+          table: 'plant_readings',
+          callback: (payload) async {
+            final row = payload.newRecord;
+            final plant = row['plant_label'] as String?;
+            if (plant == null) return;
+
+            // Always refresh UI if this is the selected plant.
+            if (plant == selectedPlant) loadLatestStatus();
+
+            // Fire a notification for any non-healthy insert, for any plant.
+            final risk = (row['risk_class'] ?? 0) as int;
+            if (risk == 0) return;
+            if (!AppSettings.notificationsEnabled) return;
+
+            final actions = <String>[];
+            if (row['action_reduce_temp'] == true || row['action_reduce_temp'] == 1) actions.add("Reduce temperature");
+            if (row['action_water']       == true || row['action_water']       == 1) actions.add("Water the plant");
+            if (row['action_increase_light'] == true || row['action_increase_light'] == 1) actions.add("Increase light exposure");
+
+            await NotificationService.maybeNotify(plant, risk, actions);
+          },
+        )
+        .subscribe();
   }
 
   @override
   void dispose() {
-    _stressTimer?.cancel();
+    if (_realtimeChannel != null) supabase.removeChannel(_realtimeChannel!);
+    _iconTapTimer?.cancel();
+    _readingsTapTimer?.cancel();
     super.dispose();
   }
 
@@ -1281,7 +1450,10 @@ class _DashboardState extends State<Dashboard> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text("LIVE READINGS", style: GoogleFonts.outfit(fontSize: 11, fontWeight: FontWeight.w500, color: AppColors.textLow, letterSpacing: 1.8)),
+        GestureDetector(
+          onTap: _onReadingsTap,
+          child: Text("LIVE READINGS", style: GoogleFonts.outfit(fontSize: 11, fontWeight: FontWeight.w500, color: AppColors.textLow, letterSpacing: 1.8)),
+        ),
         const SizedBox(height: 12),
         Row(children: [
           Expanded(child: _sensorTile("SOIL", _soilPct?.toStringAsFixed(1), "%", Icons.water_drop_outlined, AppColors.accent)),
@@ -1341,13 +1513,16 @@ class _DashboardState extends State<Dashboard> {
         children: [
           Row(
             children: [
-              Container(
-                width: 10,
-                height: 10,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: displayColor,
-                  boxShadow: [BoxShadow(color: displayColor.withOpacity(0.5), blurRadius: 6)],
+              GestureDetector(
+                onLongPress: _onStatusDotLongPress,
+                child: Container(
+                  width: 10,
+                  height: 10,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: displayColor,
+                    boxShadow: [BoxShadow(color: displayColor.withOpacity(0.5), blurRadius: 6)],
+                  ),
                 ),
               ),
               const SizedBox(width: 10),
@@ -1405,7 +1580,7 @@ class _DashboardState extends State<Dashboard> {
         title: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const _MiniPlantIcon(),
+            GestureDetector(onTap: _onIconTap, child: const _MiniPlantIcon()),
             const SizedBox(width: 10),
             const Text("PlantHealthMonitor", overflow: TextOverflow.ellipsis),
           ],
@@ -1435,6 +1610,7 @@ class _DashboardState extends State<Dashboard> {
         ),
       ),
       body: Stack(
+        clipBehavior: Clip.hardEdge,
         children: [
           Positioned.fill(child: CustomPaint(painter: _GridPainter())),
           SafeArea(
@@ -1445,7 +1621,7 @@ class _DashboardState extends State<Dashboard> {
                     ? const Center(child: CircularProgressIndicator(color: AppColors.accent))
                     : RefreshIndicator(
                         color: AppColors.accent,
-                        onRefresh: loadLatestStatus,
+                        onRefresh: _refreshWithEasterEgg,
                         child: ListView(
                           padding: const EdgeInsets.all(16),
                           children: [
@@ -1514,23 +1690,68 @@ class AppSettingsPage extends StatefulWidget {
 }
 
 class _AppSettingsPageState extends State<AppSettingsPage> {
-  bool _notifications = AppSettings.notificationsEnabled;
-  bool _stressUpdates = AppSettings.stressUpdatesEnabled;
+  bool _notifications  = AppSettings.notificationsEnabled;
+  bool _dailyReport    = AppSettings.dailyReportEnabled;
+  int  _reportHour     = AppSettings.dailyReportHour;
+  // Snap to nearest quarter-hour on load.
+  int  _reportMinute   = const [0, 15, 30, 45].reduce((a, b) =>
+      (AppSettings.dailyReportMinute - a).abs() <= (AppSettings.dailyReportMinute - b).abs() ? a : b);
+
+  List<String> _plants = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _loadPlants();
+  }
+
+  Future<void> _loadPlants() async {
+    final res = await supabase.from('plant_settings').select('plant_label');
+    if (!mounted) return;
+    setState(() => _plants = (res as List).map((e) => e['plant_label'] as String).toList());
+  }
+
+  Future<void> _applyDailyReport(bool enabled) async {
+    setState(() => _dailyReport = enabled);
+    await AppSettings.setDailyReport(enabled: enabled, hour: _reportHour, minute: _reportMinute);
+    if (enabled) {
+      await NotificationService.scheduleDailyReport(plants: _plants, hour: _reportHour, minute: _reportMinute);
+    } else {
+      await NotificationService.cancelDailyReport();
+    }
+  }
+
+  Future<void> _updateTime({int? hour, int? minute}) async {
+    setState(() {
+      if (hour   != null) _reportHour   = hour;
+      if (minute != null) _reportMinute = minute;
+    });
+    await AppSettings.setDailyReport(enabled: _dailyReport, hour: _reportHour, minute: _reportMinute);
+    if (_dailyReport) {
+      await NotificationService.scheduleDailyReport(plants: _plants, hour: _reportHour, minute: _reportMinute);
+    }
+  }
+
+  Widget _settingsTile({required Widget child}) => Material(
+    color: AppColors.surface,
+    borderRadius: BorderRadius.circular(16),
+    child: Container(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: AppColors.border),
+      ),
+      child: child,
+    ),
+  );
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          tooltip: "Back",
-          onPressed: () => Navigator.of(context).pop(),
-          icon: const Icon(CupertinoIcons.back),
-        ),
+        leading: IconButton(tooltip: "Back", onPressed: () => Navigator.of(context).pop(), icon: const Icon(CupertinoIcons.back)),
         title: const Text("App Settings"),
-        bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(1),
-          child: Container(height: 1, color: AppColors.border),
-        ),
+        bottom: PreferredSize(preferredSize: const Size.fromHeight(1), child: Container(height: 1, color: AppColors.border)),
       ),
       body: Stack(
         children: [
@@ -1542,42 +1763,15 @@ class _AppSettingsPageState extends State<AppSettingsPage> {
                 child: ListView(
                   padding: const EdgeInsets.all(16),
                   children: [
-                    Text(
-                      "NOTIFICATIONS",
-                      style: GoogleFonts.outfit(
-                        fontSize: 11,
-                        fontWeight: FontWeight.w500,
-                        color: AppColors.textLow,
-                        letterSpacing: 1.8,
-                      ),
-                    ),
+                    Text("NOTIFICATIONS", style: GoogleFonts.outfit(fontSize: 11, fontWeight: FontWeight.w500, color: AppColors.textLow, letterSpacing: 1.8)),
                     const SizedBox(height: 12),
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 16,
-                        vertical: 4,
-                      ),
-                      decoration: BoxDecoration(
-                        color: AppColors.surface,
-                        borderRadius: BorderRadius.circular(16),
-                        border: Border.all(color: AppColors.border),
-                      ),
+
+                    // ── Plant alerts ──
+                    _settingsTile(
                       child: SwitchListTile(
                         contentPadding: EdgeInsets.zero,
-                        title: Text(
-                          "Plant alerts",
-                          style: GoogleFonts.outfit(
-                            color: AppColors.textHigh,
-                            fontSize: 15,
-                          ),
-                        ),
-                        subtitle: Text(
-                          "Get notified when your plant needs watering, light adjustment, or temperature changes.",
-                          style: GoogleFonts.outfit(
-                            color: AppColors.textLow,
-                            fontSize: 12,
-                          ),
-                        ),
+                        title: Text("Plant alerts", style: GoogleFonts.outfit(color: AppColors.textHigh, fontSize: 15)),
+                        subtitle: Text("Get notified when your plant needs watering, light adjustment, or temperature changes.", style: GoogleFonts.outfit(color: AppColors.textLow, fontSize: 12)),
                         value: _notifications,
                         activeThumbColor: AppColors.accent,
                         activeTrackColor: AppColors.accentDim,
@@ -1588,48 +1782,65 @@ class _AppSettingsPageState extends State<AppSettingsPage> {
                       ),
                     ),
                     const SizedBox(height: 12),
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 16,
-                        vertical: 4,
-                      ),
-                      decoration: BoxDecoration(
-                        color: AppColors.surface,
-                        borderRadius: BorderRadius.circular(16),
-                        border: Border.all(color: AppColors.border),
-                      ),
-                      child: SwitchListTile(
-                        contentPadding: EdgeInsets.zero,
-                        title: Text(
-                          "Stress level updates",
-                          style: GoogleFonts.outfit(
-                            color: AppColors.textHigh,
-                            fontSize: 15,
+
+                    // ── Daily report ──
+                    _settingsTile(
+                      child: Column(
+                        children: [
+                          SwitchListTile(
+                            contentPadding: EdgeInsets.zero,
+                            title: Text("Daily plant report", style: GoogleFonts.outfit(color: AppColors.textHigh, fontSize: 15)),
+                            subtitle: Text("Receive a daily notification with the status of each plant.", style: GoogleFonts.outfit(color: AppColors.textLow, fontSize: 12)),
+                            value: _dailyReport,
+                            activeThumbColor: AppColors.accent,
+                            activeTrackColor: AppColors.accentDim,
+                            onChanged: _applyDailyReport,
                           ),
-                        ),
-                        subtitle: Text(
-                          "Receive a stress level summary every 3 hours while the app is running.",
-                          style: GoogleFonts.outfit(
-                            color: AppColors.textLow,
-                            fontSize: 12,
-                          ),
-                        ),
-                        value: _stressUpdates,
-                        activeThumbColor: AppColors.accent,
-                        activeTrackColor: AppColors.accentDim,
-                        onChanged: (v) async {
-                          setState(() => _stressUpdates = v);
-                          await AppSettings.setStressUpdatesEnabled(v);
-                        },
+                          if (_dailyReport) ...[
+                            Container(height: 1, color: AppColors.border),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 12),
+                              child: Row(
+                                children: [
+                                  Text("Report time", style: GoogleFonts.outfit(color: AppColors.textMid, fontSize: 14)),
+                                  const Spacer(),
+                                  // Hour dropdown
+                                  DropdownButton<int>(
+                                    value: _reportHour,
+                                    dropdownColor: AppColors.surface2,
+                                    style: GoogleFonts.outfit(color: AppColors.accent, fontSize: 15, fontWeight: FontWeight.w600),
+                                    underline: const SizedBox.shrink(),
+                                    items: List.generate(24, (h) => DropdownMenuItem(
+                                      value: h,
+                                      child: Text(h.toString().padLeft(2, '0')),
+                                    )),
+                                    onChanged: (h) => _updateTime(hour: h),
+                                  ),
+                                  Text(":", style: GoogleFonts.outfit(color: AppColors.textMid, fontSize: 15, fontWeight: FontWeight.w600)),
+                                  // Minute dropdown (0, 15, 30, 45)
+                                  DropdownButton<int>(
+                                    value: _reportMinute,
+                                    dropdownColor: AppColors.surface2,
+                                    style: GoogleFonts.outfit(color: AppColors.accent, fontSize: 15, fontWeight: FontWeight.w600),
+                                    underline: const SizedBox.shrink(),
+                                    items: [0, 15, 30, 45].map((m) => DropdownMenuItem(
+                                      value: m,
+                                      child: Text(m.toString().padLeft(2, '0')),
+                                    )).toList(),
+                                    onChanged: (m) => _updateTime(minute: m),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ],
                       ),
                     ),
+
                     const SizedBox(height: 20),
                     Text(
-                      "Plant alerts fire immediately when a reading requires action. Stress updates are periodic summaries of the current stress level.",
-                      style: GoogleFonts.outfit(
-                        fontSize: 12,
-                        color: AppColors.textLow,
-                      ),
+                      "Plant alerts fire automatically when a new reading with moderate or high risk is detected. The daily report sends one notification per day at your chosen time with the status of every plant.",
+                      style: GoogleFonts.outfit(fontSize: 12, color: AppColors.textLow),
                     ),
                   ],
                 ),
