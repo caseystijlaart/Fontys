@@ -800,7 +800,7 @@ class _SplashScreenState extends State<SplashScreen>
             left: 0,
             right: 0,
             child: Text(
-              'v2.1.0',
+              'v1.1.0',
               textAlign: TextAlign.center,
               style: GoogleFonts.outfit(
                 fontSize: 11,
@@ -1074,6 +1074,7 @@ class _DashboardState extends State<Dashboard> {
   List<DateTime> timestamps = [];
   String recommendationText = "";
   List<String> actions = [];
+  Map<String, double> predictions = {};
 
   final metrics = [
     "soil_moisture_pct",
@@ -1114,6 +1115,16 @@ class _DashboardState extends State<Dashboard> {
     final latest = res[0];
     final int risk = latest['risk_class'] ?? 0;
     actions = [];
+
+    // Parse predictions from recommendation_summary (e.g. "predWaterMin=120 predTempMin=45")
+    final Map<String, double> parsedPredictions = {};
+    final summary = latest['recommendation_summary'] as String?;
+    if (summary != null && summary.isNotEmpty) {
+      final regex = RegExp(r'pred(\w+?)Min[=:\s]+([\d.]+)');
+      for (final m in regex.allMatches(summary)) {
+        parsedPredictions[m.group(1)!] = double.parse(m.group(2)!);
+      }
+    }
 
     if (latest['action_reduce_temp'] == true ||
         latest['action_reduce_temp'] == "true" ||
@@ -1159,6 +1170,7 @@ class _DashboardState extends State<Dashboard> {
       recommendationText = actions.isEmpty
           ? "No actions required"
           : actions.join("\n");
+      predictions = parsedPredictions;
     });
 
     if (selectedPlant != null) {
@@ -1530,6 +1542,32 @@ class _DashboardState extends State<Dashboard> {
     );
   }
 
+  String _fmtMinutes(double minutes) {
+    if (minutes >= 1440) {
+      final days = minutes / 1440;
+      return "${days % 1 == 0 ? days.toInt() : days.toStringAsFixed(1)} day${days >= 2 ? 's' : ''}";
+    }
+    if (minutes >= 60) {
+      final hours = minutes / 60;
+      return "${hours % 1 == 0 ? hours.toInt() : hours.toStringAsFixed(1)} hour${hours >= 2 ? 's' : ''}";
+    }
+    return "${minutes.toInt()} min";
+  }
+
+  String _predLabel(String key) {
+    switch (key.toLowerCase()) {
+      case 'water':
+        return 'Water in';
+      case 'temp':
+      case 'temperature':
+        return 'Temp action in';
+      case 'light':
+        return 'Light action in';
+      default:
+        return '$key in';
+    }
+  }
+
   Widget buildStatusCard() {
     final isHealthy = riskClass == 0;
     final borderColor = statusColor.withOpacity(0.4);
@@ -1573,16 +1611,11 @@ class _DashboardState extends State<Dashboard> {
               ),
             ],
           ),
-          const SizedBox(height: 8),
-          Text(
-            statusText,
-            style: GoogleFonts.outfit(fontSize: 13, color: AppColors.textMid),
-          ),
           const SizedBox(height: 16),
           Container(height: 1, color: AppColors.border),
           const SizedBox(height: 14),
           Text(
-            "Recommendation",
+            "RECOMMENDATION",
             style: GoogleFonts.outfit(
               fontSize: 11,
               fontWeight: FontWeight.w500,
@@ -1598,6 +1631,54 @@ class _DashboardState extends State<Dashboard> {
               color: isHealthy ? AppColors.accent : AppColors.textMid,
             ),
           ),
+          if (predictions.isNotEmpty) ...[
+            const SizedBox(height: 16),
+            Container(height: 1, color: AppColors.border),
+            const SizedBox(height: 14),
+            Text(
+              "PREDICTIONS",
+              style: GoogleFonts.outfit(
+                fontSize: 11,
+                fontWeight: FontWeight.w500,
+                color: AppColors.textLow,
+                letterSpacing: 1.5,
+              ),
+            ),
+            const SizedBox(height: 10),
+            ...predictions.entries.map((e) {
+              final timeStr = _fmtMinutes(e.value);
+              final urgent = e.value < 60;
+              final color = urgent ? AppColors.moderate : AppColors.textMid;
+              return Padding(
+                padding: const EdgeInsets.only(bottom: 6),
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.schedule,
+                      size: 14,
+                      color: color,
+                    ),
+                    const SizedBox(width: 8),
+                    Text(
+                      "${_predLabel(e.key)}: ",
+                      style: GoogleFonts.outfit(
+                        fontSize: 13,
+                        color: AppColors.textLow,
+                      ),
+                    ),
+                    Text(
+                      timeStr,
+                      style: GoogleFonts.outfit(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w600,
+                        color: color,
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            }),
+          ],
         ],
       ),
     );
@@ -2271,6 +2352,7 @@ class _DataTablePageState extends State<DataTablePage> {
     ('humidity_pct', 'Humidity %'),
     ('light_level_pct', 'Light %'),
     ('risk_class', 'Risk'),
+    ('recommendation_summary', 'Water in'),
   ];
 
   @override
@@ -2331,6 +2413,21 @@ class _DataTablePageState extends State<DataTablePage> {
         2 => 'High',
         _ => '$v',
       };
+    }
+    if (col == 'recommendation_summary') {
+      final summary = v as String? ?? '';
+      final match = RegExp(r'predWaterMin[=:\s]+([\d.]+)').firstMatch(summary);
+      if (match == null) return '—';
+      final minutes = double.parse(match.group(1)!);
+      if (minutes >= 1440) {
+        final d = minutes / 1440;
+        return "${d % 1 == 0 ? d.toInt() : d.toStringAsFixed(1)}d";
+      }
+      if (minutes >= 60) {
+        final h = minutes / 60;
+        return "${h % 1 == 0 ? h.toInt() : h.toStringAsFixed(1)}h";
+      }
+      return "${minutes.toInt()} min";
     }
     return (v as num).toStringAsFixed(1);
   }
@@ -2394,13 +2491,16 @@ class _DataTablePageState extends State<DataTablePage> {
                           return FilterChip(
                             label: Text(p),
                             selected: sel,
-                            onSelected: (v) => setState(() {
-                              if (v) {
-                                _selectedPlants.add(p);
-                              } else {
-                                _selectedPlants.remove(p);
-                              }
-                            }),
+                            onSelected: (v) {
+                              setState(() {
+                                if (v) {
+                                  _selectedPlants.add(p);
+                                } else {
+                                  _selectedPlants.remove(p);
+                                }
+                              });
+                              _fetchData();
+                            },
                           );
                         }).toList(),
                       ),
@@ -2420,16 +2520,22 @@ class _DataTablePageState extends State<DataTablePage> {
                         runSpacing: 6,
                         children: _allColumns.map((c) {
                           final sel = _selectedColumns.contains(c.$1);
+                          final atMax = _selectedColumns.length >= 2 && !sel;
                           return FilterChip(
                             label: Text(c.$2),
                             selected: sel,
-                            onSelected: (v) => setState(() {
-                              if (v) {
-                                _selectedColumns.add(c.$1);
-                              } else {
-                                _selectedColumns.remove(c.$1);
-                              }
-                            }),
+                            onSelected: atMax
+                                ? null
+                                : (v) {
+                                    setState(() {
+                                      if (v) {
+                                        _selectedColumns.add(c.$1);
+                                      } else {
+                                        _selectedColumns.remove(c.$1);
+                                      }
+                                    });
+                                    _fetchData();
+                                  },
                           );
                         }).toList(),
                       ),
@@ -2455,19 +2561,12 @@ class _DataTablePageState extends State<DataTablePage> {
                           return ChoiceChip(
                             label: Text(r.$2),
                             selected: _timeRange == r.$1,
-                            onSelected: (_) =>
-                                setState(() => _timeRange = r.$1),
+                            onSelected: (_) {
+                              setState(() => _timeRange = r.$1);
+                              _fetchData();
+                            },
                           );
                         }).toList(),
-                      ),
-                      const SizedBox(height: 12),
-                      SizedBox(
-                        width: double.infinity,
-                        child: FilledButton.icon(
-                          onPressed: _canFetch ? _fetchData : null,
-                          icon: const Icon(Icons.refresh, size: 16),
-                          label: const Text("Load Data"),
-                        ),
                       ),
                     ],
                   ),
@@ -2495,11 +2594,23 @@ class _DataTablePageState extends State<DataTablePage> {
                                 textAlign: TextAlign.center,
                               ),
                             )
-                          : SingleChildScrollView(
-                              scrollDirection: Axis.vertical,
-                              child: SizedBox(
-                                width: double.infinity,
-                                child: DataTable(
+                          : LayoutBuilder(
+                              builder: (context, constraints) {
+                                final totalCols = (showPlantCol ? 1 : 0) +
+                                    1 + // TIME column
+                                    _selectedColumns.length;
+                                const minColWidth = 88.0;
+                                final minTableWidth = totalCols * minColWidth;
+                                final tableWidth = minTableWidth > constraints.maxWidth
+                                    ? minTableWidth
+                                    : constraints.maxWidth;
+                                return SingleChildScrollView(
+                                  scrollDirection: Axis.vertical,
+                                  child: SingleChildScrollView(
+                                    scrollDirection: Axis.horizontal,
+                                    child: SizedBox(
+                                      width: tableWidth,
+                                      child: DataTable(
                                   headingRowColor: WidgetStateProperty.all(
                                     AppColors.surface,
                                   ),
@@ -2570,6 +2681,9 @@ class _DataTablePageState extends State<DataTablePage> {
                                 ),
                               ),
                             ),
+                          );
+                        },
+                      ),
                 ),
               ],
             ),
