@@ -6,33 +6,29 @@ workflows:
       flutter: stable
       xcode: latest
       cocoapods: default
-    working_directory: sem-7-AI/personal-project/src/phm_app
     scripts:
-      - name: Debug - show directory structure
-        script: |
-          echo "Clone root:"
-          ls /Users/builder/clone/
-          echo "---"
-          find /Users/builder/clone -maxdepth 5 -type d
-
       - name: Install dependencies
-        script: flutter pub get
+        script: |
+          cd /Users/builder/clone/sem-7-AI/personal-project/src/phm_app
+          flutter pub get
 
       - name: Install CocoaPods
         script: |
-          cd ios
+          cd /Users/builder/clone/sem-7-AI/personal-project/src/phm_app/ios
           pod install
 
       - name: Build iOS (no codesign)
-        script: flutter build ios --release --no-codesign
+        script: |
+          cd /Users/builder/clone/sem-7-AI/personal-project/src/phm_app
+          flutter build ios --release --no-codesign
 
       - name: Package into unsigned IPA
         script: |
-          cd build/ios/iphoneos
+          cd /Users/builder/clone/sem-7-AI/personal-project/src/phm_app/build/ios/iphoneos
           mkdir -p Payload
           cp -r Runner.app Payload/Runner.app
           zip -r Runner.ipa Payload
 
     artifacts:
-      - build/ios/iphoneos/Runner.ipa
+      - /Users/builder/clone/sem-7-AI/personal-project/src/phm_app/build/ios/iphoneos/Runner.ipa
       - /tmp/xcodebuild_logs/*.log
