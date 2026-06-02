@@ -14,10 +14,4 @@ workflows:
           flutter build ios --release --no-codesign
     artifacts:
       - build/ios/ipa/*.ipa
-    publishing:
-      email:
-        recipients:
-          - casey.stijlaart@hotmail.com
-        notify:
-          success: true
-          failure: true
+      
