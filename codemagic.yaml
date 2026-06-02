@@ -1,6 +1,7 @@
 workflows:
   ios-workflow:
     name: iOS Build
+    instance_type: mac_mini_m2
     environment:
       flutter: stable
       xcode: latest
@@ -12,6 +13,12 @@ workflows:
       - name: Build iOS (no codesign)
         script: |
           flutter build ios --release --no-codesign
+      - name: Package into unsigned IPA
+        script: |
+          cd build/ios/iphoneos
+          mkdir -p Payload
+          cp -r Runner.app Payload/Runner.app
+          zip -r Runner.ipa Payload
     artifacts:
-      - build/ios/ipa/*.ipa
-      
+      - sem-7-AI/personal-project/src/phm_app/build/ios/iphoneos/Runner.ipa
+      - /tmp/xcodebuild_logs/*.log
