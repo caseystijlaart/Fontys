@@ -5,27 +5,20 @@
 #include <LittleFS.h>
 
 #include "MonitoringSystem.hpp"
-#include "WiFiCommunication.hpp"
-#include "PlantTypes.hpp"
 #include "FileStorageService.hpp"
 #include "TimeService.hpp"
 #include "Certs.hpp"
 
-using namespace pof02;
-
-namespace
-{
-    const unsigned long INTERVAL = 1000UL * 60UL * 60UL * 3UL; // 3 hours
-    const char *PLANT_SETTINGS_FILE = "/plant_settings.txt";
-    const char *LAST_STATE_FILE = "/last_state.txt";
-    const char *SENSOR_HISTORY_FILE = "/sensor_history.csv";
-
 #ifndef WIFI_SSID
-#define WIFI_SSID ""
+#error "WIFI_SSID must be defined in secrets.ini"
 #endif
 
 #ifndef WIFI_PASSWORD
-#define WIFI_PASSWORD ""
+#error "WIFI_PASSWORD must be defined in secrets.ini"
+#endif
+
+#ifndef API_KEY
+#error "API_KEY must be defined in secrets.ini"
 #endif
 
 #ifndef PLANT_LABEL
@@ -40,191 +33,203 @@ namespace
 #define DEVICE_ID 0
 #endif
 
-#ifndef ENABLE_WIFI_DOWNLOAD
-#define ENABLE_WIFI_DOWNLOAD 1
-#endif
+namespace
+{
 
-    // Calibrated for a chunkier mix (~50% soil / 25% perlite / 25% bark)
-    // that retains moisture differently than dense potting soil.
-    SoilMoistureSensor soil(34, 3500.0f, 1450.0f);
-    TempHumiditySensor dht(4, 22);
-    LightSensor light(35);
-    MLLayer ml(MLBackend::TINYML_TFLM);
-    RecommendationEngine recEngine;
-    constexpr std::size_t kHistorySize = 56; // 1 week at 3h intervals
-    MonitoringSystem monitoringSystem(soil, dht, light, ml, recEngine, PlantRuleProfile{}, kHistorySize);
+const char *const kApiUrl         = "https://yjjpgvsycxlaqubvedoa.supabase.co/rest/v1/plant_readings";
+const char *const kApiUrlSettings = "https://yjjpgvsycxlaqubvedoa.supabase.co/rest/v1/plant_settings"
+                                    "?plant_label=eq." PLANT_LABEL "&select=*&limit=1";
+const char *const kHistoryFile    = "/sensor_history.csv";
 
-    TimeService timeService;
-    FileStorageService fileStorage(timeService);
+constexpr unsigned long kIntervalMs  = 1000UL * 60UL * 60UL * 3UL; // 3 hours
+constexpr std::size_t   kHistorySize = 56;                           // 1 week at 3 h intervals
 
-    WiFiCommunication wifiCommunication(WIFI_SSID, WIFI_PASSWORD);
-    MonitoringCycleResult latestResult{};
-    bool hasLatestResult = false;
+pof02::SoilMoistureSensor  soilSensor(34, 3500.0f, 1450.0f);
+pof02::TempHumiditySensor  dhtSensor(4, 22);
+pof02::LightSensor         lightSensor(35);
+pof02::MLLayer             mlLayer(pof02::MLBackend::TINYML_TFLM);
+pof02::RecommendationEngine recEngine;
+pof02::MonitoringSystem     monitoringSystem(soilSensor, dhtSensor, lightSensor,
+                                             mlLayer, recEngine,
+                                             pof02::PlantRuleProfile{}, kHistorySize);
+TimeService        timeService;
+FileStorageService fileStorage(timeService);
 
-    const char *BASE_URL = "https://yjjpgvsycxlaqubvedoa.supabase.co";
-    const char *API_URL = "https://yjjpgvsycxlaqubvedoa.supabase.co/rest/v1/plant_readings";
-    String API_URL_SETTING = "https://yjjpgvsycxlaqubvedoa.supabase.co/rest/v1/plant_settings"
-                             "?plant_label=eq." +
-                             String(PLANT_LABEL) +
-                             "&select=*"
-                             "&limit=1";
-#ifndef API_KEY
-#error "API_KEY must be set as a build flag in platformio.ini: -D API_KEY=\"your_key\""
-#endif
+unsigned long lastRun = 0;
+uint8_t       currentVersion = 0; // starts at 0 so first fetch always applies
 
-    uint8_t current_version = 1;
+// ---------------------------------------------------------------------------
+// WiFi helpers
+// ---------------------------------------------------------------------------
 
-    unsigned long lastRun = 0;
+void ConnectWifi()
+{
+    if (WiFi.status() == WL_CONNECTED)
+        return;
 
-    String EscapeJsonString(const String &input)
+    Serial.print(F("Connecting to WiFi..."));
+    WiFi.mode(WIFI_STA);
+    WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
+
+    const unsigned long start = millis();
+    while (WiFi.status() != WL_CONNECTED && millis() - start < 30000UL)
     {
-        String output = input;
-        output.replace("\\", "\\\\");
-        output.replace("\"", "\\\"");
-        output.replace("\n", "\\n");
-        output.replace("\r", "\\r");
-        return output;
+        delay(500);
+        Serial.print('.');
     }
-    bool ReceiveProfileSettings(String payload)
-    {
+    Serial.println();
 
-        if (payload.length() > 0)
-        {
-            PlantRuleProfile profile = monitoringSystem.GetPlantProfile();
-            if (payload.indexOf("\"plant_label\":\"" + String(PLANT_LABEL) + "\"") == -1)
-            {
-                Serial.println("No settings found for this plant label");
-                return false;
-            }
-            profile.preferences.humidity = payload.indexOf("\"humidityPreference\":\"pLow\"") >= 0 ? PreferenceBand::pLow : (payload.indexOf("\"humidityPreference\":\"pHigh\"") >= 0 ? PreferenceBand::pHigh : PreferenceBand::pMid);
-            profile.preferences.light = payload.indexOf("\"lightPreference\":\"pLow\"") >= 0 ? PreferenceBand::pLow : (payload.indexOf("\"lightPreference\":\"pHigh\"") >= 0 ? PreferenceBand::pHigh : PreferenceBand::pMid);
-            profile.preferences.soilMoisture = payload.indexOf("\"soilPreference\":\"pLow\"") >= 0 ? PreferenceBand::pLow : (payload.indexOf("\"soilPreference\":\"pHigh\"") >= 0 ? PreferenceBand::pHigh : PreferenceBand::pMid);
-            profile.preferences.temperature = payload.indexOf("\"temperaturePreference\":\"pLow\"") >= 0 ? PreferenceBand::pLow : (payload.indexOf("\"temperaturePreference\":\"pHigh\"") >= 0 ? PreferenceBand::pHigh : PreferenceBand::pMid);
-            monitoringSystem.SetPlantProfile(profile);
-            return true;
-        }
+    if (WiFi.status() == WL_CONNECTED)
+    {
+        Serial.print(F("WiFi connected. IP: "));
+        Serial.println(WiFi.localIP());
+    }
+    else
+    {
+        Serial.println(F("WiFi connection timed out"));
+    }
+}
+
+// ---------------------------------------------------------------------------
+// Cloud communication
+// ---------------------------------------------------------------------------
+
+void SendToCloud(const char *json)
+{
+    if (WiFi.status() != WL_CONNECTED)
+    {
+        Serial.println(F("No WiFi, skipping cloud upload"));
+        return;
+    }
+
+    WiFiClientSecure client;
+    client.setCACert(kSupabaseRootCA);
+
+    HTTPClient https;
+    if (!https.begin(client, kApiUrl))
+    {
+        Serial.println(F("HTTPS begin failed"));
+        return;
+    }
+
+    https.addHeader(F("Content-Type"),  F("application/json"));
+    https.addHeader(F("apikey"),        API_KEY);
+    https.addHeader(F("Authorization"), "Bearer " API_KEY);
+    https.addHeader(F("Prefer"),        F("return=minimal"));
+
+    const int code = https.POST(json);
+    Serial.print(F("Cloud response: "));
+    Serial.println(code);
+    https.end();
+}
+
+// ---------------------------------------------------------------------------
+// Profile settings
+// ---------------------------------------------------------------------------
+
+pof02::PreferenceBand ParsePreference(const String &payload, const char *key)
+{
+    if (payload.indexOf(String(key) + "\":\"pLow\"") >= 0) return pof02::PreferenceBand::pLow;
+    if (payload.indexOf(String(key) + "\":\"pHigh\"") >= 0) return pof02::PreferenceBand::pHigh;
+    return pof02::PreferenceBand::pMid;
+}
+
+void ApplyProfilePayload(const String &payload)
+{
+    pof02::PlantRuleProfile profile = monitoringSystem.GetPlantProfile();
+    profile.preferences.humidity    = ParsePreference(payload, "humidityPreference");
+    profile.preferences.light       = ParsePreference(payload, "lightPreference");
+    profile.preferences.soilMoisture = ParsePreference(payload, "soilPreference");
+    profile.preferences.temperature = ParsePreference(payload, "temperaturePreference");
+    monitoringSystem.SetPlantProfile(profile);
+}
+
+bool FetchProfileSettings()
+{
+    if (WiFi.status() != WL_CONNECTED)
+        return false;
+
+    WiFiClientSecure client;
+    client.setCACert(kSupabaseRootCA);
+
+    HTTPClient https;
+    if (!https.begin(client, kApiUrlSettings))
+        return false;
+
+    https.addHeader(F("apikey"),        API_KEY);
+    https.addHeader(F("Authorization"), "Bearer " API_KEY);
+
+    const int code = https.GET();
+    if (code <= 0)
+        return false;
+
+    const String payload = https.getString();
+    https.end();
+
+    if (payload.indexOf("\"plant_label\":\"" PLANT_LABEL "\"") < 0)
+    {
+        Serial.println(F("No settings found for this plant label"));
         return false;
     }
 
-    bool GetProfileSettings()
+    int latestVersion = 0;
+    const int vIdx = payload.indexOf("\"version\":");
+    if (vIdx >= 0)
+        latestVersion = payload.substring(vIdx + 10).toInt();
+
+    if (latestVersion == currentVersion)
     {
-
-        WiFiClientSecure client;
-        client.setCACert(kSupabaseRootCA);
-
-        HTTPClient https;
-
-        if (https.begin(client, API_URL_SETTING))
-        {
-            https.addHeader("apikey", API_KEY);
-            https.addHeader("Authorization", String("Bearer ") + API_KEY);
-        }
-
-        int httpCode = https.GET();
-
-        if (httpCode > 0)
-        {
-            String payload = https.getString();
-
-            Serial.println(payload);
-
-            if (payload.indexOf("\"plant_label\":\"" + String(PLANT_LABEL) + "\"") == -1)
-            {
-                Serial.println("No settings found for this plant label");
-                return false;
-            }
-
-            // Parse the actual version number from the JSON payload
-            int latestVersion = 0;
-            const int versionIdx = payload.indexOf("\"version\":");
-            if (versionIdx >= 0)
-            {
-                latestVersion = payload.substring(versionIdx + 10).toInt();
-            }
-
-            if (latestVersion != current_version)
-            {
-                if (ReceiveProfileSettings(payload))
-                {
-                    current_version = static_cast<uint8_t>(latestVersion);
-                    Serial.println("Received updated profile settings");
-                    return true;
-                }
-                else
-                {
-                    Serial.println("Failed to receive profile settings");
-                    return false;
-                }
-            }
-            else
-            {
-                Serial.println("Profile settings are up to date");
-                return true;
-            }
-        }
-        return false;
+        Serial.println(F("Profile settings up to date"));
+        return true;
     }
 
-    void SendToCloud(const String &payload)
-    {
-        if (WiFi.status() != WL_CONNECTED)
-        {
-            Serial.println("No WiFi, skipping cloud upload");
-            return;
-        }
+    ApplyProfilePayload(payload);
+    currentVersion = static_cast<uint8_t>(latestVersion);
+    Serial.println(F("Profile settings updated"));
+    return true;
+}
 
-        WiFiClientSecure client;
-        client.setCACert(kSupabaseRootCA);
+// ---------------------------------------------------------------------------
+// Monitoring cycle
+// ---------------------------------------------------------------------------
 
-        HTTPClient https;
+void RunMonitoringCycle()
+{
+    const pof02::MonitoringCycleResult result = monitoringSystem.RunCycleDetailed();
+    fileStorage.AppendToHistoryFile(kHistoryFile, result, PLANT_LABEL, DEVICE_ID, kHistorySize);
 
-        if (https.begin(client, API_URL))
-        {
-            https.addHeader("Content-Type", "application/json");
-            https.addHeader("apikey", API_KEY);
-            https.addHeader("Authorization", "Bearer " + String(API_KEY));
-            https.addHeader("Prefer", "return=minimal");
-            int httpCode = https.POST(payload);
+    const std::int64_t nowUnix = timeService.GetCurrentUnixTimeUtc();
+    const auto &snap = result.snapshot;
+    const auto &rec  = result.recommendation;
 
-            Serial.print("Cloud response code: ");
-            Serial.println(httpCode);
+    char json[512];
+    snprintf(json, sizeof(json),
+        "{\"request_id\":%lld,\"plant_label\":\"" PLANT_LABEL "\","
+        "\"device_id\":%d,"
+        "\"soil_moisture_pct\":%.2f,\"temperature_c\":%.2f,"
+        "\"humidity_pct\":%.2f,\"light_level_pct\":%.2f,"
+        "\"action_water\":%s,\"action_reduce_temp\":%s,"
+        "\"action_increase_light\":%s,"
+        "\"recommendation_summary\":\"%s\","
+        "\"risk_class\":%d}",
+        static_cast<long long>(nowUnix),
+        DEVICE_ID,
+        snap.soilMoisturePct, snap.temperatureC,
+        snap.humidityPct, snap.lightLevelPct,
+        rec.water          ? "true" : "false",
+        rec.reduceTemp     ? "true" : "false",
+        rec.increaseLight  ? "true" : "false",
+        rec.summary,
+        static_cast<int>(result.mlResult.risk));
 
-            String response = https.getString();
-            Serial.println(response);
-
-            https.end();
-        }
-        else
-        {
-            Serial.println("HTTPS begin failed");
-        }
-    }
-
-    void RunMonitoringCycle()
-    {
-        latestResult = monitoringSystem.RunCycleDetailed();
-        hasLatestResult = true;
-        fileStorage.AppendToHistoryFile(SENSOR_HISTORY_FILE, latestResult, PLANT_LABEL, DEVICE_ID, kHistorySize);
-
-        String payload = "{";
-        payload += "\"request_id\":\"" + String(millis()) + "\",";
-        payload += "\"plant_label\":\"" + EscapeJsonString(String(PLANT_LABEL)) + "\",";
-        payload += "\"device_id\":" + String(DEVICE_ID) + ",";
-        payload += "\"soil_moisture_pct\":" + String(latestResult.snapshot.soilMoisturePct, 2) + ",";
-        payload += "\"temperature_c\":" + String(latestResult.snapshot.temperatureC, 2) + ",";
-        payload += "\"humidity_pct\":" + String(latestResult.snapshot.humidityPct, 2) + ",";
-        payload += "\"light_level_pct\":" + String(latestResult.snapshot.lightLevelPct, 2) + ",";
-        payload += "\"action_water\":" + String(latestResult.recommendation.water ? "true" : "false") + ",";
-        payload += "\"action_reduce_temp\":" + String(latestResult.recommendation.reduceTemp ? "true" : "false") + ",";
-        payload += "\"action_increase_light\":" + String(latestResult.recommendation.increaseLight ? "true" : "false") + ",";
-        payload += "\"recommendation_summary\":\"" + EscapeJsonString(String(latestResult.recommendation.summary.c_str())) + "\",";
-        payload += "\"risk_class\":" + String(static_cast<int>(latestResult.mlResult.risk));
-        payload += "}";
-
-        SendToCloud(payload);
-    }
+    SendToCloud(json);
+}
 
 } // namespace
+
+// ---------------------------------------------------------------------------
+// Arduino entry points
+// ---------------------------------------------------------------------------
 
 void setup()
 {
@@ -233,71 +238,58 @@ void setup()
 
     LittleFS.begin(true);
 
-    if (wifiCommunication.HasCredentials())
+    ConnectWifi();
+
+    if (WiFi.status() == WL_CONNECTED)
     {
-        wifiCommunication.Connect();
         timeService.SyncTimeWithNtp(10000);
+        const std::int64_t nowUnix = timeService.GetCurrentUnixTimeUtc();
+        if (nowUnix > 0)
+            monitoringSystem.SetStartUnixTime(nowUnix);
     }
 
-    const std::int64_t nowUnix = timeService.GetCurrentUnixTimeUtc();
-    if (nowUnix > 0)
-    {
-        monitoringSystem.SetStartUnixTime(nowUnix);
-    }
+    // Load preferences from Supabase; keep whatever is fetched for the rest of setup
+    FetchProfileSettings();
 
-    PlantRuleProfile initialProfile;
-    if (!GetProfileSettings())
-    {
-        Serial.println("Failed to get profile settings, using defaults");
-        Serial.println(String(PLANT_LABEL));
-    }
-    initialProfile.plantName = PLANT_LABEL;
-    initialProfile.deviceName = DEVICE_NAME;
-    initialProfile.deviceId = String(DEVICE_ID).c_str();
-    monitoringSystem.SetPlantProfile(initialProfile);
+    // Apply device identity on top of whatever preferences were loaded
+    pof02::PlantRuleProfile profile = monitoringSystem.GetPlantProfile();
+    strncpy(profile.plantName,  PLANT_LABEL,         sizeof(profile.plantName)  - 1);
+    strncpy(profile.deviceName, DEVICE_NAME,          sizeof(profile.deviceName) - 1);
+    snprintf(profile.deviceId,  sizeof(profile.deviceId), "%d", DEVICE_ID);
+    monitoringSystem.SetPlantProfile(profile);
 
     std::size_t existingEntries = 0;
-    const auto historicalSnapshots = fileStorage.LoadHistoryFile(SENSOR_HISTORY_FILE, kHistorySize, existingEntries);
-    if (!historicalSnapshots.empty())
+    const auto snapshots = fileStorage.LoadHistoryFile(kHistoryFile, kHistorySize, existingEntries);
+    if (!snapshots.empty())
     {
-        monitoringSystem.LoadHistoricalSnapshots(historicalSnapshots);
-        Serial.printf("Restored %u snapshots (%u total on file)\n", historicalSnapshots.size(), existingEntries);
-    }
-    else
-    {
-        Serial.printf("No history file found, starting fresh\n");
+        monitoringSystem.LoadHistoricalSnapshots(snapshots);
+        Serial.printf("Restored %u snapshots (%u on file)\n",
+                      static_cast<unsigned>(snapshots.size()),
+                      static_cast<unsigned>(existingEntries));
     }
 
     if (!monitoringSystem.Init())
     {
-        Serial.println("Failed to initialize monitoring system");
-        while (true)
-        {
-        }
+        Serial.println(F("Failed to initialise monitoring system"));
+        while (true) {}
     }
 
-    Serial.println("Monitoring system initialized");
+    Serial.println(F("Monitoring system ready"));
     RunMonitoringCycle();
-
     lastRun = millis();
 }
 
 void loop()
 {
-
     const unsigned long now = millis();
-    if (now - lastRun < INTERVAL)
-    {
+    if (now - lastRun < kIntervalMs)
         return;
-    }
 
     lastRun = now;
 
-    if (wifiCommunication.HasCredentials() && !wifiCommunication.IsConnected())
-    {
-        wifiCommunication.Connect();
-    }
+    if (WiFi.status() != WL_CONNECTED)
+        ConnectWifi();
 
-    GetProfileSettings();
+    FetchProfileSettings();
     RunMonitoringCycle();
 }

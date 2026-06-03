@@ -2,13 +2,13 @@
 
 #include <array>
 #include <cstdint>
-#include <string>
+#include <cstring>
 
 namespace pof02 {
 
 enum class Level : uint8_t {
     kLow  = 0,
-    kOk = 1,
+    kOk   = 1,
     kHigh = 2,
 };
 
@@ -45,7 +45,7 @@ struct Recommendation {
     float optimizedCycleMinutes = 120.0f;
     float baselineCycleMinutes = 30.0f;
     float estimatedPowerSavingPct = 0.0f;
-    std::string summary;
+    char summary[128] = {};
 };
 
 enum class PreferenceBand : uint8_t {
@@ -70,9 +70,9 @@ struct UserPreferences {
 };
 
 struct PlantRuleProfile {
-    std::string plantName = "unnamed";
-    std::string deviceId = "unknown-device";
-    std::string deviceName = "unknown";
+    char plantName[32] = "unnamed";
+    char deviceId[32] = "unknown-device";
+    char deviceName[32] = "unknown";
     // Tuned for airy/chunky soil mixes: moisture drops slower and sensor reads lower.
     MetricThresholds soilMoistureThresholds{28.0f, 33.0f, 55.0f, 60.0f, 90.0f};
     MetricThresholds temperatureThresholds{16.0f, 18.0f, 26.0f, 28.0f, 35.0f};

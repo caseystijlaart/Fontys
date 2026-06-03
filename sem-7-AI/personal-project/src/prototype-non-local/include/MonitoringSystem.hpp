@@ -28,7 +28,6 @@ namespace pof02
                          std::int64_t startUnixTime = kDefaultDatasetStartUnixTime);
 
         bool Init();
-        Recommendation RunCycle();
         MonitoringCycleResult RunCycleDetailed();
         void SetPlantProfile(const PlantRuleProfile &plantProfile);
         const PlantRuleProfile &GetPlantProfile() const;

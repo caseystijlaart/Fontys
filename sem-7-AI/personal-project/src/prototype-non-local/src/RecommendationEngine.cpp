@@ -65,7 +65,8 @@ Recommendation RecommendationEngine::Build(const SensorSnapshot& snapshot,
     if (rec.reduceTemp)  summary += "cool ";
     if (rec.increaseLight) summary += "light ";
     summary += "]";
-    rec.summary = summary.c_str();
+    strncpy(rec.summary, summary.c_str(), sizeof(rec.summary) - 1);
+    rec.summary[sizeof(rec.summary) - 1] = '\0';
 
     return rec;
 }
