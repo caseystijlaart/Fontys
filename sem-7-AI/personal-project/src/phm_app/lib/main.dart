@@ -8,6 +8,7 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:flutter_timezone/flutter_timezone.dart';
 import 'package:timezone/data/latest_all.dart' as tz_data;
 import 'package:timezone/timezone.dart' as tz;
 
@@ -179,6 +180,12 @@ ThemeData buildAppTheme(TargetPlatform platform) {
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   tz_data.initializeTimeZones();
+  try {
+    final localTz = await FlutterTimezone.getLocalTimezone();
+    tz.setLocalLocation(tz.getLocation(localTz));
+  } catch (_) {
+    // Fall back to UTC if timezone detection fails.
+  }
   await Supabase.initialize(url: supabaseUrl, anonKey: supabaseAnonKey);
   await AppSettings.load();
   await NotificationService.init();
