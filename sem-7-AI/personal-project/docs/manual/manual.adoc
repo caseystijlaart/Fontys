@@ -1,7 +1,8 @@
 = PlantHealthMonitor : Manual
 :title-page: true
 :author: Casey Stijlaart
-:docdatetime: 2026-06-03
+:docdatetime: datetime (ISO)
+:sectnums: 
 :doctype: report
 :toc:
 :toclevels: 2
