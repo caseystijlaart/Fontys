@@ -2320,7 +2320,7 @@ class _DataPageState extends State<DataPage> {
 
     for (int i = 0; i < filtered.length; i++) {
       final row = filtered[i];
-      loadedTimestamps.add(DateTime.parse(row['timestamp']));
+      loadedTimestamps.add(DateTime.parse(row['timestamp']).toLocal());
       for (final m in selectedMetrics) {
         final value = (row[m] ?? 0).toDouble().clamp(0.0, 100.0);
         temp.putIfAbsent(m, () => []);
@@ -2364,7 +2364,7 @@ class _DataPageState extends State<DataPage> {
   }
 
   String _fmtTimestamp(String ts) {
-    final t = DateTime.parse(ts);
+    final t = DateTime.parse(ts).toLocal();
     return "${t.day.toString().padLeft(2, '0')}/${t.month.toString().padLeft(2, '0')} "
         "${t.hour.toString().padLeft(2, '0')}:${t.minute.toString().padLeft(2, '0')}";
   }
@@ -2743,7 +2743,7 @@ class _DataTablePageState extends State<DataTablePage> {
   }
 
   String _fmtTimestamp(String ts) {
-    final t = DateTime.parse(ts);
+    final t = DateTime.parse(ts).toLocal();
     return "${t.day.toString().padLeft(2, '0')}/${t.month.toString().padLeft(2, '0')} "
         "${t.hour.toString().padLeft(2, '0')}:${t.minute.toString().padLeft(2, '0')}";
   }
