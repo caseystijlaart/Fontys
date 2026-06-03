@@ -441,6 +441,14 @@ Running ML inference on-device rather than in the cloud reduces energy consumpti
 
 The system was designed to offer suggestions rather than commands. Non-alarming language and transparent explanations of how recommendations are derived are essential to prevent over-reliance and user anxiety. The psychological impact assessment identified a risk that users might reduce their own observational engagement with their plants if they defer entirely to the system. The recommendation engine was therefore designed to provide context (sensor values and preference bands) alongside each suggestion, encouraging informed decision-making rather than passive compliance.
 
+=== EU AI Act
+
+Because the system uses a machine learning model, it falls within the scope of the EU AI Act. The model is lightweight and low-risk in nature, but must be considered under the Act regardless. A separate document covering the EU AI Act assessment for this project is provided alongside this report.
+
+=== Dataset Sourcing
+
+The training dataset is synthetic and self-generated, with generation scripts included under `datasets/`. It is released under the MIT licence. For the current prototype this is sufficient, but as real sensor data accumulates from deployed devices over time, the models can be retrained on actual plant data — expected to produce more accurate and generalisable predictions than any synthetic dataset.
+
 === AI Augmentation
 
 AI tools were used throughout the project in a supporting role:
