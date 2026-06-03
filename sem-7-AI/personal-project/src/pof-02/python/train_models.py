@@ -26,10 +26,11 @@ BASE_FEATURES = [
     "dry_duration", "temp_now", "humidity_now", "light_now",
 ]
 TIME_FEATURES = ["hour_sin", "hour_cos", "dow_sin", "dow_cos"]
-FEATURES      = BASE_FEATURES + TIME_FEATURES
+FEATURES      = BASE_FEATURES + TIME_FEATURES + ["soil_x_slope"]
 
 df = pd.read_csv(DATA_FILE)
 df["timestamp"] = pd.to_datetime(df["timestamp_iso"], utc=True)
+df["soil_x_slope"] = df["soil_now"] * df["moisture_slope"]
 
 df["hour_sin"] = np.sin(2 * np.pi * df["hour_of_day"] / 24.0)
 df["hour_cos"] = np.cos(2 * np.pi * df["hour_of_day"] / 24.0)
@@ -50,9 +51,23 @@ X_train_scaled  = scaler.fit_transform(X_train)
 X_test_scaled   = scaler.transform(X_test)
 
 # ── Classifier ────────────────────────────────────────────────────────────────
+# Partially oversample minority classes so the model sees enough high-stress
+# examples without crying wolf on healthy plants.
+# Target: each class gets at least 15% of the majority class count.
+_cls_counts  = y_cls_train.value_counts()
+_target      = int(_cls_counts.max() * 0.15)
+_over_frames = [train_df]
+for _cls, _count in _cls_counts.items():
+    if _count < _target:
+        _over_frames.append(train_df[y_cls_train == _cls].sample(
+            n=_target - _count, replace=True, random_state=42))
+_train_balanced = pd.concat(_over_frames).sample(frac=1, random_state=42)
+X_train_bal = scaler.transform(_train_balanced[FEATURES])
+y_train_bal  = _train_balanced["risk"]
+
 print("Training classifier MLP...")
 mlp_cls = MLPClassifier(hidden_layer_sizes=(12,), random_state=7, max_iter=600)
-mlp_cls.fit(X_train_scaled, y_cls_train)
+mlp_cls.fit(X_train_bal, y_train_bal)
 print("=== Classifier MLP ===")
 print(classification_report(y_cls_test, mlp_cls.predict(X_test_scaled), digits=3))
 
@@ -111,7 +126,7 @@ export = {
     },
 }
 OUT_JSON.write_text(json.dumps(export, indent=2), encoding="utf-8")
-print(f"\nSaved model JSON → {OUT_JSON}")
+print(f"\nSaved model JSON -> {OUT_JSON}")
 
 # ── Write ModelExport.hpp ─────────────────────────────────────────────────────
 
@@ -194,4 +209,4 @@ static constexpr float                              kRegB2 = {reg_B2:.8f}f;
 
 OUT_HPP.resolve().parent.mkdir(parents=True, exist_ok=True)
 OUT_HPP.write_text(hpp, encoding="utf-8")
-print(f"Wrote ModelExport.hpp → {OUT_HPP.resolve()}")
+print(f"Wrote ModelExport.hpp -> {OUT_HPP.resolve()}")

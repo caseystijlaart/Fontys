@@ -42,7 +42,7 @@ float PredictiveIrrigationModel::PredictMinutesUntilWatering(
 
     // Training used log1p(minutes) as target, so recover with expm1
     const float minutes = std::expm1(std::max(0.0f, logMinutes));
-    return std::clamp(minutes, 0.0f, 7.0f * 24.0f * 60.0f);
+    return std::clamp(minutes, 0.0f, 15.0f * 24.0f * 60.0f);
 }
 
 } // namespace pof02

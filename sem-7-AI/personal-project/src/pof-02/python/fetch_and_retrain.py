@@ -50,6 +50,7 @@ FEATURES = [
     "soil_now", "moisture_mean", "moisture_delta", "moisture_slope",
     "dry_duration", "temp_now", "humidity_now", "light_now",
     "hour_sin", "hour_cos", "dow_sin", "dow_cos",
+    "soil_x_slope",
 ]
 
 # ── Resolve API key ───────────────────────────────────────────────────────────
@@ -335,6 +336,7 @@ def main() -> None:
     for label, group in raw.groupby("plant_label"):
         print(f"\nProcessing plant: {label}  ({len(group)} rows)")
         eng     = engineer_features(group)
+        eng["soil_x_slope"] = eng["soil_now"] * eng["moisture_slope"]
         watered = detect_watering_events(eng)
         labelled = compute_labels(eng, watered)
         real_frames.append(labelled)

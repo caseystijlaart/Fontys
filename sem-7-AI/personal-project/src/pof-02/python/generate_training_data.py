@@ -19,9 +19,9 @@ OUT_FILE = OUT_DIR / "pof02_synthetic.csv"
 
 rng = np.random.default_rng(42)
 
-STEP_MINUTES  = 10
-SEQ_STEPS     = 300          # 50 hours per sequence — long enough to see threshold crossings
-NUM_SEQUENCES = 150
+STEP_MINUTES  = 180          # matches the real device's 3-hour sampling interval
+SEQ_STEPS     = 120          # 15 days per sequence — covers realistic indoor-plant drying cycles
+NUM_SEQUENCES = 200
 WATER_THRESHOLD = 33.0       # must match PlantRuleProfile::soilMoistureThresholds.midMin
 
 base_start = datetime(2026, 1, 1, 6, 0, tzinfo=timezone.utc)
@@ -34,7 +34,7 @@ def clip01(x: float) -> float:
 rows = []
 
 for seq in range(NUM_SEQUENCES):
-    soil = rng.uniform(35, 75)
+    soil = rng.uniform(56, 88)   # start above midMax so sequences spend time in healthy range
     prev_soil = soil
 
     plant_sensitivity   = rng.uniform(0.8, 1.2)
@@ -69,10 +69,12 @@ for seq in range(NUM_SEQUENCES):
 
         evap_effect = 0.45 * temp_factor + 0.30 * humidity_factor + 0.25 * light_factor
 
-        watering_boost = rng.uniform(8, 16) if step == watering_event_step else 0.0
-        random_drift   = rng.normal(0, 0.8)
+        # Real indoor plants lose ~0.3–1.5 % soil moisture per 3-hour interval.
+        # A watering event refills by 20–40 percentage points in one step.
+        watering_boost = rng.uniform(20, 40) if step == watering_event_step else 0.0
+        random_drift   = rng.normal(0, 0.4)
 
-        soil_change = -plant_sensitivity * (0.8 + 2.8 * evap_effect) + watering_boost + random_drift
+        soil_change = -plant_sensitivity * (0.42 + 1.65 * evap_effect) + watering_boost + random_drift
         soil = np.clip(soil + soil_change, 5, 95)
 
         soil_window.append(soil)
@@ -90,7 +92,7 @@ for seq in range(NUM_SEQUENCES):
 
         dry_duration = dry_steps * STEP_MINUTES / 60.0
 
-        low_soil              = clip01((45 - soil) / 35)
+        low_soil              = clip01((55 - soil) / 35)  # 55 = midMax, matches PlantRuleProfile
         drying_trend          = clip01((-moisture_slope) / 4.0)
         dryness_accum         = clip01(dry_duration / 3.0)
         soil_drying_interaction = low_soil * drying_trend
@@ -122,6 +124,7 @@ for seq in range(NUM_SEQUENCES):
             "moisture_mean":   round(float(moisture_mean), 3),
             "moisture_delta":  round(float(moisture_delta), 3),
             "moisture_slope":  round(float(moisture_slope), 3),
+            "soil_x_slope":    round(float(soil) * float(moisture_slope), 3),
             "dry_duration":    round(float(dry_duration), 3),
             "temp_now":        round(float(temp), 3),
             "humidity_now":    round(float(humidity), 3),

@@ -27,7 +27,7 @@ struct SensorSnapshot {
 };
 
 struct FeatureVector {
-    static constexpr std::size_t kCount = 12;
+    static constexpr std::size_t kCount = 13;
     std::array<float, kCount> values{};
 };
 

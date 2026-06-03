@@ -69,6 +69,11 @@ FeatureVector FeatureEngineering::Build(const SensorHistory& history) {
     const int hour = utc ? utc->tm_hour : 12;
     const int dow = utc ? utc->tm_wday : 0;
 
+    // soil_x_slope: steep downward trend on already-dry soil is the strongest
+    // signal for high stress — pre-computing it helps the small MLP distinguish
+    // class 2 from class 1 without needing extra hidden units.
+    const float soilXSlope = latest.soilMoisturePct * moistureSlope;
+
     out.values = {
         latest.soilMoisturePct,
         moistureMean,
@@ -82,6 +87,7 @@ FeatureVector FeatureEngineering::Build(const SensorHistory& history) {
         static_cast<float>(std::cos(2.0 * kPi * hour / 24.0)),
         static_cast<float>(std::sin(2.0 * kPi * dow / 7.0)),
         static_cast<float>(std::cos(2.0 * kPi * dow / 7.0)),
+        soilXSlope,
     };
 
     return out;
