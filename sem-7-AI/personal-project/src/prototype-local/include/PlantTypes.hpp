@@ -72,7 +72,8 @@ struct PlantRuleProfile {
     std::string plantName = "unnamed";
     std::string deviceId = "unknown-device";
     std::string deviceName = "unknown";
-    MetricThresholds soilMoistureThresholds{35.0f, 40.0f, 60.0f, 65.0f};
+    // Tuned for airy/chunky soil mixes: moisture drops slower and sensor reads lower.
+    MetricThresholds soilMoistureThresholds{28.0f, 33.0f, 55.0f, 60.0f};
     MetricThresholds temperatureThresholds{16.0f, 18.0f, 26.0f, 28.0f};
     MetricThresholds humidityThresholds{45.0f, 50.0f, 70.0f, 75.0f};
     MetricThresholds lightThresholds{20.0f, 25.0f, 65.0f, 70.0f};
