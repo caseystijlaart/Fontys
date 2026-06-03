@@ -1145,6 +1145,12 @@ class _DashboardState extends State<Dashboard> {
   double? _humidityPct;
   double? _lightPct;
 
+  // Plant preferences (for band indicators in sensor tiles)
+  String _soilPref     = 'mid';
+  String _tempPref     = 'mid';
+  String _humidityPref = 'mid';
+  String _lightPref    = 'mid';
+
   Color _statusColor = AppColors.surface;
   bool _loading = false;
   RealtimeChannel? _realtimeChannel;
@@ -1241,7 +1247,7 @@ class _DashboardState extends State<Dashboard> {
 
   Future<void> _loadAll() async {
     setState(() => _loading = true);
-    await Future.wait([loadPlants(), loadLatestStatus()]);
+    await Future.wait([loadPlants(), loadLatestStatus(), _loadPreferences()]);
     if (mounted) setState(() => _loading = false);
   }
 
@@ -1252,6 +1258,29 @@ class _DashboardState extends State<Dashboard> {
     setState(() {
       plants = list;
       if (!plants.contains(selectedPlant)) selectedPlant = null;
+    });
+  }
+
+  static String _normPref(dynamic v) => switch (v) {
+    'pLow'  => 'low',
+    'pHigh' => 'high',
+    _       => 'mid',
+  };
+
+  Future<void> _loadPreferences() async {
+    if (selectedPlant == null) return;
+    final res = await supabase
+        .from('plant_settings')
+        .select('soil_preference, temperature_preference, humidity_preference, light_preference')
+        .eq('plant_label', selectedPlant!)
+        .limit(1);
+    if (res.isEmpty || !mounted) return;
+    final row = res[0];
+    setState(() {
+      _soilPref     = _normPref(row['soil_preference']);
+      _tempPref     = _normPref(row['temperature_preference']);
+      _humidityPref = _normPref(row['humidity_preference']);
+      _lightPref    = _normPref(row['light_preference']);
     });
   }
 
@@ -1414,11 +1443,34 @@ class _DashboardState extends State<Dashboard> {
       onChanged: (v) {
         setState(() => selectedPlant = v);
         loadLatestStatus();
+        _loadPreferences();
       },
     );
   }
 
-  Widget _sensorTile(String lbl, String? value, String unit, IconData icon, Color color) {
+  Widget _sensorTile(String lbl, String? value, String unit, IconData icon, Color color,
+      {String band = '', String pref = ''}) {
+    Widget? bandBadge;
+    if (band.isNotEmpty && value != null) {
+      final matches = band == pref;
+      final badgeColor = matches
+          ? AppColors.textLow
+          : band == 'high'
+              ? AppColors.moderate
+              : const Color(0xFF60A5FA);
+      final badgeLabel = band.toUpperCase();
+      bandBadge = Container(
+        padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+        decoration: BoxDecoration(
+          color: badgeColor.withAlpha(30),
+          borderRadius: BorderRadius.circular(4),
+          border: Border.all(color: badgeColor.withAlpha(70), width: 0.5),
+        ),
+        child: Text(badgeLabel,
+            style: GoogleFonts.outfit(fontSize: 10, color: badgeColor, fontWeight: FontWeight.w600, letterSpacing: 0.6)),
+      );
+    }
+
     return Container(
       padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
@@ -1433,6 +1485,7 @@ class _DashboardState extends State<Dashboard> {
             Icon(icon, size: 13, color: color),
             const SizedBox(width: 5),
             Text(lbl, style: GoogleFonts.outfit(fontSize: 11, color: AppColors.textLow, letterSpacing: 0.5)),
+            if (bandBadge != null) ...[const Spacer(), bandBadge],
           ]),
           const SizedBox(height: 8),
           value == null
@@ -1453,7 +1506,20 @@ class _DashboardState extends State<Dashboard> {
     );
   }
 
+  // Returns 'low', 'mid', or 'high' for a value given ESP32 MetricThresholds.
+  static String _valueBand(double? v, double lowMax, double midMin, double midMax, double highMin) {
+    if (v == null) return '';
+    if (v <= lowMax) return 'low';
+    if (v >= highMin) return 'high';
+    return 'mid'; // includes transition zones
+  }
+
   Widget buildSensorGrid() {
+    final soilBand     = _valueBand(_soilPct,     28, 33, 55, 60);
+    final tempBand     = _valueBand(_tempC,        16, 18, 26, 28);
+    final humidityBand = _valueBand(_humidityPct,  45, 50, 70, 75);
+    final lightBand    = _valueBand(_lightPct,     20, 25, 65, 70);
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -1463,15 +1529,15 @@ class _DashboardState extends State<Dashboard> {
         ),
         const SizedBox(height: 12),
         Row(children: [
-          Expanded(child: _sensorTile("SOIL", _soilPct?.toStringAsFixed(1), "%", Icons.water_drop_outlined, AppColors.accent)),
+          Expanded(child: _sensorTile("SOIL", _soilPct?.toStringAsFixed(1), "%", Icons.water_drop_outlined, AppColors.accent, band: soilBand, pref: _soilPref)),
           const SizedBox(width: 10),
-          Expanded(child: _sensorTile("TEMP", _tempC?.toStringAsFixed(1), "°C", Icons.thermostat_outlined, AppColors.high)),
+          Expanded(child: _sensorTile("TEMP", _tempC?.toStringAsFixed(1), "°C", Icons.thermostat_outlined, AppColors.high, band: tempBand, pref: _tempPref)),
         ]),
         const SizedBox(height: 10),
         Row(children: [
-          Expanded(child: _sensorTile("HUMIDITY", _humidityPct?.toStringAsFixed(1), "%", Icons.water_outlined, const Color(0xFF60A5FA))),
+          Expanded(child: _sensorTile("HUMIDITY", _humidityPct?.toStringAsFixed(1), "%", Icons.water_outlined, const Color(0xFF60A5FA), band: humidityBand, pref: _humidityPref)),
           const SizedBox(width: 10),
-          Expanded(child: _sensorTile("LIGHT", _lightPct?.toStringAsFixed(1), "%", Icons.light_mode_outlined, const Color(0xFFFBBF24))),
+          Expanded(child: _sensorTile("LIGHT", _lightPct?.toStringAsFixed(1), "%", Icons.light_mode_outlined, const Color(0xFFFBBF24), band: lightBand, pref: _lightPref)),
         ]),
       ],
     );
