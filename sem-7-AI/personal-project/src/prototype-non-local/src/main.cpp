@@ -3,6 +3,7 @@
 #include <WiFiClientSecure.h>
 #include <HTTPClient.h>
 #include <LittleFS.h>
+#include <ArduinoOTA.h>
 
 #include "MonitoringSystem.hpp"
 #include "FileStorageService.hpp"
@@ -242,6 +243,11 @@ void setup()
 
     if (WiFi.status() == WL_CONNECTED)
     {
+        ArduinoOTA.setHostname(DEVICE_NAME);
+        ArduinoOTA.setPassword(OTA_PASSWORD);
+        ArduinoOTA.begin();
+        Serial.println(F("OTA ready"));
+
         timeService.SyncTimeWithNtp(10000);
         const std::int64_t nowUnix = timeService.GetCurrentUnixTimeUtc();
         if (nowUnix > 0)
@@ -281,6 +287,8 @@ void setup()
 
 void loop()
 {
+    ArduinoOTA.handle();
+
     const unsigned long now = millis();
     if (now - lastRun < kIntervalMs)
         return;
