@@ -1,0 +1,113 @@
+= Collected Peer Feedback : Casey Stijlaart
+:title-page: true
+:author: Casey Stijlaart
+:doctype: report
+:toc:
+:toclevels: 2
+:pdf-page-size: A4
+:pdf-page-layout: portrait
+
+<<<
+
+== Overview
+
+This document collects all peer feedback received by Casey Stijlaart during the FitPhone group project (Minor AI for Society).
+Feedback was provided by six team members: Laelie, Arthur, Thomas, Stijn, Jeffrey, and Trang.
+Each reviewer assessed four categories on a scale of 1 to 10, followed by qualitative comments on strengths and areas for improvement.
+
+=== Score Summary
+
+[cols="2,1,1,1,1", options="header"]
+|===
+| Reviewer | Contribution | Collaboration | Responsibility | Initiative
+| Laelie   | 8            | 8             | 8              | 8
+| Arthur   | 9            | 7             | 8              | 7
+| Thomas   | 7            | 8             | 8              | 7
+| Stijn    | 8            | 8             | 7              | 7
+| Jeffrey  | 8.5          | 8.5           | 8              | 8.5
+| Trang    | 9            | 9             | 8              | 8
+|===
+
+<<<
+
+== Feedback per Reviewer
+
+=== Laelie
+
+*Scores:* Contribution: 8 | Collaboration: 8 | Responsibility: 8 | Initiative: 8
+
+*Strengths:*
+Denkt actief mee, neemt initiatief bij nieuwe ideeën.
+Je neemt ook veel initiatief door steeds de presentaties voor de meetings te maken, te presenteren en notities bij te houden voor de groep.
+Dat helpt echt veel voor het overzicht en de samenwerking.
+
+*Areas for improvement:*
+Mag iets vaker hulp vragen en communiceren wanneer ondersteuning nodig is.
+
+'''
+
+=== Arthur
+
+*Scores:* Contribution: 9 | Collaboration: 7 | Responsibility: 8 | Initiative: 7
+
+*Strengths:*
+Je bent vaak aanwezig, staat klaar om te helpen, presenteert wanneer de rest niet kan, neemt notities tijdens meetings en bent communicatief op de momenten wanneer het belangrijk is.
+
+*Areas for improvement:*
+Je bent vaak ziek, maar daar kan je natuurlijk niet zo veel aan doen.
+
+'''
+
+=== Thomas
+
+*Scores:* Contribution: 7 | Collaboration: 8 | Responsibility: 8 | Initiative: 7
+
+*Strengths:*
+Casey is actief betrokken en zorgt dat er meestal wel vaart in het werk blijft zitten.
+Hij pakt dingen snel op en helpt anderen als dat nodig is.
+
+*Areas for improvement:*
+Hij vraagt niet altijd snel om hulp als iets niet lukt.
+Daardoor blijft hij misschien langer zoeken naar een oplossing dan nodig is.
+
+'''
+
+=== Stijn
+
+*Scores:* Contribution: 8 | Collaboration: 8 | Responsibility: 7 | Initiative: 7
+
+*Strengths:*
+Heel sociaal en fijn om mee samen te werken.
+Wilt graag initiatief nemen tijdens meetings en houdt slim de belangrijkste punten bij.
+Weet waar zijn kwaliteiten liggen in zijn kennis.
+
+*Areas for improvement:*
+Hij mag wat vaker hulp vragen wanneer dit nodig is.
+Is ook niet altijd aanwezig, waardoor het kan zijn dat hij wat dingen mist.
+
+'''
+
+=== Jeffrey
+
+*Scores:* Contribution: 8.5 | Collaboration: 8.5 | Responsibility: 8 | Initiative: 8.5
+
+*Strengths:*
+Casey denkt actief mee binnen het project en toont goed initiatief.
+Tijdens klantgesprekken helpt hij goed met het communiceren van ideeën en het bespreken van plannen binnen de groep.
+
+*Areas for improvement:*
+Soms kan er iets duidelijker gecommuniceerd worden over wie welke taken oppakt binnen het project, zodat alles nog beter afgestemd blijft.
+
+'''
+
+=== Trang
+
+*Scores:* Contribution: 9 | Collaboration: 9 | Responsibility: 8 | Initiative: 8
+
+*Strengths:*
+Casey pakt zijn verantwoordelijkheid goed op binnen de groep.
+Hij zorgt voor structuur door presentaties voor te bereiden en notities bij te houden, en springt bij als iemand anders iets niet kan overnemen.
+
+*Areas for improvement:*
+Casey mag vaker aangeven wanneer hij ergens mee zit of hulp nodig heeft.
+Nu lijkt hij veel zelf op te lossen, maar meer openheid hierover zou de samenwerking soepeler maken.
