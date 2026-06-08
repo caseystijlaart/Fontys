@@ -1,0 +1,143 @@
+= Peer Feedback Reflection : Minor AI for Society
+:title-page: true
+:author: Casey Stijlaart
+:docdatetime: datetime (ISO)
+:doctype: report
+:toc:
+:toclevels: 3
+:pdf-page-size: A4
+:pdf-page-layout: portrait
+
+<<<
+
+== Purpose of Peer Feedback
+
+Within the FitPhone group project, a peer feedback round was conducted at the end of the semester.
+Each team member assessed all other members using a structured form covering four categories: contribution to the project, collaboration and communication, responsibility and reliability, and effort and initiative.
+Each category was scored on a scale of 1 to 10 and accompanied by a qualitative section for strengths and improvement points.
+
+The reason peer feedback is conducted is that it provides a perspective that neither self-reflection nor teacher assessment alone can offer.
+Peers observe your day-to-day behavior in the group, how you communicate under pressure, whether you follow through on tasks, and how you contribute to the team dynamic.
+This makes peer feedback especially valuable for identifying blind spots, patterns of behavior that you may not notice yourself but that others experience consistently.
+It also reinforces accountability within the team, because knowing that colleagues will reflect on your performance encourages everyone to stay engaged and take their responsibilities seriously.
+Beyond evaluation, peer feedback is a learning tool. It provides structured input that can be used to grow both as a professional and as a team member.
+
+== Received Feedback
+
+The feedback I received from my six team members (Laelie, Arthur, Thomas, Stijn, Jeffrey, and Trang) showed a clear and consistent picture across both the scores and the qualitative comments.
+
+=== Scores
+
+The scores I received were generally positive across all categories:
+
+[cols="2,1,1,1,1", options="header"]
+|===
+| Reviewer | Contribution | Collaboration | Responsibility | Initiative
+| Laelie    | 8            | 8             | 8              | 8
+| Arthur    | 9            | 7             | 8              | 7
+| Thomas    | 7            | 8             | 8              | 7
+| Stijn     | 8            | 8             | 7              | 7
+| Jeffrey   | 8.5          | 8.5           | 8              | 8.5
+| Trang     | 9            | 9             | 8              | 8
+|===
+
+The scores are consistently in the 7 to 9 range, with responsibility and collaboration scoring highest overall.
+Contribution and initiative were perceived slightly lower by some reviewers, which aligns with the qualitative feedback discussed below.
+
+<<<
+
+=== Strengths
+
+Multiple team members highlighted the same strengths, which gives these points particular credibility:
+
+* *Taking initiative and structure:* Laelie, Stijn, Jeffrey, and Trang all noted that I regularly prepared presentations for meetings, kept notes for the group, and took on organizational tasks that kept things moving.
+Trang specifically noted: "He ensures structure by preparing presentations and keeping notes, and steps in when someone else cannot take over."
+* *Active involvement and helping others:* Arthur, Thomas, and Jeffrey described me as actively engaged, quick to pick things up, and willing to help when others needed support.
+Arthur noted: "Often present, ready to help, presents when others cannot, communicates at the moments when it matters."
+* *Communication and social skills:* Stijn and Jeffrey highlighted that I am pleasant to work with, socially engaging, and contribute well during client conversations.
+
+=== Improvement Points
+
+The most striking aspect of the received feedback is how consistently a single improvement point was raised.
+Four out of six reviewers independently pointed out the same thing: I do not ask for help quickly enough when I am stuck, and I tend to try to solve things on my own rather than being open about it.
+
+* Laelie: "Can ask for help a bit more often and communicate when support is needed."
+* Thomas: "He does not always ask for help quickly when something is not working out. As a result, he may spend longer searching for a solution than necessary."
+* Stijn: "He could ask for help more often when needed."
+* Trang: "Casey may more often indicate when he is struggling or needs help. He seems to solve a lot on his own, but more openness about this would make the collaboration smoother."
+
+Additionally, Jeffrey noted that task ownership and division could be communicated more clearly within the project to keep everyone aligned.
+Stijn and Arthur briefly mentioned attendance as a point of attention.
+
+<<<
+
+== Key Takeaways
+
+Looking at the feedback as a whole, two main takeaways stand out:
+
+=== Takeaway 1: Asking for Help is a Strength, Not a Weakness
+
+The single most consistent piece of feedback I received was that I tend to work through problems independently without communicating that I am struggling.
+Four different people noticed this from their own perspective, which means it is not a one-off observation but a genuine behavioral pattern.
+
+This is something I can recognize in myself.
+When I encounter a problem, my instinct is to keep working at it until I find the answer myself.
+While this can be a useful quality in terms of persistence, it can also lead to spending more time on a problem than necessary, and it can leave the team unaware of where things stand.
+In a group project, that lack of transparency can create bottlenecks without others even knowing there is something to resolve.
+
+The feedback makes it clear that asking for help is not seen as a weakness by my team members. On the contrary, it would make the collaboration flow more smoothly for everyone.
+
+=== Takeaway 2: Organizational Contributions Are Recognized and Valued
+
+It was reassuring to see that the initiative I took in terms of preparing meetings, keeping notes, and ensuring structure was recognized and appreciated by multiple team members.
+This is something I often do without thinking about it as a deliberate contribution, so seeing it reflected back as something the team found genuinely helpful is valuable.
+It confirms that these kinds of behind-the-scenes organizational tasks have a real impact on group dynamics and project progress.
+
+<<<
+
+== How I Will Use This Feedback
+
+The feedback gives me two clear and actionable directions for personal growth.
+
+=== Communicating More Openly When Stuck
+
+Going forward, I want to work on lowering my threshold for asking for help or flagging when something is taking longer than expected.
+In practice, this means being more proactive about mentioning blockers during stand-ups or check-ins, rather than waiting until I have already spent considerable time on the issue.
+It also means being more transparent about task progress in general, so the team has a clearer picture of where things stand.
+
+This applies not only in group projects but also in professional contexts.
+In a work environment, being able to signal when you need input or are facing uncertainty is an important skill, and it reflects well on someone's self-awareness and communication.
+
+=== Building on Organizational Strengths
+
+The positive feedback around structure and preparation reinforces that this is an area I should continue to invest in.
+Taking ownership of meeting preparation, documentation, and keeping an overview of what needs to happen is something that adds value to a team, and it is something I feel comfortable doing.
+In future projects, I want to formalize this a bit more, for example by explicitly taking on a coordination role at the start of a project rather than doing it informally.
+
+=== Reflection on Giving Feedback
+
+As part of this peer feedback round, I also provided feedback to all six of my team members.
+This was a meaningful exercise in itself.
+It required me to think carefully and honestly about how each person contributed, and to frame observations constructively rather than simply listing positives.
+Writing feedback for others made me more aware of how I wanted to be evaluated myself, and reinforced the value of being specific and grounded rather than vague when sharing observations.
+
+<<<
+
+== Acting on the Feedback
+
+After receiving this feedback, I made a conscious effort during the remainder of the semester to act on the points raised.
+The clearest message from my teammates was that I needed to be more communicative and more openly involved with what was happening in the team, rather than keeping things to myself.
+
+One of the first things I tried to change was being more intentional about checking in with teammates, not just regarding my own work but also theirs.
+By paying more attention to what others were working on and where they might be running into difficulties, I got a better sense of where I could be useful and where collaboration made more sense than working in isolation.
+This also made it easier to speak up about my own progress, since being more involved in the overall picture naturally lowered the threshold for raising a concern or asking a question.
+
+These were not dramatic changes, but gradual shifts in how I engaged with the team day to day, and they reflected a genuine attempt to put the feedback into practice rather than simply noting it and moving on.
+
+== Conclusion
+
+The peer feedback round was a valuable moment of reflection, both in terms of what I learned about myself and in terms of understanding the team dynamic throughout the semester.
+The consistent nature of the improvement points, especially around asking for help, gives me something concrete to work on.
+The recognition of my strengths in initiative and structure gives me confidence that my contributions were visible and meaningful.
+
+Overall, I take this feedback seriously and intend to carry the lessons from it forward, both in the remainder of this minor and in my future professional development.
