@@ -34,4 +34,8 @@ include::future-scenarios/future-scenarios.adoc[]
 
 include::impact-reflection/impact-reflection.adoc[]
 
+<<<
+
+include::references.adoc[]
+
 :leveloffset: -1

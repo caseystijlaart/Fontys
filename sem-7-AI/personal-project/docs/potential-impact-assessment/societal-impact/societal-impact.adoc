@@ -6,11 +6,11 @@ include::privacy.adoc[]
 
 include::data.adoc[]
 
+<<<
+
 include::transparency.adoc[]
 
 include::inclusivity.adoc[]
-
-<<<
     
 include::sustainability.adoc[]
 
