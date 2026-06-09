@@ -1,0 +1,107 @@
+= Personal Reflection: Minor AI for Society
+:title-page: true
+:author: Casey Stijlaart
+:docdatetime: datetime (ISO)
+:doctype: report
+:toc:
+:toclevels: 3
+:pdf-page-size: A4
+:pdf-page-layout: portrait
+
+== Why AI for Society?
+
+=== The Decision
+
+The choice for the AI for Society minor was not made on a whim.
+When deciding to return to college after having been on medical leave since June 2024, I wanted to get back and finish my degree.
+In all honesty, I did not need to take another minor, as I had already completed one.
+Yet I thought that rather than diving straight into a graduation internship, it would be wiser to get back into the flow of learning and studying by taking another minor first.
+The question was: which one?
+
+=== The Motivation
+
+While there were several interesting options, the AI for Society minor stood out for a few reasons.
+A big thematic reason was that AI is not just a technical field; it is increasingly shaping how we interact with technology and the world around us.
+To put it plainly, I wanted to understand how AI can be designed and used in a way that is meaningful and beneficial for people, rather than just being a technical capability.
+The idea of exploring the intersection of AI and society felt like a natural extension of my background in embedded software engineering, and it promised to open up new perspectives on how technology can be integrated into everyday life in a more intuitive and human-centered way.
+
+As an embedded software engineering student, it is easy to get comfortable in the familiar: proven tools, known patterns, and hardware that behaves the way it is supposed to.
+But staying in that comfort zone felt limiting.
+The world is not standing still, and neither is the field of technology.
+AI is not just another layer on top of existing systems; it is fundamentally changing how those systems are designed, what they can do, and how people relate to them.
+
+There was also a personal motivation tied to a broader shift in how technology is experienced.
+Screens and dashboards have dominated interfaces for decades, but AI opens the door to something more tangible and ambient: technology that communicates through context, environment, and subtle feedback rather than through explicit displays.
+That idea of shifting from screens to something more embedded in everyday life was one of the main reasons this minor felt right.
+
+<<<
+
+== What I Learned
+
+=== A Shift in Perspective
+
+Coming into the minor, I already partially understood AI as a technical capability; machine learning models, sensor data, classifications.
+What I did not fully grasp was the extent to which AI can shape the relationship between people and the systems they interact with.
+
+By most people, AI is seen as a software-based tool: something that helps with writing, brainstorming, or learning about new topics.
+Most people are not aware of how much more AI can be than just a software layer.
+At the start of the semester, I was one of those people.
+While I already knew that AI could be used in embedded systems, I did not fully grasp how much it could influence the design and functionality of such systems, or how it could impact human values and interactions with technology.
+
+As an embedded software engineering student, I tend to stick to what I know works.
+It took conversations with peers and consultants throughout the semester to make me aware of how AI could be used in other ways, and how those choices could influence both the design of a system and the people who use it.
+
+=== From Data to Meaning
+
+Working on the plant monitoring system made this concrete.
+Raw sensor values are near useless to most people.
+A soil moisture reading of 38% tells a casual plant owner nothing, they have no idea what to do with it, and they do not know how to interpret it.
+But when an AI layer interprets that data and communicates it through something as intuitive as a traffic light, green means healthy, red means attention needed, the gap between data and understanding disappears.
+No screen required, no manual to read.
+Just like with a traffic light: red means stop, green means go, and yellow means slow down.
+This is a very intuitive way to communicate information without the need for a screen or complex dashboard.
+
+This realization led to a broader understanding: embedded AI systems may increasingly operate through ambient and context-aware interactions integrated into everyday life, forming a bridge between people, technology, and their environment.
+
+<<<
+    
+=== Practical Knowledge
+
+Beyond that conceptual shift, the semester built practical knowledge:
+
+* How ML models are trained, validated, and revised when they underperform
+* How dataset structure and feature engineering directly shape AI behavior
+* Why a single-feature model is brittle and how multi-feature design improves robustness
+* Which tools are appropriate for what purpose, from TensorFlow Lite on microcontrollers to Python-based training pipelines
+* How to evaluate AI not just technically, but in terms of human values: transparency, inclusivity, privacy, and sustainability
+
+The project ultimately highlighted the importance of flexibility and adaptability during the development process.
+Many aspects of the final system emerged through experimentation, reflection, technical limitations, discussions, and unforeseen challenges encountered throughout the semester.
+
+=== The Core Lesson
+
+The most important lesson was not any single technique.
+It was learning to ask a different question: not just "does the model work?" but "does the model mean something to the person using it?"
+
+Using AI within an embedded system is valuable on its own, but making that AI meaningful and understandable to the people who interact with it takes it to another level.
+It demonstrates how AI and technology can help people become more connected to their environment and more aware of it, rather than increasingly disconnected from it.
+
+<<<
+
+== What Comes Next
+
+=== Graduation Internship at Mindlabs
+
+The graduation internship at Mindlabs in Tilburg, working on the Holobox project, is a direct continuation of what this minor made visible.
+Mindlabs works at the intersection of technology, creativity, and society, exactly the space this minor pointed toward.
+The Holobox project specifically is the kind of tangible, spatial, and human-centered technology that moves away from flat screens toward something more experiential.
+
+=== Applying What I Learned
+
+The knowledge from this semester feeds directly into that work.
+Understanding how AI can be integrated meaningfully into embedded systems, how it can bridge data and human understanding, and how it should be designed with societal impact in mind are all directly applicable.
+
+The minor did not just teach tools and techniques.
+It shifted how I think about what AI is for, not a replacement for human judgment, but an extension of it.
+One that can make the world around us more legible, more responsive, and more connected.
+That is the lens I will carry into the graduation project and beyond.
