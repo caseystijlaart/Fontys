@@ -1,28 +1,28 @@
-= PlantHealthMonitor — iOS Installation (Sideloady)
+= PlantHealthMonitor — Installation (iOS via Sideloadly, Windows)
 :author: Casey Stijlaart
 :doctype: article
 
-Sideloady is a free Windows tool that installs IPA files onto an iOS device without a paid Apple Developer account.
+Sideloadly is a free Windows tool that installs IPA files onto an iOS device without a paid Apple Developer account.
 
-== Requirements
+== iOS Requirements
 
 * Windows 10 or later.
 * iTunes installed from https://www.apple.com/itunes/[Apple's website] — *not* the Microsoft Store version.
 * iCloud for Windows installed.
 * Your iPhone or iPad connected via USB, screen unlocked, and device trusted on the PC.
 
-== Steps
+== iOS Steps
 
-. Download and install https://sideloadly.io/[Sideloady] on your Windows machine.
-. Open Sideloady.
+. Download and install https://sideloadly.io/[Sideloadly] on your Windows machine.
+. Open Sideloadly.
 . In the *Apple Account* field, enter your Apple ID and password.
 +
-NOTE: Sideloady uses your Apple ID only to sign the app locally. It is recommended to use a secondary Apple ID rather than your primary account.
-. Drag and drop `phm_app_<version>.ipa` onto the Sideloady window, or click the IPA field and browse to the file.
+NOTE: Sideloadly uses your Apple ID only to sign the app locally. It is recommended to use a secondary Apple ID rather than your primary account.
+. Drag and drop `phm_app_<version>.ipa` onto the Sideloadly window, or click the IPA field and browse to the file.
 . Make sure your device appears in the *Device* dropdown. If it does not, reconnect the USB cable and unlock the device.
 . Click *Start*.
 . If prompted on your iPhone/iPad with *"Trust This Computer"*, tap *Trust*.
-. Wait for Sideloady to finish. A success message will appear in the log panel.
+. Wait for Sideloadly to finish. A success message will appear in the log panel.
 . On your iOS device go to *Settings → General → VPN & Device Management*, find your Apple ID under *Developer App*, and tap *Trust*.
 . Open PlantHealthMonitor from your home screen.
 

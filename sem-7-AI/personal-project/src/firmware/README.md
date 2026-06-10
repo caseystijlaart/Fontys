@@ -137,8 +137,6 @@ The default ESP32 partition (1.25 MB) is too small for BLE + TinyML + TLS togeth
 |---|---|---|
 | `esp32_provisioning` | `huge_app.csv` (built-in) | 3.0 MB |
 
-The default ESP32 partition (1.25 MB) is too small for BLE + TinyML + TLS combined.
-
 ---
 
 ## Key constants
@@ -148,5 +146,5 @@ The default ESP32 partition (1.25 MB) is too small for BLE + TinyML + TLS combin
 | `kIntervalMs` | 3 hours | Regular monitoring cycle |
 | `kCommandCheckMs` | 5 seconds | Command flag poll interval |
 | `kHistorySize` | 56 entries | Local sensor history ring buffer |
-| `kMaxNoPlantTicks` | 30 ticks | Grace period before reset (30 × 5 s = 2.5min) |
+| `kMaxNoPlantTicks` | 30 ticks | Grace period before reset (30 × 5 s = 2.5 min) |
 | `_kRegistrationTimeout` | 90 seconds | Provisioning poll timeout (app side) |

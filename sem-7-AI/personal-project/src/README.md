@@ -44,7 +44,7 @@ ML inference runs fully on the ESP32. An internet connection is only needed to s
 └─────────────────────────────────────────────────────────┘
              ↕ Supabase client + Realtime
 ┌─────────────────────────────────────────────────────────┐
-│  Flutter app (Android)                                  │
+│  Flutter app (Android + iOS)                            │
 │                                                         │
 │  BLE provisioning  →  scan, send WiFi creds to ESP32    │
 │  Dashboard         →  live readings, risk, predictions  │
@@ -64,7 +64,7 @@ ML inference runs fully on the ESP32. An internet connection is only needed to s
 - **Multi-plant support** — each plant has its own device and preference profile
 - **On-demand measurement** — request an immediate sensor reading from the app
 - **Push notifications** — instant alert on risk change; optional daily summary
-- **Cross-platform app** — iOS and Android; BLE provisioning is Android-only, all other features work on both platforms
+- **Cross-platform app** — Android, Windows, and iOS; BLE provisioning works on Android and Windows, all other features work on every platform
 
 ---
 
@@ -86,10 +86,11 @@ firmware/          ESP32 firmware (PlatformIO)
   src/main.cpp     Main application
   platformio.ini   Build environments
   partitions_ota_large.csv  Custom partition table for OTA builds
-app/               Flutter Android app
-  lib/main.dart    Dashboard, settings, notifications
-  lib/provisioning.dart  BLE provisioning + plant setup screens
-  lib/secrets.dart Supabase URL and anon key (gitignored)
+app/
+  android_/        Full Flutter app (Android + Windows; BLE provisioning)
+  ios_only/        Stripped Flutter app for unsigned iOS builds (no BLE)
+    lib/main.dart    Dashboard, settings, notifications
+    lib/secrets.dart Supabase URL and anon key (gitignored)
 supabase/
   migrations.sql   All database schema changes — run in order
 datasets/          Synthetic training data (MIT licence)
@@ -141,12 +142,12 @@ platformio run -e esp32_com3_non_local -t upload
 Requires Flutter 3.x or later.
 
 ```sh
-cd app
+cd app/android_    # or app/ios_only for the stripped iOS build
 flutter pub get
-flutter run        # Android or iOS
+flutter run
 ```
 
-> BLE provisioning (Add Device) is Android-only. On iOS the dashboard, charts, settings, preferences, and notifications all work — devices must be provisioned from an Android device first.
+> BLE provisioning (Add Device) is not available on iOS. On iOS the dashboard, charts, settings, preferences, and notifications all work — devices must be provisioned from an Android (or Windows) device first.
 
 Create `lib/secrets.dart`:
 

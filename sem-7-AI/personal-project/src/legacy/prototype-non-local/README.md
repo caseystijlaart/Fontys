@@ -1,6 +1,6 @@
-# POF-03 — Personalized Plant Monitoring (based on POF-02)
+# Prototype (non-local) — Personalized Plant Monitoring
 
-This folder contains the POF-03 proof of concept, built from `src/pof-02` and extended with personalization + settings-management support while keeping TinyML-ready ESP32 integration.
+This folder contains the non-local prototype, evolved from the POF-03 proof of concept (`src/legacy/pof-03`). It keeps the personalization + settings-management features and TinyML-ready ESP32 integration, and publishes each monitoring cycle to the cloud over MQTT (HiveMQ) for downstream storage in MongoDB Atlas — see the MQTT logging section below.
 
 ## Goal
 Build a real-time monitoring pipeline:
@@ -9,7 +9,7 @@ Build a real-time monitoring pipeline:
 
 ## C++ modules
 - Sensor layer: moisture, temp/humidity, light from a standard LDR + 10k resistor (0 = dark) with calibration + averaging
-- Classification layer: `kLow  / kOk / kHigh` per environmental factor
+- Classification layer: `kLow / kOk / kHigh` per environmental factor
 - Stress layer: per-factor and combined stress
 - Temporal core: circular history buffer with mean, delta, slope, dry-duration proxies
 - Feature engineering: compact feature vector

@@ -9,7 +9,7 @@ Build a real-time monitoring pipeline:
 
 ## C++ modules
 - Sensor layer: moisture, temp/humidity, light from a standard LDR + 10k resistor (0 = dark) with calibration + averaging
-- Classification layer: `kLow  / kOk / kHigh` per environmental factor
+- Classification layer: `kLow / kOk / kHigh` per environmental factor
 - Stress layer: per-factor and combined stress
 - Temporal core: circular history buffer with mean, delta, slope, dry-duration proxies
 - Feature engineering: compact feature vector
