@@ -2,7 +2,7 @@
 
 The system is composed of several hardware modules.
 The table, <<Used hardware components>>, describes the individual hardware components.
-The diagram, <<Hardware connection>>, shows the connections between the various hardware components, including the GPIO pin assignments used by the firmware.
+The diagram, <<hardware-connection>>, shows the connections between the various hardware components, including the GPIO pin assignments used by the firmware.
 
 [.table]
 .Used hardware components
@@ -17,7 +17,6 @@ The diagram, <<Hardware connection>>, shows the connections between the various 
 | USB power supply | Powers the ESP32 over USB (5 V).
 |===
 
-[.figure]
-[[Hardware connection]]
+[[hardware-connection]]
 .Hardware connection
-image::images/hw-diagram.svg[]
+image::hw-diagram.svg[]

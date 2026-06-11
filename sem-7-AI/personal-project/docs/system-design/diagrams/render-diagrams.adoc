@@ -52,18 +52,16 @@ node "ESP32 DevKit" as ESP {
   component "LittleFS\n(pairing state, history CSV)" as LFS
 }
 
-component "Capacitive soil\nmoisture sensor" as Soil
-component "DHT22\n(temperature + humidity)" as DHT
-component "LDR light sensor\n(10 kΩ pull-down)" as LDR
+component "Soil moisture\nsensor" as Soil
+component "Temperature +\nhumidity sensor" as DHT
+component "Light sensor" as LDR
 
 cloud "Supabase\n(Data Storage)" as SB
 component "Phone\n(mobile app)" as App
-component "USB 5 V\npower supply" as PWR
 
-Soil --> ESP : GPIO 34 (ADC)
-DHT --> ESP : GPIO 4 (digital)
-LDR --> ESP : GPIO 35 (ADC)
-PWR --> ESP : 5 V
+Soil --> ESP
+DHT --> ESP
+LDR --> ESP
 
 ESP <--> SB : WiFi (HTTPS REST)
 App <--> ESP : BLE (provisioning)

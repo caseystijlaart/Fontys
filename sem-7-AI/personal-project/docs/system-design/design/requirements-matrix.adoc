@@ -25,17 +25,14 @@ The requirements matrix provides a consolidated view of all the requirements, sh
 | FR_001 | X |  |  |  |  |  |
 | FR_002 | X |  |  | X |  |  |
 | FR_003 | X |  |  |  |  |  |
-| FR_004 | X |  |  |  |  |  |
-| FR_005 |  | X |  |  |  |  |
+| FR_004 |  | X |  |  |  |  |
+| FR_005 |  | X |  |  | X |  |
 | FR_006 |  | X |  |  |  |  |
-| FR_007 |  | X |  |  | X |  |
-| FR_008 |  | X |  |  |  |  |
-| FR_009 |  |  | X |  |  |  |
-| FR_010 |  |  | X |  |  |  |
-| FR_011 |  |  |  | X |  |  |
-| FR_012 |  |  |  |  | X |  |
-| FR_013 |  |  |  |  | X |  |
-| FR_014 |  |  |  |  |  | X |
-| FR_015 |  |  |  |  |  |  | X
+| FR_007 |  |  | X |  |  |  |
+| FR_008 |  |  |  | X |  |  |
+| FR_009 |  |  |  |  | X |  |
+| FR_010 |  |  |  |  | X |  |
+| FR_011 |  |  |  |  |  | X | X
+| FR_012 |  |  |  |  |  |  | X
 
 |===

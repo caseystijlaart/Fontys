@@ -20,8 +20,6 @@ They reflect the system as realized in firmware v1.1.0.
 | UR_007 | The user should be able to remove a device so it can be re-paired. | UC07
 |===
 
-<<<
-
 == Functional Requirements
 
 .Functional Requirements
@@ -29,24 +27,19 @@ They reflect the system as realized in firmware v1.1.0.
 |===
 | ID | Requirement | Use Case(s)
 
-| FR_001 | The user interface must allow the user to input plant details and preferences when adding a plant. | UC01
-| FR_002 | The data storage must store device registrations, plant profiles, and associated care settings. | UC01, UC04
-| FR_003 | The edge node must support BLE provisioning to receive WiFi credentials and cloud configuration from the user interface. | UC01
-| FR_004 | The edge node must register itself in the data storage after provisioning and persist its pairing state locally. | UC01
-| FR_005 | The sensor array must provide environmental data: soil moisture, temperature, humidity, and light level. | UC02
-| FR_006 | The edge node must read sensor data and derive a feature vector from the recent measurement history. | UC02
-| FR_007 | The edge node must use an on-device ML model to classify plant health and predict the time until watering is needed. | UC02, UC05
-| FR_008 | The edge node must store measurement results locally and send sensor data, predictions, and model metrics to the data storage. | UC02
-| FR_009 | The data storage must provide plant data when requested by the user interface. | UC03
-| FR_010 | The user interface must display current and historical plant data. | UC03
-| FR_011 | The user interface must allow the user to update plant care settings, and the edge node must fetch the updated profile before each scheduled cycle. | UC04
-| FR_012 | The edge node must detect abnormal conditions and generate care recommendations based on sensor data and predictions. | UC05
-| FR_013 | The user interface must notify the user when abnormal conditions are detected. | UC05
-| FR_014 | The edge node must poll the data storage for command flags and run an immediate monitoring cycle when a measurement is requested. | UC06
-| FR_015 | The edge node must perform a full factory reset (clear history, pairing state, cloud registration, and device storage) when removal is requested. | UC07
+| FR_001 | The user interface must allow the user to add a plant with its care preferences. | UC01
+| FR_002 | The data storage must store devices, plant profiles, and care settings. | UC01, UC04
+| FR_003 | The edge node must be configurable through BLE provisioning. | UC01
+| FR_004 | The sensor array must provide environmental data: soil moisture, temperature, humidity, and light level. | UC02
+| FR_005 | The edge node must use an on-device ML model to predict plant health. | UC02, UC05
+| FR_006 | The edge node must store measurement results locally and send them to the data storage. | UC02
+| FR_007 | The user interface must display current and historical plant data. | UC03
+| FR_008 | The user interface must allow the user to update plant care settings, which the edge node applies. | UC04
+| FR_009 | The edge node must detect abnormal conditions and generate care recommendations. | UC05
+| FR_010 | The user interface must notify the user when abnormal conditions are detected. | UC05
+| FR_011 | The edge node must respond to user commands issued through the data storage. | UC06, UC07
+| FR_012 | The edge node must support a factory reset that erases all of its state. | UC07
 |===
-
-<<<
     
 == Non-Functional Requirements
 
