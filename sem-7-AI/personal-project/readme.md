@@ -19,6 +19,9 @@ NOTE: Documents are written in AsciiDoc. Every top-level document has a rendered
 
 | `datasets/`
 | Training/validation datasets, logs, and data documentation
+
+| `media/`
+| Media regarding to the final state of the prototype.
 |===
 
 ## Documentation — recommended order
@@ -47,7 +50,7 @@ Read in the order the documents were produced; this follows the project lifecycl
 Start with `src/README.md` — it explains the full system architecture (ESP32 ↔ Supabase ↔ Flutter) with diagrams. Then:
 
 * `src/firmware/` — ESP32 production firmware (PlatformIO): sensors, TinyML inference, BLE provisioning, Supabase sync. See its `README.md`.
-* `src/model/` — Python ML pipeline: training data, scripts, and logs for the TinyML model.
+* `src/model/` and `src/data/models/` — Python ML pipeline: training data, scripts, and logs for the TinyML model.
 * `src/app/` — Flutter app; `android_/` is the main cross-platform app, `ios_only/` an iOS variant.
 * `src/supabase/` — database/backend mitigations.
 * `src/releases/` — packaged release artifacts (firmware binaries, app builds), each with a README.
