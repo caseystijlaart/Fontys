@@ -20,6 +20,7 @@
 #include "CloudLogger.hpp"
 #include "Certs.hpp"
 #include "ModelExport.hpp"
+#include "StatusLed.hpp"
 
 static constexpr const char *kHistoryFile = "/sensor_history.csv";
 
@@ -33,6 +34,7 @@ constexpr const char *kModelVersion = modelexport::kModelVersion;
 SoilMoistureSensor soilSensor(34, 3500.0f, 1450.0f);
 TempHumiditySensor dhtSensor(4, 22);
 LightSensor lightSensor(35);
+StatusLed statusLed(25, 26, 27); ///< Common-cathode RGB health indicator (R, G, B).
 MLLayer mlLayer(MLBackend::TINYML_TFLM);
 RecommendationEngine recEngine;
 MonitoringSystem monitoringSystem(soilSensor, dhtSensor, lightSensor,
@@ -77,6 +79,7 @@ static void PerformFactoryReset()
 static void RunMonitoringCycle()
 {
     const MonitoringCycleResult result = monitoringSystem.RunCycleDetailed();
+    statusLed.ShowRisk(result.mlResult.risk);
     fileStorage.AppendToHistoryFile(kHistoryFile, result,
                                     gPlantLabel.c_str(), gDeviceId.c_str(),
                                     kHistorySize);
@@ -184,6 +187,8 @@ static void RunProvisioningMode()
 
 void setup()
 {
+    statusLed.Begin();
+
     gDeviceId = NvsStorage::readString("device_id");
     gDeviceName = DeriveDeviceName();
     Log.logf("[Init] Device name: %s", gDeviceName.c_str());
