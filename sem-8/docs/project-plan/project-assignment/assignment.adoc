@@ -1,0 +1,15 @@
+= Assignment
+
+The goal of this internship is to research, design, and build an embedded multi-modal sensing
+system capable of estimating the real-time 3D position, including height, of a person within the
+Holobox interaction space, without the use of cameras.
+
+The assignment includes:
+– Researching and comparing suitable non-camera sensing technologies (e.g. mmWave radar, ultrasonic, IR, UWB) on criteria such as spatial resolution, height discrimination, embedded feasibility, and robustness in a real environment with children
+– Selecting and combining two or more complementary sensors and designing a fusion architecture
+– Implementing a processing pipeline in C/C++ and/or Python on an embedded platform (MCU or Linux SBC) that outputs a reliable position and height-category estimate in real time
+– Exploring the use of lightweight on-device machine learning for height classification or person selection
+– Designing the system output interface so it can be consumed by the Unreal Engine pipeline
+– Documenting the architecture, data flow, and design decisions
+
+Deliverables include a working embedded prototype, a technical research report covering sensor selection and fusion approach, implemented interaction logic (position + height output), and a system architecture document. The system will be designed with multi-person extensibility as a future-facing requirement, though single-person tracking is the focus of this internship.

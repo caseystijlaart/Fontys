@@ -1,0 +1,9 @@
+= Document history
+
+.Document History
+|===
+|Version    |Date       |Status |Author                                 |Description                    |Remarks
+
+| 0.1        |31-08-2026 |First Version  | Casey Stijlaart              | Draft version | -
+
+|===
