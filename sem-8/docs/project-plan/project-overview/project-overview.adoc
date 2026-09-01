@@ -1,0 +1,15 @@
+= Project Overview
+
+== Client
+The client for this project is Mindlabs, a creative technology studio affiliated with Fontys in Tilburg. 
+
+== Motivation
+In the context of the Holobox project, a holographic display installation where a Virtual Human interacts with visitors, there is a need for a sensing system that can determine a person's 3D position in real time. 
+This is particularly important to ensure a proper interaction and engagement with the Virtual Human.
+
+== Target Audience
+The primary target audience for this project is children aged 8-12, who will interact with the Virtual Human in the Holobox installation.
+
+== TRL (Technology Readiness Level)
+The project currently stand at nothing as no start has been made to the given aspect.
+As the project progresses, it aims to advance towards higher TRL levels, such as TRL 5/6, through iterative refinement and testing.

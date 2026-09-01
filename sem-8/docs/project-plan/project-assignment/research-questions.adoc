@@ -1,0 +1,28 @@
+= Research Questions
+
+== Main Research Question
+How can the real-time 3D position and height of a single person inside the Holobox interaction space be reliably estimated using a combination of non-camera sensors, embedded within the Holobox hardware, so that the Virtual Human can respond appropriately?
+
+== Sub-questions
+
+*Technical sub-questions*:
+
+. Which combination of non-camera sensors provides sufficient 3D spatial resolution to distinguish adult and child height categories within a room-scale interactive space?
+. How can sensors be combined and implemented on an embedded platform to produce robust, low-latency position estimates under real-world noise conditions?
+. How can a lightweight ML model be trained and deployed on an edge device to classify person height from fused sensor data with acceptable accuracy?
+. How should the system architecture be designed to support single-person tracking now while remaining extensible to multi-person scenarios?
+. How should the position and height output be structured and exposed so it can be consumed by the
+  Unreal Engine pipeline with acceptable latency and reliability?
+
+*Ethical and legal sub-questions*:
+
+. What is the minimal set of sensor data needed to estimate position and height, and how can the system avoid capturing or storing personally identifiable information, given that the primary visitors are children aged 8-12?
+. What privacy and AVG/GDPR obligations apply to a system that infers physical characteristics (position, height) of children in a public installation, and how should sensor data handling, retention, and processing be designed to comply with them?
+
+*User/Human Interaction sub-questions*:
+
+. What position and height estimation latency is required for the Virtual Human's reaction (e.g. kneeling down for a child) to be perceived by visitors as natural and immediate, rather than delayed or robotic?
+. How should misclassifications (e.g. a child briefly classified as an adult) be handled so they do not produce an interaction that feels wrong or off-putting to the visitor?
+
+Technical sub-questions 1 to 4 are the core research questions identified in the graduation proposal; technical sub-question 5, and the ethical/legal and user/interaction sub-questions, are additional questions derived from the context and assignment scope, and are investigated using the
+DOT-framework research strategies described in xref:research-methods.adoc[Research Methods].

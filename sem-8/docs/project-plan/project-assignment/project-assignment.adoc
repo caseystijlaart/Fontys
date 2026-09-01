@@ -8,6 +8,8 @@ include::project-goal.adoc[]
 
 include::assignment.adoc[]
 
+include::scope-preconditions.adoc[]
+
 include::finished-products.adoc[]
 
 include::research-questions.adoc[]

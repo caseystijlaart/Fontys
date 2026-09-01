@@ -1,0 +1,15 @@
+= Approach
+
+Troughout the project, an agile approach is used to iteratively develop the sensing system, which allows for flexibility and adaptability as the project progresses.
+There is made use of sprints, which are short development cycles that allow for rapid prototyping and testing of the system. 
+Each sprint will be 2 weeks long, with a review and retrospective at the end of each sprint to assess progress and identify areas for improvement. 
+This approach is particularly suitable for the exploratory nature of the sensor research, as it allows for rapid prototyping, testing, and refinement of the system based on feedback and findings.
+
+image::agile[Agile methodology,align="center"]
+
+== Test Approach
+
+To ensure seamless software implentation, testing has been integrated into the development process from the start.
+Testing takes on different forms, each tailored to the specific stage of development and the nature of the component being tested.
+The primary testing methods employed in this project are unit testing, integration testing, and system testing.
+These methods are designed to validate the functionality, performance, and reliability of the sensing system at various levels of granularity.

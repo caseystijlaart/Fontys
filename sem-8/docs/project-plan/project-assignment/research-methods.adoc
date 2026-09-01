@@ -1,0 +1,40 @@
+= Research Methods
+
+In this project, the DOT-framework is used to structure the research and development process.
+The DOT-framework is a structured approach that focuses on various research strategies and methods to build a system.
+The research strategies are field, lab, library, workshop, and showroom.
+
+image::dot-framework.png[The DOT-framework,align="center"]
+
+== Research Methods x Research Questions
+
+Each research question is met with a corresponding research strategy and technique based on the DOT-framework.
+This ensures that every question is answered effectively and efficiently, while providing a clear structure for the research process.
+The strategies and techniques are chosen based on the nature of the question, the available resources, and the desired outcome:
+
+image::methods.png[Research strategies and techniques,align="center"]
+
+For a comprehensive view of how the DOT-framework strategies align with each research question
+(see xref:research-questions.adoc[Research Questions]), consult the table below.
+
+[#methods-questions]
+.Research Methods x Research Questions
+|===
+|Research Question |Research Strategy |Research Technique
+
+|Which combination of non-camera sensors provides sufficient 3D spatial resolution to distinguish adult and child height categories within a room-scale interactive space? |Library, Lab |Available product analysis, literature study, document analysis, and bench experimentation.
+|How can sensors be combined and implemented on an embedded platform to produce robust, low-latency position estimates under real-world noise conditions? |Lab, Field |Prototyping, benchmarking, and in-situ testing under real-world noise conditions.
+|How can a lightweight ML model be trained and deployed on an edge device to classify person height from fused sensor data with acceptable accuracy? |Library, Lab |Literature review, prototyping, model training, and model evaluation.
+|How should the system architecture be designed to support single-person tracking now while remaining extensible to multi-person scenarios? |Library, Workshop |Design pattern research, IT-architecture sketching, and a design review with the company mentor.
+|How should the position and height output be structured and exposed so it can be consumed by the Unreal Engine pipeline with acceptable latency and reliability? |Library, Workshop, Showroom |Document analysis of the existing Unreal Engine pipeline, an interface design workshop, and validation through sprint-review demonstrations.
+|What is the minimal set of sensor data needed to estimate position and height, and how can the system avoid capturing or storing personally identifiable information, given that the primary visitors are children aged 8-12? |Library, Lab, Workshop |Literature study on data minimisation, prototyping to test whether a minimal data set remains accurate enough, and a workshop check with the company mentor on acceptable data use.
+|What privacy and AVG/GDPR obligations apply to a system that infers physical characteristics (position, height) of children in a public installation, and how should sensor data handling, retention, and processing be designed to comply with them? |Library, Workshop |Literature and document study of AVG/GDPR legislation, and an expert consultation to validate the intended data-handling approach.
+|What position and height estimation latency is required for the Virtual Human's reaction (e.g. kneeling down for a child) to be perceived by visitors as natural and immediate, rather than delayed or robotic? |Lab, Field, Showroom |Controlled latency experiments, testing with real users, and stakeholder feedback at sprint-review demonstrations.
+|How should misclassifications (e.g. a child briefly classified as an adult) be handled so they do not produce an interaction that feels wrong or off-putting to the visitor? |Library, Workshop, Showroom |Literature study on interaction error-handling patterns, prototyping of fallback behaviour, and stakeholder feedback at sprint-review demonstrations.
+
+|===
+
+A structured research log is maintained throughout the project to track how each sub-question is
+being answered, and findings are validated in the workshop and showroom moments with the company
+mentor and the Experience Design intern (see
+xref:../project-organization/project-organization.adoc[Project Organization]).

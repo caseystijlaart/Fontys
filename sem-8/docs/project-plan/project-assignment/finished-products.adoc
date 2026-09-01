@@ -1,0 +1,21 @@
+= Finished Products
+
+:diagram-cachedir: .asciidoctor/diagram
+
+[graphviz, project-tree, png]
+....
+digraph ProjectTree {
+  rankdir=TB;
+  node [shape=box, fontname="Helvetica", fontsize=10];
+
+  Project -> Documentation;
+  Project -> Prototype;
+
+  Documentation -> "Project Plan";
+  Documentation -> "System Design Document";
+  Documentation -> "Test Report";
+  Documentation -> "Technical Research Report";
+
+  Prototype -> "Embedded Sensing System";
+}
+....
