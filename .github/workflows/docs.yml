@@ -24,11 +24,11 @@ jobs:
 
       - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.2'
+          ruby-version: '3.2.3'
 
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '20.20.2'
 
       - name: Install system dependencies
         run: |
@@ -40,8 +40,8 @@ jobs:
 
       - name: Install doc toolchain
         run: |
-          gem install --no-document asciidoctor asciidoctor-pdf asciidoctor-diagram
-          npm install -g @mermaid-js/mermaid-cli
+          gem install --no-document asciidoctor:2.0.26 asciidoctor-pdf:2.3.27 asciidoctor-diagram:3.2.1
+          npm install -g @mermaid-js/mermaid-cli@11.17.0
           npx --yes puppeteer browsers install chrome-headless-shell
 
       - name: Build PDFs from AsciiDoc sources
