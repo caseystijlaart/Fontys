@@ -12,6 +12,14 @@ on:
       - 'docs/**/*.yml'
       - 'docs/**/images/**'
   workflow_dispatch:
+    inputs:
+      document:
+        description: >
+          Document to build - must match one of the entries in the DOCS list
+          in this workflow's "Build PDFs" step (e.g. "project-plan").
+          Leave as "all" to build every listed document.
+        type: string
+        default: 'all'
 
 permissions:
   contents: write
@@ -19,6 +27,8 @@ permissions:
 jobs:
   build-pdfs:
     runs-on: ubuntu-latest
+    env:
+      TARGET_DOC: ${{ github.event.inputs.document || 'all' }}
     steps:
       - uses: actions/checkout@v4
 
@@ -46,26 +56,42 @@ jobs:
 
       - name: Build PDFs from AsciiDoc sources
         run: |
-          shopt -s nullglob
+          # Documents built by this pipeline. Add an entry here (matching
+          # docs/<name>/<name>.adoc) whenever a new top-level document is
+          # ready to be built - e.g. add "system-design-document" once that
+          # doc exists.
+          DOCS=(
+            project-plan
+          )
+
+          echo "Requested: $TARGET_DOC"
           echo '{"args": ["--no-sandbox"]}' > /tmp/puppeteer-config.json
           built_any=false
-          for dir in docs/*/; do
-            name=$(basename "$dir")
-            src="${dir}${name}.adoc"
-            if [ -f "$src" ]; then
-              echo "Building $src"
-              asciidoctor-pdf -r asciidoctor-diagram \
-                -a mermaid-puppeteer-config=/tmp/puppeteer-config.json \
-                "$src" -o "${dir}${name}.pdf"
-              built_any=true
+          for name in "${DOCS[@]}"; do
+            if [ "$TARGET_DOC" != "all" ] && [ "$TARGET_DOC" != "$name" ]; then
+              continue
             fi
+            src="docs/$name/$name.adoc"
+            if [ ! -f "$src" ]; then
+              echo "::warning::$src not found, skipping"
+              continue
+            fi
+            echo "Building $src"
+            asciidoctor-pdf -r asciidoctor-diagram \
+              -a mermaid-puppeteer-config=/tmp/puppeteer-config.json \
+              "$src" -o "docs/$name/$name.pdf"
+            built_any=true
           done
+
           if [ "$built_any" = false ]; then
-            echo "No top-level *.adoc documents found under docs/*/ - nothing to build."
+            echo "::error::Nothing built for '$TARGET_DOC' - check it's spelled correctly and listed in DOCS."
+            if [ "$TARGET_DOC" != "all" ]; then
+              exit 1
+            fi
           fi
 
       - name: Commit regenerated PDFs
-        if: github.event_name == 'push'
+        if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "docs: regenerate PDFs from AsciiDoc sources [skip ci]"
