@@ -1,0 +1,87 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  firmware:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: sem-8/src/firmware
+    outputs:
+      coverage: ${{ steps.cov.outputs.pct }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install tooling
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y clang-tidy cppcheck libgtest-dev libgmock-dev
+          pip install --break-system-packages --no-cache-dir gcovr==8.6
+      - name: Configure
+        run: cmake -S . -B build -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DENABLE_COVERAGE=ON
+      - name: Build
+        run: cmake --build build
+      - name: Test
+        run: ctest --test-dir build --output-on-failure
+      - name: clang-tidy
+        run: clang-tidy -p build src/*.cpp
+      - name: cppcheck
+        run: cppcheck --enable=warning,style,performance,portability --error-exitcode=1 --inline-suppr -I include src
+      - name: Coverage
+        id: cov
+        run: |
+          gcovr -r . --object-directory build --filter 'src/example\.cpp' --filter 'include/.*' \
+            --print-summary --json-summary-pretty --json-summary coverage.json
+          pct=$(jq -r '.line_percent' coverage.json)
+          echo "pct=$pct" >> "$GITHUB_OUTPUT"
+
+  pipeline:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: sem-8/src/pipeline
+    outputs:
+      coverage: ${{ steps.cov.outputs.pct }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install tooling
+        run: pip install pytest==9.1.1 ruff==0.16.5 mypy==2.3.1 pytest-cov==7.1.0
+      - name: Ruff
+        run: ruff check .
+      - name: Mypy
+        run: mypy src
+      - name: Coverage
+        id: cov
+        run: |
+          pytest --cov=pipeline --cov-report=term-missing --cov-report=json:coverage.json
+          pct=$(jq -r '.totals.percent_covered' coverage.json)
+          echo "pct=$pct" >> "$GITHUB_OUTPUT"
+
+  badges:
+    needs: [firmware, pipeline]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Generate coverage badges
+        run: |
+          pip install --break-system-packages --no-cache-dir anybadge==1.16.0
+          mkdir -p badges
+          python3 -m anybadge --label='firmware coverage' --value=${{ needs.firmware.outputs.coverage }} \
+            --suffix='%' --value-format='%.1f' --file=badges/firmware-coverage.svg --overwrite \
+            50=red 80=orange 100=green
+          python3 -m anybadge --label='pipeline coverage' --value=${{ needs.pipeline.outputs.coverage }} \
+            --suffix='%' --value-format='%.1f' --file=badges/pipeline-coverage.svg --overwrite \
+            50=red 80=orange 100=green
+      - name: Commit badges
+        if: github.event_name == 'push'
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "ci: update coverage badges [skip ci]"
+          file_pattern: 'badges/*.svg'
