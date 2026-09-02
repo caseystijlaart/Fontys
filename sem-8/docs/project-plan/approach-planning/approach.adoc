@@ -5,7 +5,7 @@ There is made use of sprints, which are short development cycles that allow for 
 Each sprint will be 2 weeks long, with a review and retrospective at the end of each sprint to assess progress and identify areas for improvement. 
 This approach is particularly suitable for the exploratory nature of the sensor research, as it allows for rapid prototyping, testing, and refinement of the system based on feedback and findings.
 
-image::agile[Agile methodology,align="center"]
+image::agile.png[Agile methodology,align="center"]
 
 == Test Approach
 

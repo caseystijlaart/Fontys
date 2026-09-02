@@ -4,10 +4,14 @@
 
 include::team-members.adoc[]
 
+<<<
+
 include::communication.adoc[]
 
 include::test-environment.adoc[]
 
-include::configuration-management.adoc[]
+<<<
+
+include::configuration.adoc[]
 
 :leveloffset: -1

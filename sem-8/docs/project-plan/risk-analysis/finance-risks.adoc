@@ -15,6 +15,8 @@ Planned approach::
 Financial risks::
 * If none of the sensor options the company mentor is willing to fund perform well enough on their own, that cost constraint feeds back into the comparison matrix, and a lower-cost combination.
 
+<<<
+    
 == Risks and Fallback Activities
 
 .Risks and Fallback Activities

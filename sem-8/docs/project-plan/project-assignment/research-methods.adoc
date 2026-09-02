@@ -4,7 +4,7 @@ In this project, the DOT-framework is used to structure the research and develop
 The DOT-framework is a structured approach that focuses on various research strategies and methods to build a system.
 The research strategies are field, lab, library, workshop, and showroom.
 
-image::dot-framework.png[The DOT-framework,align="center"]
+image::dot-framework.png[The DOT-framework,align="center",pdfwidth=45%]
 
 == Research Methods x Research Questions
 

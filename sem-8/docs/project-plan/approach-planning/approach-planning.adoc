@@ -4,6 +4,8 @@
 
 include::approach.adoc[]
 
+<<<
+    
 include::breakdown-project.adoc[]
 
 include::timeline.adoc[]
