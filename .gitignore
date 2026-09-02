@@ -10,3 +10,8 @@ __pycache__/
 .pytest_cache/
 .mypy_cache/
 .ruff_cache/
+.coverage
+
+# Coverage reports (badges/*.svg are committed by CI, the raw reports are not)
+coverage.json
+sem-8/src/firmware/coverage.json
