@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: sem-8/src/firmware
+        working-directory: src/firmware
     outputs:
       coverage: ${{ steps.cov.outputs.pct }}
     steps:
@@ -41,7 +41,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: sem-8/src/pipeline
+        working-directory: src/pipeline
     outputs:
       coverage: ${{ steps.cov.outputs.pct }}
     steps:
