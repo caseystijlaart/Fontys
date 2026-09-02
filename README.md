@@ -1,5 +1,8 @@
 # Fontys — Casey Stijlaart
 
+[![CI](https://github.com/caseystijlaart/Fontys/actions/workflows/ci.yml/badge.svg)](https://github.com/caseystijlaart/Fontys/actions/workflows/ci.yml)
+[![Docs](https://github.com/caseystijlaart/Fontys/actions/workflows/docs.yml/badge.svg)](https://github.com/caseystijlaart/Fontys/actions/workflows/docs.yml)
+
 Coursework and graduation-internship repository for Casey Stijlaart's Fontys ICT program.
 Each semester lives on its own branch (`semester-3` … `semester-7`); **this branch
 (`semester-8`) is the active graduation internship project.**
