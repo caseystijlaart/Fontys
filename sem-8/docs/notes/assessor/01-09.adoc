@@ -1,0 +1,16 @@
+== Meeting Introduction Assessor : 01-09-2026
+
+every two weeks a meeting with the assesor on tuesday 9.00 
+for review request in portfolio, also send an email to the assessor with the request for review.
+Before 9 tuesday hand in for a review.
+
+to do ;
+
+* [x] project plan first draft version
+** [x] Main goal is to ensure it meets the requirements of the graduation project and the expectations of the assessor.
+* [ ] Portfolio
+** [x] create a portfolio and invite the assessor to the portfolio
+** [ ] Include a reader
+*** [ ] introduce project, discuss assingment, and refer to the project plan and the portfolio for more details. and the same for the other documents. 
+
+voor feedback op project plan, beide van mindlabs mailen
