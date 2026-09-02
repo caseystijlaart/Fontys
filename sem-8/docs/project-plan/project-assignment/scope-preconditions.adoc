@@ -1,15 +1,16 @@
 = Scope and Preconditions
 
-.Scope[Scope and Preconditions]
+[[scope-table]]
+.Scope and Preconditions
 |===
 |The project includes | The project does not include
 
-| Test report, to verify the behavior of the system | The dutch version of documents
-| System Design Document | A fully finished prototype readyim  for a non-controlled environment, as the project is exploratory in nature.
+| Test report, to verify the behaviour of the system | The Dutch version of documents
+| System Design Document | A fully finished prototype ready for a non-controlled environment, as the project is exploratory in nature.
 | Firmware in the given programming language |
 | Technical Research Report |
 
 |===
 
 Preconditions – during the project multiple technologies will be used to get to the final deliverable. These technologies can include Docker, Visual Studio Code, and GitHub.
-Besides these technologies, other ones will be used as well to develop the firmware, C++, and the necessary hardware.
+Besides these technologies, others will be used to develop the firmware, such as C++, along with the necessary hardware.

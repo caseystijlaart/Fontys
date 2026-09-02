@@ -6,6 +6,6 @@ The version control system used is Git, and the repository is hosted on GitHub.
 For task management, GitHub Projects is used to manage the tasks and track the progress of the project.
 The issues can be formulated in user stories.
 
-To ensure safety and fallback, there is worked with the help of branches. 
-The main branch is the main branch, and the development branch is used for development.
-Any tasks that are worked on are done in a separate branch, which is then merged into the development branch when the task is completed.
+To ensure safety and fallback, work is organised with the help of branches.
+The `main` branch holds stable, production-ready code, while the `develop` branch is used for ongoing development.
+Each task is worked on in a separate branch, which is then merged into the development branch once the task is completed.

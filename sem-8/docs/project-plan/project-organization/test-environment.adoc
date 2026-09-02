@@ -1,6 +1,6 @@
 = Test Environment
 
-Troughout the project, multiple manners are used to tet and validate created software and product.
+Throughout the project, multiple methods are used to test and validate the created software and product.
 This project's three most important testing methods are unit testing, integration testing, and static code analysis.
 
 == Integration Testing
@@ -14,4 +14,4 @@ These tests are typically automated and run frequently during development to cat
 
 == Static Code Analysis
 
-Static code analysis is used to analyze the source code for potential issues, such as coding standard violations, security vulnerabilities, and other quality concerns.
+Static code analysis is used to analyse the source code for potential issues, such as coding standard violations, security vulnerabilities, and other quality concerns.

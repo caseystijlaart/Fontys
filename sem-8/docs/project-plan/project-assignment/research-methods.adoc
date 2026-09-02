@@ -2,22 +2,25 @@
 
 In this project, the DOT-framework is used to structure the research and development process.
 The DOT-framework is a structured approach that focuses on various research strategies and methods to build a system.
-The research strategies are field, lab, library, workshop, and showroom.
+The research strategies are field, lab, library, workshop, and showroom, as shown in <<fig-dot-framework>>.
 
+[[fig-dot-framework]]
+.The DOT-framework
 image::dot-framework.png[The DOT-framework,align="center",pdfwidth=45%]
 
 == Research Methods x Research Questions
 
-Each research question is met with a corresponding research strategy and technique based on the DOT-framework.
+Each research question is met with a corresponding research strategy and technique based on the DOT-framework (see <<fig-research-methods>>).
 This ensures that every question is answered effectively and efficiently, while providing a clear structure for the research process.
-The strategies and techniques are chosen based on the nature of the question, the available resources, and the desired outcome:
 
-image::methods.png[Research strategies and techniques,align="center"]
+[[fig-research-methods]]
+.Research strategies and techniques
+image::methods.png[Research strategies and techniques,align="center",pdfwidth=90%]
 
 For a comprehensive view of how the DOT-framework strategies align with each research question
-(see xref:research-questions.adoc[Research Questions]), consult the table below.
+(see xref:research-questions.adoc[Research Questions]), consult <<methods-questions>>.
 
-[#methods-questions]
+[[methods-questions]]
 .Research Methods x Research Questions
 |===
 |Research Question |Research Strategy |Research Technique

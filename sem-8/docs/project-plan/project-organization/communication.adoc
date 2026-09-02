@@ -2,4 +2,4 @@
 
 As the project is in a work environment, rather than a traditional academic setting, communication is a key aspect of the project.
 Rather than having fixed moments for communication, the project is structured around agile sprints, with regular feedback loops and alignment sessions to ensure that the project stays on track and meets the requirements of both the company and the academic institution.
-There is more flexibility as the environment is focussed on continous collaboration and communication, rather than a rigid schedule of meetings and reports.
+There is more flexibility as the environment is focussed on continuous collaboration and communication, rather than a rigid schedule of meetings and reports.

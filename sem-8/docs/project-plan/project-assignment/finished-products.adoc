@@ -2,6 +2,10 @@
 
 :diagram-cachedir: .asciidoctor/diagram
 
+At the end of the project, the deliverables consist of documentation and a working prototype, structured as shown in <<fig-project-tree>>.
+
+[[fig-project-tree]]
+.Project deliverables structure
 [graphviz, project-tree, png]
 ....
 digraph ProjectTree {

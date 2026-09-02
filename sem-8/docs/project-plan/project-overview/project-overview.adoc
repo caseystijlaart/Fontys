@@ -1,7 +1,7 @@
 = Project Overview
 
 == Client
-The client for this project is Mindlabs, a creative technology studio affiliated with Fontys in Tilburg.
+The client for this project is MindLabs, a creative technology studio affiliated with Fontys in Tilburg.
 
 == Virtual Human
 A Virtual Human is a real-time, computer-generated character with a human-like appearance and behaviour.
@@ -20,5 +20,5 @@ This is particularly important to ensure a proper interaction and engagement wit
 The primary target audience for this project is children aged 8-12, who will interact with the Virtual Human in the Holobox installation.
 
 == TRL (Technology Readiness Level)
-The project currently stands at nothing as no start has been made to the given aspect.
+The project currently stands at TRL 0, as no work has yet been started on this aspect.
 As the project progresses, it aims to advance towards higher TRL levels, such as TRL 5/6, through iterative refinement and testing.

@@ -3,22 +3,25 @@
 == Finance
 
 No project budget has been agreed with MindLabs at this stage.
-Which sensors and embedded hardware are actually needed, and what they would cost, is itself one of the outcomes of the research & sensor selection, it is not something that can be fixed up front.
+Which sensors and embedded hardware are actually needed, and what they would cost, is itself one of the outcomes of the research & sensor selection; it is not something that can be fixed up front.
 A realistic cost estimate can only be drawn up once the candidate sensors have been narrowed down through the comparison matrix.
 
 Planned approach::
 
 * During the research sprints, note the approximate market price of each candidate sensor and embedded platform alongside its technical score in the comparison matrix, so cost is one of the factors in the sensor combination decision.
-* Present the shortlisted options and their estimated cost to the company mentor at the sprint 2 milestone review (week 4), together with the recommended combination.
+* Present the shortlisted options and their estimated cost to the company mentor at the Sprint 2 milestone review (week 4), together with the recommended combination.
 * Only order hardware once the company mentor has approved the specific items and their cost; no purchases are made before that approval, and no budget ceiling is assumed in advance.
 
 Financial risks::
-* If none of the sensor options the company mentor is willing to fund perform well enough on their own, that cost constraint feeds back into the comparison matrix, and a lower-cost combination.
+* If none of the sensor options the company mentor is willing to fund perform well enough on their own, that cost constraint feeds back into the comparison matrix, resulting in a lower-cost combination.
 
 <<<
     
 == Risks and Fallback Activities
 
+The main risks identified for this project, along with their likelihood, impact, and fallback activity, are listed in <<risks-table>>.
+
+[[risks-table]]
 .Risks and Fallback Activities
 |===
 |Risk |Likelihood |Impact |Fallback activity

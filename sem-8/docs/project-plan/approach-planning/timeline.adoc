@@ -1,8 +1,10 @@
 = Timeline
 
-The project's overall timeline is depicted (reference). 
-This timeline offeres and high level overview of the project phases and significant events.
+The project's overall timeline is depicted in <<fig-timeline>>.
+This timeline offers a high-level overview of the project phases and significant events.
 
+[[fig-timeline]]
+.Project timeline
 [mermaid, target=gantt-mermaid, format=png]
 ----
 gantt
