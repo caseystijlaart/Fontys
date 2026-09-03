@@ -7,18 +7,33 @@ This timeline offers a high-level overview of the project phases and significant
 .Project timeline
 [mermaid, target=gantt-mermaid, format=png]
 ----
+
 gantt
-    title Project Schedule
+    title Project Timeline
     dateFormat  DD-MM-YYYY
     axisFormat  %d-%m
     tickInterval 1w
-    Introduction :a1, 31-08-2026, 1w
+    todayMarker off
+
+    section Sprints
+    sprint 0 :a1, 31-08-2026, 2w
     Sprint 1 :a2, after a1, 3w
     Sprint 2 :a3, after a2, 3w
     Sprint 3 :a4, after a3, 3w
     Sprint 4 :a5, after a4, 3w
     Sprint 5 :a6, after a5, 3w
     Sprint 6 :a7, after a6, 3w
-    Sprint 7 :a8, after a7, 3w
-    Finalization :a9, after a8, 1w
+    Finalization :a8, after a7, 3w
+
+    section Important Dates
+    Portfolio Hand-in 1 : ps1, 13-09-2026, 1w
+    Table Meeting 1 : t1, after ps1, 1w
+    Portfolio Hand-in 2 : p2, 18-10-2026, 1w
+    Table Meeting 2 : t2, after p2, 1w
+    Portfolio Hand-in 3 : p3, 29-11-2026, 1w
+    Table Meeting 3 : t3, after p3, 1w
+    Portfolio Hand-in 4 : p4, 20-12-2026, 1w
+    Table Meeting 4 : t4, after p4, 1w
+    graduation session : gs, after t4, 1w
 ----
+
