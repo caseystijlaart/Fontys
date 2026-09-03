@@ -1,7 +1,7 @@
 .vscode/settings.json
 
 # C++ build artifacts
-sem-8/src/firmware/build/
+src/firmware/build/
 compile_commands.json
 
 # Python caches
@@ -14,4 +14,4 @@ __pycache__/
 
 # Coverage reports (badges/*.svg are committed by CI, the raw reports are not)
 coverage.json
-sem-8/src/firmware/coverage.json
+src/firmware/coverage.json

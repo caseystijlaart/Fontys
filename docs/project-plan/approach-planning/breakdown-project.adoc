@@ -1,0 +1,13 @@
+= Project Breakdown
+
+The project follows the agile methodology, which allows for iterative development and flexibility in adapting to new findings and requirements. The project is divided into several phases, each with specific objectives and deliverables.
+These phases include research, design, implementation, testing, and deployment. 
+
+. *Requirements & Concept:* Define project goal, functional and non-functional requirements, and create a concept for the sensing system.
+. *System Design:* Plan the overall architecture, select sensors, and design the sensor combination approach.
+. *Sprint Planning:* Select tasks from the backlog for the upcoming sprint, define sprint goals, and allocate resources.
+. *Implementation:* Develop the firmware and software modules incrementally, integrating with the selected hardware.
+. *Testing & Integration:* Perform unit tests, integration tests, and hardware-in-the-loop tests to ensure the system meets the requirements and functions correctly.
+. *Review & Retrospective:* Demonstrate the working increment, gather feedback, and reflect on the sprint to identify improvements for the next iteration.
+
+This iterative approach allows for flexibility, early detection of issues, and adaptation based on feedback, alongside the continuous delivery of working increments. 

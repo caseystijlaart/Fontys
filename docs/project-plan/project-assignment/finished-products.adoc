@@ -1,0 +1,25 @@
+= Finished Products
+
+:diagram-cachedir: .asciidoctor/diagram
+
+At the end of the project, the deliverables consist of documentation and a working prototype, structured as shown in <<fig-project-tree>>.
+
+[[fig-project-tree]]
+.Project deliverables structure
+[graphviz, project-tree, png]
+....
+digraph ProjectTree {
+  rankdir=TB;
+  node [shape=box, fontname="Helvetica", fontsize=10];
+
+  Project -> Documentation;
+  Project -> Prototype;
+
+  Documentation -> "Project Plan";
+  Documentation -> "System Design Document";
+  Documentation -> "Test Report";
+  Documentation -> "Technical Research Report";
+
+  Prototype -> "Embedded Sensing System";
+}
+....

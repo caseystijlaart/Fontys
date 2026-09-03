@@ -1,0 +1,12 @@
+= Context
+
+MindLabs is a creative technology studio, affiliated with Fontys, in Tilburg.
+They develop immersive, interactive experiences at the intersection of the digital and physical world.
+One of its current projects is the Holobox: a holographic display installation in which a Virtual Human interacts with visitors.
+
+For the Virtual Human to feel truly responsive and natural, it needs to know where a person is in the space, three-dimensionally, so it can adapt its behaviour accordingly, for example by kneeling down when interacting with a child. 
+Currently, no such sensing system exists.
+A camera-based solution would be an obvious approach, but it raises privacy concerns in a context involving children, and it would offload significant processing to external systems.
+
+There is therefore an opportunity to design a dedicated embedded sensing system that can determine a person's 3D position in real time in a privacy-preserving way, and output that data reliably to the Holobox pipeline.
+The system also needs to be designed with future extensibility in mind, since scenarios involving multiple people in the space are anticipated.

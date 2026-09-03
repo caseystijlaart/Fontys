@@ -3,15 +3,23 @@ name: Docs
 on:
   push:
     paths:
-      - 'sem-8/docs/**/*.adoc'
-      - 'sem-8/docs/**/*.yml'
-      - 'sem-8/docs/**/images/**'
+      - 'docs/**/*.adoc'
+      - 'docs/**/*.yml'
+      - 'docs/**/images/**'
   pull_request:
     paths:
-      - 'sem-8/docs/**/*.adoc'
-      - 'sem-8/docs/**/*.yml'
-      - 'sem-8/docs/**/images/**'
+      - 'docs/**/*.adoc'
+      - 'docs/**/*.yml'
+      - 'docs/**/images/**'
   workflow_dispatch:
+    inputs:
+      document:
+        description: >
+          Document to build - must match one of the entries in the DOCS list
+          in this workflow's "Build PDFs" step (e.g. "project-plan").
+          Leave as "all" to build every listed document.
+        type: string
+        default: 'all'
 
 permissions:
   contents: write
@@ -19,6 +27,8 @@ permissions:
 jobs:
   build-pdfs:
     runs-on: ubuntu-latest
+    env:
+      TARGET_DOC: ${{ github.event.inputs.document || 'all' }}
     steps:
       - uses: actions/checkout@v4
 
@@ -46,35 +56,61 @@ jobs:
 
       - name: Build PDFs from AsciiDoc sources
         run: |
-          shopt -s nullglob
+          # Documents built by this pipeline. Add an entry here (matching
+          # docs/<name>/<name>.adoc) whenever a new top-level document is
+          # ready to be built - e.g. add "system-design-document" once that
+          # doc exists.
+          DOCS=(
+            project-plan
+          )
+
+          echo "Requested: $TARGET_DOC"
           echo '{"args": ["--no-sandbox"]}' > /tmp/puppeteer-config.json
+          mkdir -p docs/pdf
           built_any=false
-          for dir in sem-8/docs/*/; do
-            name=$(basename "$dir")
-            src="${dir}${name}.adoc"
-            if [ -f "$src" ]; then
-              echo "Building $src"
+          for name in "${DOCS[@]}"; do
+            if [ "$TARGET_DOC" != "all" ] && [ "$TARGET_DOC" != "$name" ]; then
+              continue
+            fi
+            src="docs/$name/$name.adoc"
+            if [ ! -f "$src" ]; then
+              echo "::warning::$src not found, skipping"
+              continue
+            fi
+            echo "Building $src"
+            # Run from inside the doc's own folder: asciidoctor-pdf resolves
+            # pdf-themesdir relative to the process's working directory, not
+            # the document's location, so a bare path-based invocation from
+            # the repo root silently falls back to the default theme. The
+            # output is redirected to the shared docs/pdf folder so generated
+            # PDFs don't clutter the source folders.
+            (
+              cd "docs/$name"
               asciidoctor-pdf -r asciidoctor-diagram \
                 -a mermaid-puppeteer-config=/tmp/puppeteer-config.json \
-                "$src" -o "${dir}${name}.pdf"
-              built_any=true
-            fi
+                "$name.adoc" -o "../pdf/$name.pdf"
+            )
+            built_any=true
           done
+
           if [ "$built_any" = false ]; then
-            echo "No top-level *.adoc documents found under sem-8/docs/*/ - nothing to build."
+            echo "::error::Nothing built for '$TARGET_DOC' - check it's spelled correctly and listed in DOCS."
+            if [ "$TARGET_DOC" != "all" ]; then
+              exit 1
+            fi
           fi
 
       - name: Commit regenerated PDFs
-        if: github.event_name == 'push'
+        if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "docs: regenerate PDFs from AsciiDoc sources [skip ci]"
-          file_pattern: 'sem-8/docs/**/*.pdf'
+          file_pattern: 'docs/pdf/*.pdf'
 
       - name: Upload PDF artifacts
-        if: github.event_name == 'pull_request'
+        if: github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch'
         uses: actions/upload-artifact@v4
         with:
           name: docs-pdf
-          path: sem-8/docs/**/*.pdf
+          path: docs/pdf/*.pdf
           if-no-files-found: ignore

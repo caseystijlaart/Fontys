@@ -1,0 +1,37 @@
+= Finance and Risks
+
+== Finance
+
+No project budget has been agreed with MindLabs at this stage.
+Which sensors and embedded hardware are actually needed, and what they would cost, is itself one of the outcomes of the research & sensor selection; it is not something that can be fixed up front.
+A realistic cost estimate can only be drawn up once the candidate sensors have been narrowed down through the comparison matrix.
+
+Planned approach::
+
+* During the research sprints, note the approximate market price of each candidate sensor and embedded platform alongside its technical score in the comparison matrix, so cost is one of the factors in the sensor combination decision.
+* Present the shortlisted options and their estimated cost to the company mentor at the Sprint 2 milestone review (week 4), together with the recommended combination.
+* Only order hardware once the company mentor has approved the specific items and their cost; no purchases are made before that approval, and no budget ceiling is assumed in advance.
+
+Financial risks::
+* If none of the sensor options the company mentor is willing to fund perform well enough on their own, that cost constraint feeds back into the comparison matrix, resulting in a lower-cost combination.
+
+<<<
+    
+== Risks and Fallback Activities
+
+The main risks identified for this project, along with their likelihood, impact, and fallback activity, are listed in <<risks-table>>.
+
+[[risks-table]]
+.Risks and Fallback Activities
+|===
+|Risk |Likelihood |Impact |Fallback activity
+
+|No single non-camera sensor reliably discriminates height across the full range (children aged 8-12 and adults) |Medium |High |Combine two or more complementary sensors (fusion) as planned; if fusion is insufficient, narrow scope to coarse height categories (e.g. child / adult) instead of continuous height.
+|Sensor fusion pipeline does not meet real-time latency requirements on the embedded platform |Medium |Medium |Move processing stages to a more capable platform (e.g. from MCU to Linux SBC), or simplify the fusion algorithm/reduce on-device ML complexity.
+|On-device machine learning underperforms, or the week 12 deployment milestone is not met |Medium |Medium |Fall back to a rule-based/statistical classification approach for height category or person selection instead of ML, and report the deviation against the planning in the mentoring session.
+|Selected hardware (sensor modules, embedded platform) has long lead times, is unavailable, or costs more than the company mentor is willing to approve | Low |Medium |Identify hardware needs and get budget approval as early as possible during the research sprints (see Finance, above); keep a second, cheaper candidate sensor in the comparison matrix as a fallback option.
+|Interaction requirements from the Experience Design intern change or are unclear, affecting the system's output requirements |Medium |Medium |Rely on frequent alignment sessions (see xref:../project-organization/project-organization.adoc[Project Organization]) to catch requirement changes early, and keep the output simple and versioned so it can absorb small changes.
+|Time pressure due to the exploratory nature of sensor research delays implementation |Medium |High |Timebox the research & sensor selection sprints to weeks 1-4 (see xref:../approach-planning/approach-planning.adoc[Approach and Planning]); if a decision cannot be made in time, select the best-performing option found so far and proceed.
+|Testing with real child participants (aged 8-12) in the Holobox is limited or restricted |High |Medium |Use adult testers, and rely on the mock-up test environment described in xref:../project-organization/project-organization.adoc[Project Organization] for controlled measurements.
+
+|===
