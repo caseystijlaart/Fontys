@@ -3,9 +3,9 @@
 To ensure the source code is properly managed, a version control system is used. 
 The version control system used is Git, and the repository is hosted on GitHub.
 
-For task management, GitHub Projects is used to manage the tasks and track the progress of the project.
-The issues can be formulated in user stories.
+For task management, a GitHub Project board is used to manage the backlog and track the progress of the project.
+Issues are formulated as user stories, and organised using milestones and labels to keep the backlog structured and the current sprint's scope visible.
 
 To ensure safety and fallback, work is organised with the help of branches.
-The `main` branch holds stable, production-ready code, while the `develop` branch is used for ongoing development.
-Each task is worked on in a separate branch, which is then merged into the development branch once the task is completed.
+Each semester of the internship has its own long-lived branch (e.g. `semester-8`), which holds that semester's stable, up-to-date code.
+Each task is worked on in a separate branch, which is then merged into the current semester branch once the task is completed.
