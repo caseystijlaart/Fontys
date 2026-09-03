@@ -1,0 +1,24 @@
+= Project Overview
+
+== Client
+The client for this project is MindLabs, a creative technology studio affiliated with Fontys in Tilburg.
+
+== Virtual Human
+A Virtual Human is a real-time, computer-generated character with a human-like appearance and behaviour.
+It is rendered through a game engine (Unreal Engine, in the case of the Holobox) rather than pre-recorded video, a screen-based avatar, or a physical robot.
+It combines a 3D model, an animation and rendering pipeline, and interaction logic that lets it respond to a visitor in real time, for example through speech, gaze, gestures, or posture.
+
+For the Holobox's Virtual Human to respond convincingly, for example by kneeling down to a child's eye level, it depends on external input describing where a visitor is and how tall they are.
+Supplying that positional and height data is exactly what this internship's sensing system is for.
+The Virtual Human's own appearance, animation, and dialogue remain the responsibility of the Experience Design intern (see xref:../project-organization/project-organization.adoc[Project Organization]).
+
+== Motivation
+In the context of the Holobox project, a holographic display installation where a Virtual Human interacts with visitors, there is a need for a sensing system that can determine a person's 3D position in real time. 
+This is particularly important to ensure a proper interaction and engagement with the Virtual Human.
+
+== Target Audience
+The primary target audience for this project is children aged 8-12, who will interact with the Virtual Human in the Holobox installation.
+
+== TRL (Technology Readiness Level)
+The project currently stands at TRL 0, as no work has yet been started on this aspect.
+As the project progresses, it aims to advance towards higher TRL levels, such as TRL 5/6, through iterative refinement and testing.

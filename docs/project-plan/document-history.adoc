@@ -1,0 +1,11 @@
+= Document history
+
+[[document-history-table]]
+.Document History
+|===
+|Version    |Date       |Status |Author                                 |Description                    |Remarks
+
+| 0.1        |31-08-2026 | Draft Version  | Casey Stijlaart              | Draft version | Initial document structure, project assignment and context
+| 0.2 | 01-09-2026 | Updated | Casey Stijlaart | Draft version | Updated assignment and context, approach, project organization, and risk analysis.
+| 0.3 | 02-09-2026 | Final Draft Version | Casey Stijlaart | Final draft version | Grammar and spelling revision, and revision communication and timeline section.
+|===

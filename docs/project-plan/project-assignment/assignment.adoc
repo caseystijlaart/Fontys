@@ -1,0 +1,13 @@
+= Assignment
+
+The goal of this internship is to research, design, and build an embedded multi-modal sensing system capable of estimating the real-time 3D position, including height, of a person within the Holobox interaction space, without the use of cameras.
+
+Key features of the system include:
+
+* Real-time estimation of a single person's 3D position and height category (adult or child) within the Holobox interaction space.
+* ML-based or rule-based sensor combination of two or more non-camera sensors (e.g. mmWave radar, ultrasonic, IR, UWB) to achieve robust position and height estimation under real-world noise conditions.
+* An output interface that exposes the position and height estimate to the Holobox's Unreal Engine pipeline, so the Virtual Human can adapt its behaviour (e.g. kneeling for a child) based on the estimate.
+* Documentation of the system architecture, data flow, and design decisions to ensure maintainability and extensibility for future multi-person tracking scenarios.
+
+The final deliverable will be a working embedded prototype that demonstrates the system's capabilities, along with the supporting documentation, including a technical research report covering sensor selection and combination approach, implemented interaction logic (position + height output), and a system architecture document. 
+The system will be designed with multi-person extensibility as a future-facing requirement, though single-person tracking is the focus of this internship.

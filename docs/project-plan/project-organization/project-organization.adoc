@@ -1,0 +1,17 @@
+= Project Organization
+
+:leveloffset: +1
+
+include::team-members.adoc[]
+
+<<<
+
+include::communication.adoc[]
+
+include::test-environment.adoc[]
+
+<<<
+
+include::configuration.adoc[]
+
+:leveloffset: -1

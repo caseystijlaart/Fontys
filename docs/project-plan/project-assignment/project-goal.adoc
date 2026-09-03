@@ -1,0 +1,13 @@
+= Project Goal
+
+The goal of this internship is to research, design, and build an embedded sensing system that estimates the real-time 3D position, including height, of a person inside the Holobox interaction space, without using a camera, so that the Holobox's Virtual Human can adapt its behaviour (e.g. kneeling down for a child) based on that estimate.
+
+Sub-goals::
+* Identify and compare sensing technologies against criteria relevant to the Holobox environment: spatial resolution, height discrimination, embedded feasibility, and robustness in a real environment with children.
+* Select and combine two or more complementary sensors and design a sensor architecture that compensates for the individual weaknesses of each sensor type.
+* Implement a real-time processing pipeline in C/C++ and/or Python on an embedded platform that turns raw sensor data into a position and height-category estimate.
+* Explore lightweight, on-device machine learning for height classification or person selection, where this improves accuracy or robustness over a purely rule-based approach.
+* Document the resulting architecture, data flow, and design decisions so the solution can be understood, maintained, and extended by MindLabs after the internship ends.
+
+The system is designed with future multi-person extensibility in mind, but single-person tracking
+within the Holobox interaction space is the scope of this internship.

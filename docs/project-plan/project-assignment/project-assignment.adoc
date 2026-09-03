@@ -1,0 +1,27 @@
+= Project Assignment
+
+:leveloffset: +1
+
+include::context.adoc[]
+
+include::project-goal.adoc[]
+
+<<<
+
+include::assignment.adoc[]
+
+<<<
+    
+include::scope-preconditions.adoc[]
+
+include::finished-products.adoc[]
+
+<<<
+
+include::research-questions.adoc[]
+    
+<<<
+
+include::research-methods.adoc[]
+
+:leveloffset: -1
