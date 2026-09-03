@@ -9,9 +9,7 @@
 |Company mentor | A. Groeneweg |MindLabs (Coordinator and Senior Lecturer UX & Interaction Design) |Weekly guidance on how the sensing system fits into the Holobox experience, interaction requirements, and professional development; contact: a.groeneweg@fontys.nl
 |Experience Design intern | R. Lengton |MindLabs |Design and behaviour of the Virtual Human; joint alignment on interaction requirements the sensing system must support
 |Fontys examiner / assessor | G. Elbers |Fontys ICT |Academic supervision and assessment of the internship
-
+| Fontys 2nd examiner / assessor | M. Beks | Fontys ICT | 2nd academic supervision and assessment of the internship
 |===
 
-Additional MindLabs team members with technical backgrounds in embedded systems, sensor
-integration, and software architecture are available to support the technical depth of the
-project alongside the company mentor's interaction-design guidance.
+Additional MindLabs team members with technical backgrounds in embedded systems, sensor integration, and software architecture are available to support the technical depth of the project alongside the company mentor's interaction-design guidance.
