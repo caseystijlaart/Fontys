@@ -1,0 +1,31 @@
+= Research Approach
+
+This chapter follows the Library and Lab strategies of the DOT-framework identified for this research question in xref:../../project-plan/project-assignment/research-methods.adoc[Research Methods]: available product analysis, literature study, document analysis, and bench experimentation.
+
+== Library: Literature Study
+
+Candidate Sensor Technologies gathers and verifies peer-reviewed literature for each non-camera sensing family against RQ1's position/height requirement and, separately, against the multi-person active-speaker problem relevant to RQ4.
+The literature is gathered in two separate passes because the two problems draw on largely different bodies of research: RQ1 sits in the radar/thermal/RF position-and-pose-estimation literature, while RQ4's active-speaker problem sits closer to acoustic and vibrometry-based speaker localisation, so a single combined search would have missed sources specific to either.
+
+== Lab: Available Product Analysis
+
+Alongside the literature, the same chapter narrows the literature-backed technology families down to specific, currently sourceable hardware modules, checked against live distributor listings (Digi-Key, Mouser, Adafruit, and others) rather than assumed pricing.
+An unverified cost estimate is not a usable basis for a hardware decision, nor for the budget-approval process in xref:../../project-plan/risk-analysis/finance-risks.adoc[Finance and Risks].
+This step matters because literature backing and product availability are two different questions.
+A sensing technique can be well-published without there being a specific, currently purchasable module that implements it at a reasonable price, or at all.
+
+== Lab: Bench Experimentation Strategy
+
+The recommended path into bench experimentation commits to mmWave radar directly, and manages implementation risk by splitting the build into capability-based phases rather than assuming the full pipeline works at once: position tracking first, then height estimation, then multi-person clustering, then speaker detection, each building on an already-working previous phase.
+This choice of experimentation strategy is deliberate, for four reasons:
+
+* *Incremental validation.*
+Each phase adds exactly one new capability on top of a phase that already works end to end, so a failure is isolated to whichever capability is currently being added, rather than surfacing somewhere in an untested, fully assembled system.
+* *No wasted integration effort.*
+Because the sensor is the same mmWave hardware throughout, the UART bring-up, point-cloud parsing, and Unreal Engine bridge built in the first phase are reused, not redone, in every phase after it.
+* *Follows the research question sequence.*
+Position and height tracking (RQ1) are validated before multi-person clustering and speaker detection (RQ4) are added, so bench experimentation tracks the same sequence the research questions themselves are structured in, rather than an arbitrary build order.
+* *Reflects feature priority.*
+Not every phase is equally critical: position and height tracking are core RQ1 requirements, while multi-person clustering and speaker detection are RQ4 extensions that improve the system without being required for the current single-person scope, so the build order also matches what is essential versus what is a later improvement.
+
+A working fallback still exists at each stage: if a later phase's capability underperforms, the earlier phase's version remains a functioning system rather than a dead end, which mirrors the fallback the project's own risk register anticipates for both sensor selection and on-device ML performance.

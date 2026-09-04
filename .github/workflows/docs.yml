@@ -62,6 +62,7 @@ jobs:
           # doc exists.
           DOCS=(
             project-plan
+            technical-research
           )
 
           echo "Requested: $TARGET_DOC"

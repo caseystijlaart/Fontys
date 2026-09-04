@@ -1,0 +1,29 @@
+= Evaluation Criteria
+
+Before diving into available sensor modules, it is of great importance to understand the requirements they need to meet.
+Thus the comparison can be set out against explicit, justified requirements rather than an implicit sense of what "good" looks like.
+Each criterion below is traced to either a technical sub-question in xref:../../project-plan/project-assignment/research-questions.adoc[Research Questions], a key feature named in the xref:../../project-plan/project-assignment/assignment.adoc[Assignment], or a project constraint from xref:../../project-plan/risk-analysis/finance-risks.adoc[Finance and Risks], rather than to a generic notion of sensor quality.
+
+[[criteria-table]]
+.Evaluation Criteria
+|===
+|Criterion |What it means here |Why it matters
+
+|Height-estimation capability |The sensor (alone or combined with a second sensor) must produce an actual height reading, not just an in-plane (x, y) position. |Follows from RQ1, which asks for "sufficient 3D spatial resolution... to distinguish adult and child height categories." Per the project's current scope, however, a general height estimate is treated as sufficient for now, with category classification as a possible later refinement. A technology with no published height precedent at all is a bigger open research question than one with a direct precedent.
+|Position accuracy and coverage |Position error and effective range must be usable at the Holobox's actual room-scale dimensions, not just in a research lab's test setup. |RQ1's spatial-resolution requirement extends to (x, y) tracking as well as height; a sensor that cannot reliably cover the interaction space is not usable regardless of its height capability.
+|Real-time embedded feasibility |Must run at interactive latency on an embedded platform, not require offloading to an external server. Total pipeline latency (sensor plus processing plus output) is targeted at under roughly 100 ms to feel instantaneous, and must not exceed roughly 1 second, the point past which a delay becomes noticeable and the interaction starts to feel unnatural. |RQ2 requires "robust, low-latency position estimates" on an embedded platform, and the user/interaction sub-questions ask directly what latency the Virtual Human's reaction needs to feel "natural and immediate, rather than delayed or robotic." The 100 ms / 1 s thresholds follow Nielsen's (<<nielsen1993response,1993>>) classic human-computer interaction response-time limits, building on Miller (<<miller1968response,1968>>), used here as a working target since this project's own latency sub-question has not yet been answered empirically.
+|Sensor combination / fusion compatibility |Whether the sensor can realistically be paired with a second sensor to jointly produce position and height, without a fundamentally incompatible operating principle or output format. |Named directly as a key feature in the project assignment: "ML-based or rule-based sensor combination of two or more non-camera sensors... to achieve robust position and height estimation." A technology that cannot realistically be combined with a second sensor forecloses that option later, even if it performs well alone.
+|Multi-person extensibility |Should not fundamentally break, or require a different sensing approach altogether, if more than one person enters the space later. |RQ4 requires the architecture to remain "extensible to multi-person scenarios," and the Assignment separately names multi-person tracking as "a future-facing requirement," even though single-person tracking is the current scope.
+|Data minimisation / privacy |Output should not be capable of identifying a specific individual, and should capture the minimum data needed for position and height. |Directly required by the ethical/legal sub-questions: primary visitors are children aged 8-12, and the system must avoid capturing or storing personally identifiable information under AVG/GDPR.
+|Literature and community backing |Prior published work (ideally peer-reviewed) should exist showing the specific capability required, not just the technology in general. |Reduces the risk of committing project time to proving something has never been demonstrated at all, as distinct from the normal risk of not knowing whether it will work *well enough*.
+|Hardware cost |Cost of the sensor and any second sensor it must be paired with, checked against current, sourceable listings. |No project budget has yet been agreed with MindLabs, so cost is a real constraint on what can be selected, not a tie-breaker between otherwise-equal options.
+|Power consumption and footprint |Physical size and power draw must fit within the Holobox's existing hardware, without requiring new infrastructure. |The Holobox is an existing installation; the sensing system is being added to it, not designed around a blank slate.
+|===
+
+[NOTE]
+====
+Sensor output rate is only one component of total pipeline latency, since processing, sensor fusion, and the Unreal Engine transmission step all add more on top, but it sets a floor worth checking early.
+====
+
+These criteria are not weighted equally, and are not applied as a hard pass/fail filter.
+Height-estimation capability and data minimisation are treated as closer to hard requirements, since they follow directly from RQ1 and the ethical/legal sub-questions; the remaining criteria (sensor combination, cost, power/footprint) are weighed against each other in the chapter that follows, since a technology that is merely more expensive or harder to pair with a second sensor is not disqualified the way one with no height precedent or an identifying output effectively is.
