@@ -31,6 +31,10 @@ jobs:
       TARGET_DOC: ${{ github.event.inputs.document || 'all' }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          # Full history is needed so the "Determine changed documents" step
+          # can diff against the pre-push/PR-base commit below.
+          fetch-depth: 0
 
       - uses: ruby/setup-ruby@v1
         with:
@@ -54,6 +58,46 @@ jobs:
           npm install -g @mermaid-js/mermaid-cli@11.17.0
           npx --yes puppeteer browsers install chrome-headless-shell
 
+      - name: Determine changed documents
+        id: changed
+        if: github.event_name != 'workflow_dispatch'
+        run: |
+          # Rebuild only the top-level document(s) whose own folder actually
+          # changed, instead of rebuilding every document on every push.
+          # Must be kept in sync with the DOCS list in "Build PDFs" below.
+          DOCS=(
+            project-plan
+            technical-research
+          )
+
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            base="${{ github.event.pull_request.base.sha }}"
+          else
+            base="${{ github.event.before }}"
+          fi
+
+          if [ -z "$base" ] || ! git cat-file -e "$base" 2>/dev/null; then
+            # No usable base commit (e.g. first push of a new branch) -
+            # fall back to building everything rather than guessing.
+            echo "No usable base commit found, building all documents."
+            echo "targets=all" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          changed_files=$(git diff --name-only "$base" "${{ github.sha }}")
+          echo "Changed files:"
+          echo "$changed_files"
+
+          targets=()
+          for name in "${DOCS[@]}"; do
+            if echo "$changed_files" | grep -q "^docs/$name/"; then
+              targets+=("$name")
+            fi
+          done
+
+          echo "Targets: ${targets[*]}"
+          echo "targets=${targets[*]}" >> "$GITHUB_OUTPUT"
+
       - name: Build PDFs from AsciiDoc sources
         run: |
           # Documents built by this pipeline. Add an entry here (matching
@@ -65,12 +109,18 @@ jobs:
             technical-research
           )
 
-          echo "Requested: $TARGET_DOC"
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            REQUESTED="$TARGET_DOC"
+          else
+            REQUESTED="${{ steps.changed.outputs.targets }}"
+          fi
+
+          echo "Requested: $REQUESTED"
           echo '{"args": ["--no-sandbox"]}' > /tmp/puppeteer-config.json
           mkdir -p docs/pdf
           built_any=false
           for name in "${DOCS[@]}"; do
-            if [ "$TARGET_DOC" != "all" ] && [ "$TARGET_DOC" != "$name" ]; then
+            if [ "$REQUESTED" != "all" ] && [[ ! " $REQUESTED " =~ " $name " ]]; then
               continue
             fi
             src="docs/$name/$name.adoc"
@@ -95,9 +145,11 @@ jobs:
           done
 
           if [ "$built_any" = false ]; then
-            echo "::error::Nothing built for '$TARGET_DOC' - check it's spelled correctly and listed in DOCS."
-            if [ "$TARGET_DOC" != "all" ]; then
+            if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+              echo "::error::Nothing built for '$REQUESTED' - check it's spelled correctly and listed in DOCS."
               exit 1
+            else
+              echo "No top-level document changed in this push/PR; nothing to build."
             fi
           fi
 
