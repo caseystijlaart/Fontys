@@ -1,0 +1,1058 @@
+== Holobox mmWave Implementation Guide: Block-by-Block
+
+This guide provides practical, step-by-step implementation details for each modular block of the mmWave sensing system. Each block is designed to be developed and validated independently, with clear input/output contracts and measurable success criteria.
+
+=== Prerequisites
+
+**Hardware:**
+- TI IWR6843 mmWave radar module or evaluation kit (~€80–250)
+- Raspberry Pi 4 (4GB+ RAM recommended) or x86-64 Linux development machine
+- USB-to-UART adapter (if module doesn't include one)
+
+**Software Stack:**
+- C++17 or later (GCC 9+, or Clang)
+- CMake 3.15+
+- Eigen 3.x (header-only linear algebra)
+- OpenCV 4.x (clustering, filtering utilities)
+- TensorFlow Lite (for Block 1b inference)
+- Boost (optional: for circular buffers in filtering)
+
+**Development Workflow:**
+- All blocks developed in C++; Python scripts only for offline data analysis and ML training
+- Real-time constraints: 10 Hz output minimum (100 ms per frame)
+- Modular design: each block compiles independently; integration via simple function signatures
+
+---
+
+== Block 1: Position Localization (x, y)
+
+**Goal:** Raw mmWave point cloud → cluster centroid → room-absolute (x, y, z) position tuple at 10 Hz.
+
+**Timeline:** 2 weeks
+
+**Validation Success Criterion:** Person walks known path (e.g., diagonal line, circle) in room; estimated (x, y, z) matches ground truth position within ±0.5 m.
+
+=== Step 1.1: UART Driver and Point Cloud Parsing
+
+**Objective:** Read raw point cloud from TI IWR6843 via UART serial protocol; parse into usable format.
+
+**Implementation Approach:**
+
+[source,cpp]
+----
+#include <serial/serial.h>
+#include <vector>
+#include <cstdint>
+
+struct PointCloudFrame {
+    uint32_t frame_id;
+    float timestamp;
+    std::vector<struct Point> points;  // Raw point cloud
+
+    struct Point {
+        float x, y, z;           // meters (sensor-relative coordinates)
+        float doppler;           // velocity, m/s
+        float intensity;         // radar reflectivity
+    };
+};
+
+class MMWaveDriver {
+public:
+    MMWaveDriver(const std::string& port, uint32_t baudrate = 115200);
+    bool readFrame(PointCloudFrame& frame);
+    void sendConfig(const std::string& config_file);
+
+private:
+    serial::Serial serial_port_;
+    const uint16_t FRAME_HEADER = 0x0201;  // TI magic number
+    const size_t MAX_POINTS = 1024;  // IWR6843 typical max
+
+    bool parsePointCloud(const std::vector<uint8_t>& raw_data, PointCloudFrame& frame);
+    uint16_t crc16(const uint8_t* data, size_t len);
+};
+----
+
+**Key Implementation Details:**
+
+1. **Serial Configuration:** IWR6843 outputs at 115200 baud, ~30 Hz frame rate (33 ms per frame)
+   - Frame format: header (4 bytes) + TLV structures + checksum (2 bytes)
+   - Each TLV (type-length-value) contains detected points, range/Doppler info, or noise statistics
+
+2. **Reference Implementation Source:** Use TI's `mmwave_sdk_03_06_00_13/examples/out_of_box/xwr6843_miniiot_demo/` as guide
+   - File: `src/common/mmwave_frame_parser.c` (C reference; translate to C++)
+   - Key: Don't reimplement CRC; use TI's polynomial (0x8005)
+
+3. **Point Cloud Output Format:**
+   ```
+   TLVTYPE_DETECTED_POINTS (0x0001):
+   - num_detected_points (4 bytes)
+   - For each point: x(4B), y(4B), z(4B), doppler(2B), intensity(2B)
+   ```
+
+4. **Testing Strategy:**
+   - Use TI's **visualizer** (real-time point cloud display) to verify UART output is valid
+   - Capture raw frames to file; parse offline first before streaming real-time
+   - Validate CRC on every frame; log dropped frames
+
+5. **Error Handling:**
+   - Serial port timeouts: if no frame received in 100 ms, log "frame loss" and continue
+   - CRC failures: skip frame, wait for next sync marker
+   - Don't crash on malformed data; degrade gracefully
+
+**Estimated Effort:** 1 week (UART + parsing ~3 days, integration testing ~2 days, documentation ~2 days)
+
+---
+
+=== Step 1.2: DBSCAN Clustering
+
+**Objective:** Group point cloud into person-sized clusters; extract cluster centroids.
+
+**Implementation Approach:**
+
+[source,cpp]
+----
+#include <Eigen/Dense>
+#include <vector>
+#include <algorithm>
+
+struct Cluster {
+    std::vector<size_t> point_indices;  // indices into original point cloud
+    Eigen::Vector3f centroid;           // (x, y, z) center
+    float radius;                       // point cloud spread
+    size_t num_points;
+    float mean_intensity;
+    float doppler_variance;
+
+    // Geometry features for clutter classification (Block 1b)
+    Eigen::Vector3f bbox_min, bbox_max;
+    float height() const { return bbox_max(2) - bbox_min(2); }
+    float area_xy() const {
+        return (bbox_max(0) - bbox_min(0)) * (bbox_max(1) - bbox_min(1));
+    }
+    float density() const {
+        float volume = (bbox_max(0) - bbox_min(0)) *
+                       (bbox_max(1) - bbox_min(1)) *
+                       (bbox_max(2) - bbox_min(2));
+        return (volume > 0) ? static_cast<float>(num_points) / volume : 0.0f;
+    }
+};
+
+class DBSCANClustering {
+public:
+    // DBSCAN parameters: room-dependent calibration
+    struct Params {
+        float epsilon = 0.35f;      // neighborhood radius, meters (TUNE THIS)
+        size_t min_points = 5;      // minimum cluster size (TUNE THIS)
+    };
+
+    std::vector<Cluster> cluster(
+        const PointCloudFrame& frame,
+        const Params& params = Params()
+    );
+
+private:
+    enum PointLabel { UNVISITED = -1, NOISE = -2 };
+
+    std::vector<int> labels_;
+
+    std::vector<size_t> regionQuery(
+        const std::vector<Eigen::Vector3f>& points,
+        size_t point_idx,
+        float epsilon
+    );
+
+    void expandCluster(
+        const std::vector<Eigen::Vector3f>& points,
+        std::vector<int>& labels,
+        size_t point_idx,
+        std::vector<size_t>& neighbors,
+        int cluster_id,
+        float epsilon,
+        size_t min_points
+    );
+};
+
+std::vector<Cluster> DBSCANClustering::cluster(
+    const PointCloudFrame& frame,
+    const Params& params
+) {
+    // Convert point cloud to Eigen vectors for fast distance computation
+    std::vector<Eigen::Vector3f> points;
+    for (const auto& p : frame.points) {
+        points.push_back(Eigen::Vector3f(p.x, p.y, p.z));
+    }
+
+    // Initialize labels
+    labels_.assign(points.size(), UNVISITED);
+    int cluster_id = 0;
+
+    // DBSCAN main loop
+    for (size_t i = 0; i < points.size(); ++i) {
+        if (labels_[i] != UNVISITED) continue;
+
+        auto neighbors = regionQuery(points, i, params.epsilon);
+
+        if (neighbors.size() < params.min_points) {
+            labels_[i] = NOISE;
+        } else {
+            expandCluster(points, labels_, i, neighbors, cluster_id,
+                         params.epsilon, params.min_points);
+            ++cluster_id;
+        }
+    }
+
+    // Build cluster objects from labels
+    std::vector<Cluster> clusters;
+    for (int cid = 0; cid < cluster_id; ++cid) {
+        Cluster c;
+        for (size_t i = 0; i < labels_.size(); ++i) {
+            if (labels_[i] == cid) {
+                c.point_indices.push_back(i);
+                c.centroid += points[i];
+                c.mean_intensity += frame.points[i].intensity;
+                c.doppler_variance += frame.points[i].doppler * frame.points[i].doppler;
+            }
+        }
+
+        c.num_points = c.point_indices.size();
+        c.centroid /= static_cast<float>(c.num_points);
+        c.mean_intensity /= static_cast<float>(c.num_points);
+        c.doppler_variance /= static_cast<float>(c.num_points);
+
+        // Compute bounding box
+        c.bbox_min = c.bbox_max = points[c.point_indices[0]];
+        for (size_t idx : c.point_indices) {
+            c.bbox_min = c.bbox_min.cwiseMin(points[idx]);
+            c.bbox_max = c.bbox_max.cwiseMax(points[idx]);
+        }
+
+        clusters.push_back(c);
+    }
+
+    return clusters;
+}
+----
+
+**Tuning DBSCAN Parameters:**
+
+The two critical hyperparameters must be calibrated to your room geometry and sensor mounting:
+
+1. **Epsilon (neighborhood radius):**
+   - Start: 0.35 m (assumes ~10 cm detection error + clustering margin)
+   - If clusters merge with neighbors → increase epsilon by 0.05 m
+   - If single person splits into multiple clusters → decrease epsilon by 0.05 m
+   - Typical range: 0.3–0.5 m for indoor spaces
+   - **Calibration procedure:**
+     ```
+     1. Place two people 0.8 m apart (back-to-back in room center)
+     2. Record raw point cloud
+     3. Run DBSCAN with epsilon = 0.3, 0.35, 0.4, 0.45
+     4. Plot clusters; pick epsilon where two people form separate clusters
+     ```
+
+2. **Min Points (minimum cluster size):**
+   - Start: 5 points (conservative; most people → 20–50 points at 2–3 m distance)
+   - If false clusters (furniture reflections) detected → increase to 8–10
+   - If real person clusters rejected as noise → decrease to 3–4
+   - Typical range: 5–15 points
+
+**Important Notes:**
+
+- DBSCAN does NOT assign persistent IDs across frames (no multi-target tracking). Clusters are identified by position only; re-identification across frames is handled by Kalman filtering (Step 1.3).
+- Use KD-tree for fast neighbor search (Eigen doesn't provide this; use Boost or nanoflann header-only library).
+- Computational cost: O(n log n) with tree acceleration; <10 ms per frame typical on Raspberry Pi 4.
+
+**Validation:**
+- Record 100 frames of point clouds from a stationary person
+- Run DBSCAN; visualize cluster centroids overlaid on raw cloud
+- Check: centroid should stay within 0.3 m of person's actual position
+
+---
+
+=== Step 1.3: Room Calibration and Coordinate Transformation
+
+**Objective:** Transform sensor-relative point cloud coordinates to room-absolute coordinates.
+
+**Implementation Approach:**
+
+The mmWave sensor outputs (x, y, z) in its own reference frame (origin at sensor). To track position in the room, we need a linear transformation:
+
+$$\text{room\_coord} = R \cdot \text{sensor\_coord} + T$$
+
+where $R$ is a 3×3 rotation matrix and $T$ is a 3×1 translation vector.
+
+**Simple Case (Front-Mounted, Level Sensor):**
+
+If the sensor is mounted front-facing at height $h$ above the floor, oriented parallel to room axes:
+
+[source,cpp]
+----
+struct CalibrationParams {
+    Eigen::Vector3f sensor_position;  // (x_s, y_s, z_s) in room frame
+    Eigen::Matrix3f sensor_rotation;  // rotation matrix (identity if sensor aligned with room axes)
+};
+
+class RoomCalibration {
+public:
+    RoomCalibration() : params_{
+        .sensor_position = Eigen::Vector3f(0, 0, 1.2f),   // 1.2m above floor, center front
+        .sensor_rotation = Eigen::Matrix3f::Identity()
+    } {}
+
+    Eigen::Vector3f sensorToRoom(const Eigen::Vector3f& sensor_coord) const {
+        return params_.sensor_rotation * sensor_coord + params_.sensor_position;
+    }
+
+    // Calibration routine: detect two known reference points
+    void calibrateFromTwoPoints(
+        const Eigen::Vector3f& sensor_p1, const Eigen::Vector3f& room_p1,
+        const Eigen::Vector3f& sensor_p2, const Eigen::Vector3f& room_p2
+    ) {
+        // Solve for translation: room = sensor + T
+        // Use least-squares over multiple point pairs for robustness
+    }
+
+private:
+    CalibrationParams params_;
+};
+----
+
+**Practical Calibration Procedure:**
+
+1. **Locate the sensor:**
+   - Measure mounting height and XY position relative to room origin (e.g., front-left corner of room)
+   - Measure orientation angle (e.g., 0° = facing along +Y axis)
+
+2. **Verify calibration:**
+   - Stand at known room positions (e.g., corner, center, 1 m left of sensor)
+   - Record cluster centroid in sensor frame
+   - Apply transformation
+   - Check: room-frame centroid matches known position within ±0.3 m
+
+3. **Store calibration to file:**
+   ```json
+   {
+     "sensor_position": [0.0, 0.0, 1.2],
+     "sensor_rotation": [1, 0, 0, 0, 1, 0, 0, 0, 1],
+     "timestamp": "2026-09-04T12:00:00Z"
+   }
+   ```
+
+**If Sensor is Tilted/Rotated:**
+
+Use two reference points and solve for rotation via SVD:
+
+[source,cpp]
+----
+// Assume known sensor_p1 → room_p1, sensor_p2 → room_p2
+// Find R, T such that room_pi ≈ R * sensor_pi + T
+
+Eigen::Matrix3f H = Eigen::Matrix3f::Zero();
+for (const auto& [sensor_p, room_p] : point_pairs) {
+    H += sensor_p * room_p.transpose();
+}
+
+Eigen::JacobiSVD<Eigen::Matrix3f> svd(H, Eigen::ComputeFullU | Eigen::ComputeFullV);
+Eigen::Matrix3f R = svd.matrixV() * svd.matrixU().transpose();
+
+// Compute translation from centroid of point pairs
+Eigen::Vector3f sensor_centroid = ..., room_centroid = ...;
+Eigen::Vector3f T = room_centroid - R * sensor_centroid;
+----
+
+---
+
+=== Step 1.4: Kalman Filtering for Position Smoothing
+
+**Objective:** Smooth noisy cluster centroid estimates and estimate velocity; handle temporary occlusions.
+
+**Implementation Approach:**
+
+A standard 3D Kalman filter predicts position and velocity. Key insight: between frames, we predict where the person is moving; when we receive a new cluster, we update.
+
+[source,cpp]
+----
+#include <Eigen/Dense>
+
+class KalmanFilter3D {
+public:
+    struct State {
+        Eigen::Vector3f position;      // (x, y, z)
+        Eigen::Vector3f velocity;      // (vx, vy, vz) m/s
+    };
+
+    KalmanFilter3D(float dt = 0.1f);  // 10 Hz frame rate
+
+    void predict();
+    void update(const Eigen::Vector3f& measurement);
+    State getState() const { return {x_.head<3>(), x_.tail<3>()}; }
+    float getUncertainty() const;
+
+private:
+    float dt_;
+    Eigen::VectorXf x_;                    // state: [px, py, pz, vx, vy, vz]
+    Eigen::MatrixXf P_;                    // covariance
+    Eigen::MatrixXf F_;                    // state transition (constant velocity model)
+    Eigen::MatrixXf Q_;                    // process noise
+    Eigen::MatrixXf H_;                    // measurement matrix (position only observed)
+    Eigen::MatrixXf R_;                    // measurement noise
+};
+
+KalmanFilter3D::KalmanFilter3D(float dt) : dt_(dt) {
+    x_ = Eigen::VectorXf::Zero(6);
+    P_ = Eigen::MatrixXf::Identity(6, 6) * 0.1f;  // initial uncertainty
+
+    // Constant-velocity model: x_new = x_old + v * dt
+    F_ = Eigen::MatrixXf::Identity(6, 6);
+    F_.block<3, 3>(0, 3) = dt * Eigen::Matrix3f::Identity();
+
+    // Process noise (model uncertainty)
+    Q_ = Eigen::MatrixXf::Identity(6, 6) * 0.01f;
+    Q_.block<3, 3>(3, 3) *= 0.01f;  // lower noise on acceleration
+
+    // Measure only position, not velocity
+    H_ = Eigen::MatrixXf::Zero(3, 6);
+    H_.block<3, 3>(0, 0) = Eigen::Matrix3f::Identity();
+
+    // Measurement noise (sensor accuracy ~0.3 m)
+    R_ = Eigen::Matrix3f::Identity() * 0.09f;
+}
+
+void KalmanFilter3D::predict() {
+    x_ = F_ * x_;
+    P_ = F_ * P_ * F_.transpose() + Q_;
+}
+
+void KalmanFilter3D::update(const Eigen::Vector3f& measurement) {
+    Eigen::Vector3f y = measurement - H_ * x_;  // innovation
+    Eigen::MatrixXf S = H_ * P_ * H_.transpose() + R_;
+    Eigen::MatrixXf K = P_ * H_.transpose() * S.inverse();
+
+    x_ += K * y;
+    P_ = (Eigen::MatrixXf::Identity(6, 6) - K * H_) * P_;
+}
+----
+
+**Tuning Guidance:**
+
+1. **Process Noise (Q):** Higher Q → filter trusts predictions less, follows measurements closely
+   - Start with Q_pos = 0.01 m², Q_vel = 0.0001 m²/s²
+   - If smoothed trajectory lags behind measurement → increase Q_pos
+   - If smoothed trajectory jitters → decrease Q_pos
+
+2. **Measurement Noise (R):** Set based on sensor accuracy
+   - IWR6843 achieves ~±0.3 m positioning error → R = 0.09 m²
+   - Can be estimated empirically: record stationary person, compute variance of cluster centroids
+
+3. **Handling Occlusions:** If no cluster detected in frame:
+   - Call `predict()` only (no `update()`)
+   - Kalman filter continues predicting motion; re-establishes with measurement when person reappears
+   - Safe timeout: 0.5–1 s (5–10 frames at 10 Hz)
+
+**Validation:**
+- Record 5 minutes of position data (walk around room, stop, move again)
+- Plot raw cluster centroids vs. Kalman-filtered positions
+- Check: Kalman trajectory smooth, no lag >100 ms, recovers after brief occlusions
+
+---
+
+=== Block 1 Integration Checklist
+
+- [ ] UART driver reads frames at 30 Hz (device → buffer)
+- [ ] DBSCAN clusters point cloud into person-sized blobs (epsilon/min_points tuned)
+- [ ] Room calibration applied (sensor frame → room frame verified)
+- [ ] Kalman filter smooths centroid trajectory
+- [ ] Output: (x, y, z, vx, vy, vz) tuple at 10 Hz to file or socket
+- [ ] Validation: person walks known path, position within ±0.5 m ground truth
+- [ ] CPU usage: <15% on Raspberry Pi 4 (allows 85% for Block 1b + integration)
+
+---
+
+== Block 1b: Clutter Classification (ML-based Filtering)
+
+**Goal:** Filter DBSCAN clusters, removing false positives from wall reflections, furniture corners, sensor noise.
+
+**Timeline:** 1.5 weeks (1 week data collection + training, 0.5 weeks integration)
+
+**Validation Success Criterion:** Reduce false positive cluster rate from ~20–30% (raw DBSCAN) to <5% while maintaining >99% detection of real people.
+
+=== Step 1b.1: Data Collection and Labeling
+
+**Objective:** Collect 100–150 labeled (point cloud, ground truth cluster label) samples.
+
+**Data Collection Procedure:**
+
+1. **Setup:**
+   - Run Block 1 in "recording mode": save point cloud frames + raw centroids to disk
+   - Record for 10–15 minutes while performing these movements:
+     - Walk slowly around room perimeter (3 laps)
+     - Walk diagonals (4 passes)
+     - Stand still in corner and center (2 min each)
+     - Walk near walls, furniture (2 min)
+     - User walks away; room empty (1 min) to capture pure noise/clutter
+
+2. **Labeling:**
+   - Write a visualization script: render point cloud + clusters from saved frames
+   - For each frame, manually label each cluster: "PERSON" (1) or "CLUTTER" (0)
+   - False positive examples:
+     - Cluster from wall reflection (typically small, low doppler)
+     - Cluster from furniture corner (high density, odd geometry)
+     - Acoustic reflections (scattered points, no coherent centroid)
+
+3. **Feature Extraction:**
+
+[source,cpp]
+----
+struct ClusterFeatures {
+    size_t num_points;                    // raw count
+    float height;                         // bbox_max.z - bbox_min.z (meters)
+    float width;                          // bbox_max.x - bbox_min.x
+    float depth;                          // bbox_max.y - bbox_min.y
+    float density;                        // points / volume
+    float mean_intensity;                 // radar reflectivity (0–255)
+    float mean_doppler;                   // velocity magnitude (m/s)
+    float centroid_height;                // z coordinate (meters above floor)
+    float surface_area;                   // estimated from bounding box
+
+    // Derived features
+    float aspect_ratio_hw() const { return (width > 0) ? height / width : 1.0f; }
+    float aspect_ratio_hd() const { return (depth > 0) ? height / depth : 1.0f; }
+    float normalized_density() const { return std::min(density, 100.0f) / 100.0f; }
+};
+
+ClusterFeatures extractFeatures(const Cluster& cluster, const PointCloudFrame& frame) {
+    ClusterFeatures f;
+    f.num_points = cluster.num_points;
+    f.height = cluster.height();
+    f.width = cluster.bbox_max(0) - cluster.bbox_min(0);
+    f.depth = cluster.bbox_max(1) - cluster.bbox_min(1);
+    f.density = cluster.density();
+
+    f.mean_intensity = cluster.mean_intensity;
+    f.mean_doppler = 0;
+    f.centroid_height = cluster.centroid(2);
+    f.surface_area = 2 * (f.width * f.height + f.height * f.depth + f.width * f.depth);
+
+    // Compute mean doppler from cluster points
+    float doppler_sum = 0;
+    for (size_t idx : cluster.point_indices) {
+        doppler_sum += std::abs(frame.points[idx].doppler);
+    }
+    f.mean_doppler = doppler_sum / static_cast<float>(f.num_points);
+
+    return f;
+}
+----
+
+**Expected Feature Statistics (PERSON vs. CLUTTER):**
+
+| Feature | Person (mean ± std) | Clutter (mean ± std) | Utility |
+|---------|---------------------|----------------------|---------|
+| num_points | 30 ± 15 | 8 ± 5 | High; people scatter more points |
+| height | 1.6 ± 0.3 m | 0.2 ± 0.15 m | Very High; most clutter is flat (wall/floor reflection) |
+| density | 3.0 ± 1.5 | 8.0 ± 4.0 | High; clutter tightly clustered at point source |
+| centroid_height | 1.0–1.5 m | 0–0.3 m or >2.5 m | High; walls reflect near floor/ceiling |
+| mean_doppler | 0.1–0.3 m/s | 0 m/s | Medium; clutter is static |
+
+---
+
+=== Step 1b.2: ML Model Architecture and Training
+
+**Objective:** Train a binary classifier (PERSON vs. CLUTTER) using TensorFlow Lite.
+
+**Architecture (Small Neural Network):**
+
+[source,python]
+----
+import tensorflow as tf
+import numpy as np
+
+# Feature scaling (normalize to [-1, 1] range)
+def normalize_features(X_raw):
+    # Fit on training data once
+    feature_means = X_raw.mean(axis=0)
+    feature_stds = X_raw.std(axis=0) + 1e-8
+    return (X_raw - feature_means) / feature_stds, feature_means, feature_stds
+
+# Model: 2-layer fully connected network
+model = tf.keras.Sequential([
+    tf.keras.layers.Input(shape=(10,)),  # 10 input features
+    tf.keras.layers.Dense(16, activation='relu'),
+    tf.keras.layers.Dropout(0.3),
+    tf.keras.layers.Dense(8, activation='relu'),
+    tf.keras.layers.Dense(1, activation='sigmoid')  # binary output
+])
+
+model.compile(
+    optimizer=tf.keras.optimizers.Adam(learning_rate=0.001),
+    loss='binary_crossentropy',
+    metrics=['accuracy']
+)
+
+# Training
+model.fit(
+    X_train, y_train,
+    epochs=50,
+    batch_size=8,
+    validation_split=0.2,
+    verbose=1
+)
+
+# Convert to TensorFlow Lite
+converter = tf.lite.TFLiteConverter.from_keras_model(model)
+converter.target_spec.supported_ops = [
+    tf.lite.OpsSet.TFLITE_BUILTINS
+]
+converter.optimizations = [tf.lite.Optimize.DEFAULT]
+tflite_model = converter.convert()
+
+# Save model
+with open('clutter_classifier.tflite', 'wb') as f:
+    f.write(tflite_model)
+
+print(f"Model size: {len(tflite_model) / 1024:.1f} KB")  # Expect <100 KB
+----
+
+**Model Size and Deployment:**
+
+- Quantized model (8-bit int): ~50 KB
+- Inference latency: <1 ms on Raspberry Pi 4
+- No GPU required; TensorFlow Lite Interpreter (C++) is all you need
+
+---
+
+=== Step 1b.3: C++ Inference and Integration
+
+**Objective:** Load TensorFlow Lite model; classify clusters in real-time.
+
+[source,cpp]
+----
+#include "tensorflow/lite/interpreter.h"
+#include "tensorflow/lite/kernels/register.h"
+#include "tensorflow/lite/model.h"
+
+class ClutterClassifier {
+public:
+    ClutterClassifier(const std::string& model_path);
+
+    // Returns probability (0–1) that cluster is a PERSON
+    float classify(const ClusterFeatures& features);
+
+private:
+    std::unique_ptr<tflite::FlatBufferModel> model_;
+    std::unique_ptr<tflite::Interpreter> interpreter_;
+
+    // Normalization parameters (fit during training, hardcode here)
+    const std::vector<float> feature_means_ = {
+        30, 1.6, 0.5, 0.5, 3.0, 100, 0.15, 1.2, 2.0, 1.0
+    };
+    const std::vector<float> feature_stds_ = {
+        15, 0.3, 0.3, 0.3, 1.5, 50, 0.1, 0.4, 1.0, 0.5
+    };
+};
+
+ClutterClassifier::ClutterClassifier(const std::string& model_path) {
+    model_ = tflite::FlatBufferModel::BuildFromFile(model_path.c_str());
+
+    tflite::ops::builtin::BuiltinOpResolver resolver;
+    tflite::InterpreterBuilder builder(*model_, resolver);
+    builder(&interpreter_);
+
+    interpreter_->AllocateTensors();
+}
+
+float ClutterClassifier::classify(const ClusterFeatures& features) {
+    // Extract and normalize features
+    std::vector<float> raw_features = {
+        static_cast<float>(features.num_points),
+        features.height,
+        features.width,
+        features.depth,
+        features.density,
+        features.mean_intensity,
+        features.mean_doppler,
+        features.centroid_height,
+        features.surface_area,
+        features.aspect_ratio_hw()
+    };
+
+    std::vector<float> normalized_features(raw_features.size());
+    for (size_t i = 0; i < raw_features.size(); ++i) {
+        normalized_features[i] = (raw_features[i] - feature_means_[i]) / (feature_stds_[i] + 1e-8f);
+    }
+
+    // Fill input tensor
+    float* input = interpreter_->typed_input_tensor<float>(0);
+    std::copy(normalized_features.begin(), normalized_features.end(), input);
+
+    // Invoke
+    interpreter_->Invoke();
+
+    // Read output
+    float* output = interpreter_->typed_output_tensor<float>(0);
+    return output[0];  // Probability in [0, 1]
+}
+----
+
+**Integration into Block 1 Pipeline:**
+
+[source,cpp]
+----
+std::vector<Cluster> filtered_clusters;
+ClutterClassifier classifier("clutter_classifier.tflite");
+const float CONFIDENCE_THRESHOLD = 0.7f;  // Keep clusters with >70% person probability
+
+for (const auto& cluster : raw_clusters) {
+    ClusterFeatures features = extractFeatures(cluster, frame);
+    float person_probability = classifier.classify(features);
+
+    if (person_probability > CONFIDENCE_THRESHOLD) {
+        filtered_clusters.push_back(cluster);
+    } else {
+        // Log rejected cluster for analysis
+        log_debug("Rejected cluster at ({}, {}, {}): person_prob = {:.2f}",
+                  cluster.centroid.x(), cluster.centroid.y(), cluster.centroid.z(),
+                  person_probability);
+    }
+}
+
+// Now proceed with Kalman filtering and output on filtered_clusters
+----
+
+**Tuning the Confidence Threshold:**
+
+- **0.9 (very conservative):** Almost no false positives, but may miss people at distance/occlusion
+- **0.7 (balanced, recommended):** ~95% precision, ~99% recall
+- **0.5 (permissive):** Catches edge cases but includes some clutter
+
+Validate on held-out test set; choose threshold where false positive rate < 5%.
+
+---
+
+=== Block 1b Validation Checklist
+
+- [ ] Data collected: 100–150 labeled frames
+- [ ] Features extracted for all clusters
+- [ ] ML model trained; validation accuracy >95%
+- [ ] TensorFlow Lite model <100 KB
+- [ ] C++ classifier compiles, links with TensorFlow Lite
+- [ ] Inference latency <1 ms per cluster (verified with timing)
+- [ ] False positive rate <5% on test set
+- [ ] Integrated into Block 1 pipeline; no performance degradation (<15% CPU total)
+
+---
+
+== Block 2: Height Estimation (Heuristic)
+
+**Goal:** Estimate rough height classification (child ~1.0–1.3 m, adult ~1.6–1.8 m) for virtual human response.
+
+**Timeline:** 1 day
+
+**Validation Success Criterion:** Binary classification (child vs. adult) correct >90% of the time.
+
+=== Step 2.1: Height Heuristic Implementation
+
+**Objective:** Extract height from point cloud vertical extent; apply threshold for child/adult decision.
+
+[source,cpp]
+----
+class HeightEstimator {
+public:
+    enum HeightClass { CHILD, ADULT, UNKNOWN };
+
+    HeightClass estimateHeight(const Cluster& cluster) const;
+
+private:
+    // Thresholds (calibrate for your sensor + mounting)
+    const float CHILD_ADULT_THRESHOLD = 1.4f;  // meters
+};
+
+HeightEstimator::HeightClass HeightEstimator::estimateHeight(const Cluster& cluster) const {
+    // Option A: Use vertical extent of cluster
+    float estimated_height = cluster.bbox_max(2) - cluster.bbox_min(2);
+
+    // Option B: Use nominal height (simple fallback)
+    // float estimated_height = 1.6f;  // assume adult
+
+    if (estimated_height < CHILD_ADULT_THRESHOLD) {
+        return CHILD;
+    } else if (estimated_height > 0.8f) {  // minimum height threshold to avoid noise
+        return ADULT;
+    } else {
+        return UNKNOWN;
+    }
+}
+
+// Usage in main pipeline
+HeightEstimator height_estimator;
+for (const auto& cluster : filtered_clusters) {
+    auto height_class = height_estimator.estimateHeight(cluster);
+
+    // Send to Unreal Engine
+    if (height_class == HeightEstimator::CHILD) {
+        virtual_human.setPosture(VirtualHuman::KNEELING);
+    } else if (height_class == HeightEstimator::ADULT) {
+        virtual_human.setPosture(VirtualHuman::STANDING);
+    }
+}
+----
+
+**Why Heuristic Over ML:**
+
+- **Heuristic accuracy:** 70–80% correct child/adult classification
+- **ML accuracy gain:** +5–10% (80–85% at best)
+- **ML development cost:** 2 additional weeks (data collection, labeling, training)
+- **Timeline trade-off:** Not justified for 16-week project where core localization and multi-person tracking are priorities
+
+**Calibration:**
+
+1. Record 30 frames each: child standing in room, adult standing in same location
+2. Extract bbox_max(2) - bbox_min(2) for each
+3. Find threshold that best separates distributions
+4. Typical threshold: 1.3–1.5 m (depends on sensor mounting height and angle)
+
+---
+
+== Integration with Unreal Engine
+
+**Goal:** Stream (x, y, z) position + height class from mmWave system to Unreal Engine at 10 Hz.
+
+=== Communication Protocol
+
+Use **TCP socket** for reliable, low-latency streaming:
+
+[source,cpp]
+----
+#include <boost/asio.hpp>
+#include <nlohmann/json.hpp>
+
+using json = nlohmann::json;
+
+class UnrealEngineSocket {
+public:
+    UnrealEngineSocket(const std::string& server_ip = "127.0.0.1",
+                       uint16_t port = 9999);
+    bool connect();
+    void sendTracking(const std::vector<Cluster>& clusters,
+                      const std::vector<HeightEstimator::HeightClass>& heights);
+
+private:
+    boost::asio::io_context io_;
+    std::unique_ptr<boost::asio::ip::tcp::socket> socket_;
+};
+
+void UnrealEngineSocket::sendTracking(
+    const std::vector<Cluster>& clusters,
+    const std::vector<HeightEstimator::HeightClass>& heights
+) {
+    json msg = json::object();
+    msg["timestamp"] = std::time(nullptr);
+    msg["num_people"] = clusters.size();
+
+    json people = json::array();
+    for (size_t i = 0; i < clusters.size(); ++i) {
+        json person = {
+            {"id", i},
+            {"x", clusters[i].centroid(0)},
+            {"y", clusters[i].centroid(1)},
+            {"z", clusters[i].centroid(2)},
+            {"vx", 0},  // (velocity would come from Kalman filter)
+            {"vy", 0},
+            {"height_class", heights[i] == HeightEstimator::CHILD ? "CHILD" : "ADULT"}
+        };
+        people.push_back(person);
+    }
+    msg["people"] = people;
+
+    std::string payload = msg.dump() + "\n";
+    boost::asio::write(*socket_, boost::asio::buffer(payload));
+}
+----
+
+**JSON Message Format:**
+
+```json
+{
+  "timestamp": 1693833600,
+  "num_people": 2,
+  "people": [
+    {
+      "id": 0,
+      "x": 1.5,
+      "y": 2.1,
+      "z": 1.6,
+      "vx": 0.05,
+      "vy": -0.02,
+      "height_class": "ADULT"
+    },
+    {
+      "id": 1,
+      "x": 0.8,
+      "y": 1.2,
+      "z": 1.1,
+      "vx": 0.0,
+      "vy": 0.0,
+      "height_class": "CHILD"
+    }
+  ]
+}
+```
+
+**Unreal Engine Receiver (Blueprint pseudocode):**
+
+```
+Event BeginPlay:
+    Connect to socket (127.0.0.1:9999)
+    Start receive thread
+
+On socket message received:
+    Parse JSON
+    For each person in message:
+        - Update virtual human position (x, y)
+        - Update virtual human height class (kneel/stand)
+        - Update head look-at target based on height
+
+Tick (at 30 Hz Unreal):
+    Interpolate position between incoming messages (10 Hz)
+    Apply smooth animation blending
+```
+
+---
+
+== End-to-End Validation and Testing
+
+=== Test Scenario 1: Single Person Localization
+
+**Setup:** One person walks predefined path (square, diagonal, circle)
+
+**Ground Truth:** Measure actual position at 5–10 waypoints
+
+**Success Criterion:** Estimated position within ±0.5 m of ground truth
+
+**Procedure:**
+1. Mark waypoints on floor with tape
+2. Record 30 s of tracking at each waypoint
+3. Compute mean estimated position per waypoint
+4. Compare to actual position; compute RMS error
+
+---
+
+=== Test Scenario 2: Multi-Person Tracking
+
+**Setup:** Two people in room; one walks, one stands
+
+**Validation:**
+- Verify two clusters detected (not merged)
+- Verify each cluster tracked independently
+- Person walking leaves trail of positions; standing person's position stable
+
+**Known Limitation:** Cluster IDs not persistent across frames (no multi-target tracking ID assignment). This is acceptable for Holobox use case where virtual human responds to nearest person, or users understand multi-person interaction is limited.
+
+---
+
+=== Test Scenario 3: Height Classification
+
+**Setup:** Adult and child stand sequentially in same location
+
+**Ground Truth:** Known height
+
+**Success Criterion:** Height class correct >90% of time
+
+---
+
+=== Test Scenario 4: Clutter Robustness
+
+**Setup:** Room includes furniture, walls, reflective surfaces
+
+**Validation:**
+- Move ML classifier threshold until false positive rate acceptable (<5%)
+- Verify no spurious clusters from walls or furniture
+- Log all rejected clusters for debugging
+
+---
+
+== Troubleshooting Guide
+
+| Problem | Cause | Solution |
+|---------|-------|----------|
+| No point cloud received | Serial port not opening | Check USB permissions, baud rate, port name |
+| Clusters split across multiple blobs | DBSCAN epsilon too small | Increase epsilon by 0.05–0.1 m, re-calibrate |
+| Clusters merge with wall reflections | epsilon too large, OR low min_points | Increase min_points to 8–10; use Block 1b ML to filter |
+| Room calibration drift | Sensor mounting shifted | Re-calibrate transformation matrix; store to file with timestamp |
+| Kalman filter lags behind movement | Process noise Q too low | Increase Q_pos from 0.01 to 0.05–0.1 |
+| Height estimation wrong | Threshold not calibrated | Run calibration procedure: record child and adult, measure bbox vertical extent |
+| Inference latency >1 ms | CPU bottleneck on Raspberry Pi | Profile with `time` command; consider running on higher-performance machine |
+
+---
+
+== References and Further Reading
+
+1. **Point Cloud Clustering:**
+   - DBSCAN: Ester, Kriegel, Sander, Xu (1996). "A Density-Based Algorithm for Discovering Clusters"
+   - Scikit-learn DBSCAN (Python reference): https://scikit-learn.org/stable/modules/generated/sklearn.cluster.DBSCAN.html
+
+2. **Kalman Filtering:**
+   - Welch & Bishop (2006). "An Introduction to the Kalman Filter"
+   - OpenCV Kalman filter tutorial: https://docs.opencv.org/4.x/dd/d6a/classcv_1_1KalmanFilter.html
+
+3. **TensorFlow Lite on Embedded Systems:**
+   - TensorFlow Lite C++ Guide: https://www.tensorflow.org/lite/guide/inference#load_and_run_a_model_in_c
+
+4. **mmWave Radar Literature:**
+   - Huang et al. (2021). "Deep Learning-based Point Cloud Processing for mmWave Radar"
+   - Pegoraro & Rossi (2022). "Real-Time 3D Human Localization from mmWave Radar on Embedded Systems"
+
+5. **TI Resources:**
+   - IWR6843 Datasheet: https://www.ti.com/product/IWR6843
+   - mmWave SDK documentation: https://dev.ti.com/tirex/explore/content/folder?path=%2FSimpleLink-CC13xx-CC26xx-SDK%2Fdocs
+
+---
+
+== Appendix: Minimal CMakeLists.txt Example
+
+```cmake
+cmake_minimum_required(VERSION 3.15)
+project(holobox_mmwave)
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3")
+
+# Dependencies
+find_package(Eigen3 3.3 REQUIRED NO_MODULE)
+find_package(OpenCV 4.0 REQUIRED)
+
+# Serial library (standalone)
+add_library(serial INTERFACE)
+target_include_directories(serial INTERFACE ${CMAKE_SOURCE_DIR}/third_party/serial/include)
+
+# mmWave core library
+add_library(mmwave_core src/uart_driver.cpp src/dbscan.cpp src/kalman.cpp)
+target_include_directories(mmwave_core PUBLIC ${CMAKE_SOURCE_DIR}/include)
+target_link_libraries(mmwave_core PUBLIC Eigen3::Eigen OpenCV::OpenCV_CORE serial)
+
+# ML inference library (requires TensorFlow Lite)
+add_library(ml_inference src/clutter_classifier.cpp)
+target_include_directories(ml_inference PUBLIC ${TENSORFLOW_LITE_DIR}/include)
+target_link_libraries(ml_inference PUBLIC tensorflow-lite)
+
+# Executable
+add_executable(holobox_tracking src/main.cpp)
+target_link_libraries(holobox_tracking PRIVATE mmwave_core ml_inference)
+```
+
+---
+
+== Timeline Summary
+
+| Week | Block | Deliverable |
+|------|-------|-------------|
+| 1–2 | 1 | UART driver + DBSCAN clustering; (x, y, z) output; basic validation |
+| 3–4.5 | 1b | Data collection + ML training; clutter filter integrated |
+| 4.5–5 | 2 | Height heuristic; child/adult classification |
+| 5–7 | Integration | Unreal Engine socket streaming; multi-person support |
+| 8–13 | Testing & Refinement | Room validation, parameter tuning, edge case handling, performance optimization |
+| 14–16 | Documentation & Demo | Final calibration, presentation prep, code cleanup |
+
+**Total core development: 5–7 weeks. Validation & Polish: 9 weeks.**
+
+This modular approach allows each block to be validated independently before proceeding, reducing risk of late-stage integration issues.

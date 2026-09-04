@@ -1,0 +1,54 @@
+= Prototyping Plan
+
+The Conclusion recommends mmWave radar directly, built up in capability-based phases rather than deferred behind a cheaper sensor.
+This chapter carries that recommendation into a concrete plan for the bench-experimentation stage described in Research Approach.
+
+[[prototyping-strategy]]
+== Approach
+
+Build the mmWave pipeline once, adding one capability at a time on top of an already-working previous phase, rather than assuming position tracking, height estimation, multi-person clustering, and speaker detection all work together on the first attempt.
+
+=== Phase 1: Position Tracking
+
+Bring up the core sensor-to-output pipeline before any height, multi-person, or speaker-detection logic is added:
+
+* mmWave sensor driver: UART point-cloud parser for the IWR6843AOPEVM.
+* Clutter removal, clustering, and Kalman filtering for position tracking, following Huang et al. (<<huang2021mmwave,2021>>).
+* An Unreal Engine socket bridge (C++ TCP output).
+
+This phase validates the parts of the system every later phase depends on: sensor bring-up, point-cloud parsing, and the Unreal integration.
+A failure here is a failure in the foundation, so it is deliberately tackled before any of the more research-heavy capabilities below.
+
+=== Phase 2: Height Estimation
+
+Extend the working (x, y) position tuple from Phase 1 to (x, y, z):
+
+* Choose between a lightweight blob-size heuristic and a keypoint-extraction model following ProbRadarM3F-style approaches (<<probradarm3f2024,2024>>) and Zheng et al. (<<zheng2025mmpose,2025>>), trading implementation effort against accuracy.
+* Feed the resulting height value into the same output tuple and Unreal bridge already validated in Phase 1.
+
+*Fallback:* if mmWave's own height estimate underperforms once measured, mmWave + Thermal Fusion for Height is the documented next step, adding a thermal array as a second, height-specific sensor rather than replacing mmWave.
+
+=== Phase 3: Multi-Person Clustering
+
+Extend the Phase 1 clustering step to reliably separate multiple simultaneous people in the point cloud, rather than assuming a single occupant, following Huang et al.'s (<<huang2021mmwave,2021>>) multi-person tracking demonstration.
+This validates RQ4's extensibility requirement at the architecture level before speaker detection is added on top of it.
+
+=== Phase 4: Speaker Detection
+
+Add mmWave vibrometry to localise and steer toward an active speaker's throat, reusing the same radar hardware and multi-person clustering from Phase 3, following Xu et al.'s WaveEar (<<xu2019waveear,2019>>).
+This completes RQ4's active-speaker identification requirement using the same sensor family throughout, rather than a second, dedicated device.
+
+*Risk mitigation:* because each phase adds a capability on top of an already-working previous phase rather than swapping hardware, a problem in one phase is isolated to that phase; if Phase 4's speaker detection proves difficult, Phases 1-3 remain a working position/height/multi-person system rather than a dead end.
+If the mmWave budget cannot be approved at all, the HLK-LD2450 + thermal budget tier is the fallback of last resort, gated on its own short bench test since no published source can de-risk it in advance.
+
+[NOTE]
+====
+Phase durations are not fixed here; they should be mapped onto the sprint structure in xref:../../project-plan/approach-planning/timeline.adoc[Timeline], since that document is the authoritative one for actual dates.
+====
+
+== Next Steps
+
+* Confirm the physical dimensions of the Holobox interaction space, since this determines the effective range required from the mmWave sensor.
+* Present this plan and the mmWave hardware cost estimate to the company mentor for budget approval, per the process in xref:../../project-plan/risk-analysis/finance-risks.adoc[Finance and Risks]; no hardware is ordered before that approval.
+* Once approved, procure the mmWave module and begin bench experimentation with Phase 1, as described earlier.
+* Treat Phase 4's speaker detection as a follow-on capability to validate once Phases 1-3 are working, rather than a day-one requirement.

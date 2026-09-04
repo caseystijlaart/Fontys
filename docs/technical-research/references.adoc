@@ -1,0 +1,87 @@
+= Bibliography
+
+[[palmar2021]]Alam, M. A. U., Rahman, M. M., & Widberg, J. Q. (2021). _PALMAR: Towards Adaptive Multi-inhabitant Activity Recognition in Point-Cloud Technology_. https://arxiv.org/pdf/2106.11902
+
+[[milliRio2019]]Almalioglu, Y., Turan, M., Lu, C. X., Trigoni, N., & Markham, A. (2019). _Milli-RIO: Ego-Motion Estimation with Low-Cost Millimetre-Wave Radar_. https://arxiv.org/pdf/1909.05774
+
+[[alnaimi2014smartfloor]]Al-Naimi, I., Wong, C. B., Moore, P., & Chen, X. (2014). _Advanced approach for indoor identification and tracking using smart floor and pyroelectric infrared sensors_. 5th International Conference on Information and Communication Systems (ICICS), Irbid, Jordan. https://www.researchgate.net/publication/271463149
+
+[[avargel2011ldv]]Avargel, Y., & Cohen, I. (2011). _Speech measurements using a laser Doppler vibrometer sensor: Application to speech enhancement_. Joint Workshop on Hands-free Speech Communication and Microphone Arrays (HSCMA), Edinburgh, Scotland. https://israelcohen.com/wp-content/uploads/2018/05/HSCMA2011.pdf
+
+[[berghi2023speakerloc]]Berghi, D., & Jackson, P. J. B. (2023). _Audio Inputs for Active Speaker Detection and Localization via Microphone Array_. https://arxiv.org/pdf/2307.14739
+
+[[capacitiveSurvey2024]]Bian, S., Liu, M., Zhou, B., Lukowicz, P., & Magno, M. (2024). _Body-Area Capacitive or Electric Field Sensing for Human Activity Recognition and Human-Computer Interaction: A Comprehensive Survey_. arXiv. https://arxiv.org/pdf/2401.06000
+
+[[bouazizi2024multilidar]]Bouazizi, M., Mora, A. L., Feghoul, K., & Ohtsuki, T. (2024). _Activity Detection in Indoor Environments Using Multiple 2D Lidars_. Sensors. https://pmc.ncbi.nlm.nih.gov/articles/PMC11154263/
+
+[[caicedoUltrasonic]]Caicedo, D., & Pandharipande, A. (2012). _Ultrasonic array sensor for indoor presence detection_. 20th European Signal Processing Conference (EUSIPCO), Bucharest, Romania. https://www.semanticscholar.org/paper/3bd6ffc871056616ba364d8f10f6d3904df3a487
+
+[[chung2023wiris]]Chung, W.-Y., Shen, L.-H., Feng, K.-T., Lin, Y.-C., Lin, S.-C., & Chang, S.-F. (2023). _WiRiS: Transformer for RIS-Assisted Device-Free Sensing for Joint People Counting and Localization using Wi-Fi CSI_. https://arxiv.org/pdf/2304.06475
+
+[[du2018witalk]]Du, C., Yuan, X., Lou, W., & Hou, Y. T. (2018). _Context-Free Fine-Grained Motion Sensing Using WiFi_ (WiTalk). IEEE International Conference on Sensing, Communication, and Networking (SECON). https://www.cnsr.ictas.vt.edu/publication/secon18_final.pdf
+
+[[enoki2024waistlevel]]Enoki, M., Watanabe, K., & Noguchi, H. (2024). _Single Person Identification and Activity Estimation in a Room from Waist-Level Contours Captured by 2D Light Detection and Ranging_. Sensors, 24(4), 1272. https://pmc.ncbi.nlm.nih.gov/articles/PMC10892201/
+
+[[faulkner2020caploc]]Faulkner, N., Parr, B., Alam, F., Legg, M., & Demidenko, S. (2020). _Device Free Localization with Capacitive Sensing Floor_ (CapLoc). IEEE Sensors Applications Symposium (SAS). https://www.researchgate.net/publication/344620665 +
+Builds on the earlier CapFloor system by Braun, A., Heggen, H., & Wichert, R. (2011), presented at the EvAAL indoor localisation competition.
+
+[[feng2015fiberfloor]]Feng, G., Yang, Y., Guo, X., & Wang, G. (2015). _A Smart Fiber Floor for Indoor Target Localization_. IEEE Pervasive Computing, 14(2), 52-59. https://www.researchgate.net/publication/273394655
+
+[[fu2017linoc]]Fu, B., Kirchbuchner, F., von Wilmsdorff, J., Grosse-Puppendahl, T., Braun, A., & Kuijper, A. (2017). _Indoor Localization Based on Passive Electric Field Sensing_ (the Linoc system). Ambient Intelligence (AmI 2017), Lecture Notes in Computer Science vol. 10217, 64-79. https://www.researchgate.net/publication/315799691
+
+[[gatto2015energyfloor]]Gatto, A., Bassoli, E., Contigiani, M., Frontoni, E., Mancini, A., & Zingaretti, P. (2015). _Energy Harvesting Smart Floor for Indoor People Localization and Tracking_. ASME International Design Engineering Technical Conferences (IDETC-CIE). https://www.researchgate.net/publication/314616906
+
+[[holm2010ultrasonic]]Holm, S., & Nilsen, C.-I. C. (2010). _Robust ultrasonic indoor positioning using transmitter arrays_. Indoor Positioning and Indoor Navigation (IPIN) 2010. https://www.researchgate.net/publication/224198462
+
+[[huang2021mmwave]]Huang, X., Cheena, H., Thomas, A., & Tsoi, J. K. P. (2021). _Indoor Detection and Tracking of People Using mmWave Radar_. Journal of Sensors, 2021, Article 6657709. https://onlinelibrary.wiley.com/doi/10.1155/2021/6657709
+
+[[ibara2013footsteps]]Ibara, K., Hirakawa, M., & Kanetsuna, K. (2013). _Identifying Individuals' Footsteps Walking on a Floor Sensor Device_. Active Media Technology (AMT 2013), Lecture Notes in Computer Science. https://www.researchgate.net/publication/295102931
+
+[[jiang2025gmmwknn]]Jiang, M., & Yuan, J. (2025). _A device-free high-precision indoor positioning and tracking method based on GMM-WKNN algorithm_. Scientific Reports, 15, Article 17586. https://www.nature.com/articles/s41598-025-02876-1
+
+[[klir2025thermopile]]Klir, S., Lerch, J., Benkner, S., & Khanh, T. Q. (2025). _Multi-Person Localization Based on a Thermopile Array Sensor with Machine Learning and a Generative Data Model_. Sensors, 25(2), 419. https://pmc.ncbi.nlm.nih.gov/articles/PMC11769272/
+
+[[indotrack2017]]Li, X., Zhang, D., Lv, Q., Xiong, J., Li, S., Zhang, Y., & Mei, H. (2017). _IndoTrack: Device-Free Indoor Human Tracking with Commodity Wi-Fi_. Proceedings of the ACM on Interactive, Mobile, Wearable and Ubiquitous Technologies, 1(3), 1-22.
+
+[[miller1968response]]Miller, R. B. (1968). _Response time in man-computer conversational transactions_. Proceedings of the AFIPS Fall Joint Computer Conference, 33, 267-277.
+
+[[naser2021thermalheight]]Naser, A., Lotfi, A., & Zhong, J. (2021). _Towards human distance estimation using a thermal sensor array_. https://pmc.ncbi.nlm.nih.gov/articles/PMC8204928/ +
+Originally logged under the surname "Aziz" during source gathering; the actual first author is Naser, corrected after verification.
+
+[[ngamakeur2020survey]]Ngamakeur, K., Yongchareon, S., Yu, J., & Ur Rehman, S. (2020). _A Survey on Device-free Indoor Localization and Tracking in the Multi-resident Environment_. ACM Computing Surveys, 53(4). https://dl.acm.org/doi/fullHtml/10.1145/3396302
+
+[[nielsen1993response]]Nielsen, J. (1993). _Usability Engineering_. Academic Press. Response-time limits (0.1 s, 1.0 s, 10 s) also summarised in "Response Times: The 3 Important Limits," Nielsen Norman Group. https://www.nngroup.com/articles/response-times-3-important-limits/
+
+[[njanda2024uwbcount]]Njanda, A., Gbadouissa, J., Rădoi, E., Abba Ari, A. A., Youssef, R., & Halidou, A. (2024). _People counting using IR-UWB radar sensors and machine learning techniques_. ScienceDirect. https://www.sciencedirect.com/science/article/pii/S2772941924000243
+
+[[ozturk2021radiomic]]Ozturk, M. Z., Wu, C., Wang, B., & Liu, K. J. R. (2021). _RadioMic: Sound Sensing via mmWave Signals_. https://arxiv.org/pdf/2108.03164
+
+[[pegoraro2022mmwave]]Pegoraro, J., & Rossi, M. (2022). _Human Tracking with mmWave Radars: a Deep Learning Approach with Uncertainty Estimation_. https://arxiv.org/pdf/2205.03274
+
+[[rahman2024mmvr]]Rahman, M. M., Yataka, R., Kato, S., Wang, P. P., Li, P., Cardace, A., & Boufounos, P. (2024). _MMVR: Millimeter-wave Multi-View Radar Dataset and Benchmark for Indoor Perception_. https://arxiv.org/pdf/2406.10708
+
+[[ramezani2016tagless]]Ramezani Akhmareh, A., Lazarescu, M. T., Bin Tariq, O., & Lavagno, L. (2016). _A Tagless Indoor Localization System Based on Capacitive Sensing Technology_. Sensors, 16(9), 1448. https://www.mdpi.com/1424-8220/16/9/1448
+
+[[segers2015fskranging]]Segers, L., Van Bavegem, D., De Winne, S., Braeken, A., Touhafi, A., & Steenhaut, K. (2015). _An Ultrasonic Multiple-Access Ranging Core Based on Frequency Shift Keying Towards Indoor Localization_. https://pmc.ncbi.nlm.nih.gov/articles/PMC4570340/
+
+[[shen2023timeselective]]Shen, L.-H., Hsiao, A.-H., Chu, F.-Y., & Feng, K.-T. (2023). _Time-Selective RNN for Device-Free Multi-Room Human Presence Detection Using WiFi CSI_. https://arxiv.org/pdf/2304.13107
+
+[[shetty2017gridEye]]Shetty, A. D., Disha, B., Shubha, B., & Suryanarayana, K. (2017). _Detection and tracking of a human using the infrared thermopile array sensor — Grid-EYE_. Proceedings of the International Conference on Intelligent Computing, Instrumentation and Control Technologies (ICICICT), 1490-1495.
+
+[[shin2016uwbsilent]]Shin, Y. H., & Seo, J. (2016). _Towards Contactless Silent Speech Recognition Based on Detection of Active and Visible Articulators Using IR-UWB Radar_. Sensors, 16(11), 1812. https://pmc.ncbi.nlm.nih.gov/articles/PMC5134471/
+
+[[shubha2022thermopile]]Shubha, B., & Shastrimath, V. V. D. (2022). _Real-Time Occupancy Detection System Using Low-Resolution Thermopile Array Sensor for Indoor Environment_. IEEE Access, 10, 130981-130995. https://www.researchgate.net/publication/366350707
+
+[[su2024mmfreepose]]Su, Y., Hou, H. C., Lan, H., & Ma, C. Z.-H. (2024). _A High-Fidelity mmWave Radar Dataset for Privacy-Sensitive Human Pose Estimation_ (the mmFree-Pose dataset). Bioengineering. https://pmc.ncbi.nlm.nih.gov/articles/PMC12383697/
+
+[[trofimova-thermalbg]]Trofimova, A. A., Masciadri, A., Veronese, F., & Salice, F. (2017). _Indoor Human Detection Based on Thermal Array Sensor Data and Adaptive Background Estimation_. Journal of Computer and Communications, 5(4), 16-28. https://www.researchgate.net/publication/315301224
+
+[[wang2014wihear]]Wang, G., Zou, Y., Zhou, Z., Wu, K., & Ni, L. M. (2014). _We Can Hear You with Wi-Fi!_ (WiHear). Proceedings of the 20th Annual International Conference on Mobile Computing and Networking (MobiCom).
+
+[[ultrasonicVisionFusion2017]]Wang, M., Su, D., Shi, L., Liu, Y., & Valls Miro, J. (2017). _Real-time 3D Human Tracking for Mobile Robots with Multisensors_. https://arxiv.org/pdf/1703.04877
+
+[[xu2019waveear]]Xu, C., Li, Z., Zhang, H., Rathore, A. S., Li, H., Song, C., Wang, K., & Xu, W. (2019). _WaveEar: Exploring a mmWave-based Noise-resistant Speech Sensing for Voice-User Interface_. Proceedings of the 17th Annual International Conference on Mobile Systems, Applications, and Services (MobiSys), 14-26.
+
+[[zheng2025mmpose]]Zheng, S., Li, J., Wang, G., Ni, M., Palit, A., Montana, G., & Guan, Y. (2025). _Person Parametric Physics-informed Representation for mmWave-based Human Pose Estimation_. https://arxiv.org/pdf/2512.23054
+
+[[probradarm3f2024]]Zhu, B., He, Z., Xiong, W., Ding, G., Huang, T., & Xiang, W. (2024). _ProbRadarM3F: mmWave Radar based Human Skeletal Pose Estimation with Probability Map Guided Multi-Format Feature Fusion_. https://arxiv.org/html/2405.05164v2

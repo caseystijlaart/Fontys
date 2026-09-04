@@ -1,0 +1,10 @@
+= Document history
+
+[[document-history-table]]
+.Document History
+|===
+|Version    |Date       |Status |Author                                 |Description                    |Remarks
+
+| 0.1        |03-09-2026 | Draft Version  | Casey Stijlaart              | Draft Version | Initial document layout, non-camera sensing techniques chapter
+| 0.2        |04-09-2026 | Draft Version  | Casey Stijlaart              | Draft Version | Finalisation of non-camera sensing techniques
+|===

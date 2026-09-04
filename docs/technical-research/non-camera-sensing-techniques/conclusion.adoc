@@ -1,0 +1,12 @@
+= Conclusion
+
+Candidate Sensor Technologies weighed the technically viable sensors and sensor combinations against the criteria in Evaluation Criteria.
+On that basis, mmWave radar is recommended directly: it is the only approach with keypoint-level pose literature for height estimation, it extends to the RQ4 active-speaker problem via the same sensor, its output is inherently non-identifying, and it has the strongest literature base of any candidate reviewed.
+Within the TI IWR6843 family, mmWave Module Selection picks the *IWR6843AOPEVM*: its antenna-on-package design gives the wide 120° elevation field of view needed for room-scale height coverage without a separate antenna to design around, in a compact, mount-agnostic form factor at roughly the same price as the cheaper plain LEVM variant.
+
+Rather than deferring mmWave behind a cheaper sensor, implementation risk is managed by splitting the mmWave build itself into capability-based phases: position tracking first, then height estimation, then multi-person clustering, then speaker detection, each building on an already-working previous phase.
+This still isolates risk (a problem in one capability does not require redoing the whole pipeline) without introducing a second sensor and a mid-project hardware swap.
+mmWave remains, by a wide margin, the most expensive candidate reviewed, and no project budget has yet been agreed with MindLabs, so mentor approval of the full mmWave hardware cost is a precondition for this plan, not a detail to resolve later.
+
+The concrete phasing of this recommendation is set out in the Prototyping Plan chapter.
+
