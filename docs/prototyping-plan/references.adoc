@@ -1,0 +1,9 @@
+= Bibliography
+
+[[huang2021mmwave]]Huang, X., Cheena, H., Thomas, A., & Tsoi, J. K. P. (2021). _Indoor Detection and Tracking of People Using mmWave Radar_. Journal of Sensors, 2021, Article 6657709. https://onlinelibrary.wiley.com/doi/10.1155/2021/6657709
+
+[[xu2019waveear]]Xu, C., Li, Z., Zhang, H., Rathore, A. S., Li, H., Song, C., Wang, K., & Xu, W. (2019). _WaveEar: Exploring a mmWave-based Noise-resistant Speech Sensing for Voice-User Interface_. Proceedings of the 17th Annual International Conference on Mobile Systems, Applications, and Services (MobiSys), 14-26.
+
+[[zheng2025mmpose]]Zheng, S., Li, J., Wang, G., Ni, M., Palit, A., Montana, G., & Guan, Y. (2025). _Person Parametric Physics-informed Representation for mmWave-based Human Pose Estimation_. https://arxiv.org/pdf/2512.23054
+
+[[probradarm3f2024]]Zhu, B., He, Z., Xiong, W., Ding, G., Huang, T., & Xiang, W. (2024). _ProbRadarM3F: mmWave Radar based Human Skeletal Pose Estimation with Probability Map Guided Multi-Format Feature Fusion_. https://arxiv.org/html/2405.05164v2

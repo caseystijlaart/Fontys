@@ -12,8 +12,6 @@ include::research-approach.adoc[]
 
 include::evaluation-criteria.adoc[]
 
-<<<
-
 include::candidate-technologies.adoc[]
 
 <<<
@@ -23,9 +21,5 @@ include::mmwave.adoc[]
 <<<
 
 include::conclusion.adoc[]
-
-<<<
-
-include::prototyping-plan.adoc[]
 
 :leveloffset: -1

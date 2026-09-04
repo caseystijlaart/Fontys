@@ -1,19 +1,22 @@
 [[mmwave-module-selection]]
-= mmWave Module Selection
+= Module Selection
 
 Candidate Sensor Technologies recommends mmWave radar as the sensing modality, built around the TI IWR6843 chip.
 That chip ships on several evaluation-board variants at different price points and field-of-view characteristics, given below as azimuth (angular coverage side-to-side) / elevation (angular coverage top-to-bottom, i.e. floor-to-head reach), all sharing the same TI mmWave SDK/point-cloud software stack and all operable standalone over USB (none strictly require the separate MMWAVEICBOOST carrier card for point-cloud demos).
-This chapter compares those variants directly and picks one to carry into the Prototyping Plan.
+This chapter compares those variants directly and picks one.
+None of these professional evaluation boards are stocked by Dutch hobbyist-electronics shops (Kiwi Electronics, Antratek, TinyTronics); the actual sourcing path for a Dutch buyer is DigiKey's or Mouser's Netherlands storefronts, both of which ship locally and quote in EUR, which is what the links and prices below reflect.
 
-* link:https://www.ti.com/tool/IWR6843LEVM[IWR6843LEVM]: TI's cost-optimised FR4-antenna variant, €140-160 at current link:https://www.digikey.com/en/products/detail/texas-instruments/IWR6843LEVM/18159132[Digi-Key] listings, with a 120° azimuth / 80° elevation field of view.
+* link:https://www.ti.com/tool/IWR6843LEVM[IWR6843LEVM]: TI's cost-optimised FR4-antenna variant, €140-160 at current link:https://www.digikey.nl/en/products/detail/texas-instruments/IWR6843LEVM/18159132[Digi-Key NL] listings, with a 120° azimuth / 80° elevation field of view.
 The cheapest usable (i.e. not bare-chip) option found.
-* link:https://www.ti.com/product/IWR6843[IWR6843ISK]: the standard long-range antenna plug-in module, €175-265 at current link:https://nl.mouser.com/en/ProductDetail/Texas-Instruments/AWR6843ISK[Mouser] listings, with a narrower 108° azimuth / 44° elevation field of view tuned for range over coverage.
+* link:https://www.ti.com/product/IWR6843[IWR6843ISK]: the standard long-range antenna plug-in module, €175-265 at current link:https://nl.mouser.com/en/ProductDetail/Texas-Instruments/AWR6843ISK[Mouser NL] listings, with a narrower 108° azimuth / 44° elevation field of view tuned for range over coverage.
 Better documented in some community projects, but its narrow elevation beam works against a room-scale height-estimation use case rather than for it.
 * link:https://www.ti.com/product/IWR6843ISK-ODS/part-details/IWR6843ISK-ODS[IWR6843ISK-ODS]: a wide-field-of-view (120° azimuth / 120° elevation) antenna variant, etched on a Rogers substrate, that TI markets specifically for overhead/ceiling-mounted people counting and tracking, €195-215, ~12 m range.
 Better suited than the plain ISK if the Holobox sensor ends up ceiling-mounted, since that use case is exactly what this variant's antenna is designed for.
-* link:https://www.ti.com/tool/IWR6843AOPEVM[IWR6843AOPEVM]: an antenna-on-package (AoP) variant, with the antenna integrated directly into the chip package rather than etched onto a separate PCB, €160-185 at current link:https://www.mouser.com/en/ProductDetail/Texas-Instruments/IWR6843AOPEVM[Mouser] / link:https://www.digikey.com/en/products/detail/texas-instruments/IWR6843AOPEVM/12165115[Digi-Key] listings.
+* link:https://www.ti.com/tool/IWR6843AOPEVM[IWR6843AOPEVM]: an antenna-on-package (AoP) variant, with the antenna integrated directly into the chip package rather than etched onto a separate PCB, €160-185 at current link:https://nl.mouser.com/en/ProductDetail/Texas-Instruments/IWR6843AOPEVM[Mouser NL] / link:https://www.digikey.nl/en/products/detail/texas-instruments/IWR6843AOPEVM/12165115[Digi-Key NL] listings.
 Matches the ISK-ODS's wide 120° azimuth / 120° elevation field of view in a smaller (~65×60mm), standard (non-overhead-specific) form factor, at roughly the same price as the plain LEVM.
-* link:https://www.digikey.com/en/products/detail/infineon-technologies/DEMOBGT60TR13CTOBO1/16580764[Infineon BGT60TR13C] eval board: a comparable, EU-sourced 60 GHz alternative outside the TI ecosystem, €230.
+* link:https://www.digikey.nl/en/products/detail/infineon-technologies/DEMOBGT60TR13CTOBO1/16580764[Infineon BGT60TR13C] eval board: a comparable, EU-sourced 60 GHz alternative outside the TI ecosystem, €230.
+
+<<<
 
 [[mmwave-evm-comparison]]
 .mmWave EVM Variant Comparison
@@ -30,6 +33,8 @@ Matches the ISK-ODS's wide 120° azimuth / 120° elevation field of view in a sm
 
 On field of view, the ISK's narrow 44° elevation beam is a poor match for this project: it is tuned for a defined industrial zone at range, not for seeing a person from roughly floor to head height across a room, which is what the height-estimation use case actually needs.
 The ISK-ODS and AOPEVM both offer the wide 120° elevation FoV that fits room-scale height coverage, at similar prices (€160-185 to €195-215) and near the LEVM's own price point.
+
+<<<
 
 [[mmwave-module-recommendation]]
 == Recommendation: IWR6843AOPEVM
