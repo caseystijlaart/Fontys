@@ -12,11 +12,13 @@ include::research-approach.adoc[]
 
 include::evaluation-criteria.adoc[]
 
+<<<
+
 include::candidate-technologies.adoc[]
 
 <<<
 
-include::mmwave.adoc[]
+include::module-selection.adoc[]
 
 <<<
 

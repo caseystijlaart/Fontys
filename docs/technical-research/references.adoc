@@ -8,6 +8,8 @@
 
 [[avargel2011ldv]]Avargel, Y., & Cohen, I. (2011). _Speech measurements using a laser Doppler vibrometer sensor: Application to speech enhancement_. Joint Workshop on Hands-free Speech Communication and Microphone Arrays (HSCMA), Edinburgh, Scotland. https://israelcohen.com/wp-content/uploads/2018/05/HSCMA2011.pdf
 
+[[barral2024multiradar]]Barral, V., Domínguez-Bolaño, T., Escudero, C. J., & García-Naya, J. A. (2024). _An IoT system for smart building combining multiple mmWave FMCW radars applied to people counting_. arXiv, submitted to IEEE Internet of Things Journal. https://arxiv.org/html/2401.17949v1
+
 [[berghi2023speakerloc]]Berghi, D., & Jackson, P. J. B. (2023). _Audio Inputs for Active Speaker Detection and Localization via Microphone Array_. https://arxiv.org/pdf/2307.14739
 
 [[capacitiveSurvey2024]]Bian, S., Liu, M., Zhou, B., Lukowicz, P., & Magno, M. (2024). _Body-Area Capacitive or Electric Field Sensing for Human Activity Recognition and Human-Computer Interaction: A Comprehensive Survey_. arXiv. https://arxiv.org/pdf/2401.06000

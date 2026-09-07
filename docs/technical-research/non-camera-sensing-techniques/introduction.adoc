@@ -1,12 +1,16 @@
 = Introduction
 
-This chapter addresses the first technical research question defined in the project plan (see xref:../../project-plan/project-assignment/research-questions.adoc[Research Questions]):
+This chapter addresses the first technical research question defined in the project plan (see link:../../project-plan/project-plan.pdf[Research Questions]):
 "Which combination of non-camera sensors provides sufficient 3D spatial resolution to distinguish adult and child height categories within a room-scale interactive space?"
 
-Per the xref:../../project-plan/project-assignment/assignment.adoc[Assignment], the target system estimates a single person's real-time 3D position and height within the Holobox interaction space without cameras, exposing that estimate to the Holobox's Unreal Engine pipeline so the Virtual Human can adapt its behaviour accordingly.
+This question is referred to as *RQ1* throughout this chapter.
+Two further technical sub-questions from the project plan are also referenced by number: *RQ2*, how sensor fusion on an embedded platform produces robust, low-latency position estimates under real-world noise conditions; and *RQ4*, how the system architecture supports single-person tracking now while remaining extensible to multi-person scenarios.
+*RQ3*, training and deploying a lightweight on-device ML model for height classification, is out of this chapter's scope, per the on-device ML note below.
+
+Per the link:../../project-plan/project-plan.pdf[Assignment], the target system estimates a single person's real-time 3D position and height within the Holobox interaction space without cameras, exposing that estimate to the Holobox's Unreal Engine pipeline so the Virtual Human can adapt its behaviour accordingly.
 This chapter covers which non-camera sensing technologies exist, what they have actually been shown to do in the literature, and which module best fits the project's requirements and future extensibility: a literature-backed survey of candidate technologies, the criteria a viable approach must satisfy, a comparison against current hardware/cost data, and a recommended sensor choice with a staged de-risking plan.
 Embedded implementation detail, the on-device ML height-classification model, and the Unreal Engine output interface are addressed by other technical sub-questions; this chapter recommends what to use and how to validate that choice, not how the resulting embedded software is built.
-Per xref:../../project-plan/project-assignment/scope-preconditions.adoc[Scope and Preconditions], a fully polished prototype is out of scope, since the project is exploratory by nature; the recommendation here ends in a staged prototyping plan rather than a final hardware order.
+Per link:../../project-plan/project-plan.pdf[Scope and Preconditions], a fully polished prototype is out of scope, since the project is exploratory by nature; the recommendation here ends in a staged prototyping plan rather than a final hardware order.
 
 Two aspects of the research question are narrowed for this stage: distinguishing adult and child height *categories* is treated as a possible later refinement rather than a hard requirement, since a general height estimate is sufficient for now (see Candidate Sensor Technologies); and multi-person tracking, a future-facing requirement in the Assignment, is addressed here only as an evaluation criterion (see Evaluation Criteria), not as a capability this stage builds.
 Both may be revisited later if time allows.
