@@ -1,0 +1,9 @@
+= Document history
+
+[[document-history-table]]
+.Document History
+|===
+|Version    |Date       |Status |Author                                 |Description                    |Remarks
+
+| 0.1        |04-09-2026 | Draft Version  | Casey Stijlaart              | Draft Version | Split out from the Technical Research Report's non-camera-sensing-techniques chapter into its own document
+|===

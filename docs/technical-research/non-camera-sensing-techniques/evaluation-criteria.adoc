@@ -1,0 +1,23 @@
+= Evaluation Criteria
+
+Before diving into available sensor modules, it is of great importance to understand the requirements they need to meet.
+Thus the comparison can be set out against explicit, justified requirements rather than an implicit sense of what "good" looks like.
+Each criterion below is traced to either a technical sub-question described in the Project Plan (Chapter 3.6, Research Questions), a key feature named in the Project Plan (Chapter 3.3, Assignment), or a project constraint from the Project Plan (Chapter 6.1, Finance and Risks), rather than to a generic notion of sensor quality.
+
+[[criteria-table]]
+.Evaluation Criteria
+[cols="1,3"]
+|===
+|Criterion |Description
+
+|Height-estimation capability |Must produce an actual height reading (alone or fused), not just (x, y) position, per RQ1's spatial-resolution requirement; a general estimate suffices for now.
+|Position accuracy and coverage |Position error and range must be usable at the Holobox's actual room-scale dimensions, since RQ1 covers (x, y) as well as height and a sensor that can't cover the space isn't usable regardless of height capability.
+|Real-time embedded feasibility |Interactive latency on an embedded platform (targeting <100 ms, hard ceiling ~1 s), as RQ2 requires low-latency embedded estimates; thresholds follow Nielsen's (<<nielsen1993response,1993>>) response-time limits, building on Miller (<<miller1968response,1968>>).
+|Multi-person extensibility |Shouldn't fundamentally break if a second person enters the space later, since RQ4 and the Assignment both name multi-person as a future-facing requirement.
+|Data minimisation / privacy |Output can't identify an individual and captures only what's needed for position and height, required by the ethical/legal sub-questions given that visitors are children aged 8-12 (AVG/GDPR).
+|Literature and community backing |Prior published work must show the specific capability required, not just the technology in general, reducing the risk of committing project time to proving something never demonstrated at all.
+|Hardware cost |Cost of the sensor and any paired second sensor, checked against sourceable listings; a real constraint since no project budget has yet been agreed with MindLabs.
+|===
+
+These criteria are not weighted equally, and are not applied as a hard pass/fail filter.
+Height-estimation capability and data minimisation are treated as closer to hard requirements, since they follow directly from RQ1 and the ethical/legal sub-questions; the remaining criteria (sensor combination, cost, power/footprint) are weighed against each other in the chapter that follows, since a technology that is merely more expensive or harder to pair with a second sensor is not disqualified the way one with no height precedent or an identifying output effectively is.

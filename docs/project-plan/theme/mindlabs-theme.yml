@@ -49,8 +49,12 @@ toc:
     font_color: C9C9C9
 
 table:
+  border_color: 999999
+  border_width: 0.75
+  grid_width: 0.75
   head:
     background_color: FBE0E1
+    border_bottom_width: 1.5
 
 header:
   height: 1.5cm

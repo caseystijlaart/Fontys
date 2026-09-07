@@ -1,0 +1,25 @@
+= Non-Camera Person Position & Height Sensing Techniques
+
+:leveloffset: +1
+
+include::introduction.adoc[]
+
+<<<
+
+include::research-approach.adoc[]
+
+<<<
+
+include::evaluation-criteria.adoc[]
+
+<<<
+
+include::candidate-technologies.adoc[]
+
+<<<
+
+include::module-selection.adoc[]
+
+include::conclusion.adoc[]
+
+:leveloffset: -1
