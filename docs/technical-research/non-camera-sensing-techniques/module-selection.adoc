@@ -2,18 +2,14 @@
 = Module Selection
 
 Candidate Sensor Technologies recommends mmWave radar as the sensing modality, built around the TI IWR6843 chip.
-The chip ships on several evaluation-board variants at different price points and field-of-view characteristics, given below as azimuth (angular coverage side-to-side) / elevation (angular coverage top-to-bottom, i.e. floor-to-head reach), all sharing the same TI mmWave SDK/point-cloud software stack and all operable standalone over USB (none strictly require the separate MMWAVEICBOOST carrier card for point-cloud demos).
+The chip ships on several evaluation-board variants at different price points and field-of-view characteristics, given below as azimuth (angular coverage side-to-side) / elevation (angular coverage top-to-bottom, i.e. floor-to-head reach).
 This chapter compares those variants directly and picks one.
-None of these professional evaluation boards are stocked by Dutch hobbyist-electronics shops (Kiwi Electronics, Antratek, TinyTronics); the actual sourcing path for a Dutch buyer is DigiKey's or Mouser's Netherlands storefronts, both of which ship locally and quote in EUR, which is why the links and prices below use those stores.
+The retrieved product listings are current as of 07-09-2026 and may vary when checking on a different date.
 
-* link:https://www.ti.com/tool/IWR6843ISK[IWR6843ISK]: the standard long-range antenna plug-in module, €248,23 at current link:https://nl.mouser.com/en/ProductDetail/Texas-Instruments/IWR6843ISK?qs=PqoDHHvF64%252BpLvVHE%2FA5bw%3D%3D[Mouser NL] listings, with a 120° azimuth / a narrower 30° elevation field of view tuned for range over coverage.
-Better documented in some community projects, but its narrow elevation beam works against a room-scale height-estimation use case rather than for it.
-* link:https://www.ti.com/tool/IWR6843ISK-ODS[IWR6843ISK-ODS]: a wide-field-of-view (120° azimuth / 120° elevation) antenna variant, etched on a Rogers substrate, that TI markets specifically for overhead/ceiling-mounted people counting and tracking, ~12 m range. €205,44 at current link:https://nl.mouser.com/en/ProductDetail/Texas-Instruments/IWR6843ISK-ODS?qs=9r4v7xj2LnlHBzZTGNiR9A%3D%3D[Mouser].
-Better suited than the plain ISK if the Holobox sensor ends up ceiling-mounted, since the use case is exactly what this variant's antenna is designed for.
+* link:https://www.ti.com/tool/IWR6843ISK[IWR6843ISK]: the standard long-range antenna plug-in module, €248,23 at current link:https://nl.mouser.com/en/ProductDetail/Texas-Instruments/IWR6843ISK?qs=PqoDHHvF64%252BpLvVHE%2FA5bw%3D%3D[Mouser NL] listings, with a 120° azimuth / a narrower 30° elevation field of view tuned for range over coverage, which works against a room-scale height-estimation use case rather than for it.
+* link:https://www.ti.com/tool/IWR6843ISK-ODS[IWR6843ISK-ODS]: a wide-field-of-view (120° azimuth / 120° elevation) antenna variant, etched on a Rogers substrate, that TI markets specifically for overhead/ceiling-mounted people counting and tracking (~12 m range), €205,44 at current link:https://nl.mouser.com/en/ProductDetail/Texas-Instruments/IWR6843ISK-ODS?qs=9r4v7xj2LnlHBzZTGNiR9A%3D%3D[Mouser].
 * link:https://www.ti.com/tool/IWR6843AOPEVM[IWR6843AOPEVM]/link:https://www.ti.com/tool/AWR6843AOPEVM[AWR6843AOPEVM]: an antenna-on-package (AoP) variant, with the antenna integrated directly into the chip package rather than etched onto a separate PCB, €174,92 at current link:https://nl.mouser.com/en/ProductDetail/Texas-Instruments/IWR6843AOPEVM?qs=%252B6g0mu59x7L00bHiTWJzSw%3D%3D[Mouser NL]/link:https://nl.mouser.com/en/ProductDetail/Texas-Instruments/AWR6843AOPEVM?qs=QNEnbhJQKvYqpH36NBFH4w%3D%3D[AWR6483AOPEVM].
-Matches the ISK-ODS's wide 120° azimuth / 120° elevation field of view in a smaller (~65×60mm), standard (non-overhead-specific) form factor, at the lowest price of the three variants compared.
-
-<<<
+Matches the ISK-ODS's wide 120° azimuth / 120° elevation field of view in a smaller (~65×60mm).
 
 [[mmwave-evm-comparison]]
 .mmWave EVM Variant Comparison
@@ -22,7 +18,7 @@ Matches the ISK-ODS's wide 120° azimuth / 120° elevation field of view in a sm
 
 | *Price (€)* | 248,23 | 205,44 | 174,92
 | *Antenna* | 60-64GHz | 60-64GHz | 60-64GHz
-| *Rx/Tx | 4/3 | 4/3 | 4/3
+| *Rx/Tx* | 4/3 | 4/3 | 4/3
 | *Azimuth Angular Resolution (deg)* | 15 | 29 | 29
 | *Azimuth FOV (deg)* | 120 | 120 | 120
 | *Elevation Angular Resolution (deg)* | 58 | 29 | 29
@@ -34,11 +30,6 @@ Matches the ISK-ODS's wide 120° azimuth / 120° elevation field of view in a sm
 
 [NOTE]
 ====
-The mentioned prices are based on today's prices, 07-09-2026, obtained from link:https://nl.mouser.com/en/[Mouser].
-====
-
-[NOTE]
-====
 The maximum distance for the TI modules is given by the TI link:https://dev.ti.com/gallery/view/mmwave/mmWaveSensingEstimator/ver/2.5.1/[mmWave Sensing Estimator], configured for the short-range default; it is therefore theoretical, not a measured figure.
 ====
 
@@ -47,27 +38,9 @@ The maximum distance for the TI modules is given by the TI link:https://dev.ti.c
 [[mmwave-module-recommendation]]
 == Recommendation
 
-Of the three variants in <<mmwave-evm-comparison>>, the IWR6843AOPEVM (equivalently, its AWR6843AOPEVM sibling) is recommended.
-Azimuth and elevation are not weighed equally, since they serve two different jobs.
-Azimuth FOV and resolution govern how well the radar covers and separates people across the room's width.
-This feeds RQ1's horizontal position tracking and the angular separation RQ4's multi-person detection depends on.
-Elevation FOV and resolution instead govern how much of a person's vertical extent, floor to head, actually falls inside the radar's beam.
-That is the precondition for the keypoint/pose-based height estimate described in Candidate Sensor Technologies: a head or shoulder joint outside the beam simply is not seen, regardless of range or azimuth coverage.
-All three variants share the same 120° azimuth FOV, so azimuth cannot distinguish them at all.
-Elevation is therefore the deciding criterion, not azimuth and not maximum range; every variant clears the range needed at this short-range, room-scale installation with margin to spare.
+Of the three variants in <<mmwave-evm-comparison>>, the IWR6843AOPEVM (equivalently, AWR6843AOPEVM) is recommended.
+Elevation, not azimuth or range, is the deciding factor: elevation FOV and resolution determine how much of a person's vertical extent falls inside the beam, the precondition for the keypoint-based height estimate, while every variant already covers the room's short range with margin to spare.
 
-IWR6843ISK is ruled out directly on that basis.
-Its elevation FOV is only 30°, by far the narrowest of the three, and its elevation angular resolution is also the coarsest at 58°, against 29° for the other two.
-TI built this variant for long range over angular coverage, the opposite trade-off from what a short-range height reading needs, and it is also the most expensive variant at €248,23.
-It loses on the criterion that matters and on price at the same time.
-IWR6843ISK-ODS is the closest competitor, matching AOPEVM's 120° elevation FOV and 29° elevation angular resolution exactly.
-Its maximum range differs from AOPEVM's by about a metre, which is not a meaningful difference for a short-range installation, so this is not treated as decisive either way.
-What actually separates the two is price and mounting assumption.
-ISK-ODS costs €205,44, around 17% more than AOPEVM, for no corresponding gain on the rows that matter here.
-Its antenna is also etched specifically for overhead/ceiling-mounted installations, per TI's own positioning of the variant, and the Holobox's mounting position has not committed to that.
-AOPEVM reaches the same elevation performance in a smaller (~65x60mm), mounting-agnostic form factor, at the lower of the two prices.
-
-On every row that distinguishes the three variants, AOPEVM matches the best result or beats it outright, while also being the cheapest.
-It is not a compromise between cost and capability the way ISK-ODS would be.
-No other variant is preferable on any criterion that matters for this short-range use case.
-This is why it is carried forward as the module to build with in the phased mmWave implementation set out in the Conclusion.
+IWR6843ISK is ruled out: its 30° elevation FOV is by far the narrowest of the three, its elevation resolution the coarsest, and it is also the most expensive at €248,23.
+IWR6843ISK-ODS matches AOPEVM's elevation FOV and resolution exactly, but costs 17% more and its antenna is built for ceiling mounting, an assumption the Holobox has not committed to.
+AOPEVM reaches the same elevation performance in a smaller, mounting-agnostic form factor at the lowest price of the three, which is why it is carried forward into the phased mmWave implementation in the Conclusion.

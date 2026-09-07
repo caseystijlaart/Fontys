@@ -1,5 +1,6 @@
 = Technical Research Report
 :numbered:
+:sectnumlevels: 4
 :imagesdir: images
 :title-page: true
 :author: Casey Stijlaart
