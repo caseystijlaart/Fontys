@@ -1,6 +1,6 @@
 = Research Approach
 
-This chapter follows the Library and Lab strategies of the DOT-framework identified for this research question in link:../../project-plan/project-plan.pdf[Research Methods]: available product analysis, literature study, document analysis, and bench experimentation.
+This chapter follows the Library and Lab strategies of the DOT-framework identified for this research question in the Project Plan (Chapter 3.7, Research Methods): available product analysis, literature study, document analysis, and bench experimentation.
 
 == Library: Literature Study
 
@@ -8,7 +8,7 @@ Candidate Sensor Technologies gathers and verifies peer-reviewed literature for 
 
 == Lab: Available Product Analysis
 
-Alongside the literature, the same chapter narrows the literature-backed technology families down to specific, currently sourceable hardware modules, checked against live distributor listings (Digi-Key, Mouser, Adafruit, and others) rather than assumed pricing, since an unverified cost estimate is not a usable basis for a hardware decision or the budget-approval process in link:../../project-plan/project-plan.pdf[Finance and Risks].
+Alongside the literature, the same chapter narrows the literature-backed technology families down to specific, currently sourceable hardware modules, checked against live distributor listings (Digi-Key, Mouser, Adafruit, and others) rather than assumed pricing, since an unverified cost estimate is not a usable basis for a hardware decision or the budget-approval process described in the Project Plan (Chapter 6.1, Finance and Risks).
 Literature backing and product availability are two different questions: a technique can be well-published without there being a specific, currently purchasable module that implements it at a reasonable price, or at all.
 
 == Lab: Bench Experimentation Strategy

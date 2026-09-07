@@ -20,8 +20,6 @@ include::candidate-technologies.adoc[]
 
 include::module-selection.adoc[]
 
-<<<
-
 include::conclusion.adoc[]
 
 :leveloffset: -1
