@@ -1,15 +1,15 @@
 = Research Questions
 
 == Main Research Question
-How can the real-time 3D position and height of a single person inside the Holobox interaction space be reliably estimated using a combination of non-camera sensors, embedded within the Holobox hardware, so that the Virtual Human can respond appropriately?
+How can the real-time 3D position and height of a single person inside the Holobox interaction space be reliably estimated using non-camera sensor(s), embedded within the Holobox hardware, so that the Virtual Human can respond appropriately?
 
 == Sub-questions
 
 *Technical sub-questions*:
 
-. Which combination of non-camera sensors provides sufficient 3D spatial resolution to distinguish adult and child height categories within a room-scale interactive space?
-. How can sensors be combined and implemented on an embedded platform to produce robust, low-latency position estimates under real-world noise conditions?
-. How can a lightweight ML model be trained and deployed on an edge device to classify person height from fused sensor data with acceptable accuracy?
+. What non-camera sensors provides sufficient 3D spatial resolution to distinguish adult and child height categories within a room-scale interactive space?
+. How can sensors be implemented on an embedded platform to produce robust, low-latency position estimates under real-world noise conditions?
+. How can a lightweight ML model be trained and deployed on an edge device to classify person height from sensor data with acceptable accuracy?
 . How should the system architecture be designed to support single-person tracking now while remaining extensible to multi-person scenarios?
 . How should the position and height output be structured and exposed so it can be consumed by the
   Unreal Engine pipeline with acceptable latency and reliability?
