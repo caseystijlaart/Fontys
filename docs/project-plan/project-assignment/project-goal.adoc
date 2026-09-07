@@ -4,8 +4,8 @@ The goal of this internship is to research, design, and build an embedded sensin
 
 Sub-goals::
 * Identify and compare sensing technologies against criteria relevant to the Holobox environment: spatial resolution, height discrimination, embedded feasibility, and robustness in a real environment with children.
-* Select and combine two or more complementary sensors and design a sensor architecture that compensates for the individual weaknesses of each sensor type.
-* Implement a real-time processing pipeline in C/C++ and/or Python on an embedded platform that turns raw sensor data into a position and height-category estimate.
+* Select the sensor(s) and MCU/SBC and design the architecture.
+* Implement a real-time processing pipeline in C/C++ and/or Python on an embedded platform that turns sensor data into a position and height-category estimate.
 * Explore lightweight, on-device machine learning for height classification or person selection, where this improves accuracy or robustness over a purely rule-based approach.
 * Document the resulting architecture, data flow, and design decisions so the solution can be understood, maintained, and extended by MindLabs after the internship ends.
 
