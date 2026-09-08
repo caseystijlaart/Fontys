@@ -13,7 +13,9 @@ Regarding to the already defined meeting dates, these are defined in the table <
 [[meeting-schedule-table]]
 .Meetings Schedule
 |===
-| Type of Meeting | occurance
-| Assesor | Bi-weekly, starting on 08-09-2026
-| Sprint Demo | Every 3 weeks, with first occurance on 04-09-2026
+| Type of Meeting | Purpose | Occurance | Starting Date
+| Assesor | To dicuss the current progress and status. Furthermore, any questions could be asked at this moment. | Bi-weekly | 08-09-2026
+| Sprint Demo | To deliver and showcase the booked process form the past sprint. | Every 3 weeks |  04-09-2026
+| Peer Show & Tell | To showcase progress with other graduation student from Fontys | week 4, week 9, and week 15 | -
+| Table Meeting | To get the current status and booked process, and understand where you are currently standing |  week 4, week 9, and week 15 | -
 |===
