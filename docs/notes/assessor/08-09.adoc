@@ -1,0 +1,14 @@
+= Meeting Assessor : 08-09-2026
+
+== Project Plan and Company Visit
+When the project plan is approved by the assesor and client, a company visit can be scheduled.
+This company visit will be plant in week 3 or 4.
+During the company visit the basic informal information and introduction with the company mentor.
+
+== Feedback : Project Plan
+For the project assingment, add a very top level diagram how your project is structured in blocks.
+
+When it comes to the finished product, combine all the documents into the project documentation. 
+Add the first hardware and software prototype to what will be delivered, and a not fully integrated protype with integration with the existing virtual human.
+
+Lastly, for the communication, add a table that discusses with whom the meeting is, when and the purpose of it.
