@@ -32,7 +32,7 @@ None of the speaker-identification sources have been tested in this project's sp
 2D LiDAR measures range by timing a laser pulse's reflection while scanning a single horizontal plane, producing an (x, y) point cloud at the unit's mounted height; well suited to in-plane tracking, but a single fixed-height plane does not by itself yield a height measurement (would need multiple units at different heights, a tilted scan, or a full 3D ToF/LiDAR unit).
 
 Within its native (x, y) role, 2D LiDAR performs well: Bouazizi et al. (<<bouazizi2024multilidar,2024>>) fuse multiple units with a ConvLSTM model and show tolerance to furniture occlusion.
-For RQ4, Alam et al. (<<palmar2021,2021>>) document "crossover ambiguity" as 2D LiDAR's recurring multi-person failure mode when tracks pass close together, the concrete risk to plan around later.
+For multi-person settings, Alam et al. (<<palmar2021,2021>>) document "crossover ambiguity" as 2D LiDAR's recurring multi-person failure mode when tracks pass close together, the concrete risk to plan around later.
 The representative module, the RPLIDAR A2M8, scans at 5-15 Hz (typically 10 Hz) per Slamtec's datasheet, the limit on full (x, y) frame availability regardless of its faster ~4000 samples/sec per-sample rate.
 
 <<<
@@ -54,28 +54,33 @@ Several IWR6843 evaluation-board variants exist at different price points and fi
 
 ==== Position & Height Localisation
 For position tracking, Huang et al. (<<huang2021mmwave,2021>>) combine clutter removal, clustering, and Kalman filtering for real-time multi-person tracking on a Raspberry Pi 4, and Pegoraro and Rossi (<<pegoraro2022mmwave,2022>>) report position error down to roughly 7.6 cm.
-More directly relevant to height estimation is the pose-estimation literature: Zhu et al.'s ProbRadarM3F (<<probradarm3f2024,2024>>) recovers 14 body keypoints from radar point clouds; since keypoints include head/shoulder joints, this is the most direct existing path to an actual height estimate rather than a size proxy, backed by a camera-free radar dataset with joint ground truth (Su et al., <<su2024mmfreepose,2024>>).
-On latency, reported tracking papers give broadly similar tens-of-milliseconds frame periods on different radar chips (15-20 fps), and the IWR6843 chip itself supports frame rates up to ~76 Hz per TI's datasheet, though typical demo configurations run at 10-20 Hz; see Evaluation Criteria for the thresholds this is checked against.
+Pose-estimation literature is also relevant here: Zhu et al.'s ProbRadarM3F (<<probradarm3f2024,2024>>) recovers 14 body keypoints from radar point clouds, including head and shoulder joints, backed by a camera-free radar dataset with joint ground truth (Su et al., <<su2024mmfreepose,2024>>).
+This project's own planned approach is simpler, though: just take the top and bottom point of a person's point cloud and measure the gap (see End-to-End Latency Requirements, Compute Platform Implications). It's cheaper and faster, but unlike the keypoint model, it isn't backed by literature yet. The keypoint model stays the fallback if the simple version doesn't hold up.
+On latency: reported tracking papers give broadly similar tens-of-milliseconds frame periods on different radar chips (15-20 fps). TI doesn't publish a fixed maximum frame rate for the IWR6843 chip itself, the mmWave SDK exposes frame periodicity as an open, configurable value (<<mmwavesdkug>>), not a spec. TI's own indoor people-tracking reference design for this chip (<<tidue71d>>) runs at roughly 18 Hz (55ms), in the same range as the 10-20 Hz "typical demo" configurations noted elsewhere; see Evaluation Criteria for the thresholds this is checked against.
+
+<<<
 
 ==== Speaker Identification
-Whether the IWR6843 reports two people as distinct targets, rather than merging them into one detection, depends on the radar's angular and range resolution, not on a single blanket "multi-person" capability.
-Two people need roughly 1.7-2.9m of horizontal separation, or a height difference of ~1.7m (e.g. one seated, one standing), before angular resolution reliably reports them as separate; range separation (front-back) is far finer, ~4-5cm, and follows automatically from time-of-flight rather than needing angular discrimination.
-Speaker identification does not share this constraint: it relies on Doppler micro-motion detection of mouth/chest movement during speech, so the radar can identify who is speaking regardless of how close together people are standing.
-This vibrometry capability extends to sound itself: Xu et al.'s WaveEar (<<xu2019waveear,2019>>) uses a low-cost mmWave probe to first localise a speaker among multiple people, then steer toward their throat, solving "who is speaking" and "what are they saying" from the same sensor.
-For a room roughly 5m wide with 2-3 people scattered across it, ordinary spacing satisfies counting, height, and speaker-ID requirements together; the failure case to plan around is 4+ people clustered tightly, where horizontal separation drops below the 1.7-2.9m threshold and tracks become ambiguous.
+Whether the IWR6843 reports two people as distinct targets depends on angular and range resolution, not a blanket "multi-person" capability: roughly 1.7-2.9m of horizontal separation, or a ~1.7m height difference, is needed before angular resolution tells them apart. Range separation is far finer, ~4-5cm, from time-of-flight alone.
+
+mmWave's own speaker-ID path is Doppler vibrometry: sensing larynx skin-surface displacement via a ~90-200Hz bandpass. Xu et al.'s WaveEar (<<xu2019waveear,2019>>) demonstrates this, but only at short range; no source shows it working room-wide at the scale this project needs, so it's a bonus capability here, not the primary mechanism. In this design it confirms whoever is close to the Holobox (~1-1.5m), doubling as a liveness/anti-spoof check, a played-back recording has no matching throat-vibration signature.
+
+Room-wide speaker identification is delegated to a paired <<mic-array,Microphone Array>> instead, steered by the radar's per-person tracked angles.
+For an illustrative 3×3m tracked zone with 2-3 people, ordinary spacing satisfies counting and height; at this scale two people already approach the 1.7-2.9m threshold at the zone's diagonal (~4.2m), so ambiguous tracks are reachable with fewer people than a larger space would allow. That zone size is a planning illustration, not a confirmed Holobox spec.
 
 Pros::
 * Extensive literature base: real-time multi-person tracking and keypoint-level pose/height estimation.
 * Demonstrated real-time operation on a Raspberry Pi 4.
 * Point-cloud output is inherently non-identifying, fitting the project's data-minimisation requirements.
-* The same sensor also supports speaker identification via Doppler vibrometry, without additional hardware.
+* Also supports close-range (~1-1.5m) speaker confirmation and liveness/anti-spoof checking via Doppler vibrometry, without additional hardware, alongside the room-wide microphone array.
 
 Cons::
 * Sensor cost is €160-185 for the IWR6843AOPEVM variant (see <<mmwave-module-selection,Module Selection>>).
-* Height estimation still requires extra work: a blob-size heuristic or a keypoint-extraction model, not a single established method.
+* Height estimation still needs extra work: either the simple top/bottom-point calculation or a keypoint-extraction model. Neither is a single, settled method yet.
 * No project budget has yet been agreed with MindLabs, so this cost is a real, unresolved risk.
+* Radar-only speaker identification is not demonstrated room-wide; a paired microphone array is needed for that (see below).
 
-
+<<<
 
 [[wifi-csi]]
 === Wi-Fi CSI Sensing
@@ -95,7 +100,7 @@ Pros::
 * The same commodity hardware also has a literature precedent for detecting mouth-movement reflections for speaker identification (WiHear).
 
 Cons::
-* No published height-estimation precedent at all, the single biggest gap against RQ1.
+* No published height-estimation precedent at all, the single biggest gap for this project's needs.
 * Sensitive to environmental changes (furniture, multipath, other RF sources), the primary limit on stability.
 * No demonstrated real-time embedded deployment in the sources reviewed.
 
@@ -105,6 +110,8 @@ Active ultrasonic ranging measures distance via time-difference-of-arrival (TDOA
 
 Segers et al. (<<segers2015fskranging,2015>>) track up to four transmitters at 1-2cm accuracy on an FPGA using frequency-shift-keyed ultrasound.
 Segers et al. do not report an update rate or latency figure, so latency here is an open question rather than a documented one.
+
+<<<
 
 Pros::
 * Sidesteps the "room full of talking people" interference problem passive listening would face.
@@ -118,15 +125,14 @@ Cons::
 
 [[infrared-thermal]]
 === Infrared / Thermal
-Low-resolution thermal/thermopile arrays measure a grid of per-pixel temperature readings; a person would appear as a warm blob against the cooler background, and the same low pixel count that limits resolution and range is itself a privacy advantage, since it's far below what's needed to identify a person or resolve recognisable imagery.
+Low-resolution thermal/thermopile arrays measure a grid of per-pixel temperature readings: a person appears as a warm blob, and the same low pixel count that limits resolution and range doubles as a privacy strength, too coarse to resolve recognisable imagery.
 
-Most directly relevant to RQ1, Naser et al. (<<naser2021thermalheight,2021>>) explicitly extend thermal-array distance estimation to height measurement using a neural network, and should be read first.
-Feasibility on embedded hardware is demonstrated by Shubha and Shastrimath (<<shubha2022thermopile,2022>>), who report 99% occupancy accuracy on a Grid-EYE/AMG8833 array on a Raspberry Pi, and Klir et al. (<<klir2025thermopile,2025>>) extend the same class of Grid-EYE sensor to multi-person localisation (relevant to RQ4).
-Naser et al.'s sensor supports a 0.5-64 Hz sampling rate; the specific Grid-EYE/AMG8833 breakout identified for procurement is coarser, exposing only a 10 Hz or 1 Hz frame-rate register.
+Naser et al. (<<naser2021thermalheight,2021>>) extend thermal-array distance estimation to height using a neural network, the most directly relevant source, and should be read first. Shubha and Shastrimath (<<shubha2022thermopile,2022>>) show 99% occupancy accuracy on a Grid-EYE/AMG8833 array on a Raspberry Pi; Klir et al. (<<klir2025thermopile,2025>>) extend the same sensor class to multi-person localisation.
+Naser et al.'s sensor samples at 0.5-64 Hz; the AMG8833 breakout identified for procurement is coarser, only 10 Hz or 1 Hz.
 
-Sensor hardware cost is in the order of 2 x €40-55 excluding the embedded compute platform, confirmed at €49.60 (incl. VAT) via link:https://www.kiwi-electronics.com/en/adafruit-amg8833-ir-thermal-camera-breakout-3286[Kiwi Electronics] (NL), and the I2C interface is straightforward to bring up.
-That price is for the AMG8833's narrow ~60° field of view, sufficient only for a small room; wider coverage without narrowing the FoV would normally mean mounting overhead, which is not an option for the Holobox's fixed installation, so room-scale coverage instead means the wider-FoV MLX90640 (110° FoV) variant, €75.01 (incl. VAT) at link:https://www.kiwi-electronics.com/en/wide-angle-110-mlx90640-thermal-camera-breakout--4153[Kiwi Electronics] (NL).
-Wherever thermal is paired with a room-scale primary sensor in <<combined-approaches,Combined Sensor Approaches>> below, two units are needed for full room coverage rather than one; since coverage is then split between two sensors, neither one needs the wider (pricier) FoV on its own, so two of the cheaper narrow-FoV AMG8833 units (roughly €100 total) are the cost basis used there, not the single wide-FoV part.
+Hardware cost is around 2 × €40-55, confirmed at €49.60 (incl. VAT) via link:https://www.kiwi-electronics.com/en/adafruit-amg8833-ir-thermal-camera-breakout-3286[Kiwi Electronics] (NL); the I2C interface is straightforward.
+That price is for the AMG8833's narrow ~60° FoV, enough only for a small room; room-scale coverage without mounting overhead, not an option for the Holobox, instead means the wider 110° MLX90640 variant, €75.01 (incl. VAT) at link:https://www.kiwi-electronics.com/en/wide-angle-110-mlx90640-thermal-camera-breakout--4153[Kiwi Electronics] (NL).
+Paired with a room-scale primary sensor (<<combined-approaches,Combined Sensor Approaches>>), two narrow-FoV AMG8833 units (~€100 total) split coverage instead of one pricier wide-FoV part.
 
 Pros::
 * Height estimation is demonstrated directly from sensor data, not just a proxy (Naser et al.).
@@ -161,14 +167,22 @@ Cons::
 * Floor-based sensing requires physical installation under the existing floor; cost can run into the thousands of euros.
 
 === Laser Doppler Vibrometry
-Speaker identification only; not evaluated for RQ1 position/height localisation.
+Speaker identification only; not evaluated for position/height localisation.
 
 A laser Doppler vibrometer (LDV) measures skin-surface vibration at a distance via Doppler shift, picking up throat vibration during speech even in noisy conditions; Avargel and Cohen (<<avargel2011ldv,2011>>) combine an LDV sensor aimed at the larynx with a standard microphone to enhance speech quality under transient noise.
 
+[[mic-array]]
 === Microphone Array (Passive Acoustic)
-Speaker identification only; not evaluated for RQ1 position/height localisation.
+Speaker identification only; not evaluated for position/height localisation.
 
-Berghi and Jackson (<<berghi2023speakerloc,2023>>) use a microphone array with a convolutional recurrent neural network to localise an active talker's position from multichannel audio alone, requiring no camera or radar hardware at all.
+Berghi and Jackson (<<berghi2023speakerloc,2023>>) localise an active talker from multichannel audio alone using a CRNN, no camera or radar needed. This project doesn't need that open-ended version, though: the radar pipeline (<<mmwave-radar,mmWave Radar>>) already tracks each person's position.
+
+==== Room-wide Speaker Identification (Primary)
+Instead of blind direction-of-arrival estimation, the array steers a few listening beams at the radar's tracked angles and compares acoustic energy across them to attribute speech, considerably more reliable than a blind approach, but dependent on radar tracking already working. An ML refinement of that beam comparison, rather than the blind CRNN approach, is worth exploring too; not yet evaluated for feasibility here.
+This makes the microphone array, not the radar's own close-range Doppler vibrometry, the primary path to room-wide speaker identification, covering the room the radar's ~1-1.5m range can't reach.
+
+==== Open Risk: Array Range vs. Tracked-Zone Coverage
+Off-the-shelf arrays like the Seeed ReSpeaker are rated for ~3m. For the illustrative 3×3m tracked zone used elsewhere, an edge mount's worst case (~4.2m, the zone's diagonal) exceeds that; a central mount's (~2.1m) doesn't. Both the zone size and mounting position are undecided, so this stays open: a higher-gain array or a central mount are the two directions to check before hardware is committed to.
 
 [[combined-approaches]]
 == Combined Sensor Approaches
@@ -201,7 +215,7 @@ Cons::
 |===
 |Technology |Representative Module |Approx. Hardware Cost (sensor only) |Height Data in Literature |Documented Latency / Update Rate
 
-|mmWave Radar |link:https://www.ti.com/tool/IWR6843AOPEVM[TI IWR6843AOPEVM] (see <<mmwave-module-selection,Module Selection>> for the variant comparison) |€160-185 |Yes, keypoint-based |10-20 Hz
+|mmWave Radar |link:https://www.ti.com/tool/IWR6843AOPEVM[TI IWR6843AOPEVM] (see <<mmwave-module-selection,Module Selection>> for the variant comparison) |€160-185 |Yes, keypoint-based |10-20Hz as base, but configurable to higher rates.
 |Infrared/Thermal Array |link:https://www.kiwi-electronics.com/en/adafruit-amg8833-ir-thermal-camera-breakout-3286[AMG8833 breakout, Kiwi Electronics (NL)] |€40-55 |Yes, direct |1 Hz or 10 Hz
 |2D LiDAR + Thermal (sensor fusion) |link:https://www.robotshop.com/products/rplidar-a2m8-360-laser-scanner[RPLIDAR A2M8] (discontinued at major distributors) + 2x link:https://www.kiwi-electronics.com/en/adafruit-amg8833-ir-thermal-camera-breakout-3286[AMG8833, Kiwi Electronics (NL)] |€350-390 |Partial, via fusion |5-15 Hz
 |Wi-Fi CSI Sensing |None. It reuses existing commodity Wi-Fi hardware |Approx. €0 (existing infrastructure) |None found |10-100 Hz
@@ -232,8 +246,11 @@ Latency figures are the sensor's own documented output rate, not a measured end-
 [[recommended-approach]]
 == Recommended Approach
 
-On the criteria set out earlier, mmWave radar comes out ahead: it is the only approach with keypoint-level pose literature, it extends to the RQ4 speaker-identification problem via the same sensor, and it has the strongest literature base of any candidate reviewed; the infrared/thermal array is cheaper and has a direct height-estimation precedent, but mmWave is the stronger technical choice.
+On the criteria set out earlier, mmWave radar comes out ahead. It's the only approach with keypoint-level pose literature, and it has the strongest literature base of any candidate reviewed. The infrared/thermal array is cheaper and has a direct height-estimation precedent, but mmWave is still the stronger technical choice.
 This is a recommendation of the modality; the specific IWR6843 variant is addressed in <<mmwave-module-selection,Module Selection>>.
+Height itself is only a general estimate for now, adult/child categorisation is a possible later refinement, not something this recommendation locks in.
 
-mmWave is by far the most expensive candidate reviewed, and no project budget has yet been agreed with MindLabs, so that cost is a precondition to clear with the company mentor before ordering hardware.
-Implementation risk is managed instead by building the pipeline one capability at a time (position, then height, then multi-person clustering, then speaker detection), each on an already-working previous phase.
+For the RQ4 speaker-identification problem, radar alone only reaches ~1-1.5m around the Holobox, via Doppler vibrometry, which doubles as a liveness/anti-spoof check. Room-wide speaker identification is instead handled by a paired <<mic-array,Microphone Array>>, steered by the angles radar already tracks for each person, rather than solving open-ended source localisation on its own.
+
+mmWave is by far the most expensive candidate reviewed, and no project budget has been agreed with MindLabs yet, so clearing that cost with the company mentor is a precondition before ordering hardware.
+Implementation risk is managed by building the pipeline one capability at a time: position, then height, then multi-person clustering, then speaker detection, each on an already-working previous phase. The microphone array gets added once radar tracking works, since beam-steering depends on it, and only once its own hardware-range risk (see <<mic-array,Microphone Array>>) is resolved.

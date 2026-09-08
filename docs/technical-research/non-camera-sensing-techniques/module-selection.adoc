@@ -16,14 +16,14 @@ Matches the ISK-ODS's wide 120° azimuth / 120° elevation field of view in a sm
 |===
 | Feature | IWR6843ISK | IWR6843ISK-ODS | IWR6843AOPEVM/AWR6843AOPEVM
 
-| *Price (€)* | 248,23 | 205,44 | 174,92
-| *Antenna* | 60-64GHz | 60-64GHz | 60-64GHz
-| *Rx/Tx* | 4/3 | 4/3 | 4/3
-| *Azimuth Angular Resolution (deg)* | 15 | 29 | 29
-| *Azimuth FOV (deg)* | 120 | 120 | 120
-| *Elevation Angular Resolution (deg)* | 58 | 29 | 29
-| *Elevation FOV (deg)* | 30 | 120 | 120
-| *Max Distance for child/adult (+/-m)* | 50/60 | 40/48 | 41/49
+| Price (€) | 248,23 | 205,44 | 174,92
+| Antenna | 60-64GHz | 60-64GHz | 60-64GHz
+| Rx/Tx | 4/3 | 4/3 | 4/3
+| Azimuth Angular Resolution (deg) | 15 | 29 | 29
+| Azimuth FOV (deg) | 120 | 120 | 120
+| Elevation Angular Resolution (deg) | 58 | 29 | 29
+| Elevation FOV (deg) | 30 | 120 | 120
+| Max Distance for child/adult (+/-m) | 50/60 | 40/48 | 41/49
 |===
  
 ---
@@ -39,7 +39,8 @@ The maximum distance for the TI modules is given by the TI link:https://dev.ti.c
 == Recommendation
 
 Of the three variants in <<mmwave-evm-comparison>>, the IWR6843AOPEVM (equivalently, AWR6843AOPEVM) is recommended.
-Elevation, not azimuth or range, is the deciding factor: elevation FOV and resolution determine how much of a person's vertical extent falls inside the beam, the precondition for the keypoint-based height estimate, while every variant already covers the room's short range with margin to spare.
+Elevation, not azimuth or range, is the deciding factor. Elevation FOV and resolution determine how much of a person's vertical extent falls inside the beam, the precondition for the keypoint-based height estimate. Every variant already covers the room's short range with margin to spare.
+Azimuth isn't a deciding factor either. All three variants share roughly the same 29° figure anyway (bar IWR6843ISK's finer 15°), and the fine angular discrimination room-wide speaker identification needs is handled by a paired microphone array instead (Candidate Sensor Technologies, <<mic-array,Microphone Array>>), not the radar's own azimuth resolution.
 
 IWR6843ISK is ruled out: its 30° elevation FOV is by far the narrowest of the three, its elevation resolution the coarsest, and it is also the most expensive at €248,23.
 IWR6843ISK-ODS matches AOPEVM's elevation FOV and resolution exactly, but costs 17% more and its antenna is built for ceiling mounting, an assumption the Holobox has not committed to.

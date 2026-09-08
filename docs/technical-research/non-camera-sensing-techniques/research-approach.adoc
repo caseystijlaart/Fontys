@@ -4,7 +4,7 @@ This chapter follows the Library and Lab strategies of the DOT-framework identif
 
 == Library: Literature Study
 
-Candidate Sensor Technologies gathers and verifies peer-reviewed literature for each non-camera sensing family against RQ1's position/height requirement and, separately, against RQ4's multi-person active-speaker problem, in two separate passes: RQ1 sits in the radar/thermal/RF position-and-pose-estimation literature, while RQ4 sits closer to acoustic and vibrometry-based speaker localisation, so a single combined search would have missed sources specific to either.
+Candidate Sensor Technologies gathers and verifies peer-reviewed literature for each non-camera sensing family against the position/height requirement and, separately, against the multi-person active-speaker problem, in two separate passes: one sits in the radar/thermal/RF position-and-pose-estimation literature, the other closer to acoustic and vibrometry-based speaker localisation, so a single combined search would have missed sources specific to either.
 
 == Lab: Available Product Analysis
 
@@ -14,5 +14,5 @@ Literature backing and product availability are two different questions: a techn
 == Lab: Bench Experimentation Strategy
 
 The recommended path into bench experimentation commits to mmWave radar directly, managing implementation risk by splitting the build into capability-based phases rather than assuming the full pipeline works at once: position tracking first, then height estimation, then multi-person clustering, then speaker detection, each building on an already-working previous phase.
-This is deliberate: it isolates a failure to whichever capability is currently being added, rather than letting it surface somewhere in an untested, fully assembled system; the same mmWave hardware and UART/point-cloud/Unreal Engine bridge built in phase one is reused, not redone, in every phase after it; it follows the research-question sequence, validating RQ1 (position/height) before adding RQ4 (multi-person clustering, speaker detection); and it reflects feature priority, since RQ4's extensions improve the system without being required for the current single-person scope.
+This is deliberate: it isolates a failure to whichever capability is currently being added, rather than letting it surface somewhere in an untested, fully assembled system; the same mmWave hardware and UART/point-cloud/Unreal Engine bridge built in phase one is reused, not redone, in every phase after it; it follows the research-question sequence, validating position/height first before adding multi-person clustering and speaker detection; and it reflects feature priority, since those extensions improve the system without being required for the current single-person scope.
 A working fallback exists at each stage: if a later phase's capability underperforms, the earlier phase's version remains a functioning system rather than a dead end, mirroring the fallback the project's own risk register anticipates for both sensor selection and on-device ML performance.
