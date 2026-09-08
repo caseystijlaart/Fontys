@@ -1,6 +1,7 @@
 = Assignment
 
 The goal of this internship is to research, design, and build an embedded sensing system capable of estimating the real-time 3D position, including height, of a person within the Holobox interaction space, without the use of cameras.
+A top level overview is given in <<fig-project-top-level>>.
 
 Key features of the system include:
 
@@ -11,3 +12,18 @@ Key features of the system include:
 
 The final deliverable will be a working embedded prototype that demonstrates the system's capabilities, along with the supporting documentation, including a technical research report covering sensor selection, implemented interaction logic (position + height output), and a system architecture document. 
 The system will be designed with multi-person extensibility as a future-facing requirement, though single-person tracking is the focus of this internship.
+
+[[fig-project-top-level]]
+.Project Top Level Overview
+[graphviz, project-tree, png]
+....
+digraph ProjectTree {
+  rankdir=LR;
+  node [shape=box, fontname="Helvetica", fontsize=10];
+
+  "Human Occupancy" -> "Sensing System"
+  "Speaker Detection" -> "Sensing System"
+  "Virtual Human" -> "Sensing System"
+  "Sensing System" -> "Virtual Human"
+}
+....

@@ -6,4 +6,5 @@
 |Version    |Date       |Status |Author                                 |Description                    |Remarks
 
 | 0.1        |04-09-2026 | Draft Version  | Casey Stijlaart              | Draft Version | Split out from the Technical Research Report's non-camera-sensing-techniques chapter into its own document
+| 0.2        |08-09-2026 | Draft Version  | Casey Stijlaart              | Draft Version | Revision based upon feedback from Gerard Elbers.
 |===

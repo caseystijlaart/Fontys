@@ -12,14 +12,14 @@ digraph ProjectTree {
   rankdir=TB;
   node [shape=box, fontname="Helvetica", fontsize=10];
 
-  Project -> Documentation;
+  Project -> "Project Documentation";
   Project -> Prototype;
 
-  Documentation -> "Project Plan";
-  Documentation -> "System Design Document";
-  Documentation -> "Test Report";
-  Documentation -> "Technical Research Report";
+  "Project Documentation" -> "Project Plan";
+  "Project Documentation" -> "Technical Research Report";
+  "Project Documentation" -> "System Design Document";
+  "Project Documentation" -> "Test Report";
 
-  Prototype -> "Embedded Sensing System";
+  Prototype -> "First Protoype of the Sensing System";
 }
 ....
