@@ -1,0 +1,17 @@
+= Research Approach
+
+This chapter follows the Lab and Library strategies the Project Plan assigns to RQ2 and RQ3 (Chapter 3.7, Research Methods): literature review, available product analysis, and prototyping/benchmarking; the in-situ and model-training parts of those rows come later, once a board is chosen and a pipeline exists to benchmark.
+
+== Library: Literature Study
+
+The search here is narrower than Non-Camera Person Position & Height Sensing Techniques: rather than surveying sensing modalities, it looks for published or documented cases that pair this project's already-selected radar family (the TI IWR6843 series) with a specific class of host board, to check whether the interface and compute split this project plans to use has actually been demonstrated, not just assumed.
+
+== Lab: Available Product Analysis
+
+Candidate boards are narrowed to specific, currently sourceable hardware, checked against live distributor listings rather than assumed pricing, for the same reason as Non-Camera Person Position & Height Sensing Techniques: an unverified cost estimate is not a usable basis for the budget-approval process in the Project Plan (Chapter 6.1, Finance and Risks).
+Literature precedent and product availability are again treated as separate questions: a board can be well-documented for general embedded use without a published case of it running this project's specific sensor pipeline.
+
+== Lab: Bench Experimentation Strategy
+
+The board recommended here is not bench-tested yet; that happens once the radar module itself is on hand, alongside the phased implementation plan already set out in Non-Camera Person Position & Height Sensing Techniques (position, then height, then multi-person, then speaker detection).
+The specific risk this chapter flags for that bench stage is the reported USB bandwidth limit on the host interface (Candidate Embedded Platforms, Raspberry Pi 4 Model B), which needs checking against this project's own point-cloud data rate before it can be treated as settled.
