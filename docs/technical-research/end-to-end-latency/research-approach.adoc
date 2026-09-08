@@ -1,0 +1,13 @@
+= Research Approach
+
+This chapter follows the Library and Field strategies of the DOT-framework identified in the Project Plan (Chapter 3.7, Research Methods): literature study and document analysis to derive and budget the latency target.
+
+== Library: Literature Study
+
+The "feels natural" requirement is grounded in general response-time literature rather than a number picked from intuition: Miller (<<miller1968response,1968>>), Nielsen (<<nielsen1993response,1993>>), and Shneiderman & Plaisant (<<shneiderman2010hci,2010>>) establish the standing 0.1s/1s/10s interactive-system response-time thresholds, and ITU-T G.114 (<<itu2003g114,2003>>) gives a comparable, independently-derived threshold (150ms one-way) for real-time telecom traffic.
+A targeted search for literature on position/height-triggered avatar-reaction latency specifically, as opposed to general system responsiveness, did not surface a source that could be verified against its own claim; Perceptual Latency Thresholds is explicit about this gap and derives a project-specific target from the general literature instead of attributing a number to a source that does not actually make that claim.
+
+== Field: Document Analysis
+
+Latency Budget decomposes the sensing-to-reaction pipeline into per-stage budgets (sensor acquisition, fusion, inference, rendering, optional transmission) by analysing existing documentation rather than running new experiments: the sensor acquisition figures reuse the recommended mmWave module's own datasheet and SDK configuration options (<<mmwave-radar>>, <<mmwave-module-selection>>), and the remaining stages are estimated from published figures for comparable embedded pipelines, since this project has not yet built and measured them.
+

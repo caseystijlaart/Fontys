@@ -1,7 +1,7 @@
 = Introduction
 
-This chapter addresses the first technical research question defined in the Project Plan (Chapter 3.6, Research Questions), referred to as *RQ1*: "Which combination of non-camera sensors provides sufficient 3D spatial resolution to distinguish adult and child height categories within a room-scale interactive space?"
-Two further sub-questions are referenced by number: *RQ2* (robust, low-latency position estimates under real-world noise) and *RQ4* (extensibility to multi-person scenarios); *RQ3* (on-device ML for height classification) is out of scope here.
+This chapter addresses the first technical research question defined in the Project Plan (Chapter 3.6, Research Questions), referred to as RQ1: "Which combination of non-camera sensors provides sufficient 3D spatial resolution to distinguish adult and child height categories within a room-scale interactive space?"
+Two further sub-questions are referenced by number: RQ2 (robust, low-latency position estimates under real-world noise) and RQ4 (extensibility to multi-person scenarios); RQ3 (on-device ML for height classification) is out of scope here.
 
 Per the Project Plan (Chapter 3.3, Assignment), the target system estimates a person's real-time 3D position and height within the Holobox space without cameras, for the Virtual Human to act on.
 This chapter surveys candidate technologies against the criteria they must satisfy, compares current hardware and cost, and recommends a sensor choice with a staged de-risking plan rather than a final hardware order, since a fully polished prototype is out of scope (Chapter 3.4, Scope and Preconditions).
