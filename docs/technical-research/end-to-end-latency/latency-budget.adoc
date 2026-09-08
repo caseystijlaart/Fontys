@@ -1,0 +1,62 @@
+[[latency-budget]]
+= Latency Budget
+
+== Pipeline Breakdown
+
+The pipeline this project actually builds and can verify is sensing → fusion → inference → output (the estimate exposed to the Unreal Engine pipeline). It's broken into independent per-stage budgets below, so a measured overrun can later be pinned on a specific stage, not just "the system" as a whole.
+This is a broader budget than the <100ms embedded-feasibility target already set for the sensing stage alone (<<criteria-table>>). That figure only covers sensing and position-estimation; this one covers everything up to the point this project's own deliverable ends.
+Sensor acquisition reuses the already-recommended module (<<mmwave-radar>>, <<mmwave-module-selection>>), not an assumed frame rate. The remaining stages, fusion, inference, output, are estimated from typical figures for comparable embedded pipelines, since this project hasn't built and measured them yet.
+
+[cols="2,1,3"]
+|===
+| Component | Budget | Notes
+
+| Sensor acquisition (mmWave radar)
+| 50-100 ms
+| 10-20Hz base configuration, consistent with the "typical demo" figures in <<mmwave-radar>> and with TI's own indoor people-tracking reference design for this chip (<<tidue71d>>), which achieves ~18Hz (55ms); the mmWave SDK allows configuring higher rates, see Sensor Sampling Rate below.
+
+| Sensor fusion (Kalman/EKF over multiple frames)
+| 0-20 ms
+| Lightweight relative to inference; can run in parallel with the next frame's capture.
+
+| Inference (height-category classification)
+| 1-5 ms
+| Theoretical estimate for a simple geometric approach: take the highest and lowest point in the person's radar point cloud, compare against an adult/child threshold. No trained model. Not yet measured on target hardware, and adult/child classification itself isn't a confirmed VH requirement yet (see below and Non-Camera Person Position & Height Sensing Techniques).
+
+| Output exposed to the pipeline (only if sensing and the pipeline consumer run on separate machines)
+| 0 ms local / 50-100 ms networked
+| Negligible on one local machine; rises materially over Wi-Fi/Ethernet if split across machines, per Non-Camera Person Position & Height Sensing Techniques.
+
+| Total, this project's own scope
+| 51-125 ms
+| Sum of the ranges above, local only. This is the part this project actually builds and can bench-test.
+|===
+
+Downstream of that, MindLabs' existing Holobox / Unreal Engine system renders the Virtual Human's actual reaction, one animation frame updating skeletal targets, typically 16-33ms at 30-60 FPS.
+That's not something this project builds, controls, or can bench-test; Finished Products lists only the embedded sensing system as the prototype deliverable. It's mentioned here purely as context: added to this project's own 51-125ms, it lands around 67-158ms, which is what the <150ms full-pipeline target (Perceptual Latency Thresholds) is actually measuring against.
+
+== Jitter Margin
+
+Adding headroom for scheduling jitter and frame misalignment, a planning margin pending the bench measurement in Requirements and Verification, not a measured figure:
+
+----
+Base budget, this project's own scope (mid-point of each range above): ~88 ms
+Jitter margin:                                                          +20 ms
+Resulting estimate:                                                     ~108 ms
+----
+
+~108 ms is the planning target for NFR-Latency-01, this project's own scope, sensing through to exposing the estimate. That leaves roughly 42ms of the full 150ms budget for the downstream Virtual Human rendering this project doesn't build, close to the 16-33ms typically estimated for one render frame.
+That margin rests on an unvalidated assumption, though. If the simple top/bottom-point approach isn't accurate enough on real, noisy point-cloud data, and a heavier model is needed after all, inference could grow back toward 30-50ms and eat most of that margin. The bench measurement in Requirements and Verification is where this actually gets tested, not assumed.
+
+== Sensor Sampling Rate
+
+TI doesn't publish a fixed maximum frame rate for the IWR6843AOP. The mmWave SDK treats frame periodicity as an open, configurable float value (<<mmwavesdkug>>). The only real constraints: active-chirp duty cycle stays ≤50% of the frame period, and there's enough time for the UART transfer. No documented ceiling.
+So this chapter plans around a 10-20Hz base rate for the already-selected IWR6843AOPEVM (<<mmwave-module-selection>>), the same "typical demo" range from <<mmwave-radar>>, rather than picking one number out of thin air.
+TI's own indoor people-tracking reference design for this chip (<<tidue71d>>) backs that up: a 288-chirp, 1.78GHz-sweep profile, tuned for 8.4cm range resolution over 6m, runs at 55ms (~18Hz) with a 46% duty cycle, within the SDK's ≤50% limit. That's a real, published example, not just a demo default.
+Since frame periodicity is open, running faster is possible and would ease the budget further. But TI hasn't published a faster worked example for this use case. A leaner chirp profile, trading range/velocity resolution for speed, is worth exploring, but that's for the bench measurement in Requirements and Verification to check, not something to assume here.
+
+== Compute Platform Implications
+
+Height-category classification has two options: a simple top/bottom-point gap check (no trained model, ~1-5ms), or the keypoint-extraction model from Non-Camera Person Position & Height Sensing Techniques (ProbRadarM3F, <<probradarm3f2024,2024>>, ~30-50ms). Neither figure is measured or literature-backed for this task, but ML is likely overkill for a gap this simple. The simple approach is primary; the keypoint model is the fallback if it isn't accurate enough against real, noisy point clouds (occlusion, missed points, clustered people), untested either way. Even the fallback's speed is unproven here: Huang et al. (<<huang2021mmwave,2021>>) show tracking on a Raspberry Pi 4, not classification.
+
+This also assumes the VH's behaviour depends on adult/child category at all, not confirmed yet (Non-Camera Person Position & Height Sensing Techniques). And if inference runs on a paired host, that host also runs the microphone array's beam-steering (Candidate Sensor Technologies, Microphone Array), a compute-contention risk the bench measurement should check for.

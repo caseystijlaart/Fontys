@@ -1,5 +1,7 @@
 = Bibliography
 
+* [[itu2003g114]]ITU-T. (2003). _Recommendation G.114: One-way transmission time_. International Telecommunication Union. https://www.itu.int/rec/T-REC-G.114
+* [[shneiderman2010hci]]Shneiderman, B., & Plaisant, C. (2010). _Designing the User Interface: Strategies for Effective Human-Computer Interaction_ (5th ed.). Addison-Wesley.
 * [[palmar2021]]Alam, M. A. U., Rahman, M. M., & Widberg, J. Q. (2021). _PALMAR: Towards Adaptive Multi-inhabitant Activity Recognition in Point-Cloud Technology_. https://arxiv.org/pdf/2106.11902
 * [[avargel2011ldv]]Avargel, Y., & Cohen, I. (2011). _Speech measurements using a laser Doppler vibrometer sensor: Application to speech enhancement_. Joint Workshop on Hands-free Speech Communication and Microphone Arrays (HSCMA), Edinburgh, Scotland. https://israelcohen.com/wp-content/uploads/2018/05/HSCMA2011.pdf
 * [[berghi2023speakerloc]]Berghi, D., & Jackson, P. J. B. (2023). _Audio Inputs for Active Speaker Detection and Localization via Microphone Array_. https://arxiv.org/pdf/2307.14739
@@ -18,6 +20,8 @@
 * [[pegoraro2022mmwave]]Pegoraro, J., & Rossi, M. (2022). _Human Tracking with mmWave Radars: a Deep Learning Approach with Uncertainty Estimation_. https://arxiv.org/pdf/2205.03274
 * [[segers2015fskranging]]Segers, L., Van Bavegem, D., De Winne, S., Braeken, A., Touhafi, A., & Steenhaut, K. (2015). _An Ultrasonic Multiple-Access Ranging Core Based on Frequency Shift Keying Towards Indoor Localization_. https://pmc.ncbi.nlm.nih.gov/articles/PMC4570340/
 * [[shen2023timeselective]]Shen, L.-H., Hsiao, A.-H., Chu, F.-Y., & Feng, K.-T. (2023). _Time-Selective RNN for Device-Free Multi-Room Human Presence Detection Using WiFi CSI_. https://arxiv.org/pdf/2304.13107
+* [[tidue71d]]Texas Instruments. (2020). _People Tracking and Counting Reference Design Using mmWave Radar_ (TIDUE71D). https://www.ti.com/lit/ug/tidue71d/tidue71d.pdf
+* [[mmwavesdkug]]Texas Instruments. (2022). _mmWave SDK User's Guide_ (MMWAVE-SDK, Release 3.6). https://dr-download.ti.com/software-development/software-development-kit-sdk/MD-PIrUeCYr3X/03.06.00.00-LTS/mmwave_sdk_user_guide.pdf
 * [[shubha2022thermopile]]Shubha, B., & Shastrimath, V. V. D. (2022). _Real-Time Occupancy Detection System Using Low-Resolution Thermopile Array Sensor for Indoor Environment_. IEEE Access, 10, 130981-130995. https://www.researchgate.net/publication/366350707
 * [[su2024mmfreepose]]Su, Y., Hou, H. C., Lan, H., & Ma, C. Z.-H. (2024). _A High-Fidelity mmWave Radar Dataset for Privacy-Sensitive Human Pose Estimation_ (the mmFree-Pose dataset). Bioengineering. https://pmc.ncbi.nlm.nih.gov/articles/PMC12383697/
 * [[wang2014wihear]]Wang, G., Zou, Y., Zhou, Z., Wu, K., & Ni, L. M. (2014). _We Can Hear You with Wi-Fi!_ (WiHear). Proceedings of the 20th Annual International Conference on Mobile Computing and Networking (MobiCom).

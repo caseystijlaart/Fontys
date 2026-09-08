@@ -25,6 +25,10 @@ include::non-camera-sensing-techniques/non-camera-sensing-techniques.adoc[]
 
 <<<
 
+include::end-to-end-latency/end-to-end-latency.adoc[]
+
+<<<
+
 include::references.adoc[]
 
 :leveloffset: -1

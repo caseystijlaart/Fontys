@@ -1,0 +1,32 @@
+[[requirements-and-verification]]
+= Requirements and Verification
+
+== Non-Functional Requirements
+
+[cols="1,3"]
+|===
+| NFR-Latency-01
+| This project's own pipeline (radar frame arrival to output exposed to the Unreal Engine pipeline) shall take < 110ms (p50) and < 150ms (p95), nominal local-processing conditions.
+
+| Rationale
+| The full-pipeline target is <150ms (p50), sensing to visible VH reaction. But VH rendering is MindLabs' existing system, not this project's deliverable (Finished Products). 110ms is this project's own slice, leaving ~40ms for that downstream rendering.
+
+| Measurement
+| Timestamp radar frame arrival, fusion output, inference result, output exposed. Report median/p95 delta, 10-minute window, N ≥ 20 trials.
+
+| Dependencies
+| Radar frame rate in the 10-20Hz base range (<<mmwave-radar>>, <<tidue71d>>). Inference ≤ 5ms (simple approach) or ≤ 50ms (ML fallback); both theoretical. No competing background process during measurement.
+|===
+
+== Verification Strategy
+
+This NFR isn't confirmed yet; it needs the height-classification pipeline to exist first. Once it does:
+
+1. Inject a test stimulus at a known time (e.g. a person of known height stepping into the tracked zone on cue).
+2. Log timestamps: radar frame capture, fusion output, inference result, output exposed.
+3. Compute the delta from stimulus to that exposed output, per trial (not to the VH's own reaction, that's out of scope).
+4. Repeat for N ≥ 20 trials over 10 minutes, to capture run-to-run variance, not one lucky run.
+5. If inference runs on a paired host, repeat with the microphone array's beam-steering workload running concurrently, to check for compute contention.
+6. Report median/p95 latency against NFR-Latency-01.
+
+Local-only first (no network hop), to isolate this from Unreal Engine transmission latency. Real-user field testing and sprint-review feedback, per the Project Plan's research methods, come after, once local measurement confirms the pipeline is in-budget.
