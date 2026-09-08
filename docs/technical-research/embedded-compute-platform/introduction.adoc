@@ -1,0 +1,19 @@
+= Introduction
+
+This chapter addresses RQ2 and RQ3 from the Project Plan (Chapter 3.6, Research Questions): implementing the sensor on an embedded platform for robust, low-latency position estimates (RQ2), and deploying a lightweight classification model on that same platform (RQ3).
+
+Non-Camera Person Position & Height Sensing Techniques and its Module Selection chapter already fix the sensor: the TI IWR6843AOPEVM.
+That EVM's own onboard DSP and Cortex-R4F run TI's people-tracking firmware and produce a tracked point-cloud stream; End-to-End Latency Requirements' Compute Platform Implications section already relies on a host board existing downstream to run height classification and expose the result to the Holobox pipeline, without naming or costing one.
+Candidate Sensor Technologies excludes that host board from its own cost comparison for the same reason: it is a shared requirement across every sensor candidate, not something that distinguishes one sensor choice from another.
+
+This raises an obvious question: if the EVM already tracks people on-chip, why does this project need a separate board at all?
+The EVM's onboard DSP and Cortex-R4F could, in principle, also run the classification step itself; TI's mmWave SDK is user-programmable, not fixed-function firmware.
+What it cannot do is talk to the Holobox pipeline: the EVM's only interfaces are UART-over-USB and a GPIO/breakout header, with no Ethernet or WiFi of its own.
+Bridging that UART output onto the network is the one part of this pipeline the sensor genuinely cannot do standalone, and it is the reason a host board exists in this design at all.
+
+That bridging role could in principle be filled by the machine already running the Holobox's Unreal Engine pipeline, plugging the EVM into it directly and running classification there as software; NFR-Latency-01 already prefers that local case (0ms local vs. 50-100ms networked, Latency Budget).
+This chapter does not adopt that option: the Project Plan describes the deliverable as an embedded sensing system with its own hardware and software prototype (Assignment, Finished Products), not a service added to MindLabs' existing show PC, so the board this chapter picks is a discrete embedded unit rather than a re-use of that machine.
+
+This chapter closes that gap: it picks the board that receives the EVM's point-cloud stream, runs the classification stage, and exposes the resulting position/height estimate over the network, and checks it against the latency budget and cost constraints already established.
+It does not cover the microphone array hardware itself, only whether the chosen board has spare compute for the beam-steering workload once that is added (Candidate Sensor Technologies, Microphone Array).
+It also does not train or validate the classification model itself; that is RQ3's model-accuracy question, addressed separately once a working pipeline exists.

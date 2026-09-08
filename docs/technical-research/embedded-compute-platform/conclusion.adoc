@@ -1,0 +1,11 @@
+= Conclusion
+
+Candidate Embedded Platforms recommends the Raspberry Pi 4 Model B, 4GB variant, as the host board that receives the IWR6843AOPEVM's already-classified position/height result, runs the microphone array's beam-steering, and bridges both to the Holobox pipeline.
+It is the only candidate reviewed with a literature precedent for this exact combination (Barral et al.), it is the lowest-cost option among the candidates with any sensor-family precedent, and it fits the latency budget already committed to in Latency Budget.
+The 4GB variant is sufficient because classification itself runs in the IWR's own onboard firmware rather than on the host (Introduction); the host's own job stays well inside 4GB, so the 8GB variant is available but not needed.
+
+As with the sensor recommendation in Candidate Sensor Technologies, this is a starting point pending mentor budget approval (Finance and Risks), not a final hardware order.
+Two things carry forward into bench testing once the radar module is on hand: Barral et al.'s reported USB bandwidth constraint, unconfirmed against this project's own data rate, and whether the board has spare compute once the microphone array's beam-steering runs alongside classification.
+The Raspberry Pi 5 and the Jetson Orin Nano Super Developer Kit remain documented fallbacks, for general headroom and for the ProbRadarM3F keypoint model respectively, neither adopted now because neither risk they would address is confirmed yet.
+
+As with the two preceding chapters, this is a recommendation and a verification plan, not a finished result: every figure here is a manufacturer specification or a literature precedent, not a measurement from this project's own hardware.
