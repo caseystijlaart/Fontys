@@ -1,8 +1,10 @@
-= Project Plan: Graduation Internship
+= Project Plan - Sensing System : Graduation Internship
 :numbered:
 :imagesdir: images
 :title-page: true
 :author: Casey Stijlaart
+:revnumber: 1.0
+:revdate: 08-09-2026
 :docdatetime: datetime (ISO)
 :doctype: report
 :toc:
