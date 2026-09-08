@@ -7,4 +7,13 @@ There is more flexibility as the environment is focussed on continuous collabora
 With the assesor from Fontys there is a set schedule. 
 Every other week a meeting will be helped to discuss the process and project status.
 Furthermore, this is the moment to discuss any questions.
-For any urgent matter, the assesor can be reached via email or teams.
+For any urgent matter, the assesor can be reached via email or teams. 
+Regarding to the already defined meeting dates, these are defined in the table <<meeting-schedule-table>>.
+
+[[meeting-schedule-table]]
+.Meetings Schedule
+|===
+| Type of Meeting | occurance
+| Assesor | Bi-weekly, starting on 08-09-2026
+| Sprint Demo | Every 3 weeks, with first occurance on 04-09-2026
+|===

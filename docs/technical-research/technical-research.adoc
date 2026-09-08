@@ -1,9 +1,11 @@
-= Technical Research Report
+= Technical Research Report - Sensing System : Graduation internship
 :numbered:
 :sectnumlevels: 4
 :imagesdir: images
 :title-page: true
 :author: Casey Stijlaart
+:revnumber: 0.5
+:revdate: 08-09-2026
 :docdatetime: datetime (ISO)
 :doctype: report
 :toc:

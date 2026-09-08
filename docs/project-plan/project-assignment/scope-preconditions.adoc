@@ -6,9 +6,10 @@
 |The project includes | The project does not include
 
 | Test report, to verify the behaviour of the system | The Dutch version of documents
-| System Design Document | A fully finished prototype ready for a non-controlled environment, as the project is exploratory in nature.
-| Firmware in the given programming language |
+| Project Documentation | A fully finished prototype ready for a non-controlled environment, as the project is exploratory in nature. Thus, no polished integration with the virtual human.
+| Firmware in the given programming language | 
 | Technical Research Report |
+| A test integration with a virtual human |
 
 |===
 
