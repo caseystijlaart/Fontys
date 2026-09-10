@@ -1,0 +1,21 @@
+= Privacy & Data Protection
+
+:leveloffset: +1
+
+include::introduction.adoc[]
+
+<<<
+
+include::research-approach.adoc[]
+
+<<<
+
+include::legal-framework.adoc[]
+
+<<<
+
+include::data-handling-design.adoc[]
+
+include::conclusion.adoc[]
+
+:leveloffset: -1

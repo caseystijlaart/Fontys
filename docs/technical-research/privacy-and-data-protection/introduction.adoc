@@ -1,0 +1,21 @@
+= Introduction
+
+This chapter addresses the Ethical and Legal sub-questions defined in the Project Plan (Chapter 3.6, Research Questions).
+They are referred to as RQ6 and RQ7.
+RQ6: "What is the minimal set of sensor data needed to estimate position and height, and how can the system avoid capturing or storing personally identifiable information, given that the primary visitors are children aged 8-12?"
+RQ7: "What privacy and AVG/GDPR obligations apply to a system that infers physical characteristics (position, height) of children in a public installation, and how should sensor data handling, retention, and processing be designed to comply with them?"
+
+Per the Project Plan (Chapter 3.1, Context), a camera-based solution was ruled out from the outset.
+The stated reason: it "raises privacy concerns in a context involving children."
+That is why a dedicated, privacy-preserving sensing system is this project's assignment at all.
+Non-Camera Person Position & Height Sensing Techniques already acted on that constraint, but did not formally answer it.
+mmWave radar was recommended partly because its point-cloud output is "inherently non-identifying" (Candidate Sensor Technologies, mmWave Radar).
+"Data minimisation / privacy" was treated as a near-hard evaluation criterion there, not a nice-to-have (Evaluation Criteria).
+What that earlier chapter did not do is establish which legal obligations actually apply, why they apply to this installation and this visitor group, and whether the chosen architecture satisfies them by design or still needs adjustment.
+This chapter closes that gap.
+
+It covers three things: the legal framework that applies (what), why it applies here (why), and how the sensor and processing design should be shaped, or confirmed, to meet it (how).
+It does not replace legal advice or a Data Protection Impact Assessment MindLabs may need to commission.
+Research Methods lists a workshop-based expert consultation as part of RQ7's method. This chapter does not include that step.
+It is a literature and document study only, covering the legal framework and how it maps onto the sensor design already chosen.
+A standalone, visitor-facing privacy notice or policy is a plausible follow-on deliverable building on this analysis. Building one is out of scope here.

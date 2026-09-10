@@ -1,0 +1,44 @@
+= Data-Handling Design
+
+Legal Framework concludes that qualifying as anonymous data is the stronger compliance position.
+That depends on the data-handling measures below actually holding, not just on the sensor choice made in Non-Camera Person Position & Height Sensing Techniques.
+This chapter maps the GDPR's Art. 5 principles against that design. It distinguishes what the sensor choice already achieves from what still needs to be enforced in implementation.
+
+[[data-handling-table]]
+.Art. 5 Principles Mapped to Design Measures
+[cols="2,3,1"]
+|===
+|Principle |Design Measure |Status
+
+|Data minimisation |Output is limited to (x, y, z) position, a general height estimate, and a per-person speaker-attribution angle. No imagery, no biometric template, no raw audio content, no data unrelated to position and speaker attribution (Candidate Sensor Technologies, mmWave Radar; Microphone Array). |Already satisfied by design
+|Purpose limitation |Output is used only to drive the Virtual Human's real-time behaviour (e.g. kneeling for a child). It is not repurposed for analytics, marketing, or model retraining on identifiable sessions. |Requires enforcement in implementation
+|Storage limitation |Confirmed design: while a person is tracked, only what the live estimate needs is held, under a transient label like "Person A", never a name. The moment that person leaves the sensor's field of view, everything about them is dropped. |Confirmed by design, to verify once built
+|Integrity and confidentiality |Not yet addressed by any chapter. Covers the Unreal Engine socket bridge (Embedded Compute Platform) carrying position/height/angle data, and whether that link needs to be secured. |Open, not yet researched
+|Accountability |This chapter constitutes the documented reasoning trail for this analysis. |In progress
+|===
+
+== Storage Limitation in Practice
+
+"No persistent storage" is the single measure the anonymity conclusion in Legal Framework depends on most directly, and it is the confirmed design for this prototype.
+While a person is tracked, the system holds only what the live estimate needs, under a transient, arbitrary label such as "Person A". No name or other real-world identifier is ever attached to it.
+The moment that person leaves the sensor's field of view, all retrieved information about them is dropped.
+A per-session output handled this way leaves no data at rest to search, leak, or link across visits.
+The Prototyping Plan's Phase 1-3 pipeline (position, height, multi-person clustering) should be built to match this design: only the current frame's derived output crosses the Unreal Engine bridge, and any buffering kept for filtering, such as the Kalman filter's state, holds no more than the tracking algorithm needs and does not survive the person leaving frame.
+This is the confirmed design intent. Verifying that the built implementation actually matches it is still a testing step for the prototyping stage, not a claim about code that already exists.
+
+== The Microphone Array's Audio Is Still Processed Data
+
+The room-wide speaker-identification path compares acoustic energy across a few steered listening beams to attribute speech to a tracked position (Candidate Sensor Technologies, Microphone Array).
+Confirmed design: this is used only to identify which tracked person is speaking, not to recognise who they are by voice, and not to process or store what is said.
+That is still real-time processing of live audio, even though nothing about it is recorded, transcribed, or turned into a voiceprint.
+Processing counts under the GDPR regardless of whether anything is stored.
+The anonymity argument here rests on the output being an attributed label rather than stored or transcribed speech content. It does not rest on audio never touching the system at all.
+Verifying that the built microphone-array implementation never persists a recording, transcript, or voiceprint is just as important to the anonymity conclusion as the storage-limitation point above.
+This should be checked explicitly once the microphone array is integrated (Prototyping Plan, Phase 4).
+
+== Signage as an Open Item
+
+A visitor/parent-facing notice near the installation (Legal Framework, Transparency) is still an open item.
+The installation is already placed so that only people who know it is there choose to visit, and anyone can avoid the sensor's field of view if they wish (Legal Framework, Transparency). Signage is still recommended on top of that, not instead of it.
+It does not block the Phase 1-3 prototyping work in the Prototyping Plan.
+It should be resolved before the installation is used with real child visitors, alongside the DPIA-screening question raised in Legal Framework.
