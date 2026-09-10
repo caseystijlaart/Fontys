@@ -77,7 +77,6 @@ Pros::
 Cons::
 * Sensor cost is €160-185 for the IWR6843AOPEVM variant (see <<mmwave-module-selection,Module Selection>>).
 * Height estimation still needs extra work: either the simple top/bottom-point calculation or a keypoint-extraction model. Neither is a single, settled method yet.
-* No project budget has yet been agreed with MindLabs, so this cost is a real, unresolved risk.
 * Radar-only speaker identification is not demonstrated room-wide; a paired microphone array is needed for that (see below).
 
 <<<
@@ -252,5 +251,5 @@ Height itself is only a general estimate for now, adult/child categorisation is 
 
 For the RQ4 speaker-identification problem, radar alone only reaches ~1-1.5m around the Holobox, via Doppler vibrometry, which doubles as a liveness/anti-spoof check. Room-wide speaker identification is instead handled by a paired <<mic-array,Microphone Array>>, steered by the angles radar already tracks for each person, rather than solving open-ended source localisation on its own.
 
-mmWave is by far the most expensive candidate reviewed, and no project budget has been agreed with MindLabs yet, so clearing that cost with the company mentor is a precondition before ordering hardware.
+mmWave is by far the most expensive candidate reviewed; the company mentor has since approved that cost, so hardware ordering can proceed (Module Selection).
 Implementation risk is managed by building the pipeline one capability at a time: position, then height, then multi-person clustering, then speaker detection, each on an already-working previous phase. The microphone array gets added once radar tracking works, since beam-steering depends on it, and only once its own hardware-range risk (see <<mic-array,Microphone Array>>) is resolved.

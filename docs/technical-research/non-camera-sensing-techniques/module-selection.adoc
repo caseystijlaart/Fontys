@@ -45,3 +45,8 @@ Azimuth isn't a deciding factor either. All three variants share roughly the sam
 IWR6843ISK is ruled out: its 30° elevation FOV is by far the narrowest of the three, its elevation resolution the coarsest, and it is also the most expensive at €248,23.
 IWR6843ISK-ODS matches AOPEVM's elevation FOV and resolution exactly, but costs 17% more and its antenna is built for ceiling mounting, an assumption the Holobox has not committed to.
 AOPEVM reaches the same elevation performance in a smaller, mounting-agnostic form factor at the lowest price of the three, which is why it is carried forward into the phased mmWave implementation in the Conclusion.
+
+[NOTE]
+====
+Update: the company mentor has approved the cost of the IWR6843AOPEVM/AWR6843AOPEVM, so this module can now be ordered.
+====
