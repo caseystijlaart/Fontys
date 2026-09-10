@@ -215,9 +215,9 @@ Cons::
 |===
 |Technology |Representative Module |Approx. Hardware Cost (sensor only) |Height Data in Literature |Documented Latency / Update Rate
 
-|mmWave Radar |link:https://www.ti.com/tool/IWR6843AOPEVM[TI IWR6843AOPEVM] (see <<mmwave-module-selection,Module Selection>> for the variant comparison) |€160-185 |Yes, keypoint-based |10-20Hz as base, but configurable to higher rates.
-|Infrared/Thermal Array |link:https://www.kiwi-electronics.com/en/adafruit-amg8833-ir-thermal-camera-breakout-3286[AMG8833 breakout, Kiwi Electronics (NL)] |€40-55 |Yes, direct |1 Hz or 10 Hz
-|2D LiDAR + Thermal (sensor fusion) |link:https://www.robotshop.com/products/rplidar-a2m8-360-laser-scanner[RPLIDAR A2M8] (discontinued at major distributors) + 2x link:https://www.kiwi-electronics.com/en/adafruit-amg8833-ir-thermal-camera-breakout-3286[AMG8833, Kiwi Electronics (NL)] |€350-390 |Partial, via fusion |5-15 Hz
+|mmWave Radar |link:https://www.ti.com/tool/IWR6843AOPEVM[TI IWR6843AOPEVM] (see <<mmwave-module-selection,Module Selection>> for the variant comparison) | €174,92-€248.23 |Yes, keypoint-based |10-20Hz as base, but configurable to higher rates.
+|Infrared/Thermal Array |link:https://www.kiwi-electronics.com/en/adafruit-amg8833-ir-thermal-camera-breakout-3286[AMG8833 breakout, Kiwi Electronics (NL)] |€48.39 |Yes, direct |1 Hz or 10 Hz
+|2D LiDAR + Thermal (sensor fusion) |link:https://eu.robotshop.com/products/rplidar-a2m8-360-laser-scanner?_gl=1*uensag*_gcl_au*NDUzOTM3MjA1LjE3ODg1NTY1MTg.*_ga*Mzc2MTMxNTYwLjE3ODg1NTY1MTk.*_ga_FXHVC4EYRV*czE3ODkwMjQ5NDgkbzIkZzEkdDE3ODkwMjQ5OTUkajEzJGwwJGgw[RPLIDAR A2M8] + 2x link:https://www.kiwi-electronics.com/en/adafruit-amg8833-ir-thermal-camera-breakout-3286[AMG8833, Kiwi Electronics (NL)] |€385.69 + 2x €48.39 |Partial, via fusion |5-15 Hz
 |Wi-Fi CSI Sensing |None. It reuses existing commodity Wi-Fi hardware |Approx. €0 (existing infrastructure) |None found |10-100 Hz
 |Ultrasonic Ranging |Custom transducer array (e.g. SPM0404UD5 MEMS elements, per Segers et al. (<<segers2015fskranging,2015>>)) |€200-400 (rough estimate for custom-built hardware, not a single purchasable SKU) |None found |Not reported
 |Capacitive & Floor-based Sensing |Custom-built capacitive/pressure floor mat. There is no off-the-shelf module |€80-2000+, depending on variant (rough estimate for custom-built hardware) |None found |Not reported
