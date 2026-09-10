@@ -1,0 +1,68 @@
+= Legal Framework
+
+The GDPR (<<gdpr2016,2016>>) applies directly across the EU, including the Netherlands.
+It is supplemented nationally by the Uitvoeringswet AVG (<<uavg2018,2018>>).
+It governs "personal data": any information relating to an identified or identifiable natural person (Art. 4(1)).
+Two questions follow from that definition, in order.
+Does this system's sensor output relate to an identifiable person at all?
+If so, what does that trigger?
+
+== Is the Sensor Output "Personal Data"?
+
+Data that has been anonymised so that the person is no longer identifiable "by any means reasonably likely to be used" falls outside the GDPR's scope entirely (Recital 26).
+The Article 29 Working Party's Opinion 05/2014 on Anonymisation Techniques (<<wp216anon2014,2014>>) sets a high bar for that.
+Genuine anonymisation must resist singling-out, linkability, and inference. It must not merely omit an obvious identifier like a name or a face.
+The absence of imagery is therefore necessary but not sufficient on its own. The real test is re-identification risk in context.
+
+Applied here: the sensor pipeline's output is a per-session (x, y, z) position, a general height estimate, and a speaker-attribution angle.
+It carries no name, account, or biometric template, and is not linked across visits (Non-Camera Person Position & Height Sensing Techniques; Candidate Sensor Technologies, mmWave Radar).
+The confirmed design goes further than that. While a person is tracked, the pipeline holds only what it needs for the live estimate. The moment that person leaves the sensor's field of view, all retrieved information about them is dropped.
+No name, account, or cross-visit identifier is ever created in the first place, so there is nothing to link a later visit back to an earlier one.
+Where the system needs to tell apart multiple people currently in view, for multi-person clustering or speaker attribution, it uses an arbitrary, transient label such as "Person A" or "Person B", not a name or any other real-world identifier.
+That label exists only while the person stays in view and is dropped along with everything else the moment they leave.
+A room-scale exhibit with unregistered walk-up visitors, and no data retained past the moment someone leaves, offers no key to single someone out across sessions.
+That makes it one of the more favourable contexts the WP216 test considers.
+
+The microphone array reinforces this. It is used only to identify which tracked position is speaking, not to recognise a specific individual by voice and not to process what is said.
+That is speaker attribution among people the radar already tracks, not biometric voice identification. It is a narrower, less identifying operation than voiceprint matching would be.
+
+This is a property that must be actively preserved. It is not a one-off conclusion.
+It depends on these measures continuing to hold in the built system: dropping tracked data on frame-exit, never creating a cross-session identifier, and never extracting speech content or a voiceprint from the microphone array.
+If any of those measures were later relaxed, this conclusion would need revisiting. It should not be assumed to still hold just because it is the current design intent.
+
+== If GDPR Applies
+
+Should the output nonetheless be judged to relate to an identifiable person, in whole or in part, the GDPR's core principles (Art. 5) govern.
+These are: lawfulness, fairness and transparency; purpose limitation; data minimisation; accuracy; storage limitation; integrity and confidentiality; and accountability.
+A lawful basis under Art. 6(1) would also be required.
+Consent is impractical for an unregistered walk-up crowd.
+The most plausible basis is therefore legitimate interests (Art. 6(1)(f)): MindLabs' interest in operating the interactive exhibit, weighed against the visitor's, and specifically the child's, interests and rights.
+
+Children merit specific protection under the GDPR (Recital 38), since they may be less aware of the risks and their rights in relation to processing.
+Article 8 GDPR sets a minimum age for a child's own consent to an information-society service (16 in the Netherlands, per the UAVG). It does not directly apply here.
+The Holobox is a physical, walk-up installation, not an online service a child signs up for.
+Citing Art. 8 as the controlling basis for this system would therefore overstate the applicable law.
+What does apply is the general instruction in Recital 38: processing involving children should be held to a higher standard of necessity and proportionality than a legitimate-interest balancing test would otherwise demand for an adult-only audience.
+
+Aiming to actually qualify as anonymous, via the data-handling design in the next chapter, is accordingly the stronger and simpler compliance position.
+It avoids depending on a legitimate-interest balancing test involving children altogether, rather than trying to pass that test.
+
+== Transparency, Even If Anonymous
+
+Even where anonymisation holds, visible signage or a notice near the installation is recommended as good practice.
+It should explain that a non-camera sensing system is in use.
+The GDPR does not strictly require this where the data is genuinely anonymous, but it is consistent with the transparency principle the GDPR applies to identifiable processing generally (Art. 5(1)(a), Art. 12).
+Parents and accompanying adults are the practical audience for this notice, since the primary visitors are children aged 8-12.
+
+The deployment context already helps here. The installation is placed so that only people who know it is there choose to visit it, and anyone who does not want to be sensed can simply not step into the sensor's field of view.
+That is not the same as informed consent under the GDPR, and it does not replace the signage recommendation above. It is still a relevant, mitigating fact about how exposed an unaware bystander actually is, since this is not a hidden sensor in an ordinary public thoroughfare.
+
+== DPIA Screening
+
+The Article 29 Working Party's DPIA guidelines (<<wp248dpia2017,2017>>) list criteria under which a Data Protection Impact Assessment is likely required.
+Meeting two or more is treated as an indicator.
+Two plausibly apply here regardless of the anonymisation conclusion above: "vulnerable data subjects" (children are named explicitly) and "systematic monitoring of a publicly accessible area."
+The known, opt-outable nature of the installation (Transparency) is worth raising in that screening, but it does not by itself resolve either criterion.
+That both criteria plausibly apply is itself a reason to run a formal DPIA screening before the installation goes live.
+This analysis should not be relied on as the final word.
+A screening step is exactly what surfaces whether the anonymisation argument above actually holds, once MindLabs' full deployment context, retention practice, and any adjacent systems (e.g. a ticketing or visitor-log system this project has no visibility into) are accounted for.

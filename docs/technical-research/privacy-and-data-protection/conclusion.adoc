@@ -1,0 +1,20 @@
+= Conclusion
+
+RQ6 (minimal data set, avoiding personally identifiable information) is satisfied by design.
+mmWave point-cloud output, a general height estimate, and a speaker-attribution angle carry no imagery, biometric template, or persistent identifier (Legal Framework, Data-Handling Design).
+The confirmed design goes further: tracked people are held only under a transient label such as "Person A", never a name, and all information about them is dropped the moment they leave the sensor's field of view.
+The microphone array only identifies which tracked person is speaking. It never processes or stores what is said, and never performs biometric voice recognition.
+
+RQ7 (applicable AVG/GDPR obligations and how to design for them) is answered as follows.
+The system's output is very likely to qualify as anonymous rather than personal data under the GDPR's Recital 26/WP216 test, since no cross-session linkage exists, none is planned, and nothing survives a person leaving frame.
+That conclusion rests on the data-handling design in Data-Handling Design actually being built as specified, not on the sensor choice alone.
+Article 8 GDPR's child-consent mechanism does not apply to this physical installation.
+Recital 38's general instruction to hold children's data to a higher necessity/proportionality standard does apply, and is met by aiming for anonymity rather than relying on a legitimate-interest balancing test.
+The installation being known and avoidable, visitors choose to come and can stay out of the sensor's view, is a further mitigating factor, though it does not replace the transparency and DPIA-screening recommendations below.
+
+Two items remain open. They are recommended as preconditions before the installation is used with real child visitors, not as blockers to the Phase 1-3 prototyping work already planned.
+
+* Verify, once the pipeline and microphone array are built, that the implementation matches this chapter's confirmed design: frame-exit drop, transient labels only, and no recording, transcript, or voiceprint from the microphone array (Data-Handling Design, Prototyping Plan Phase 4).
+* Add visitor/parent-facing signage near the installation (Legal Framework), and screen for whether a formal Data Protection Impact Assessment is required. Two of the Article 29 Working Party's DPIA trigger criteria plausibly apply here: vulnerable subjects (children) and systematic monitoring of a publicly accessible area.
+
+A standalone, visitor-facing privacy notice or policy document is a natural next deliverable building on this analysis. It is out of scope for this chapter.

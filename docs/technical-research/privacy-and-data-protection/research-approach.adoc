@@ -1,0 +1,15 @@
+= Research Approach
+
+This chapter uses the Library strategy assigned to RQ6 and RQ7 in the Project Plan (Chapter 3.7, Research Methods).
+That means literature and document study of data-minimisation practice and AVG/GDPR legislation.
+The Workshop strategy those rows also list, an expert consultation, is not part of this chapter.
+This chapter is a desk-research analysis based on existing literature only.
+
+== Library: Literature and Document Study
+
+The search covers two distinct bodies of source material. They are kept separate because they answer different questions.
+The first is the legal text itself and regulator guidance interpreting it: the GDPR, its Dutch implementing act (the UAVG), and Article 29 Working Party/EDPB opinions on anonymisation and on when a Data Protection Impact Assessment is required.
+The second is the technical literature already gathered in Non-Camera Person Position & Height Sensing Techniques on how identifying a given sensor's output actually is.
+The most direct source is Su et al.'s privacy-sensitive mmWave pose-estimation dataset (<<su2024mmfreepose,2024>>).
+It is used here to check the legal anonymisation test against this project's specific sensor choice, not mmWave point clouds in the abstract.
+Document analysis cross-references this chapter's conclusions against the data-minimisation decisions Candidate Sensor Technologies and Module Selection already made. The sensor choice is not treated as a given input to accept uncritically.
