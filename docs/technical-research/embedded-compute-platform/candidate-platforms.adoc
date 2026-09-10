@@ -36,6 +36,7 @@ Pros::
 * Low absolute cost at €108.89 incl. VAT for the 4GB variant, keeping the initial hardware ask small given no project budget is approved yet (Finance and Risks).
 * Standard GPIO/UART-over-USB interface and a mainstream Linux (Debian-based) ecosystem, satisfying the host-interface-compatibility criterion without added interface hardware.
 * 4GB is comfortably enough for the host's own reduced job (receiving a small classified result, running the microphone array, bridging to the network), since classification itself runs on the IWR rather than the host.
+* The only candidate reviewed that is available to borrow from Fontys' own ISSD hardware loan desk, sidestepping the pending mentor budget approval entirely (Finance and Risks).
 
 Cons::
 * No onboard GPU/NPU acceleration; ProbRadarM3F can still run on CPU, but whether it stays inside the latency budget on this board is unproven, and it would need the board to fall back to ingesting the raw point cloud rather than the lean classified stream.
@@ -58,6 +59,7 @@ Pros::
 Cons::
 * No gathered source pairs this specific board with the IWR6843 family.
 * €192.38 incl. VAT is a real expense given no project budget is approved yet (Finance and Risks).
+* Not available at Fontys' ISSD; adopting it now would mean waiting on mentor budget approval before it can even be obtained.
 
 [[jetson-orin-nano]]
 == NVIDIA Jetson Orin Nano Super Developer Kit
@@ -78,6 +80,7 @@ Cons::
 * At ~€465-470 incl. VAT, this is a substantial per-unit cost against Finance and Risks' unapproved budget.
 * A 7-25W power envelope and active cooling requirement, a consideration if the board needs to sit inside or close to the Holobox housing.
 * Justified only if the simple threshold classification approach turns out to be insufficient; committing to it now would be pre-paying for a capability not yet shown to be needed.
+* Not available at Fontys' ISSD; adopting it now would mean waiting on mentor budget approval before it can even be obtained.
 
 <<<
 
@@ -89,31 +92,34 @@ Cons::
 |===
 |Board |Compute Class |Approx. Cost (incl. VAT) |Sensor-Family Precedent |Power Envelope | Available at ISSD
 
-|Raspberry Pi 4 Model B (4GB/8GB) |Quad-core Cortex-A72 @ 1.5GHz, CPU-only |link:https://www.kiwi-electronics.com/nl/raspberry-pi-4-model-b-4gb-4268[€108.89]/link:https://www.amazon.nl/dp/B09TTKT94J/ref=asc_df_B09TTKT94J1788715680000?tag=tweakers0e-21&linkCode=df0&th=1[€149.99] |Yes, direct (Barral et al.; Huang et al.) |~5-8W | 
-|Raspberry Pi 5 (4GB/8GB)|Quad-core Cortex-A76 @ 2.4GHz, CPU-only |link:https://www.caps.nl/raspberry-board-pi-5-model-b-4-gb-ram-id-987224.html[€158.07]/link:https://www.kiwi-electronics.com/nl/raspberry-pi-5-8gb-11580[€192.38] |No (same ecosystem as Pi 4) |~8-12W | 
-|Jetson Orin Nano Super Dev Kit |6-core Cortex-A78AE + 1024-core Ampere GPU, 67 TOPS INT8 |link:https://www.amazon.nl/dp/B0BZJTQ5YP/ref=asc_df_B0BZJTQ5YP1788704880000?tag=tweakers0e-21&linkCode=df0&th=1[€539] |None found |7-25W |
+|Raspberry Pi 4 Model B (4GB/8GB) |Quad-core Cortex-A72 @ 1.5GHz, CPU-only |link:https://www.kiwi-electronics.com/nl/raspberry-pi-4-model-b-4gb-4268[€108.89]/link:https://www.amazon.nl/dp/B09TTKT94J/ref=asc_df_B09TTKT94J1788715680000?tag=tweakers0e-21&linkCode=df0&th=1[€149.99] |Yes, direct (Barral et al.; Huang et al.) |~5-8W | Yes
+|Raspberry Pi 5 (4GB/8GB)|Quad-core Cortex-A76 @ 2.4GHz, CPU-only |link:https://www.caps.nl/raspberry-board-pi-5-model-b-4-gb-ram-id-987224.html[€158.07]/link:https://www.kiwi-electronics.com/nl/raspberry-pi-5-8gb-11580[€192.38] |No (same ecosystem as Pi 4) |~8-12W | No
+|Jetson Orin Nano Super Dev Kit |6-core Cortex-A78AE + 1024-core Ampere GPU, 67 TOPS INT8 |link:https://www.amazon.nl/dp/B0BZJTQ5YP/ref=asc_df_B0BZJTQ5YP1788704880000?tag=tweakers0e-21&linkCode=df0&th=1[€539] |None found |7-25W | No
 |===
 
 Figures are board-only, current as of 08-09-2026, and may vary when checked on a different date.
 Compute-class figures are manufacturer specifications, not measured performance on this project's own pipeline.
 The Raspberry Pi 4 row uses the 4GB variant's price throughout, the variant recommended below (Raspberry Pi 4 Model B (4GB/8GB)); the 8GB step is available but not needed, since classification runs on the IWR rather than the host and the host's own job stays well inside 4GB.
 Cost is where the candidates spread out most: the Raspberry Pi 4 (4GB) is the cheapest board reviewed; the Raspberry Pi 5 (8GB) costs roughly 77% more than the Raspberry Pi 4 (4GB); and the Jetson Orin Nano Super costs roughly 5x the Raspberry Pi 4 (4GB).
+Availability at ISSD is not just another line item: since MindLabs is a Fontys initiative, a board listed there can be borrowed through the college rather than purchased, which matters while no project budget is approved yet (Finance and Risks).
+Of the three candidates, only the Raspberry Pi 4 is available at ISSD; the Raspberry Pi 5 and the Jetson would both have to be bought, so choosing either now means clearing the budget-approval step first, on top of everything else weighed above.
 
 [[compute-criteria-matrix]]
 .Criteria Comparison Matrix
-[cols="3,1,1,1,1,1,1,2"]
+[cols="3,1,1,1,1,1,1,1,2"]
 |===
-|Board |Precedent |Cost |Power Envelope |Latency Headroom |Concurrent Headroom |GPU/ML Accel. |Decision Role
+|Board |Precedent |Cost |Power Envelope |Latency Headroom |Concurrent Headroom |GPU/ML Accel. | Available at ISSD |Decision Role
 
-|Raspberry Pi 4 Model B (4GB/8GB) |✓ |€108.89 |~5-8W |✓ (primary); ML fallback unproven on CPU |Unconfirmed |✗ (not needed by primary approach) |*Recommended*
-|Raspberry Pi 5 |✗ |€192.38 |~8-12W |✓ (primary); ML fallback ~30-50ms est., unbenchmarked |✓ |✗ (PCIe headroom for future add-on) |Fallback, if bandwidth/concurrency risk materializes
-|Jetson Orin Nano Super Dev Kit |✗ |€539 |7-25W |✓ (incl. ML fallback) |✓ |✓ |Fallback, only if heavier ML model is needed
+|Raspberry Pi 4 Model B (4GB/8GB) |✓ |€108.89 |~5-8W |✓ (primary); ML fallback unproven on CPU |Unconfirmed |✗ (not needed by primary approach) | Yes |*Recommended*
+|Raspberry Pi 5 |✗ |€192.38 |~8-12W |✓ (primary); ML fallback ~30-50ms est., unbenchmarked |✓ |✗ (PCIe headroom for future add-on) | No |Fallback, if bandwidth/concurrency risk materializes
+|Jetson Orin Nano Super Dev Kit |✗ |€539 |7-25W |✓ (incl. ML fallback) |✓ |✓ | No |Fallback, only if heavier ML model is needed
 |===
 
 Interface compatibility and network output are dropped from this matrix: every candidate here uses the same GPIO/UART-over-USB interface and Ethernet/WiFi networking, so those two criteria do not distinguish between them.
 GPU/ML acceleration and power envelope are added instead, since those are where the three boards actually diverge: the Jetson is the only candidate with dedicated GPU/tensor-core hardware, at roughly 3-5x the power draw of either Raspberry Pi.
 Precedent and Cost are moved first and a Decision Role column is added because the remaining three criteria (Latency Headroom, Concurrent Headroom, GPU/ML Accel.) are fallback-tier properties, not requirements of the primary design: the primary classification approach runs on the IWR itself and only needs the host to relay a small result, so the Pi 4's ✗ on GPU/ML acceleration and "Unconfirmed" on concurrent headroom are not deficiencies against a current need, only against a ProbRadarM3F fallback that is itself unconfirmed to be necessary (Recommended Approach).
 A flat count of checkmarks would favour the Jetson, but the matrix is not weighted evenly: Precedent and Cost decide the starting platform, and the Pi 5/Jetson's extra headroom and acceleration only matter if bench testing later triggers one of the two fallback paths below.
+Available at ISSD is included for the same reason as Precedent and Cost: it is a starting-platform criterion, not a fallback one, and the Pi 4 is the only candidate that clears it, since the Pi 5 and Jetson would both need to be purchased rather than borrowed.
 
 [[compute-recommended-approach]]
 == Recommended Approach
@@ -124,10 +130,12 @@ It is the only candidate with a literature precedent for the exact split this pr
 The 8GB variant exists and costs little more, but there is no overhead case to pay for it now against a workload that does not approach 4GB in the first place.
 It is also the cheapest board reviewed, so no cost trade-off is being made against a lower-cost alternative.
 Finance and Risks reports no project budget has been agreed with MindLabs yet, so starting with the cheapest board that already has a working precedent, rather than paying up front for headroom the current design does not need, keeps the initial ask to the company mentor small.
+It is also the only candidate available to borrow from Fontys' own ISSD hardware loan desk; since MindLabs is a Fontys initiative, this channel is open to the project, and it lets the board be obtained without waiting on that same budget approval at all.
+The Raspberry Pi 5 and the Jetson are not stocked at ISSD, so adopting either now would mean a purchase, and therefore mentor budget sign-off, before the board could even be picked up; this reinforces the recommendation independently of the cost and precedent case already made above.
 
-This is a starting-point recommendation, not a final hardware order; as with the sensor choice in Candidate Sensor Technologies, it still needs mentor approval before anything is purchased (Finance and Risks).
+This is a starting-point recommendation, not a final hardware order; as with the sensor choice in Candidate Sensor Technologies, it still needs mentor sign-off before use, even though borrowing it from ISSD means no purchase approval is needed to obtain it (Finance and Risks).
 Two risks carry forward into the bench-testing stage set out in Research Approach: Barral et al.'s reported USB bandwidth constraint, unconfirmed against this project's own point-cloud data rate, and whether the Pi 4 has spare CPU cycles once the microphone array's beam-steering runs alongside classification (Compute Platform Implications).
 Neither is a RAM problem: the bandwidth constraint is about the UART/USB link, and the concurrent-workload question is about CPU cycles, not memory capacity, so paying for 8GB now would not address either.
 
-If bench measurement shows either risk is real, the Raspberry Pi 5 is the documented next step: same interface and software ecosystem as the Pi 4, so the fallback does not mean re-validating a different platform, at roughly double the compute headroom (per published Geekbench 6.2 figures: ~2.2-2.4x over the Pi 4) for about a 77% cost increase over the Pi 4 (4GB).
-The Jetson Orin Nano Super Developer Kit stays a further fallback specifically for the ProbRadarM3F keypoint model, if the primary top/bottom-point classification approach turns out not to be accurate enough (Candidate Sensor Technologies); it is not adopted now because that model's need is itself unconfirmed, and it is the most expensive and highest-power candidate reviewed, at roughly 5x the Raspberry Pi 4 (4GB)'s cost.
+If bench measurement shows either risk is real, the Raspberry Pi 5 is the documented next step: same interface and software ecosystem as the Pi 4, so the fallback does not mean re-validating a different platform, at roughly double the compute headroom (per published Geekbench 6.2 figures: ~2.2-2.4x over the Pi 4) for about a 77% cost increase over the Pi 4 (4GB); unlike the Pi 4, it is not available at ISSD, so escalating to it means clearing mentor budget approval first.
+The Jetson Orin Nano Super Developer Kit stays a further fallback specifically for the ProbRadarM3F keypoint model, if the primary top/bottom-point classification approach turns out not to be accurate enough (Candidate Sensor Technologies); it is not adopted now because that model's need is itself unconfirmed, it is the most expensive and highest-power candidate reviewed at roughly 5x the Raspberry Pi 4 (4GB)'s cost, and like the Pi 5 it would need to be purchased rather than borrowed from ISSD.
