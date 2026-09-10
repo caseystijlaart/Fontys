@@ -156,7 +156,12 @@ jobs:
           fi
 
       - name: Commit regenerated PDFs
-        if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+        # Only commit back on pushes to long-lived semester branches. Feature
+        # branches (e.g. issue branches) get their PDF built and uploaded as
+        # an artifact but never a commit, so their history never diverges
+        # from the semester branch's own PDF commits - which is what caused
+        # docs/pdf/*.pdf merge conflicts on every PR before this change.
+        if: (github.event_name == 'push' && startsWith(github.ref, 'refs/heads/semester-')) || github.event_name == 'workflow_dispatch'
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "Doc: Regenerate PDFs from AsciiDoc sources [skip ci]"
