@@ -15,7 +15,7 @@ The system will be designed with multi-person extensibility as a future-facing r
 
 [[fig-project-top-level]]
 .Project Top Level Overview
-[graphviz, project-overview, png]
+[graphviz, project-overvieww, png]
 ....
 digraph ProjectOverview {
   rankdir=LR;
