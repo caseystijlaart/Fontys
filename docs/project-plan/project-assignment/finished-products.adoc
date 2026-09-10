@@ -6,7 +6,7 @@ At the end of the project, the deliverables consist of documentation and a worki
 
 [[fig-project-tree]]
 .Project deliverables structure
-[graphviz, project-tree, png]
+[graphviz, project-treee, png]
 ....
 digraph ProjectTree {
   rankdir=TB;

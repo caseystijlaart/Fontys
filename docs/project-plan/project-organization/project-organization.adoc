@@ -8,9 +8,9 @@ include::team-members.adoc[]
 
 include::communication.adoc[]
 
-include::test-environment.adoc[]
-
 <<<
+
+include::test-environment.adoc[]
 
 include::configuration.adoc[]
 

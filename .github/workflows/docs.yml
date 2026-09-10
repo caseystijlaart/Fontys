@@ -159,7 +159,7 @@ jobs:
         if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "docs: regenerate PDFs from AsciiDoc sources [skip ci]"
+          commit_message: "Doc: Regenerate PDFs from AsciiDoc sources [skip ci]"
           file_pattern: 'docs/pdf/*.pdf'
 
       - name: Upload PDF artifacts

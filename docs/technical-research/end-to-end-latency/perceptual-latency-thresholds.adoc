@@ -10,15 +10,21 @@ Miller (<<miller1968response,1968>>) establishes, and Nielsen (<<nielsen1993resp
 - *1s - 10s*: noticeable enough that the system should give explicit feedback (e.g. a progress indicator), or the user's attention starts to drift.
 - *> 10s*: the user disengages from the task entirely.
 
-These thresholds describe general system responsiveness (a button press, a page load), not a reciprocal physical reaction between two agents specifically; the Holobox's Virtual Human reacting to a visitor's detected position and height (e.g. kneeling for a child) is closer to the latter, so the next section narrows the target rather than applying the general 1s "acceptable" threshold as-is.
+These thresholds describe general system responsiveness (a button press, a page load), not a reciprocal physical reaction between two agents specifically.
+The Holobox's Virtual Human reacting to a visitor's detected position and height (e.g. kneeling for a child) is closer to the latter, so the next section narrows the target rather than applying the general 1s "acceptable" threshold as-is.
 
 == A Comparable Real-Time Threshold: ITU-T G.114
 
-ITU-T Recommendation G.114 (<<itu2003g114,2003>>), the telecom standard for one-way transmission time in real-time voice/video traffic, independently arrives at a similar boundary from a different domain: below 150ms one-way delay is rated acceptable for most real-time applications, 150-400ms is acceptable but shows increasing impairment, and above 400ms is not acceptable.
-G.114 measures one-way, mouth-to-ear delay for telephony and video calls; it does not cover embodied position/height-reaction latency, and is cited here only as a second, independently-derived data point that a sub-150ms target sits inside a boundary already treated as "real-time acceptable" elsewhere, not as a source that makes a claim about virtual humans.
+ITU-T Recommendation G.114 (<<itu2003g114,2003>>), the telecom standard for one-way transmission time in real-time voice/video traffic, independently arrives at a similar boundary from a different domain.
+Below 150ms one-way delay is rated acceptable for most real-time applications, 150-400ms is acceptable but shows increasing impairment, and above 400ms is not acceptable.
+G.114 measures one-way, mouth-to-ear delay for telephony and video calls; it does not cover embodied position/height-reaction latency.
+It's cited here only as a second, independently-derived data point that a sub-150ms target sits inside a boundary already treated as "real-time acceptable" elsewhere, not as a source that makes a claim about virtual humans.
 
 == Project Target: Position/Height-Reaction Latency
 
-Neither source above speaks to this project's specific reaction, position and height detection driving a Virtual Human behaviour change, so this project sets its own target rather than borrow one that doesn't fit: < 150ms end-to-end (sensing to visible reaction), with < 100ms as a stretch target.
-The reasoning: a reciprocal physical response, the Virtual Human kneeling for a detected child, sits inside Miller/Nielsen/Shneiderman & Plaisant's "acceptable" band (0.1-1s) only at its very low end. The visitor isn't issuing a command and waiting for a result the way those thresholds assume; they're perceiving a continuous, two-way physical interaction, closer to G.114's mouth-to-ear immediacy than to a page-load delay.
+Neither source above speaks to this project's specific reaction, position and height detection driving a Virtual Human behaviour change, so this project sets its own target rather than borrow one that doesn't fit.
+That target is < 150ms end-to-end (sensing to visible reaction), with < 100ms as a stretch target.
+The reasoning: a reciprocal physical response, the Virtual Human kneeling for a detected child, sits inside Miller/Nielsen/Shneiderman & Plaisant's "acceptable" band (0.1-1s) only at its very low end.
+The visitor isn't issuing a command and waiting for a result the way those thresholds assume.
+They're perceiving a continuous, two-way physical interaction instead, closer to G.114's mouth-to-ear immediacy than to a page-load delay.
 150ms is therefore adopted as the hard ceiling for the full pipeline, matching G.114's "acceptable" boundary, with 100ms as the stretch target matching the general literature's "instantaneous" threshold. This project only builds and can verify part of that pipeline, though, so Requirements and Verification turns this full-pipeline target into a narrower, actually-testable NFR for the part this project owns.

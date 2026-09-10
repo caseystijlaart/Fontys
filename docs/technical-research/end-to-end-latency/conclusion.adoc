@@ -1,8 +1,11 @@
 = Conclusion
 
-RQ8 sets a full-pipeline target of < 150ms (p50) / < 200ms (p95), sensing to visible VH reaction, from general HCI thresholds and ITU-T G.114. But that full reaction isn't this project's deliverable, only the embedded sensing system is (Finished Products); VH rendering is MindLabs' existing Holobox/Unreal Engine system. So NFR-Latency-01 covers a narrower, measurable slice: sensing through to exposing the estimate, < 110ms (p50) / < 150ms (p95).
+RQ8 sets a full-pipeline target of < 150ms (p50) / < 200ms (p95), sensing to visible VH reaction, from general HCI thresholds and ITU-T G.114. But that full reaction isn't this project's deliverable; only the embedded sensing system is (Finished Products).
+VH rendering is MindLabs' existing Holobox/Unreal Engine system. So NFR-Latency-01 covers a narrower, measurable slice: sensing through to exposing the estimate, < 110ms (p50) / < 150ms (p95).
 
-That narrower budget has some room, on paper, under an unvalidated assumption: no documented max frame rate for the IWR6843AOPEVM, so this chapter plans around TI's 10-20Hz base rate (<<mmwave-radar>>, <<tidue71d>>, ~18Hz), and assumes height classification is a simple top/bottom-point calculation, not a trained model. That leaves ~108ms against the 110ms ceiling, not much room.
+That narrower budget has some room, on paper, under an unvalidated assumption.
+No documented max frame rate exists for the IWR6843AOPEVM, so this chapter plans around TI's 10-20Hz base rate (<<mmwave-radar>>, <<tidue71d,2020>>, ~18Hz), and assumes height classification is a simple top/bottom-point calculation, not a trained model.
+That leaves ~108ms against the 110ms ceiling, not much room.
 That margin depends on the simple approach holding up, or falling back to the heavier keypoint model, itself unproven for this task (Huang et al., <<huang2021mmwave,2021>>, show tracking on a Raspberry Pi 4, not classification). The bench measurement in Requirements and Verification is where this gets confirmed.
 
 As with Non-Camera Person Position & Height Sensing Techniques, this chapter is a target and a verification plan, not a finished result. Every figure, frame rate, inference cost, fusion time, margin, is theoretical, pending validation once a working pipeline exists.

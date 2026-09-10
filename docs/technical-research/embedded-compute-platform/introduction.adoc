@@ -1,0 +1,15 @@
+= Introduction
+
+This chapter addresses RQ2 and RQ3 from the Project Plan (Chapter 3.6, Research Questions).
+RQ2 covers implementing the sensor on an embedded platform for robust, low-latency position estimates; RQ3 covers deploying a lightweight classification model on that platform.
+Non-Camera Person Position & Height Sensing Techniques already fixes the sensor, the TI IWR6843AOPEVM, whose onboard DSP and Cortex-R4F run TI's tracking firmware and produce a point-cloud stream.
+Its only interfaces are UART-over-USB and a GPIO header, though, with no Ethernet or WiFi of its own, so it cannot reach the Holobox pipeline on its own.
+A host board is therefore needed purely to bridge that gap: receive the stream, run classification, and put the result on the network.
+Candidate Sensor Technologies and End-to-End Latency Requirements both already assume this board exists without naming or costing one.
+
+Running classification on the machine already driving the Holobox's Unreal Engine pipeline was considered and rejected.
+NFR-Latency-01 would prefer it (0ms local vs. 50-100ms networked, Latency Budget), but the Project Plan describes the deliverable as its own embedded hardware and software prototype (Assignment, Finished Products), not a service bolted onto MindLabs' existing show PC.
+
+This chapter picks that host board and checks it against the latency budget and cost constraints already established.
+It covers only whether the board has spare compute for the microphone array's beam-steering workload once added (Candidate Sensor Technologies, Microphone Array), not the array hardware itself.
+It also does not train or validate the classification model; that is RQ3's model-accuracy question, addressed separately once a working pipeline exists.

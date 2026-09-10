@@ -15,7 +15,7 @@
 | Timestamp radar frame arrival, fusion output, inference result, output exposed. Report median/p95 delta, 10-minute window, N ≥ 20 trials.
 
 | Dependencies
-| Radar frame rate in the 10-20Hz base range (<<mmwave-radar>>, <<tidue71d>>). Inference ≤ 5ms (simple approach) or ≤ 50ms (ML fallback); both theoretical. No competing background process during measurement.
+| Radar frame rate in the 10-20Hz base range (<<mmwave-radar>>, <<tidue71d,2020>>). Inference ≤ 5ms (simple approach) or ≤ 50ms (ML fallback); both theoretical. No competing background process during measurement.
 |===
 
 == Verification Strategy

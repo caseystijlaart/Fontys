@@ -1,0 +1,21 @@
+= Embedded Compute Platform Selection
+
+:leveloffset: +1
+
+include::introduction.adoc[]
+
+<<<
+
+include::research-approach.adoc[]
+
+<<<
+
+include::evaluation-criteria.adoc[]
+
+<<<
+
+include::candidate-platforms.adoc[]
+
+include::conclusion.adoc[]
+
+:leveloffset: -1

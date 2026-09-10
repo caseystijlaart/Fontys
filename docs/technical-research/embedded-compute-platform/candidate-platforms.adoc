@@ -1,0 +1,125 @@
+= Candidate Embedded Platforms
+
+The IWR6843AOPEVM's own onboard DSP and Cortex-R4F already run TI's people-tracking firmware and produce a tracked point-cloud stream (<<tidue71d,2020>>, <<mmwavesdkug,2022>>).
+The host board this chapter picks does not run the mmWave SDK itself.
+Its job is narrower: consume that stream, run the classification stage, and expose the result to the Holobox pipeline.
+Barral et al. (<<barral2024mmwaveiot,2024>>) document exactly this split on the same radar family.
+TI's onboard firmware handles point-cloud generation and a first-pass extended-Kalman-filter track, while their paired host runs the downstream filtering, clustering, and output stack.
+
+[[mcu-baseline]]
+== Bare-Metal MCU
+
+Finance and Risks' own risk table already names an MCU-to-Linux-SBC fallback direction, implying the project could in principle start at the MCU tier.
+A representative part, the ESP32-S3, is cheap (a few euros) and has built-in WiFi.
+No gathered source pairs an MCU-class part with this radar family for point-cloud consumption, though.
+Running the sensor's output parser, a classification stage, and later the microphone array's beam-steering concurrently is also a level of scheduling and memory management an MCU without a real OS is not well suited to for this project's timeline.
+This tier is ruled out as a starting point rather than attempted first and abandoned.
+The project starts directly at the Linux single-board-computer (SBC) tier the risk table already anticipates.
+
+[[rpi4]]
+== Raspberry Pi 4 Model B (4GB/8GB)
+
+A quad-core Cortex-A72 @ 1.5GHz, Gigabit Ethernet, dual-band WiFi, and USB 3.0/2.0, sold in 2GB (€60.49), 4GB (€108.89), and 8GB (€157.29) RAM variants at current link:https://www.kiwi-electronics.com/en/raspberry-pi-4-model-b-8gb-10032[Kiwi Electronics] (NL) listings, all sharing the same CPU and interfaces.
+
+The 4GB variant is carried forward: the design skips Barral et al.'s ROS-based stack, and classification runs in the IWR's own onboard firmware rather than on the host (Introduction).
+The host's job therefore reduces to relaying a small classified result over UART, running the microphone array's beam-steering, and bridging to the network, none of which approaches a 4GB ceiling.
+The one scenario needing more memory, the ProbRadarM3F fallback's PyTorch runtime, is also a CPU-throughput problem, so escalating to the Raspberry Pi 5 (Recommended Approach) addresses both rather than buying 8GB now.
+
+This is the only candidate with a literature precedent for the exact combination this project plans to use.
+Barral et al. (<<barral2024mmwaveiot,2024>>) pair an IWR6843ISK, the same radar family as the already-selected IWR6843AOPEVM, with a Raspberry Pi 4 over USB, running TI's onboard tracking firmware on the radar and a downstream ROS-based clustering/tracking/output stack on the Pi.
+Huang et al. (<<huang2021mmwave,2021>>) separately show real-time multi-person mmWave tracking running on the same board.
+
+Barral et al. also report a concrete open risk worth carrying into the bench-testing stage: bandwidth constraints extracting measurements over the USB interface at higher data rates, unconfirmed against this project's own (as yet unmeasured) point-cloud rate.
+
+<<<
+
+Pros::
+* Only candidate with a literature precedent for this exact radar-family-plus-host combination (Barral et al.).
+* Separate real-time multi-person tracking precedent on the same board (Huang et al.).
+* Cheapest board reviewed (€108.89 incl. VAT) and the only one available to borrow from Fontys' ISSD, keeping the initial ask small while budget approval is pending (Finance and Risks).
+* Standard GPIO/UART-over-USB interface and mainstream Linux ecosystem, no added interface hardware needed.
+* 4GB comfortably covers the host's reduced job, since classification runs on the IWR itself.
+
+Cons::
+* No onboard GPU/NPU acceleration. ProbRadarM3F can still run on CPU, but whether it stays inside the latency budget on this board is unproven; it would also need the board to fall back to ingesting the raw point cloud rather than the lean classified stream.
+* Barral et al.'s reported USB bandwidth constraint is an open risk, unconfirmed against this project's own data rate, and would only actually matter if that same fallback is triggered.
+
+[[rpi5]]
+== Raspberry Pi 5
+
+A quad-core, out-of-order Cortex-A76 @ 2.4GHz with 8GB RAM, Gigabit Ethernet with PoE+ support, WiFi, USB 3.0, PCIe 2.0, and a 40-pin GPIO/UART header, €192.38 incl. VAT at current link:https://www.kiwi-electronics.com/en/raspberry-pi-5-8gb-11580[Kiwi Electronics] (NL) listings.
+
+No gathered source pairs this specific board with the IWR6843 family.
+It shares the same GPIO/UART interface and Debian-based Linux stack as the wider Raspberry Pi family, though, so integrating this project's sensor-parsing and classification software needs no new interface work.
+Its out-of-order CPU cores and doubled RAM give real headroom for the ProbRadarM3F keypoint fallback (~30-50ms estimate) and for running the microphone array's beam-steering concurrently, though neither is benchmarked on this exact pipeline yet.
+PCIe 2.0 and USB 3.0 also leave room for a future accelerator add-on, if CPU-only inference on this board still proves insufficient.
+
+Pros::
+* Meaningfully more CPU and memory headroom than the primary classification approach needs on its own, a margin against the ProbRadarM3F fallback or concurrent microphone-array beam-steering.
+* Same GPIO/UART interface and Linux ecosystem as the wider Raspberry Pi family, so no new interface work is needed.
+* PCIe and USB 3.0 leave room for a future accelerator add-on if CPU-only inference proves insufficient.
+
+Cons::
+* No gathered source pairs this specific board with the IWR6843 family.
+* €192.38 incl. VAT is a real expense given no project budget is approved yet (Finance and Risks).
+* Not available at Fontys' ISSD; adopting it now would mean waiting on mentor budget approval before it can even be obtained.
+
+[[jetson-orin-nano]]
+== NVIDIA Jetson Orin Nano Super Developer Kit
+
+A 6-core Cortex-A78AE @ 1.7GHz paired with a 1024-core Ampere GPU and 32 tensor cores (up to 67 TOPS INT8), 8GB LPDDR5, 7-25W power envelope.
+No EUR-market listing was found at a major distributor.
+Converting Electrokit's (SE) listed 5,329 SEK incl. VAT gives approximately €465, consistent with Aetherix's (NL) directly listed €468.47, so €465-470 is used as the working estimate.
+
+No gathered source pairs this board, or any Jetson model, with the IWR6843 family or with the ProbRadarM3F keypoint model specifically.
+The case for it is inferred, not demonstrated: ProbRadarM3F (<<probradarm3f2024,2024>>) is a PyTorch/CUDA model, and Jetson's CUDA and TensorRT stack is the standard embedded deployment target for that model class in general.
+That is a reasonable inference from how such models are normally deployed, not a result specific to this project's use case.
+
+Pros::
+* Only candidate with GPU/tensor-core acceleration, the class of hardware the ProbRadarM3F keypoint fallback would most plausibly need if the simple threshold approach underperforms.
+* Same GPIO-class headers and USB/networking interfaces as the SBC candidates, so the sensor interface itself is no harder to integrate.
+
+Cons::
+* No literature or documented case pairs it with this project's specific sensor or classification model.
+* At ~€465-470 incl. VAT, this is a substantial per-unit cost against Finance and Risks' unapproved budget.
+* A 7-25W power envelope and active cooling requirement, a consideration if the board needs to sit inside or close to the Holobox housing.
+* Justified only if the simple threshold classification approach turns out to be insufficient; committing to it now would be pre-paying for a capability not yet shown to be needed.
+* Not available at Fontys' ISSD; adopting it now would mean waiting on mentor budget approval before it can even be obtained.
+
+<<<
+
+[[compute-comparison-summary]]
+== Comparison Summary
+
+.Candidate Embedded Platform Comparison Summary
+[cols="3,3,2,3,1,1,3"]
+|===
+|Board |Compute |Cost (VAT) |Precedent |Power | ISSD |Fallback Headroom
+
+|Raspberry Pi 4 Model B (4GB/8GB) |Quad-core Cortex-A72 @ 1.5GHz |link:https://www.kiwi-electronics.com/nl/raspberry-pi-4-model-b-4gb-4268[€108.89]/link:https://www.amazon.nl/dp/B09TTKT94J/ref=asc_df_B09TTKT94J1788715680000?tag=tweakers0e-21&linkCode=df0&th=1[€149.99] |Yes, direct (Barral et al.; Huang et al.) |~5-8W | Yes |None beyond primary; ML fallback unproven on CPU
+|Raspberry Pi 5 (4GB/8GB) |Quad-core Cortex-A76 @ 2.4GHz |link:https://www.caps.nl/raspberry-board-pi-5-model-b-4-gb-ram-id-987224.html[€158.07]/link:https://www.kiwi-electronics.com/nl/raspberry-pi-5-8gb-11580[€192.38] |No (same ecosystem as Pi 4) |~8-12W | No |More CPU/RAM; ML fallback ~30-50ms est., no GPU
+|Jetson Orin Nano Super Dev Kit |6-core Cortex-A78AE + Ampere GPU |link:https://www.amazon.nl/dp/B0BZJTQ5YP/ref=asc_df_B0BZJTQ5YP1788704880000?tag=tweakers0e-21&linkCode=df0&th=1[€539] |None found |7-25W | No |Full: GPU/tensor cores handle ML fallback directly
+|===
+
+Figures are board-only manufacturer specifications, not measured on this project's own pipeline; cost uses the Raspberry Pi 4's 4GB price throughout.
+Precedent, cost, and ISSD availability decide the starting platform: the Pi 4 is cheapest, has the only literature precedent, and is the only candidate available to borrow.
+The Pi 5 costs about 77% more and the Jetson roughly 5x, and both would need to be purchased.
+Power draw and fallback headroom are secondary.
+The Jetson's GPU/tensor cores give it the most headroom, at 3-5x either Pi's power draw, but that only matters if bench testing later triggers the ProbRadarM3F fallback or a concurrency problem the Pi 4 can't absorb.
+
+<<<
+
+[[compute-recommended-approach]]
+== Recommended Approach
+
+The Raspberry Pi 4 Model B (4GB) is recommended as the starting platform.
+It is the only candidate with a literature precedent for this exact radar-plus-host split (Barral et al.), reinforced by a separate real-time-tracking precedent on the same board (Huang et al.).
+It is also the cheapest board reviewed, and the only one available to borrow from Fontys' ISSD, avoiding the pending budget approval entirely.
+4GB is sufficient since classification runs on the IWR itself, not the host; the host only relays a small classified result, runs the microphone array's beam-steering, and bridges both to the network (Introduction).
+
+This is a starting-point recommendation, not a final hardware order, and still needs mentor sign-off.
+Two risks carry into bench testing (Research Approach): Barral et al.'s reported USB bandwidth constraint, and whether the Pi 4 has spare CPU cycles once beam-steering runs alongside classification.
+Neither is a RAM problem, so paying for 8GB now would not address either.
+If either risk materialises, the Raspberry Pi 5 is the documented fallback: same interface and ecosystem, roughly 2.2-2.4x the compute headroom (Geekbench 6.2) for a 77% cost increase, and not available at ISSD.
+The Jetson Orin Nano Super remains a further fallback specifically for the ProbRadarM3F model, only if the primary classification approach proves insufficient.
+It is the most expensive and highest-power candidate reviewed, and like the Pi 5 it would need to be purchased rather than borrowed.
