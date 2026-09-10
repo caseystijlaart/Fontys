@@ -13,7 +13,7 @@ Sensor acquisition reuses the already-recommended module (<<mmwave-radar>>, <<mm
 
 | Sensor acquisition (mmWave radar)
 | 50-100 ms
-| 10-20Hz base configuration, consistent with the "typical demo" figures in <<mmwave-radar>> and with TI's own indoor people-tracking reference design for this chip (<<tidue71d>>), which achieves ~18Hz (55ms); the mmWave SDK allows configuring higher rates, see Sensor Sampling Rate below.
+| 10-20Hz base configuration, consistent with the "typical demo" figures in <<mmwave-radar>> and with TI's own indoor people-tracking reference design for this chip (<<tidue71d,2020>>), which achieves ~18Hz (55ms). The mmWave SDK allows configuring higher rates; see Sensor Sampling Rate below.
 
 | Sensor fusion (Kalman/EKF over multiple frames)
 | 0-20 ms
@@ -33,7 +33,8 @@ Sensor acquisition reuses the already-recommended module (<<mmwave-radar>>, <<mm
 |===
 
 Downstream of that, MindLabs' existing Holobox / Unreal Engine system renders the Virtual Human's actual reaction, one animation frame updating skeletal targets, typically 16-33ms at 30-60 FPS.
-That's not something this project builds, controls, or can bench-test; Finished Products lists only the embedded sensing system as the prototype deliverable. It's mentioned here purely as context: added to this project's own 51-125ms, it lands around 67-158ms, which is what the <150ms full-pipeline target (Perceptual Latency Thresholds) is actually measuring against.
+That's not something this project builds, controls, or can bench-test; Finished Products lists only the embedded sensing system as the prototype deliverable. It's mentioned here purely as context.
+Added to this project's own 51-125ms, it lands around 67-158ms, which is what the <150ms full-pipeline target (Perceptual Latency Thresholds) is actually measuring against.
 
 == Jitter Margin
 
@@ -50,13 +51,14 @@ That margin rests on an unvalidated assumption, though. If the simple top/bottom
 
 == Sensor Sampling Rate
 
-TI doesn't publish a fixed maximum frame rate for the IWR6843AOP. The mmWave SDK treats frame periodicity as an open, configurable float value (<<mmwavesdkug>>). The only real constraints: active-chirp duty cycle stays ≤50% of the frame period, and there's enough time for the UART transfer. No documented ceiling.
+TI doesn't publish a fixed maximum frame rate for the IWR6843AOP. The mmWave SDK treats frame periodicity as an open, configurable float value (<<mmwavesdkug,2022>>). The only real constraints: active-chirp duty cycle stays ≤50% of the frame period, and there's enough time for the UART transfer. No documented ceiling.
 So this chapter plans around a 10-20Hz base rate for the already-selected IWR6843AOPEVM (<<mmwave-module-selection>>), the same "typical demo" range from <<mmwave-radar>>, rather than picking one number out of thin air.
-TI's own indoor people-tracking reference design for this chip (<<tidue71d>>) backs that up: a 288-chirp, 1.78GHz-sweep profile, tuned for 8.4cm range resolution over 6m, runs at 55ms (~18Hz) with a 46% duty cycle, within the SDK's ≤50% limit. That's a real, published example, not just a demo default.
+TI's own indoor people-tracking reference design for this chip (<<tidue71d,2020>>) backs that up: a 288-chirp, 1.78GHz-sweep profile, tuned for 8.4cm range resolution over 6m, runs at 55ms (~18Hz) with a 46% duty cycle, within the SDK's ≤50% limit. That's a real, published example, not just a demo default.
 Since frame periodicity is open, running faster is possible and would ease the budget further. But TI hasn't published a faster worked example for this use case. A leaner chirp profile, trading range/velocity resolution for speed, is worth exploring, but that's for the bench measurement in Requirements and Verification to check, not something to assume here.
 
 == Compute Platform Implications
 
-Height-category classification has two options: a simple top/bottom-point gap check (no trained model, ~1-5ms), or the keypoint-extraction model from Non-Camera Person Position & Height Sensing Techniques (ProbRadarM3F, <<probradarm3f2024,2024>>, ~30-50ms). Neither figure is measured or literature-backed for this task, but ML is likely overkill for a gap this simple. The simple approach is primary; the keypoint model is the fallback if it isn't accurate enough against real, noisy point clouds (occlusion, missed points, clustered people), untested either way. Even the fallback's speed is unproven here: Huang et al. (<<huang2021mmwave,2021>>) show tracking on a Raspberry Pi 4, not classification.
+Height-category classification has two options: a simple top/bottom-point gap check (no trained model, ~1-5ms), or the keypoint-extraction model from Non-Camera Person Position & Height Sensing Techniques (ProbRadarM3F, <<probradarm3f2024,2024>>, ~30-50ms). Neither figure is measured or literature-backed for this task, but ML is likely overkill for a gap this simple. The simple approach is primary.
+The keypoint model is the fallback if it isn't accurate enough against real, noisy point clouds (occlusion, missed points, clustered people), untested either way. Even the fallback's speed is unproven here: Huang et al. (<<huang2021mmwave,2021>>) show tracking on a Raspberry Pi 4, not classification.
 
 This also assumes the VH's behaviour depends on adult/child category at all, not confirmed yet (Non-Camera Person Position & Height Sensing Techniques). And if inference runs on a paired host, that host also runs the microphone array's beam-steering (Candidate Sensor Technologies, Microphone Array), a compute-contention risk the bench measurement should check for.

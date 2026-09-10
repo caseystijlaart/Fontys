@@ -1,6 +1,7 @@
 = Evaluation Criteria
 
-As with Non-Camera Person Position & Height Sensing Techniques, candidate boards are compared against explicit criteria traced back to a research question, an already-established budget, or a project constraint, rather than a general sense of which board is "more powerful."
+As with Non-Camera Person Position & Height Sensing Techniques, candidate boards are compared against explicit criteria.
+Each criterion traces back to a research question, an already-established budget, or a project constraint, rather than a general sense of which board is "more powerful."
 
 [[compute-criteria-table]]
 .Evaluation Criteria
@@ -9,15 +10,16 @@ As with Non-Camera Person Position & Height Sensing Techniques, candidate boards
 |Criterion |Description
 
 |Host interface compatibility |Must receive the already-selected IWR6843AOPEVM's tracked point-cloud output without added interface hardware, since the sensor module is fixed (Module Selection).
-|Real-time classification headroom |Must run height classification inside the ~108ms per-project latency budget (Latency Budget), for both the primary simple threshold approach (~1-5ms) and, if it becomes necessary, the ProbRadarM3F keypoint fallback (~30-50ms), per RQ2's low-latency requirement.
+|Real-time classification headroom |Must run height classification inside the ~108ms per-project latency budget (Latency Budget), per RQ2's low-latency requirement. This applies to both the primary simple threshold approach (~1-5ms) and, if it becomes necessary, the ProbRadarM3F keypoint fallback (~30-50ms).
 |Concurrent workload headroom |Must have spare compute if there is necesaiity to add a microphone array.
 |Output path to the Holobox pipeline |Needs a network interface so exposing the estimate does not force it onto the same machine as Unreal Engine; local-only adds 0ms, networked adds 50-100ms (NFR-Latency-01).
 |Literature and community precedent |Must show a documented case pairing this exact radar family with the board class, not just general embedded capability, for the same reason as Evaluation Criteria in Non-Camera Person Position & Height Sensing Techniques.
 |Hardware cost |Cost of the board, checked against sourceable listings; still a real constraint, since no project budget has yet been agreed with MindLabs (Finance and Risks).
 |Power and footprint |Must suit mounting near or inside the Holobox installation: passive or small-fan cooling, not a rack-mounted or actively loud unit.
-|Availability at ISSD |Whether the board can be borrowed directly from Fontys' own ISSD hardware loan desk; since MindLabs is itself a Fontys initiative, a board available there can be obtained without waiting on the mentor budget approval that every purchased candidate still needs (Finance and Risks).
+|Availability at ISSD |Whether the board can be borrowed directly from Fontys' own ISSD hardware loan desk. Since MindLabs is itself a Fontys initiative, a board available there can be obtained without waiting on the mentor budget approval that every purchased candidate still needs (Finance and Risks).
 |===
 
-Host interface compatibility and real-time classification headroom are treated as closer to hard requirements: a board that cannot receive the sensor's own output, or cannot fit inside the latency budget already committed to in Latency Budget, is not usable regardless of cost or literature backing.
+Host interface compatibility and real-time classification headroom are treated as closer to hard requirements.
+A board that cannot receive the sensor's own output, or cannot fit inside the latency budget already committed to in Latency Budget, is not usable regardless of cost or literature backing.
 Availability at ISSD is also treated as close to decisive rather than just another weighed factor: it is the only criterion that can remove the pending-budget blocker entirely, rather than just keeping the ask small.
 The remaining criteria are weighed against each other in the chapter that follows.

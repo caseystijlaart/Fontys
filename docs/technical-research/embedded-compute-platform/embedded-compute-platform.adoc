@@ -16,8 +16,6 @@ include::evaluation-criteria.adoc[]
 
 include::candidate-platforms.adoc[]
 
-<<<
-
 include::conclusion.adoc[]
 
 :leveloffset: -1

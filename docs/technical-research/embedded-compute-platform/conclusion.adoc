@@ -1,12 +1,11 @@
 = Conclusion
 
-Candidate Embedded Platforms recommends the Raspberry Pi 4 Model B, 4GB variant, as the host board that receives the IWR6843AOPEVM's already-classified position/height result, runs the microphone array's beam-steering, and bridges both to the Holobox pipeline.
-It is the only candidate reviewed with a literature precedent for this exact combination (Barral et al.), it is the lowest-cost option among the candidates with any sensor-family precedent, and it fits the latency budget already committed to in Latency Budget.
-The 4GB variant is sufficient because classification itself runs in the IWR's own onboard firmware rather than on the host (Introduction); the host's own job stays well inside 4GB, so the 8GB variant is available but not needed.
-It is also the only candidate reviewed that is available to borrow from Fontys' own ISSD hardware loan desk; since MindLabs is a Fontys initiative, this route is open to the project, and it lets the board be obtained without waiting on the mentor budget approval a purchase would need.
+Candidate Embedded Platforms recommends the Raspberry Pi 4 Model B (4GB) as the host board that receives the IWR6843AOPEVM's classified position/height result, runs the microphone array's beam-steering, and bridges both to the Holobox pipeline.
+It is the only candidate with a literature precedent for this combination (Barral et al.), the cheapest option with any sensor-family precedent, and it fits the latency budget already committed to (Latency Budget).
+4GB is sufficient since classification runs in the IWR's own onboard firmware, not the host.
+It is also the only candidate available to borrow from Fontys' ISSD, avoiding the pending mentor budget approval (Finance and Risks).
 
-As with the sensor recommendation in Candidate Sensor Technologies, this is a starting point pending mentor sign-off before use (Finance and Risks), not a final hardware order; ISSD availability removes the purchase-approval step for obtaining it, not the sign-off itself.
-Two things carry forward into bench testing once the radar module is on hand: Barral et al.'s reported USB bandwidth constraint, unconfirmed against this project's own data rate, and whether the board has spare compute once the microphone array's beam-steering runs alongside classification.
-The Raspberry Pi 5 and the Jetson Orin Nano Super Developer Kit remain documented fallbacks, for general headroom and for the ProbRadarM3F keypoint model respectively, neither adopted now because neither risk they would address is confirmed yet, and neither is available at ISSD, so either fallback would additionally mean a purchase and the budget approval that comes with it.
-
-As with the two preceding chapters, this is a recommendation and a verification plan, not a finished result: every figure here is a manufacturer specification or a literature precedent, not a measurement from this project's own hardware.
+This is a starting-point recommendation pending mentor sign-off, not a final hardware order.
+Two risks carry into bench testing: Barral et al.'s reported USB bandwidth constraint, and whether the board has spare compute once beam-steering runs alongside classification.
+The Raspberry Pi 5 and Jetson Orin Nano Super remain documented fallbacks for either risk, neither adopted now since neither risk is confirmed and neither board is available at ISSD.
+Every figure here is a manufacturer specification or literature precedent, not a measurement from this project's own hardware.
