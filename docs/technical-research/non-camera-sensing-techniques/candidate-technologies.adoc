@@ -11,7 +11,7 @@ It is used below to organise what each technology has actually been shown to do,
 
 [[pipeline]]
 .Device-free Pipeline
-[graphviz, pipeline, png]
+[graphviz, pipelinee, png]
 ....
 digraph ProjectTree {
   rankdir=LR;
