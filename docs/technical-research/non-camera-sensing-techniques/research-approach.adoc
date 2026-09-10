@@ -1,18 +1,15 @@
 = Research Approach
 
-This chapter follows the Library and Lab strategies of the DOT-framework identified for this research question in the Project Plan (Chapter 3.7, Research Methods): available product analysis, literature study, document analysis, and bench experimentation.
+This chapter follows the Library and Lab strategies of the DOT-framework identified for this research question in the Project Plan (Chapter 3.7, Research Methods).
+These are: available product analysis, literature study, document analysis, and bench experimentation.
 
 == Library: Literature Study
 
-Candidate Sensor Technologies gathers and verifies peer-reviewed literature for each non-camera sensing family against the position/height requirement and, separately, against the multi-person active-speaker problem, in two separate passes: one sits in the radar/thermal/RF position-and-pose-estimation literature, the other closer to acoustic and vibrometry-based speaker localisation, so a single combined search would have missed sources specific to either.
+Candidate Sensor Technologies gathers and verifies peer-reviewed literature for each non-camera sensing family against the position/height requirement and, separately, against the multi-person active-speaker problem, in two separate passes.
+One sits in the radar/thermal/RF position-and-pose-estimation literature, the other closer to acoustic and vibrometry-based speaker localisation, so a single combined search would have missed sources specific to either.
 
 == Lab: Available Product Analysis
 
-Alongside the literature, the same chapter narrows the literature-backed technology families down to specific, currently sourceable hardware modules, checked against live distributor listings (Digi-Key, Mouser, Adafruit, and others) rather than assumed pricing, since an unverified cost estimate is not a usable basis for a hardware decision or the budget-approval process described in the Project Plan (Chapter 6.1, Finance and Risks).
+Alongside the literature, the same chapter narrows the literature-backed technology families down to specific, currently sourceable hardware modules, checked against live distributor listings (Digi-Key, Mouser, Adafruit, and others) rather than assumed pricing.
+An unverified cost estimate is not a usable basis for a hardware decision or the budget-approval process described in the Project Plan (Chapter 6.1, Finance and Risks).
 Literature backing and product availability are two different questions: a technique can be well-published without there being a specific, currently purchasable module that implements it at a reasonable price, or at all.
-
-== Lab: Bench Experimentation Strategy
-
-The recommended path into bench experimentation commits to mmWave radar directly, managing implementation risk by splitting the build into capability-based phases rather than assuming the full pipeline works at once: position tracking first, then height estimation, then multi-person clustering, then speaker detection, each building on an already-working previous phase.
-This is deliberate: it isolates a failure to whichever capability is currently being added, rather than letting it surface somewhere in an untested, fully assembled system; the same mmWave hardware and UART/point-cloud/Unreal Engine bridge built in phase one is reused, not redone, in every phase after it; it follows the research-question sequence, validating position/height first before adding multi-person clustering and speaker detection; and it reflects feature priority, since those extensions improve the system without being required for the current single-person scope.
-A working fallback exists at each stage: if a later phase's capability underperforms, the earlier phase's version remains a functioning system rather than a dead end, mirroring the fallback the project's own risk register anticipates for both sensor selection and on-device ML performance.

@@ -4,7 +4,7 @@
 :imagesdir: images
 :title-page: true
 :author: Casey Stijlaart
-:revnumber: 0.6
+:revnumber: 0.4
 :revdate: 08-09-2026
 :docdatetime: datetime (ISO)
 :doctype: report

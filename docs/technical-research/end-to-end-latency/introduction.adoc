@@ -1,7 +1,16 @@
 = Introduction
 
-This chapter addresses the User/Human Interaction sub-question defined in the Project Plan (Chapter 3.6, Research Questions), referred to as RQ8: "What position and height estimation latency is required for the Virtual Human's reaction (e.g. kneeling down for a child) to be perceived by visitors as natural and immediate, rather than delayed or robotic?"
+This chapter addresses the User/Human Interaction sub-question defined in the Project Plan (Chapter 3.6, Research Questions), referred to as RQ8.
+"What position and height estimation latency is required for the Virtual Human's reaction (e.g. kneeling down for a child) to be perceived by visitors as natural and immediate, rather than delayed or robotic?"
 
-Per the Project Plan (Chapter 3.3, Assignment), the Virtual Human must react to a visitor's detected position and height so it reads as immediate and natural, not delayed or robotic, downstream of the sensing pipeline covered in Non-Camera Person Position & Height Sensing Techniques.
-Building or verifying that reaction isn't this project's job, though: Finished Products lists only the embedded sensing system as the prototype deliverable, the Virtual Human's own rendering is MindLabs' existing Holobox/Unreal Engine system. So this chapter sets two things: a full-pipeline target for RQ8 (sensing all the way to the visible reaction, derived from general HCI response-time literature and one telecom standard, since no literature specific to this reaction exists), and a narrower NFR that this project actually builds and can bench-test, sensing through to exposing the estimate to the pipeline. It breaks that budget down using the sensor already recommended there (<<mmwave-radar>>, <<mmwave-module-selection>>).
-As with the sensing research, this chapter proposes a target and a verification plan, not a measured result. The bench and field measurement in Requirements and Verification hasn't run yet; that's the next step, not something this desk-research stage claims to have already confirmed.
+Per the Project Plan (Chapter 3.3, Assignment), the Virtual Human must react to a visitor's detected position and height, downstream of the sensing pipeline covered in Non-Camera Person Position & Height Sensing Techniques.
+That reaction needs to read as immediate and natural, not delayed or robotic.
+Building or verifying that reaction isn't this project's job, though: Finished Products lists only the embedded sensing system as the prototype deliverable.
+The Virtual Human's own rendering is MindLabs' existing Holobox/Unreal Engine system.
+So this chapter sets two things.
+First, a full-pipeline target for RQ8 (sensing all the way to the visible reaction), derived from general HCI response-time literature and one telecom standard, since no literature specific to this reaction exists.
+Second, a narrower NFR that this project actually builds and can bench-test, sensing through to exposing the estimate to the pipeline.
+It breaks that budget down using the sensor already recommended there (<<mmwave-radar>>, <<mmwave-module-selection>>).
+As with the sensing research, this chapter proposes a target and a verification plan, not a measured result.
+The bench and field measurement in Requirements and Verification hasn't run yet.
+That's the next step, not something this desk-research stage claims to have already confirmed.
